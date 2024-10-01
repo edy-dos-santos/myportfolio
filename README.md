@@ -13,7 +13,7 @@ For that, it's highly recommended to use Anaconda browser, with Jupyter Notebook
 ### **2** End to End Business Analysis Dashboard using SQL Server, Data Modelling and Power BI
 ![Electro Movement ](https://github.com/edy-dos-santos/myportfolio/blob/main/images/Screenshot%20Dashboard%20PBI.png)
 The second file is a Power BI project created for a fictional business called [BikeStoreProject](https://app.powerbi.com/groups/me/reports/442ff52a-57b7-450b-938c-cf1c5b04866b?pbi_source=desktop). 
-You can access the dashboard clicking on the link above, if you have access to a Microsoft Fabric / Power BI app, or, alternatively, you can visit the [pdf file](https://github.com/edy-dos-santos/myportfolio/blob/main/images/BikeStoreProject.pdf) uploaded. I've used SQL Server to edit queries and then upload it to PBI where I've created a dashboard. 
+You can access the dashboard clicking on the link above, if you have access to a Microsoft Fabric / Power BI app, or, alternatively, you can visit the [pdf file](main/miscelaneous/BikeStoreProject.pdf) uploaded. I've used SQL Server to edit queries and then upload it to PBI where I've created a dashboard. 
 
 
 
