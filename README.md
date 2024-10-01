@@ -1,4 +1,4 @@
-# **M Y   P O R T F O L I O**
+# **M Y    P O R T F O L I O**
 ### This is my professional Data portfolio. 
 
 On folder [projects](./projects/), will you see:
