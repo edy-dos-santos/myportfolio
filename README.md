@@ -3,6 +3,7 @@
 
 ### **1** End to End EDA using Python and its Data Analysis Libraries
 ![Line Chart Viz - One Million](https://github.com/edy-dos-santos/myportfolio/blob/main/images/Screenshot%20One%20Million%20Headlines.png)
+
 The first file, named [One Million](https://github.com/edy-dos-santos/myportfolio/blob/main/One-Million-08082024.ipynb), although it is a .ipynb file, you can visualize the code. 
 If you want to check whether the code is running, so the most efficient tool in this case is Jupyter Notebooks (or Jupyter Labs). 
 For that, it's highly recommended to use Anaconda browser, with Jupyter Notebooks/Labs installed. 
