@@ -1,7 +1,7 @@
 # **M Y   P O R T F O L I O**
 ### This is my professional Data portfolio. 
 
-On folder [projects](.projects/), will you see:
+On folder [projects](./projects/), will you see:
 
 ### **1** End to End EDA using Python and its Data Analysis Libraries
 ![Line Chart Viz - One Million](https://github.com/edy-dos-santos/myportfolio/blob/main/images/Screenshot%20One%20Million%20Headlines.png)
