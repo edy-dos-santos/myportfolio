@@ -2,10 +2,10 @@
 ### This is my professional Data portfolio. 
 
 ### **1** End to End EDA using Python and its Data Analysis Libraries
-The first file, named One Million, although it is a .ipynb file, you can visualize the code. 
+The first file, named [One Million](https://github.com/edy-dos-santos/myportfolio/blob/main/One-Million-08082024.ipynb), although it is a .ipynb file, you can visualize the code. 
 If you want to check whether the code is running, so the most efficient tool in this case is Jupyter Notebooks (or Jupyter Labs). 
 For that, it's highly recommended to use Anaconda browser, with Jupyter Notebooks/Labs installed. 
 
 ### **2** End to End Business Analysis Dashboard using SQL Server, Data Modelling and Power BI
-The second file is a Power BI project created for a fictional business called BikeStoreProject. In it I've used SQL Server to edit queries and then upload it to PBI where I've created a dashboard. 
+The second file is a Power BI project created for a fictional business called [BikeStoreProject](https://github.com/edy-dos-santos/myportfolio/blob/main/BikeStoreProject.pbix). In it I've used SQL Server to edit queries and then upload it to PBI where I've created a dashboard. 
 
