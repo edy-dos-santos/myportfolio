@@ -12,11 +12,67 @@ The first project, named [One Million](./projects/One-Million-08082024.ipynb), a
 If you want to check whether the code is running, so the most efficient tool in this case is Jupyter Notebooks (or Jupyter Labs). 
 For that, it's highly recommended to use Anaconda browser, with Jupyter Notebooks/Labs installed. 
 
+## Workflow Overview
+
+1. **Dataset Acquisition**  
+   - The dataset used is "A Million News Headlines," sourced from Kaggle. The dataset was accessed using the Kaggle API, downloaded, and unzipped for use.
+
+2. **Data Exploration**  
+   - Libraries such as pandas, numpy, and nltk were imported to perform data manipulation and analysis.
+   - The dataset was loaded using pandas, and initial exploratory steps included familiarizing with the structure of the data (e.g., columns and data types).
+   - Data cleaning involved handling text, removing unnecessary characters, and preparing it for further analysis.
+
+3. **Exploratory Data Analysis (EDA)**  
+   - Conducted an initial investigation of the most used words in the dataset to infer trending topics over time.
+   - Removed stopwords and used regex to clean the text data.
+   - Used itertools and collections to analyze combinations of commonly occurring words and phrases.
+
+4. **Data Analysis**  
+   - Analyzed the headlines dataset by calculating word frequencies and identifying trends across different time periods.
+   - Investigated correlations between the frequency of specific keywords and their prominence in news over different years.
+   - Created combinations of common words to understand more complex relationships in news headlines.
+
+5. **Visualizations**  
+   - Created visualizations using matplotlib and seaborn to display insights from the data.
+   - Included bar charts` and line charts to depict the trending topics over time, seasonal changes in word frequency, and popular keywords.
+
+6. **Findings**  
+   - The analysis provided insight into the trending topics in Australia over the years, with a focus on identifying hot topics and important events based on headline data.
+   - Recommendations were formed regarding which topics have gained or lost prominence over time, offering insight into the evolution of public interest.
+
+
+
 ### **2** - End to End Business Analysis Dashboard using SQL Server, Data Modelling and Power BI
 ![Electro Movement ](./images/Screenshot%20Dashboard%20PBI.png)
 The second project was made using MS SQL Server and Power BI project and was created for a fictional business called [BikeStoreProject](https://app.powerbi.com/groups/me/reports/442ff52a-57b7-450b-938c-cf1c5b04866b?pbi_source=desktop). The database is spread into three files: [bike_share_yr_0](./miscelaneous/bike_share_yr_0.csv), [bike_share_yr_1](./miscelaneous/bike_share_yr_1.csv) and [cost_table](./miscelaneous/cost_table.csv)  
+
+In the dashboard above, we have the following metrics:
+
+1. **Years Selection:** Options for selecting data for the years 2021 or 2022.
+
+2. **Key Metrics:**
+   - **Riders:** 3 million total riders.
+   - **Profit-to-Revenue Ratio:** 0.45.
+   - **Total Revenue:** $15 million.
+   - **Total Profit:** $10.45 million.
+
+3. **Profit Prediction Summary:**
+   - High-revenue times are between noon and the first hours of the night, especially from Tuesday to Friday.
+   - **Hourly Revenue Table:** Revenue breakdown for each hour of the day (0-23 hours).
+
+4. **KPI Over Time Chart:**
+   - Displays riders, average profit, and average revenue trends monthly for 2021 and 2022.
+
+5. **Revenue by Season Chart:**
+   - **Winter:** $4.9 million.
+   - **Fall:** $4.2 million.
+   - **Summer:** $3.9 million.
+
+6. **Rider Demographic:**
+   - **Casual Riders:** 18.83%.
+   - **Registered Riders:** 81.17%.
+     
 You can access the dashboard clicking on the link above, if you have access to a Microsoft Fabric / Power BI app, or, alternatively, you can check the [pdf file](./miscelaneous/BikeStoreProject.pdf) uploaded - SQL Query included.
-In a nutshell, based on the analysis proceeded, we've recommended an increase of 
 
 ### **3** - End to End App Investment Analysis using Briefer, a clould service data tool that uses Python, SQL, Pivot tables and proper visualizations.
 ![Apple App Store](./images/dash%20board%20briefer.png)
@@ -64,3 +120,4 @@ Based on our findings, we crafted several recommendations:
 - **Language Support**  
   Supporting multiple languages could increase the app's reach and appeal in global markets.
 
+The codes for this project above can be verified on my [Briefer Notebook](https://app.briefer.cloud/workspaces/8e23a509-d51f-4fdc-8dba-6d98d0b0638e/documents/b6e1ba5f-b7d0-474a-ac20-8dc73d6724a6/notebook) 
