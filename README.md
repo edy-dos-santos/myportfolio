@@ -74,7 +74,7 @@ In the dashboard above, we have the following metrics:
      
 You can access the dashboard clicking on the link above, if you have access to a Microsoft Fabric / Power BI app, or, alternatively, you can check the [pdf file](./miscelaneous/BikeStoreProject.pdf) uploaded - SQL Query included.
 
-## **3** - End to End App Investment Analysis using Briefer, a clould service data tool that uses Python, SQL, Pivot tables and proper visualizations.
+## **3** - End to End App Investment Analysis using Briefer, a cloud service data tool that uses Python, SQL, Pivot tables and proper visualizations.
 ![Apple App Store](./images/dash%20board%20briefer.png)
 ## Scenario Overview
 
