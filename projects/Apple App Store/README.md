@@ -1,10 +1,10 @@
-# 📱 Apple App Store — Market Analysis with SQL & Python
+# Apple App Store — Market Analysis with SQL & Python
 
 > Exploratory data analysis of 7,000+ apps on the Apple App Store, combining SQL (DuckDB) for data profiling and business analysis, and Python (Plotly) for visualisation.
 
 ---
 
-## 🎯 Project Objective
+## Project Objective
 
 This project was designed to simulate the kind of analysis a data analyst might deliver to a product or strategy team evaluating the mobile app market. The central questions were:
 
@@ -15,7 +15,7 @@ This project was designed to simulate the kind of analysis a data analyst might 
 
 ---
 
-## 🗂️ Dataset
+## Dataset
 
 | Table | Source | Records |
 |---|---|---|
@@ -34,7 +34,7 @@ This project was designed to simulate the kind of analysis a data analyst might 
 
 ---
 
-## 🔍 Analysis Structure
+## Analysis Structure
 
 ### 1. Data Quality Checks
 Before any analysis, both tables were validated:
@@ -148,7 +148,7 @@ This was built directly from the SQL output using Python's Plotly Express librar
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 ├── README.md
