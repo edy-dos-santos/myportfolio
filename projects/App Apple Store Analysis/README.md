@@ -1,16 +1,16 @@
-# 📱 Apple App Store — Market Analysis with SQL & Python
+#  Apple App Store — Market Analysis with SQL & Python
 
 > Exploratory data analysis of 7,000+ apps on the Apple App Store, using SQL (PostgreSQL) for data profiling and business analysis, and Python (Plotly) for visualisation.
 
 ---
 
-## 🎯 Objective
+##  Objective
 
 In this scenario, the stakeholder is an app developer aiming to create a successful, marketable app. To achieve this, the developer seeks to understand the most popular app categories, optimal pricing strategies, and how to maximise platform user ratings.
 
 ---
 
-## 🔄 Workflow Overview
+##  Workflow Overview
 
 **1. Dataset Acquisition** — Sourced appropriate datasets from Kaggle.com to support the analysis.
 
@@ -31,7 +31,7 @@ In this scenario, the stakeholder is an app developer aiming to create a success
 
 ---
 
-## 🗂️ Dataset
+## Dataset
 
 | Table | Source | Records |
 |---|---|---|
@@ -51,7 +51,7 @@ In this scenario, the stakeholder is an app developer aiming to create a success
 
 ---
 
-## 🔍 Analysis Structure
+##  Analysis Structure
 
 ### 1. Data Quality Checks
 Before any analysis, both tables were validated:
@@ -150,7 +150,7 @@ Charts built with Plotly Express directly from SQL query outputs:
 
 ---
 
-## 💡 Recommendations
+##  Recommendations
 
 **Target Underserved Categories** — Consider developing an app in underrepresented, low-rated categories such as Catalogs, Finance, and Navigation. These present opportunities due to smaller competition and room for a well-designed app to stand out.
 
@@ -164,7 +164,7 @@ Charts built with Plotly Express directly from SQL query outputs:
 
 ---
 
-## 📁 Repository Structure
+##  Repository Structure
 
 ```
 ├── README.md
@@ -176,7 +176,7 @@ Charts built with Plotly Express directly from SQL query outputs:
 
 ---
 
-## 👤 Author
+##  Author
 
 **Edy dos Santos** — Data Analyst | Upskilling in Data Engineering
 [GitHub Portfolio](https://github.com/edy-dos-santos/myportfolio)
