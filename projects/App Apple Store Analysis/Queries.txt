@@ -1,0 +1,299 @@
+Apple App Store — Market Analysis
+SQL Queries Documentation
+Author: Edy dos Santos
+Environment: PostgreSQL
+Dataset: Kaggle — App Store Apps (~7,200 apps)
+================================================================
+
+
+----------------------------------------------------------------
+SECTION 1: TABLE SETUP
+----------------------------------------------------------------
+Creates the two tables that will hold the dataset.
+Run these first, then load the CSV files using the COPY commands.
+
+CREATE TABLE IF NOT EXISTS applestore_dataset (
+    id                  BIGINT,
+    track_name          TEXT,
+    size_bytes          BIGINT,
+    currency            TEXT,
+    price               NUMERIC(10,2),
+    rating_count_tot    INTEGER,
+    rating_count_ver    INTEGER,
+    user_rating         NUMERIC(3,1),
+    user_rating_ver     NUMERIC(3,1),
+    ver                 TEXT,
+    cont_rating         TEXT,
+    prime_genre         TEXT,
+    sup_devices_num     INTEGER,
+    ipadsc_urls_num     INTEGER,
+    lang_num            INTEGER,
+    vpp_lic             INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS applestoredescription (
+    id          BIGINT,
+    track_name  TEXT,
+    size_bytes  BIGINT,
+    app_desc    TEXT
+);
+
+Load data from CSV (adjust file path as needed):
+COPY applestore_dataset FROM '/path/to/AppleStore.csv' CSV HEADER;
+COPY applestoredescription FROM '/path/to/applestore_description1.csv' CSV HEADER;
+COPY applestoredescription FROM '/path/to/applestore_description2.csv' CSV HEADER;
+COPY applestoredescription FROM '/path/to/applestore_description3.csv' CSV HEADER;
+COPY applestoredescription FROM '/path/to/applestore_description4.csv' CSV HEADER;
+
+
+----------------------------------------------------------------
+SECTION 2: DATA QUALITY CHECKS
+----------------------------------------------------------------
+Before any analysis, we check if both tables contain the same
+apps and whether there are any missing values in critical fields.
+
+-- Checks if there are apps present in one table but not the other.
+-- 0 rows = both tables are aligned.
+SELECT 'applestore_dataset' AS source, track_name
+FROM applestore_dataset
+WHERE track_name NOT IN (SELECT track_name FROM applestoredescription)
+UNION ALL
+SELECT 'applestoredescription' AS source, track_name
+FROM applestoredescription
+WHERE track_name NOT IN (SELECT track_name FROM applestore_dataset);
+
+-- Counts unique app IDs in each table. Both numbers should match.
+SELECT COUNT(DISTINCT id) AS unique_app_ids_dataset
+FROM applestore_dataset;
+
+SELECT COUNT(DISTINCT id) AS unique_app_ids_description
+FROM applestoredescription;
+
+-- Checks for missing values in the most critical fields.
+-- 0 = clean data, no missing values to handle.
+SELECT COUNT(*) AS missing_values_dataset
+FROM applestore_dataset
+WHERE track_name IS NULL
+   OR user_rating IS NULL
+   OR prime_genre IS NULL;
+
+SELECT COUNT(*) AS missing_values_description
+FROM applestoredescription
+WHERE app_desc IS NULL;
+
+
+----------------------------------------------------------------
+SECTION 3: GENRE DISTRIBUTION
+----------------------------------------------------------------
+Counts how many apps exist per genre, ordered from most to least.
+High counts indicate saturated markets; low counts may signal
+underserved opportunities.
+
+SELECT prime_genre,
+       COUNT(*) AS num_apps
+FROM applestore_dataset
+GROUP BY prime_genre
+ORDER BY num_apps DESC;
+
+
+----------------------------------------------------------------
+SECTION 4: RATINGS LANDSCAPE
+----------------------------------------------------------------
+
+-- Returns the minimum, maximum, and average user rating across
+-- all apps. Establishes the baseline for the entire analysis.
+SELECT MIN(user_rating)                       AS min_rating,
+       MAX(user_rating)                       AS max_rating,
+       ROUND(AVG(user_rating)::numeric, 2)    AS avg_rating
+FROM applestore_dataset;
+
+-- Uses a recursive CTE to generate every possible rating value
+-- from 0.0 to 5.0 in 0.5 steps, then counts how many apps in
+-- the top 10 genres fall at each rating level. This ensures
+-- zero-count combinations still appear in the output.
+WITH RECURSIVE ratings AS (
+    SELECT 0.0::numeric AS rating
+    UNION ALL
+    SELECT rating + 0.5 FROM ratings WHERE rating < 5.0
+),
+genre_totals AS (
+    SELECT a.prime_genre,
+           SUM(COUNT(a.user_rating)) OVER (PARTITION BY a.prime_genre) AS total_ratings
+    FROM ratings r
+    LEFT JOIN applestore_dataset a ON r.rating = a.user_rating
+    GROUP BY a.prime_genre, r.rating
+),
+top_10_genres AS (
+    SELECT DISTINCT prime_genre
+    FROM genre_totals
+    ORDER BY total_ratings DESC
+    LIMIT 10
+)
+SELECT gt.prime_genre,
+       r.rating AS user_rating,
+       COUNT(a.user_rating) AS genre_count
+FROM ratings r
+LEFT JOIN applestore_dataset a ON r.rating = a.user_rating
+JOIN top_10_genres gt ON a.prime_genre = gt.prime_genre
+GROUP BY gt.prime_genre, r.rating
+ORDER BY gt.prime_genre, r.rating;
+
+-- Returns the 10 genres with the lowest average user rating.
+-- These are the underperforming categories worth investigating.
+SELECT prime_genre,
+       ROUND(AVG(user_rating)::numeric, 2) AS avg_rating
+FROM applestore_dataset
+GROUP BY prime_genre
+ORDER BY avg_rating ASC
+LIMIT 10;
+
+
+----------------------------------------------------------------
+SECTION 5: STANDOUT AND WORST APPS IN LOW-RATED GENRES
+----------------------------------------------------------------
+Two queries using a two-step CTE pattern:
+  Step 1 (low_rated_genres): identifies the 10 lowest-rated genres.
+  Step 2 (ranked_tracks): uses RANK() OVER (PARTITION BY genre)
+  to rank apps within each genre by rating and volume.
+Only apps with 5,000+ ratings are included for relevance.
+
+-- Best-rated app within each of the 10 lowest-rated genres.
+-- Useful for identifying what success looks like in a tough category.
+WITH low_rated_genres AS (
+    SELECT prime_genre,
+           ROUND(AVG(user_rating)::numeric, 2) AS avg_rating
+    FROM applestore_dataset
+    GROUP BY prime_genre
+    ORDER BY avg_rating ASC
+    LIMIT 10
+),
+ranked_tracks AS (
+    SELECT a.prime_genre,
+           a.track_name,
+           a.user_rating,
+           a.rating_count_tot,
+           RANK() OVER (
+               PARTITION BY a.prime_genre
+               ORDER BY a.user_rating DESC, a.rating_count_tot DESC
+           ) AS rank
+    FROM applestore_dataset AS a
+    JOIN low_rated_genres AS lrg ON a.prime_genre = lrg.prime_genre
+    WHERE a.rating_count_tot > 5000
+)
+SELECT prime_genre, track_name, user_rating
+FROM ranked_tracks
+WHERE rank = 1
+ORDER BY user_rating DESC;
+
+-- Worst-rated app within each of the 10 lowest-rated genres.
+-- Also returns app count and average genre rating for context.
+-- Useful for understanding what to avoid in those categories.
+WITH low_rated_genres AS (
+    SELECT prime_genre,
+           ROUND(AVG(user_rating)::numeric, 2) AS avg_rating_genre,
+           COUNT(*) AS app_count
+    FROM applestore_dataset
+    GROUP BY prime_genre
+    ORDER BY avg_rating_genre ASC
+    LIMIT 10
+),
+ranked_tracks AS (
+    SELECT a.prime_genre,
+           a.track_name,
+           a.user_rating,
+           a.price,
+           RANK() OVER (
+               PARTITION BY a.prime_genre
+               ORDER BY a.user_rating ASC, a.rating_count_tot DESC
+           ) AS rank
+    FROM applestore_dataset AS a
+    JOIN low_rated_genres AS lrg ON a.prime_genre = lrg.prime_genre
+    WHERE a.rating_count_tot > 5000
+)
+SELECT lrg.prime_genre, rt.track_name,
+       rt.user_rating AS lowrated_app_user_rating,
+       rt.price,
+       lrg.app_count,
+       lrg.avg_rating_genre
+FROM ranked_tracks AS rt
+JOIN low_rated_genres AS lrg ON rt.prime_genre = lrg.prime_genre
+WHERE rt.rank = 1
+ORDER BY rt.user_rating ASC;
+
+
+----------------------------------------------------------------
+SECTION 6: DESCRIPTION LENGTH VS RATINGS
+----------------------------------------------------------------
+Buckets app descriptions into Short (<500 chars), Medium (500-1000),
+and Long (1000+), then compares average ratings per bucket.
+Requires a JOIN between both tables on the app ID.
+
+SELECT CASE
+           WHEN LENGTH(b.app_desc) < 500          THEN 'Short'
+           WHEN LENGTH(b.app_desc) BETWEEN 500
+                AND 1000                           THEN 'Medium'
+           ELSE                                        'Long'
+       END AS description_length_bucket,
+       ROUND(AVG(a.user_rating)::numeric, 2) AS average_rating
+FROM applestore_dataset AS a
+JOIN applestoredescription AS b ON a.id = b.id
+GROUP BY description_length_bucket
+ORDER BY average_rating DESC;
+
+
+----------------------------------------------------------------
+SECTION 7: LANGUAGE SUPPORT VS RATINGS
+----------------------------------------------------------------
+Buckets apps by number of supported languages (<10, 10-30, >30)
+and compares average ratings. Explores whether broader language
+support correlates with higher user satisfaction.
+
+SELECT CASE
+           WHEN lang_num < 10                THEN '< 10 Languages'
+           WHEN lang_num BETWEEN 10 AND 30   THEN '10 - 30 Languages'
+           ELSE                                   '> 30 Languages'
+       END AS language_bucket,
+       ROUND(AVG(user_rating)::numeric, 2) AS avg_rating
+FROM applestore_dataset
+GROUP BY language_bucket
+ORDER BY avg_rating DESC;
+
+
+----------------------------------------------------------------
+SECTION 8: PAID VS FREE
+----------------------------------------------------------------
+Compares average ratings and app counts between free and paid apps.
+Explores whether pricing strategy is associated with user satisfaction.
+
+SELECT CASE
+           WHEN price = 0 THEN 'Free'
+           ELSE                'Paid'
+       END AS app_type,
+       COUNT(*) AS number_of_apps,
+       ROUND(AVG(user_rating)::numeric, 2) AS avg_rating
+FROM applestore_dataset
+GROUP BY app_type
+ORDER BY avg_rating DESC;
+
+
+----------------------------------------------------------------
+SECTION 9: PRICE RANGE DISTRIBUTION
+----------------------------------------------------------------
+Distributes paid apps into dynamic price brackets using FLOOR-based
+logic. Shows how apps are spread across different price points,
+from free through to premium pricing.
+
+SELECT CASE
+           WHEN price = 0                  THEN 'Free'
+           WHEN price BETWEEN 0.01 AND 1   THEN '$0.01 - $1.00'
+           ELSE CONCAT(
+                    '$',
+                    (FLOOR((price - 1) / 2) * 2 + 1)::numeric(10,2)::text,
+                    ' - $',
+                    (FLOOR((price - 1) / 2) * 2 + 2.99)::numeric(10,2)::text
+                )
+       END AS price_range,
+       COUNT(*) AS num_apps
+FROM applestore_dataset
+GROUP BY price_range
+ORDER BY MIN(price);
