@@ -120,4 +120,4 @@ Based on our findings, we crafted several recommendations:
 - **Language Support**  
   Supporting multiple languages could increase the app's reach and appeal in global markets.
 
-The codes for this project above can be verified on my [Jupyter Notebook]([https://app.briefer.cloud/workspaces/8e23a509-d51f-4fdc-8dba-6d98d0b0638e/documents/b6e1ba5f-b7d0-474a-ac20-8dc73d6724a6/notebook]) 
+The codes for this project above can be verified on my [Jupyter Notebook](./projects/App%20Apple%20Store%20Analysis/AppleStore_Analysis__V0.ipynb) 
