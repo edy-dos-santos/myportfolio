@@ -74,7 +74,7 @@ In the dashboard above, we have the following metrics:
      
 You can access the dashboard clicking on the link above, if you have access to a Microsoft Fabric / Power BI app, or, alternatively, you can check the [pdf file](./miscelaneous/BikeStoreProject.pdf) uploaded - SQL Query included.
 
-## **3** - End to End App Investment Analysis using SQL as its core, through psycopg2 Python library, a cloud service data tool that uses Python, SQL, Pivot tables and proper visualizations.
+## **3** - End to End App Investment Analysis using SQL as its core, in a Jupyter Notebook, through Python Libraries.
 ![Apple App Store](./images/dash%20board%20briefer.png)
 ## Scenario Overview
 
@@ -102,7 +102,7 @@ In this scenario, the stakeholder is an app developer aiming to create a success
    - The relationship between app price range, number of apps, and average user ratings.
 
 5. **Visualizations**  
-   We utilized various dashboard visualizations available on Briefer, such as stacked bar charts, grouped bar charts, and heat maps, some enhanced with labels. Additionally, we employed a Python Bubble chart visualization for a specific insight.
+   We utilized various dashboard visualizations available on Jupyter Notebook, such as stacked bar charts, grouped bar charts, and heat maps, some enhanced with labels. Additionally, we employed a Python Bubble chart visualization for a specific insight.
 
 ## Recommendations
 images/dash board briefer.png
@@ -120,4 +120,4 @@ Based on our findings, we crafted several recommendations:
 - **Language Support**  
   Supporting multiple languages could increase the app's reach and appeal in global markets.
 
-The codes for this project above can be verified on my [Briefer Notebook](https://app.briefer.cloud/workspaces/8e23a509-d51f-4fdc-8dba-6d98d0b0638e/documents/b6e1ba5f-b7d0-474a-ac20-8dc73d6724a6/notebook) 
+The codes for this project above can be verified on my [Jupyter Notebook]([https://app.briefer.cloud/workspaces/8e23a509-d51f-4fdc-8dba-6d98d0b0638e/documents/b6e1ba5f-b7d0-474a-ac20-8dc73d6724a6/notebook](https://github.com/edy-dos-santos/myportfolio/blob/main/projects/App%20Apple%20Store%20Analysis/AppleStore_Analysis__V0.ipynb)) 
