@@ -105,7 +105,7 @@ In this scenario, the stakeholder is an app developer aiming to create a success
    We utilized various dashboard visualizations available on Jupyter Notebook, such as stacked bar charts, grouped bar charts, and heat maps, some enhanced with labels. Additionally, we employed a Python Bubble chart visualization for a specific insight.
 
 ## Recommendations
-images/dash board briefer.png
+
 Based on our findings, we crafted several recommendations:
 
 - **Target Underserved Categories**  
@@ -120,4 +120,4 @@ Based on our findings, we crafted several recommendations:
 - **Language Support**  
   Supporting multiple languages could increase the app's reach and appeal in global markets.
 
-The codes for this project above can be verified on my [Jupyter Notebook]([https://app.briefer.cloud/workspaces/8e23a509-d51f-4fdc-8dba-6d98d0b0638e/documents/b6e1ba5f-b7d0-474a-ac20-8dc73d6724a6/notebook](https://github.com/edy-dos-santos/myportfolio/blob/main/projects/App%20Apple%20Store%20Analysis/AppleStore_Analysis__V0.ipynb)) 
+The codes for this project above can be verified on my [Jupyter Notebook]([https://app.briefer.cloud/workspaces/8e23a509-d51f-4fdc-8dba-6d98d0b0638e/documents/b6e1ba5f-b7d0-474a-ac20-8dc73d6724a6/notebook]) 
