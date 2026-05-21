@@ -5,7 +5,7 @@
 
 On folder [projects](./projects/), you will see:
 
-## **1** - End to End EDA using Python and its Data Analysis Libraries
+## **1** - End to End EDA with Python
 ![Line Chart Viz - One Million](./images/Screenshot%20One%20Million%20Headlines.png)
 
 The first project, named [One Million](./projects/One-Million-08082024.ipynb), although it is a .ipynb file, you can visualize it in this platform. 
