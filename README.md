@@ -123,7 +123,7 @@ Based on our findings, we crafted several recommendations:
 The codes for this project above can be verified on my [AppleStore Analysis file](./projects/App%20Apple%20Store%20Analysis/AppleStore_Analysis__V0.ipynb) 
 
 ## **4** - Australian Weather Prediction — Will It Rain Tomorrow?
-![Australian Weather Prediction](./images/Screenshot%20WeaPred_1.png)
+![Australian Weather Prediction](./images/WeaPred_1.png)
 
 The fourth project, Weather Prediction, uses 10 years of Bureau of Meteorology (BOM) data from 49 locations across Australia to predict next-day rainfall. Three classification models — Decision Tree, Logistic Regression, and Neural Network (MLP) — are trained, tuned, and compared across 145,490 observations.
 
@@ -138,12 +138,12 @@ The fourth project, Weather Prediction, uses 10 years of Bureau of Meteorology (
 
 4.3. **Visual Exploration**
    - Produced distribution plots, correlation heatmaps, and scatterplots. Identified five highly correlated variable pairs (e.g., MaxTemp ↔ Temp3pm: r = 0.985, Pressure9am ↔ Pressure3pm: r = 0.961) and flagged treatment recommendations for downstream modelling.
-![Australian Weather Prediction](./images/Screenshot%20WeaPred_2.png)
+![Australian Weather Prediction](./images/WeaPred_2.png)
 4.4. **Data Preparation**
    - Handled missing values, capped out-of-range cloud cover values, and one-hot encoded categorical variables via `pd.get_dummies()`. Final modelling dataset: 58,090 records × 114 features, with a 21.9% positive class balance.
 
 4.5. **Predictive Modelling**
-![Australian Weather Prediction](./images/Screenshot%20WeaPred_3.png)
+![Australian Weather Prediction](./images/WeaPred_3.png)
    - **Decision Tree:** Default tree overfit severely (AUC 0.706). GridSearchCV tuning (`max_depth=5`) resolved overfitting and raised AUC to 0.853. **Humidity3pm** was the first split variable in both models.
    - **Logistic Regression:** Standardised features (z-score). Achieved AUC 0.883 with no overfitting. Top predictors: Pressure3pm (−1.34), Humidity3pm (+1.20). RFE reduced features from 114 to 85 with negligible accuracy impact.
    - **Neural Network (MLP):** Default model overfit (11-point train-test gap). GridSearchCV (`alpha=0.001`, `hidden_layer_sizes=(5,)`) resolved overfitting and achieved AUC 0.894. Pre-selecting features via the Decision Tree's importance ranking cut convergence from 300 to 21 iterations.
