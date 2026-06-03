@@ -123,7 +123,7 @@ Based on our findings, we crafted several recommendations:
 The codes for this project above can be verified on my [AppleStore Analysis file](./projects/App%20Apple%20Store%20Analysis/AppleStore_Analysis__V0.ipynb) 
 
 ## **4** - Australian Weather Prediction — Will It Rain Tomorrow?
-![Australian Weather Prediction](./images/WeaPred_1.png)
+![Australian Weather Prediction](./images/WeaPred_5.png)
 
 The fourth project, Weather Prediction, uses 10 years of Bureau of Meteorology (BOM) data from 49 locations across Australia to predict next-day rainfall. Three classification models — Decision Tree, Logistic Regression, and Neural Network (MLP) — are trained, tuned, and compared across 145,490 observations.
 
