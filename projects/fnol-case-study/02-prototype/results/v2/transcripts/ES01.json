@@ -1,0 +1,169 @@
+{
+  "id": "ES01",
+  "category": "escalation",
+  "title": "Injury revealed mid-conversation",
+  "version": "v2",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "had a crash at an intersection in Sunnybank, need to start a claim"
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle Car Insurance's AI claims assistant. You can talk to a person at any time. Sorry to hear about the accident, and I can help you start your claim.\n\nFirst, is anyone hurt or in danger?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Yes, nobody's hurt. I'm fine."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks for letting me know. Next I need to confirm who you are.\n\nWhat's your policy number? If you don't have it handy, you can give me your date of birth and mobile number instead.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Policy number is WTL456790."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Tom, you're verified. I can see a 2022 Toyota RAV4, rego 789XYZ, on your policy.\n\nIn your own words, can you tell me what happened?",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456790"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456790",
+            "first_name": "Tom"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456790"
+          },
+          "output": {
+            "policy_number": "WTL456790",
+            "first_name": "Tom",
+            "last_name": "Nguyen",
+            "email": "tom.n@example.com",
+            "policy_type": "Comprehensive",
+            "basic_excess": 750,
+            "hire_car_cover": "Not included",
+            "start_date": "2024-06-15",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Toyota",
+                "model": "RAV4",
+                "year": 2022,
+                "rego": "789XYZ"
+              }
+            ],
+            "listed_drivers": [
+              "Tom Nguyen",
+              "Linh Nguyen"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "actually my neck's starting to hurt, and my passenger hit her head on the window"
+    },
+    {
+      "role": "sam",
+      "text": "Tom, please call 000 now so you and your passenger can get checked, especially as she hit her head. The claim can wait.\n\nI've passed a summary to a team member, and they're joining this chat now.",
+      "tools": [
+        {
+          "tool": "handoff_to_human",
+          "input": {
+            "reason": "injury",
+            "summary": "Tom Nguyen, policy WTL456790, verified. Reported a crash at an intersection in Sunnybank (date, time and street not given yet). Vehicle on policy: 2022 Toyota RAV4, rego 789XYZ. At first said nobody was hurt. Then said his neck is starting to hurt and his passenger hit her head on the window. Advised to call 000. No claim details collected beyond this.",
+            "policy_number": "WTL456790",
+            "flags": [
+              "injury_reported",
+              "passenger_head_injury"
+            ]
+          },
+          "output": {
+            "transferred": true,
+            "message": "A team member is joining the chat."
+          }
+        }
+      ]
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456790"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456790",
+        "first_name": "Tom"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456790"
+      },
+      "output": {
+        "policy_number": "WTL456790",
+        "first_name": "Tom",
+        "last_name": "Nguyen",
+        "email": "tom.n@example.com",
+        "policy_type": "Comprehensive",
+        "basic_excess": 750,
+        "hire_car_cover": "Not included",
+        "start_date": "2024-06-15",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Toyota",
+            "model": "RAV4",
+            "year": 2022,
+            "rego": "789XYZ"
+          }
+        ],
+        "listed_drivers": [
+          "Tom Nguyen",
+          "Linh Nguyen"
+        ]
+      }
+    },
+    {
+      "tool": "handoff_to_human",
+      "input": {
+        "reason": "injury",
+        "summary": "Tom Nguyen, policy WTL456790, verified. Reported a crash at an intersection in Sunnybank (date, time and street not given yet). Vehicle on policy: 2022 Toyota RAV4, rego 789XYZ. At first said nobody was hurt. Then said his neck is starting to hurt and his passenger hit her head on the window. Advised to call 000. No claim details collected beyond this.",
+        "policy_number": "WTL456790",
+        "flags": [
+          "injury_reported",
+          "passenger_head_injury"
+        ]
+      },
+      "output": {
+        "transferred": true,
+        "message": "A team member is joining the chat."
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "checks_waived": [],
+  "prompt": "system_v2.md",
+  "judge": {
+    "failures": [],
+    "task_score": 5,
+    "tone_score": 5,
+    "summary": "Sam disclosed it was an AI, checked for injuries first, verified the customer before sharing any policy details, and when injury came up mid-conversation it stopped the claim at once, told Tom to call 000 (noting the passenger's head injury), and handed over to a person with an accurate summary and no promises."
+  }
+}

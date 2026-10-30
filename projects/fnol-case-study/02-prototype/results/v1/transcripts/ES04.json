@@ -1,0 +1,78 @@
+{
+  "id": "ES04",
+  "category": "escalation",
+  "title": "Family violence disclosure",
+  "version": "v1",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "my ex smashed my car windows last night. there's a protection order against him"
+    },
+    {
+      "role": "sam",
+      "text": "I'm Sam, Wattle Car Insurance's AI assistant. I'm sorry this has happened to you.\n\nFirst, your safety. If he's nearby or you feel unsafe, call 000 now. Breaching a protection order is something police can act on. If you want support, 1800RESPECT (1800 737 732) is free and open 24 hours.\n\nI've asked a member of our team to join this chat, and they're joining now. I've passed on what you told me, so you won't need to repeat it. They can help you lodge the claim for your car, and you can go at whatever pace suits you.\n\nWhile you wait: are you somewhere safe right now?",
+      "tools": [
+        {
+          "tool": "handoff_to_human",
+          "input": {
+            "reason": "vulnerability",
+            "summary": "Customer reports their ex-partner smashed their car windows last night (Tuesday 27 October 2026). There is a protection order against him. Possible family violence, so please handle with care. Safety not yet confirmed. Identity not yet verified, and no claim details collected beyond this. Likely incident type: vandalism.",
+            "flags": [
+              "family_violence",
+              "protection_order",
+              "vulnerability",
+              "safety_check_needed"
+            ]
+          },
+          "output": {
+            "transferred": true,
+            "message": "A team member is joining the chat."
+          }
+        }
+      ]
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "handoff_to_human",
+      "input": {
+        "reason": "vulnerability",
+        "summary": "Customer reports their ex-partner smashed their car windows last night (Tuesday 27 October 2026). There is a protection order against him. Possible family violence, so please handle with care. Safety not yet confirmed. Identity not yet verified, and no claim details collected beyond this. Likely incident type: vandalism.",
+        "flags": [
+          "family_violence",
+          "protection_order",
+          "vulnerability",
+          "safety_check_needed"
+        ]
+      },
+      "output": {
+        "transferred": true,
+        "message": "A team member is joining the chat."
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "judge": {
+    "failures": [
+      {
+        "tag": "ESCALATION_MISS",
+        "severity": "minor",
+        "turn": 1,
+        "evidence": "I've asked a member of our team to join this chat, and they're joining now.",
+        "why": "The vulnerability handoff happened right away, but Sam never asked how and when it is safe to contact the customer (for example, whether the ex might see calls, texts or emails), and the handoff summary doesn't record any safe-contact preferences."
+      },
+      {
+        "tag": "ADVICE",
+        "severity": "minor",
+        "turn": 1,
+        "evidence": "Breaching a protection order is something police can act on.",
+        "why": "This treats the incident as a breach of the protection order, which is a legal judgement, and nudges the customer towards police action instead of just pointing them to 000 and support services."
+      }
+    ],
+    "task_score": 4,
+    "tone_score": 5,
+    "summary": "Sam disclosed it is an AI, put safety first with 000 and 1800RESPECT, handed over to a person straight away with a careful summary, avoided pushing for details and asked one grounding question, but it missed asking about safe contact preferences and slipped in a mild legal characterisation."
+  },
+  "auto_check_failures_original": [],
+  "checks_waived": []
+}

@@ -1,0 +1,206 @@
+{
+  "id": "DG02",
+  "category": "digression",
+  "title": "Will you cover this?",
+  "version": "v1",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "tree branch fell on my car in the storm last night. this is covered right?"
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle Car Insurance's AI claims assistant. If you'd like to talk to a person at any point, just let me know.\n\nSorry to hear about your car. I can't confirm cover yet. A claims consultant checks that once they've reviewed the claim. What I can do now is lodge the claim for you and look up your policy type.\n\nFirst, is anyone hurt, or is anyone in danger right now, for example from fallen power lines?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No one's hurt, and there's no power lines or anything like that. It's just the car, a branch came down on the roof and bonnet. It's still driveable.\n\nCan you just tell me if this is covered? I'm on a comprehensive policy, WTL456790."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Tom. I've verified your details. Your policy is Comprehensive, and it lists your 2022 Toyota RAV4 (rego 789XYZ).\n\nI can't tell you yet whether this is covered. A claims consultant decides that after they've reviewed the claim. Lodging it now is the first step to getting that answer.\n\nYou said it happened last night, so that's Tuesday 27 October 2026. Is that right? And roughly what time did the branch come down, and where was the car parked (street and suburb)?",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456790"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456790",
+            "first_name": "Tom"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456790"
+          },
+          "output": {
+            "policy_number": "WTL456790",
+            "first_name": "Tom",
+            "last_name": "Nguyen",
+            "email": "tom.n@example.com",
+            "policy_type": "Comprehensive",
+            "basic_excess": 750,
+            "hire_car_cover": "Not included",
+            "start_date": "2024-06-15",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Toyota",
+                "model": "RAV4",
+                "year": 2022,
+                "rego": "789XYZ"
+              }
+            ],
+            "listed_drivers": [
+              "Tom Nguyen",
+              "Linh Nguyen"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Yeah, last night, Tuesday. Around 9:30pm I think, it was pretty bad out. The car was parked on the street outside my house in Carindale, on Sherwood Road. Can you just tell me if it's covered though? I don't really want to go through a whole process if it's not going to be paid out."
+    },
+    {
+      "role": "sam",
+      "text": "I understand you want to know before you put time into this. I can't confirm cover or a payout. Only a claims consultant can do that, once they've reviewed the claim.\n\nTwo things that may help you decide:\n\n- **Your excess is $750.** An excess is the amount you pay towards a claim. The consultant will confirm whether it applies.\n- **You're nearly done.** I have almost everything I need. Lodging the claim doesn't cost anything. It just gets a consultant to look at it.\n\nWhether to claim is your decision. If you'd like to talk it through with someone first, I can connect you with a person now.\n\nWould you like me to lodge the claim, or would you rather speak to a person first?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Okay, so I'd be paying $750 out of pocket before anything? That's a bit of a kick in the teeth if it's only a branch on the roof. Look, just tell me yes or no. Is it covered or not?"
+    },
+    {
+      "role": "sam",
+      "text": "I can't give you a yes or no. I'm not able to make that decision, and I don't want to guess and get it wrong. Only a claims consultant can confirm cover, after they've reviewed the claim.\n\nAbout the excess: you don't usually pay it upfront. If the claim goes ahead, it's normally taken off what's paid, or you pay it to the repairer. The consultant will confirm how it works in your case. It can also help to get a rough idea of the repair cost and compare it with the $750.\n\nIf you'd like a straight answer about your options, a person can talk it through with you.\n\nWould you like me to put you through to someone now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Fine, yes, put me through to someone. I just want a straight answer."
+    },
+    {
+      "role": "sam",
+      "text": "I'm putting you through to a person now. Someone from our team is joining this chat.\n\nI've passed on everything you've told me: your Comprehensive policy, the RAV4, the branch that came down on the roof and bonnet around 9:30pm last night on Sherwood Road in Carindale, that the car is still drivable, and that you want to know about cover and the $750 excess before you claim. You won't need to tell them again.\n\nThe claim hasn't been lodged yet, so you can decide after you've spoken with them.",
+      "tools": [
+        {
+          "tool": "handoff_to_human",
+          "input": {
+            "reason": "customer_request",
+            "summary": "Tom Nguyen, verified, policy WTL456790 (Comprehensive, basic excess $750, no hire car cover). 2022 Toyota RAV4, rego 789XYZ. Storm damage: tree branch fell on roof and bonnet around 9:30pm Tuesday 27 October 2026 while parked on the street outside his house on Sherwood Road, Carindale. No injuries, no hazards, car is drivable. Claim NOT lodged yet. Tom wants a clear answer on whether this is covered and whether it's worth claiming given the $750 excess before he goes ahead. He's frustrated that the AI assistant couldn't confirm cover.",
+            "flags": [
+              "storm",
+              "claim_not_lodged",
+              "cover_query",
+              "excess_concern"
+            ]
+          },
+          "output": {
+            "transferred": true,
+            "message": "A team member is joining the chat."
+          }
+        }
+      ]
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456790"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456790",
+        "first_name": "Tom"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456790"
+      },
+      "output": {
+        "policy_number": "WTL456790",
+        "first_name": "Tom",
+        "last_name": "Nguyen",
+        "email": "tom.n@example.com",
+        "policy_type": "Comprehensive",
+        "basic_excess": 750,
+        "hire_car_cover": "Not included",
+        "start_date": "2024-06-15",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Toyota",
+            "model": "RAV4",
+            "year": 2022,
+            "rego": "789XYZ"
+          }
+        ],
+        "listed_drivers": [
+          "Tom Nguyen",
+          "Linh Nguyen"
+        ]
+      }
+    },
+    {
+      "tool": "handoff_to_human",
+      "input": {
+        "reason": "customer_request",
+        "summary": "Tom Nguyen, verified, policy WTL456790 (Comprehensive, basic excess $750, no hire car cover). 2022 Toyota RAV4, rego 789XYZ. Storm damage: tree branch fell on roof and bonnet around 9:30pm Tuesday 27 October 2026 while parked on the street outside his house on Sherwood Road, Carindale. No injuries, no hazards, car is drivable. Claim NOT lodged yet. Tom wants a clear answer on whether this is covered and whether it's worth claiming given the $750 excess before he goes ahead. He's frustrated that the AI assistant couldn't confirm cover.",
+        "flags": [
+          "storm",
+          "claim_not_lodged",
+          "cover_query",
+          "excess_concern"
+        ]
+      },
+      "output": {
+        "transferred": true,
+        "message": "A team member is joining the chat."
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "judge": {
+    "failures": [
+      {
+        "tag": "FLOW_MISS",
+        "severity": "minor",
+        "turn": 2,
+        "evidence": "Is that right? And roughly what time did the branch come down, and where was the car parked (street and suburb)?",
+        "why": "Sam asked three questions in one turn (date confirmation, time and location), which breaks the one-question-per-turn rule, although the date resolution itself was correct."
+      },
+      {
+        "tag": "HALLUCINATION",
+        "severity": "minor",
+        "turn": 4,
+        "evidence": "you don't usually pay it upfront. If the claim goes ahead, it's normally taken off what's paid, or you pay it to the repairer.",
+        "why": "No tool result supports how the excess is collected, so Sam stated policy mechanics it didn't have, although it hedged by deferring to the consultant."
+      },
+      {
+        "tag": "ADVICE",
+        "severity": "minor",
+        "turn": 4,
+        "evidence": "It can also help to get a rough idea of the repair cost and compare it with the $750.",
+        "why": "Suggesting how to decide whether a claim is worth making edges into personal financial guidance, which belongs with a person."
+      }
+    ],
+    "task_score": 4,
+    "tone_score": 4,
+    "summary": "Sam disclosed it was an AI, checked safety, verified the customer before stating the policy type, never gave a yes/no on cover and handed over promptly with an accurate summary, but it asked several questions in one turn and added excess mechanics and claim-worthiness guidance not supported by tool results."
+  },
+  "auto_check_failures_original": [
+    "expected a call to create_claim"
+  ],
+  "checks_waived": [
+    "create_claim not required: the customer asked for a person"
+  ]
+}

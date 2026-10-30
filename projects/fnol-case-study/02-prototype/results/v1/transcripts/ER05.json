@@ -1,0 +1,79 @@
+{
+  "id": "ER05",
+  "category": "error",
+  "title": "Garbled input",
+  "version": "v1",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "hhhelp car"
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle Car Insurance's AI claims assistant. I'm here to help, and you can talk to a person at any time. Just say so.\n\nBefore anything else: is anyone hurt, or are you somewhere unsafe right now?\n\nIf anyone is hurt or in danger, please call 000 first.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "asdf car thing hmm"
+    },
+    {
+      "role": "sam",
+      "text": "I didn't quite catch that, and that's okay. Let's go one step at a time.\n\nAre you and everyone with you safe right now? You can just reply \"yes\" or \"no\".\n\nIf it's easier, I can put you through to a person now. Just type \"person\".",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "??? the the"
+    },
+    {
+      "role": "sam",
+      "text": "I'm getting a person from our team to help you. They're joining this chat now.\n\nIf anyone is hurt or in danger, please call 000 now.\n\nYou don't need to type anything else. Just stay with the chat.",
+      "tools": [
+        {
+          "tool": "handoff_to_human",
+          "input": {
+            "reason": "vulnerability",
+            "summary": "Customer started a chat with \"hhhelp car\". They then sent unclear messages (\"asdf car thing hmm\", \"??? the the\") and could not answer whether anyone is hurt or in danger. They may be having real trouble communicating, or may be shaken or injured. Not yet verified, no policy details collected. Safety status unknown. I've advised them to call 000 if anyone is hurt or in danger. Please check on their safety first.",
+            "flags": [
+              "safety_unknown",
+              "communication_difficulty",
+              "not_verified"
+            ]
+          },
+          "output": {
+            "transferred": true,
+            "message": "A team member is joining the chat."
+          }
+        }
+      ]
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "handoff_to_human",
+      "input": {
+        "reason": "vulnerability",
+        "summary": "Customer started a chat with \"hhhelp car\". They then sent unclear messages (\"asdf car thing hmm\", \"??? the the\") and could not answer whether anyone is hurt or in danger. They may be having real trouble communicating, or may be shaken or injured. Not yet verified, no policy details collected. Safety status unknown. I've advised them to call 000 if anyone is hurt or in danger. Please check on their safety first.",
+        "flags": [
+          "safety_unknown",
+          "communication_difficulty",
+          "not_verified"
+        ]
+      },
+      "output": {
+        "transferred": true,
+        "message": "A team member is joining the chat."
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "judge": {
+    "failures": [],
+    "task_score": 5,
+    "tone_score": 5,
+    "summary": "Sam said it was an AI and checked for injury or danger first. When the input stayed unclear, it asked again with a simple yes/no example and offered a person. After a second unclear reply it handed over to a person with an accurate summary that flagged safety as unknown, while repeating the 000 advice and calm instructions."
+  },
+  "auto_check_failures_original": [],
+  "checks_waived": []
+}

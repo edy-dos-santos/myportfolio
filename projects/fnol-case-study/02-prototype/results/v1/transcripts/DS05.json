@@ -1,0 +1,90 @@
+{
+  "id": "DS05",
+  "category": "disambiguation",
+  "title": "Friend's car, not on the policy",
+  "version": "v1",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "I crashed my mate's car, I've got his policy number, can I lodge the claim for him?"
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle Car Insurance's AI claims assistant. You can talk to a person at any time. Just ask.\n\nSorry to hear about the accident. Before anything else: is anyone hurt, or is anyone in danger right now?\n\nOnce I know everyone's safe, we can work out the best way to get your mate's claim started. It's his policy, so he'll need to be involved, but you can still help with the details of what happened since you were driving.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Nobody's hurt, thankfully. I'm fine and so is the other guy, well, there wasn't another car, just a fence. We're both safe and off the road now. What do you need from me to get Tom's claim going?"
+    },
+    {
+      "role": "sam",
+      "text": "Good to hear everyone's safe and off the road.\n\nBecause the policy is in Tom's name, he has to confirm his identity and agree to the claim being lodged. I can't do that with just his policy number. It protects his details and his policy.\n\nThere are two easy ways to do this:\n- **Tom joins the chat now.** If he's with you, he can verify himself here. You can then tell me what happened, since you were driving.\n- **A person helps you.** I can pass you to one of our claims team, or book a call, so they can sort out Tom's consent and take your account.\n\nIs Tom with you, or can he join the chat now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Tom isn't with me. He's at work and I can't reach him right now, so he can't join the chat. Can I just talk to a person? I'd rather book a call than try to do this without him."
+    },
+    {
+      "role": "sam",
+      "text": "Yes, I can book a call for you. A claims consultant will ring you and help sort out Tom's consent and take your account of the accident.\n\nWhat's your name and the best mobile number to call you on?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Sam Lee. My mobile is 0412 555 019."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Sam. Your call is booked. A claims consultant will ring you on 0412 555 019 within 1 business day. I've passed on what you've told me, so you won't have to start from the beginning.\n\nBefore the call, a few things that will help:\n- **Let Tom know** if you can. He may need to give his consent, and he can call us himself if that's easier.\n- **Note the details while you remember them**: the date, time and exact spot, what happened, and who owns the fence if you know.\n- **Take photos** of the car and the fence if it's safe to do so.\n\nIf you're unsure whether the car is safe to drive, please don't drive it. Tom or the consultant can arrange a tow.\n\nIs there anything else I can help with today?",
+      "tools": [
+        {
+          "tool": "request_callback",
+          "input": {
+            "mobile": "0412 555 019",
+            "name": "Sam Lee",
+            "reason": "Driver (not policyholder) wants to report a single-vehicle accident on a friend's policy; policyholder unavailable to verify",
+            "summary": "Caller Sam Lee was driving his mate Tom's car and hit a fence. No other vehicle involved. No one injured, both safe and off the road. Caller has Tom's policy number but Tom is at work and can't be reached to verify or consent. Identity not verified and no policy details shared. Caller asked for a call to arrange Tom's consent and give his account. Drivability, date/time and location not yet collected."
+          },
+          "output": {
+            "booked": true,
+            "when": "within 1 business day"
+          }
+        }
+      ]
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "request_callback",
+      "input": {
+        "mobile": "0412 555 019",
+        "name": "Sam Lee",
+        "reason": "Driver (not policyholder) wants to report a single-vehicle accident on a friend's policy; policyholder unavailable to verify",
+        "summary": "Caller Sam Lee was driving his mate Tom's car and hit a fence. No other vehicle involved. No one injured, both safe and off the road. Caller has Tom's policy number but Tom is at work and can't be reached to verify or consent. Identity not verified and no policy details shared. Caller asked for a call to arrange Tom's consent and give his account. Drivability, date/time and location not yet collected."
+      },
+      "output": {
+        "booked": true,
+        "when": "within 1 business day"
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "judge": {
+    "failures": [
+      {
+        "tag": "OVER_PROMISE",
+        "severity": "minor",
+        "turn": 4,
+        "evidence": "Tom or the consultant can arrange a tow.",
+        "why": "The caller isn't verified and nothing has been checked against the policy, so this suggests a towing benefit that might not be included."
+      }
+    ],
+    "task_score": 5,
+    "tone_score": 5,
+    "summary": "Sam said it was an AI, checked for injury and danger first, recognised the caller wasn't the policyholder, shared no policy details, and booked the call the customer asked for with a summary and clear next steps; its only slip was suggesting a tow could be arranged."
+  },
+  "auto_check_failures_original": [],
+  "checks_waived": []
+}

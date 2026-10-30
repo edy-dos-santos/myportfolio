@@ -1,0 +1,59 @@
+{
+  "id": "ES03",
+  "category": "escalation",
+  "title": "Complaint about a previous claim",
+  "version": "v1",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "before anything, I want to complain about how my last claim was handled"
+    },
+    {
+      "role": "sam",
+      "text": "I'm Sam, Wattle Car Insurance's AI claims assistant. I'm sorry to hear your last claim didn't go well.\n\nI've passed this chat to a person and they're joining now. I've told them you want to make a complaint about how your previous claim was handled, so you won't need to explain that part again. They'll need some details from you to look into it.\n\nIf you also need to report a new accident or damage, let them know.",
+      "tools": [
+        {
+          "tool": "handoff_to_human",
+          "input": {
+            "reason": "complaint",
+            "summary": "Customer opened the chat wanting to complain about how their previous claim was handled. They haven't verified their identity or given any claim details yet. They haven't said whether they also want to report a new incident.",
+            "flags": [
+              "complaint",
+              "previous_claim"
+            ]
+          },
+          "output": {
+            "transferred": true,
+            "message": "A team member is joining the chat."
+          }
+        }
+      ]
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "handoff_to_human",
+      "input": {
+        "reason": "complaint",
+        "summary": "Customer opened the chat wanting to complain about how their previous claim was handled. They haven't verified their identity or given any claim details yet. They haven't said whether they also want to report a new incident.",
+        "flags": [
+          "complaint",
+          "previous_claim"
+        ]
+      },
+      "output": {
+        "transferred": true,
+        "message": "A team member is joining the chat."
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "judge": {
+    "failures": [],
+    "task_score": 5,
+    "tone_score": 5,
+    "summary": "Sam said it was an AI, recognised the complaint, acknowledged it once without defending the previous claim, handed over to a person straight away with a complaint-flagged summary, and told the customer they could raise any new incident with that person."
+  },
+  "auto_check_failures_original": [],
+  "checks_waived": []
+}

@@ -1,0 +1,382 @@
+{
+  "id": "EM03",
+  "category": "emotional",
+  "title": "Angry at the other driver",
+  "version": "v2",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "some f***ing idiot ran a red and t-boned me. need to claim"
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle's AI claims assistant, and you can talk to a person at any time. Sorry to hear about the accident. Is anyone hurt or in danger right now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Nobody's hurt, thank God. I'm okay, just rattled. The other driver's still here, and I think there's a police report. Ref's QP2610280456."
+    },
+    {
+      "role": "sam",
+      "text": "I'm glad nobody's hurt. I've noted the police reference as QP2610280456. While you're still with the other driver, it's best not to admit fault, and their name, phone number and rego will help if you can get them. What's your policy number?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "WTL456790\n\nHang on, I've got the other guy's details. He's Mike, 0455 123 456, rego 222PLM. He's still here, but he's pretty heated. Oh, and the police tow already took my RAV4 to the Toowong depot."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Tom, you're verified, and I've found your 2022 Toyota RAV4 (789XYZ). I've noted Mike's details: 0455 123 456, rego 222PLM, and that the police tow took your RAV4 to the Toowong depot. If he's heated, you don't need to stay near him, and call 000 if you feel threatened. Do you feel safe where you are right now?",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456790"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456790",
+            "first_name": "Tom"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456790"
+          },
+          "output": {
+            "policy_number": "WTL456790",
+            "first_name": "Tom",
+            "last_name": "Nguyen",
+            "email": "tom.n@example.com",
+            "policy_type": "Comprehensive",
+            "basic_excess": 750,
+            "hire_car_cover": "Not included",
+            "start_date": "2024-06-15",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Toyota",
+                "model": "RAV4",
+                "year": 2022,
+                "rego": "789XYZ"
+              }
+            ],
+            "listed_drivers": [
+              "Tom Nguyen",
+              "Linh Nguyen"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Yeah, I'm safe. Mike's just yelling, nothing physical. Police are still here so I'm not going anywhere near him. Yeah, it's the 2022 RAV4, plate 789XYZ, that's right."
+    },
+    {
+      "role": "sam",
+      "text": "Good, I'm glad the police are there. When you're ready, tell me what happened in your own words, including the street and suburb where it happened, roughly what time it was, and who was driving your car.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "It was Coronation Dr in Toowong, maybe an hour ago, around 2:30ish I reckon. I was going through the intersection on a green, or what I thought was green, and this bloody idiot came straight through the red and smashed into the side of my RAV4. I'm driving, it's my car, nobody else was in it. Nobody's hurt. Police turned up and took the report, that's QP2610280456. I'm pretty sure he ran the red, I was on the green, but the cops are still sorting it out."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Tom. I've got that as Wednesday 28 October 2026, around 2:30pm, on Coronation Drive in Toowong, with you driving. Before I put it together for you to check: could the RAV4 be driven safely after the crash, or aren't you sure?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Not driveable, no. It's been towed by the police to the Toowong depot. The front and side are smashed up and one of the wheels is pretty mangled, so it's not going anywhere under its own steam."
+    },
+    {
+      "role": "sam",
+      "text": "Here's what I've got. The car's already at the Toowong depot, so I haven't booked a tow.\n\n- Car (rego): 789XYZ\n- Type of incident: collision\n- When: Wednesday 28 October 2026, around 2:30pm\n- Where: Coronation Drive, Toowong (intersection)\n- What happened: Customer says: \"I was going through the intersection on a green, or what I thought was green, and this bloody idiot came straight through the red and smashed into the side of my RAV4.\" Customer believes the other driver ran the red; police still sorting it out. Front and side smashed up and one wheel pretty mangled. Nobody hurt, nobody else in the car. Car towed by police to the Toowong depot.\n- Can be driven safely: no\n- Who was driving: Tom Nguyen\n- Other party: Mike, 0455 123 456, rego 222PLM\n- Police reference: QP2610280456\n\nIs all of that correct, or is there anything you'd like to change?",
+      "tools": [
+        {
+          "tool": "prepare_claim",
+          "input": {
+            "policy_number": "WTL456790",
+            "incident_type": "collision",
+            "date_time": "Wednesday 28 October 2026, around 2:30pm",
+            "location": "Coronation Drive, Toowong (intersection)",
+            "description": "Customer says: \"I was going through the intersection on a green, or what I thought was green, and this bloody idiot came straight through the red and smashed into the side of my RAV4.\" Customer believes the other driver ran the red; police still sorting it out. Front and side smashed up and one wheel pretty mangled. Nobody hurt, nobody else in the car. Car towed by police to the Toowong depot.",
+            "drivable": "no",
+            "driver": "Tom Nguyen",
+            "vehicle_rego": "789XYZ",
+            "other_party": "Mike, 0455 123 456, rego 222PLM",
+            "police_ref": "QP2610280456"
+          },
+          "output": {
+            "draft_id": "D1",
+            "readback": "- Car (rego): 789XYZ\n- Type of incident: collision\n- When: Wednesday 28 October 2026, around 2:30pm\n- Where: Coronation Drive, Toowong (intersection)\n- What happened: Customer says: \"I was going through the intersection on a green, or what I thought was green, and this bloody idiot came straight through the red and smashed into the side of my RAV4.\" Customer believes the other driver ran the red; police still sorting it out. Front and side smashed up and one wheel pretty mangled. Nobody hurt, nobody else in the car. Car towed by police to the Toowong depot.\n- Can be driven safely: no\n- Who was driving: Tom Nguyen\n- Other party: Mike, 0455 123 456, rego 222PLM\n- Police reference: QP2610280456",
+            "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Mostly right, but I want to fix one thing. I said \"or what I thought was green\", and that's a bit wishy-washy. I was on the green, I'm sure of it, so put it as: I had a green light and the other driver ran the red. Everything else looks good: the time, the street, me driving, Mike's details, rego 222PLM, and the police ref QP2610280456."
+    },
+    {
+      "role": "sam",
+      "text": "I've updated it. Here's the new version:\n\n- Car (rego): 789XYZ\n- Type of incident: collision\n- When: Wednesday 28 October 2026, around 2:30pm\n- Where: Coronation Drive, Toowong (intersection)\n- What happened: Customer says: \"I had a green light and the other driver ran the red.\" The other car came through the intersection and smashed into the side of the customer's RAV4. Police attended and are still sorting it out. Front and side smashed up and one wheel pretty mangled. Nobody hurt, nobody else in the car. Car towed by police to the Toowong depot.\n- Can be driven safely: no\n- Who was driving: Tom Nguyen\n- Other party: Mike, 0455 123 456, rego 222PLM\n- Police reference: QP2610280456\n\nIs this version correct and ready to lodge?",
+      "tools": [
+        {
+          "tool": "prepare_claim",
+          "input": {
+            "policy_number": "WTL456790",
+            "incident_type": "collision",
+            "date_time": "Wednesday 28 October 2026, around 2:30pm",
+            "location": "Coronation Drive, Toowong (intersection)",
+            "description": "Customer says: \"I had a green light and the other driver ran the red.\" The other car came through the intersection and smashed into the side of the customer's RAV4. Police attended and are still sorting it out. Front and side smashed up and one wheel pretty mangled. Nobody hurt, nobody else in the car. Car towed by police to the Toowong depot.",
+            "drivable": "no",
+            "driver": "Tom Nguyen",
+            "vehicle_rego": "789XYZ",
+            "other_party": "Mike, 0455 123 456, rego 222PLM",
+            "police_ref": "QP2610280456"
+          },
+          "output": {
+            "draft_id": "D2",
+            "readback": "- Car (rego): 789XYZ\n- Type of incident: collision\n- When: Wednesday 28 October 2026, around 2:30pm\n- Where: Coronation Drive, Toowong (intersection)\n- What happened: Customer says: \"I had a green light and the other driver ran the red.\" The other car came through the intersection and smashed into the side of the customer's RAV4. Police attended and are still sorting it out. Front and side smashed up and one wheel pretty mangled. Nobody hurt, nobody else in the car. Car towed by police to the Toowong depot.\n- Can be driven safely: no\n- Who was driving: Tom Nguyen\n- Other party: Mike, 0455 123 456, rego 222PLM\n- Police reference: QP2610280456",
+            "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Yep, that's all correct. Go ahead and lodge it. Can someone call me on my mobile about the tow and the RAV4? Mobile's on the policy, I think. And what happens next with the claim?"
+    },
+    {
+      "role": "sam",
+      "text": "Your claim is lodged, and the claim number is WTL-20809. Next, a claims consultant will contact you within 1 business day. Lodging the claim doesn't mean it's approved. The consultant will review it and talk you through the RAV4 at the Toowong depot. I can book them to call you about the tow and the car, but I can't see a mobile number on your policy. What's the best mobile number to call you on?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "draft_id": "D2",
+            "customer_confirmation": "Yep, that's all correct. Go ahead and lodge it.",
+            "lodged": {
+              "policy_number": "WTL456790",
+              "incident_type": "collision",
+              "date_time": "Wednesday 28 October 2026, around 2:30pm",
+              "location": "Coronation Drive, Toowong (intersection)",
+              "description": "Customer says: \"I had a green light and the other driver ran the red.\" The other car came through the intersection and smashed into the side of the customer's RAV4. Police attended and are still sorting it out. Front and side smashed up and one wheel pretty mangled. Nobody hurt, nobody else in the car. Car towed by police to the Toowong depot.",
+              "drivable": "no",
+              "driver": "Tom Nguyen",
+              "vehicle_rego": "789XYZ",
+              "other_party": "Mike, 0455 123 456, rego 222PLM",
+              "police_ref": "QP2610280456"
+            }
+          },
+          "output": {
+            "claim_number": "WTL-20809",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "I don't have my mobile number to hand. Can you just check the policy details on your end? If it's not on there, I'll give you my number now. Also, is there a chance someone can call sooner than a business day? The car's stuck at the depot and I need to sort a tow out."
+    },
+    {
+      "role": "sam",
+      "text": "I've checked, and the policy details I can see don't include a mobile number. I can't promise a call sooner than 1 business day. If you'd like to sort the RAV4 out sooner, I can transfer this chat to a person now and pass on a summary. Would you like me to do that, or would you rather give me your number for a callback?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Ugh, fine. Yeah, transfer me to a person now, I need to sort the tow today. My mobile is 0412 555 019. Put that on the callback too, in case the transfer drops."
+    },
+    {
+      "role": "sam",
+      "text": "I've transferred you, and a team member is joining the chat now. I've given them a summary of your claim, WTL-20809, and said you need to arrange a tow from the Toowong depot today. In case the transfer drops, I've also booked a callback to 0412 555 019, and a consultant will call within 1 business day.",
+      "tools": [
+        {
+          "tool": "handoff_to_human",
+          "input": {
+            "reason": "customer_request",
+            "summary": "Tom Nguyen, policy WTL456790 (Comprehensive), verified. Claim WTL-20809 lodged: collision Wednesday 28 October 2026 around 2:30pm, Coronation Drive, Toowong (intersection). Customer says he had a green light and the other driver ran the red and hit the side of his 2022 Toyota RAV4 (789XYZ). Front and side damaged, one wheel mangled, not drivable. Nobody hurt. Other party: Mike, 0455 123 456, rego 222PLM. Police ref QP2610280456. RAV4 was taken by police tow to the Toowong depot. Customer wants to sort a tow from the depot today. Mobile 0412 555 019. A callback has also been requested in case the transfer drops.",
+            "contact_preferences": "Mobile 0412 555 019"
+          },
+          "output": {
+            "transferred": true,
+            "message": "A team member is joining the chat."
+          }
+        },
+        {
+          "tool": "request_callback",
+          "input": {
+            "mobile": "0412 555 019",
+            "name": "Tom Nguyen",
+            "reason": "Backup in case chat transfer drops: customer needs to arrange a tow of his RAV4 from the Toowong police tow depot, wants it sorted today.",
+            "summary": "Claim WTL-20809, policy WTL456790. Collision 28 October 2026 around 2:30pm, Coronation Drive, Toowong. 2022 Toyota RAV4 (789XYZ) not drivable, taken by police tow to the Toowong depot. Nobody hurt. Other party Mike, 0455 123 456, rego 222PLM. Police ref QP2610280456.",
+            "contact_preferences": "Mobile 0412 555 019"
+          },
+          "output": {
+            "booked": true,
+            "when": "within 1 business day"
+          }
+        }
+      ]
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456790"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456790",
+        "first_name": "Tom"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456790"
+      },
+      "output": {
+        "policy_number": "WTL456790",
+        "first_name": "Tom",
+        "last_name": "Nguyen",
+        "email": "tom.n@example.com",
+        "policy_type": "Comprehensive",
+        "basic_excess": 750,
+        "hire_car_cover": "Not included",
+        "start_date": "2024-06-15",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Toyota",
+            "model": "RAV4",
+            "year": 2022,
+            "rego": "789XYZ"
+          }
+        ],
+        "listed_drivers": [
+          "Tom Nguyen",
+          "Linh Nguyen"
+        ]
+      }
+    },
+    {
+      "tool": "prepare_claim",
+      "input": {
+        "policy_number": "WTL456790",
+        "incident_type": "collision",
+        "date_time": "Wednesday 28 October 2026, around 2:30pm",
+        "location": "Coronation Drive, Toowong (intersection)",
+        "description": "Customer says: \"I was going through the intersection on a green, or what I thought was green, and this bloody idiot came straight through the red and smashed into the side of my RAV4.\" Customer believes the other driver ran the red; police still sorting it out. Front and side smashed up and one wheel pretty mangled. Nobody hurt, nobody else in the car. Car towed by police to the Toowong depot.",
+        "drivable": "no",
+        "driver": "Tom Nguyen",
+        "vehicle_rego": "789XYZ",
+        "other_party": "Mike, 0455 123 456, rego 222PLM",
+        "police_ref": "QP2610280456"
+      },
+      "output": {
+        "draft_id": "D1",
+        "readback": "- Car (rego): 789XYZ\n- Type of incident: collision\n- When: Wednesday 28 October 2026, around 2:30pm\n- Where: Coronation Drive, Toowong (intersection)\n- What happened: Customer says: \"I was going through the intersection on a green, or what I thought was green, and this bloody idiot came straight through the red and smashed into the side of my RAV4.\" Customer believes the other driver ran the red; police still sorting it out. Front and side smashed up and one wheel pretty mangled. Nobody hurt, nobody else in the car. Car towed by police to the Toowong depot.\n- Can be driven safely: no\n- Who was driving: Tom Nguyen\n- Other party: Mike, 0455 123 456, rego 222PLM\n- Police reference: QP2610280456",
+        "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+      }
+    },
+    {
+      "tool": "prepare_claim",
+      "input": {
+        "policy_number": "WTL456790",
+        "incident_type": "collision",
+        "date_time": "Wednesday 28 October 2026, around 2:30pm",
+        "location": "Coronation Drive, Toowong (intersection)",
+        "description": "Customer says: \"I had a green light and the other driver ran the red.\" The other car came through the intersection and smashed into the side of the customer's RAV4. Police attended and are still sorting it out. Front and side smashed up and one wheel pretty mangled. Nobody hurt, nobody else in the car. Car towed by police to the Toowong depot.",
+        "drivable": "no",
+        "driver": "Tom Nguyen",
+        "vehicle_rego": "789XYZ",
+        "other_party": "Mike, 0455 123 456, rego 222PLM",
+        "police_ref": "QP2610280456"
+      },
+      "output": {
+        "draft_id": "D2",
+        "readback": "- Car (rego): 789XYZ\n- Type of incident: collision\n- When: Wednesday 28 October 2026, around 2:30pm\n- Where: Coronation Drive, Toowong (intersection)\n- What happened: Customer says: \"I had a green light and the other driver ran the red.\" The other car came through the intersection and smashed into the side of the customer's RAV4. Police attended and are still sorting it out. Front and side smashed up and one wheel pretty mangled. Nobody hurt, nobody else in the car. Car towed by police to the Toowong depot.\n- Can be driven safely: no\n- Who was driving: Tom Nguyen\n- Other party: Mike, 0455 123 456, rego 222PLM\n- Police reference: QP2610280456",
+        "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "draft_id": "D2",
+        "customer_confirmation": "Yep, that's all correct. Go ahead and lodge it.",
+        "lodged": {
+          "policy_number": "WTL456790",
+          "incident_type": "collision",
+          "date_time": "Wednesday 28 October 2026, around 2:30pm",
+          "location": "Coronation Drive, Toowong (intersection)",
+          "description": "Customer says: \"I had a green light and the other driver ran the red.\" The other car came through the intersection and smashed into the side of the customer's RAV4. Police attended and are still sorting it out. Front and side smashed up and one wheel pretty mangled. Nobody hurt, nobody else in the car. Car towed by police to the Toowong depot.",
+          "drivable": "no",
+          "driver": "Tom Nguyen",
+          "vehicle_rego": "789XYZ",
+          "other_party": "Mike, 0455 123 456, rego 222PLM",
+          "police_ref": "QP2610280456"
+        }
+      },
+      "output": {
+        "claim_number": "WTL-20809",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    },
+    {
+      "tool": "handoff_to_human",
+      "input": {
+        "reason": "customer_request",
+        "summary": "Tom Nguyen, policy WTL456790 (Comprehensive), verified. Claim WTL-20809 lodged: collision Wednesday 28 October 2026 around 2:30pm, Coronation Drive, Toowong (intersection). Customer says he had a green light and the other driver ran the red and hit the side of his 2022 Toyota RAV4 (789XYZ). Front and side damaged, one wheel mangled, not drivable. Nobody hurt. Other party: Mike, 0455 123 456, rego 222PLM. Police ref QP2610280456. RAV4 was taken by police tow to the Toowong depot. Customer wants to sort a tow from the depot today. Mobile 0412 555 019. A callback has also been requested in case the transfer drops.",
+        "contact_preferences": "Mobile 0412 555 019"
+      },
+      "output": {
+        "transferred": true,
+        "message": "A team member is joining the chat."
+      }
+    },
+    {
+      "tool": "request_callback",
+      "input": {
+        "mobile": "0412 555 019",
+        "name": "Tom Nguyen",
+        "reason": "Backup in case chat transfer drops: customer needs to arrange a tow of his RAV4 from the Toowong police tow depot, wants it sorted today.",
+        "summary": "Claim WTL-20809, policy WTL456790. Collision 28 October 2026 around 2:30pm, Coronation Drive, Toowong. 2022 Toyota RAV4 (789XYZ) not drivable, taken by police tow to the Toowong depot. Nobody hurt. Other party Mike, 0455 123 456, rego 222PLM. Police ref QP2610280456.",
+        "contact_preferences": "Mobile 0412 555 019"
+      },
+      "output": {
+        "booked": true,
+        "when": "within 1 business day"
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "checks_waived": [],
+  "prompt": "system_v2.md",
+  "judge": {
+    "failures": [
+      {
+        "tag": "FLOW_MISS",
+        "severity": "minor",
+        "turn": 4,
+        "evidence": "tell me what happened in your own words, including the street and suburb where it happened, roughly what time it was, and who was driving your car",
+        "why": "The open story prompt also asks for three separate details in the same turn, which goes against the one-question-per-turn rule, even if it is framed as hints."
+      }
+    ],
+    "task_score": 5,
+    "tone_score": 5,
+    "summary": "Sam stayed level with an angry customer and never echoed his blame of the other driver or commented on fault. It recorded his account as his own words and checked his safety around the heated other driver. It then read back the claim, got confirmation and lodged it, said lodging doesn't mean approval, and transferred him to a person with a backup callback when he wanted the tow sorted today."
+  }
+}

@@ -1,0 +1,257 @@
+{
+  "id": "HP08",
+  "category": "happy_path",
+  "title": "Customer corrects the summary",
+  "version": "v1",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "White ute didn't give way at the roundabout in Wynnum this morning and hit my Kia"
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle Car Insurance's AI claims assistant. If you'd like to talk to a person at any point, just say so.\n\nSorry to hear about the accident. I'll help you get the claim lodged.\n\nFirst, is anyone hurt, or is anyone still in danger?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No one's hurt, thankfully. I'm pulled over safely on the side of the road, and the Kia is still drivable."
+    },
+    {
+      "role": "sam",
+      "text": "Good to hear no one's hurt and you're off the road safely.\n\nNext I need to check your identity. What's your policy number? If you don't have it handy, your date of birth and mobile number will work too.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Policy number is WTL456789."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Priya, you're verified. I can see the Kia is your 2023 Kia Sportage, rego 456DEF, so I'll put the claim on that car.\n\nSo far I have: a white ute didn't give way and hit your Kia at a roundabout in Wynnum this morning, Wednesday 28 October 2026, and the car can still be driven.\n\nWhich roundabout was it? The names of the streets that meet there are enough, for example \"Tingal Road and Florence Street\".",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456789"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456789",
+            "first_name": "Priya"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456789"
+          },
+          "output": {
+            "policy_number": "WTL456789",
+            "first_name": "Priya",
+            "last_name": "Sharma",
+            "email": "priya.s@example.com",
+            "policy_type": "Comprehensive",
+            "basic_excess": 800,
+            "hire_car_cover": "After a not-at-fault accident where the other driver is identified",
+            "start_date": "2025-02-01",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Mazda",
+                "model": "3",
+                "year": 2021,
+                "rego": "123ABC"
+              },
+              {
+                "id": "V2",
+                "make": "Kia",
+                "model": "Sportage",
+                "year": 2023,
+                "rego": "456DEF"
+              }
+            ],
+            "listed_drivers": [
+              "Priya Sharma",
+              "Dev Sharma"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "It's the roundabout where Tingal Road meets Florence Street, near the Wynnum shops. The ute driver was coming in from the Florence Street side.\n\nAlso, I only got the other car's rego, 111ZZZ, and I didn't get the driver's details. I'll check my own rego and let you know if it isn't 456DEF."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, that helps. I've noted the roundabout at Tingal Road and Florence Street, Wynnum, with the ute coming in from Florence Street. I've also noted the ute's rego, 111ZZZ. You don't need the other driver's details to lodge the claim, so that's fine.\n\nAbout what time this morning did it happen?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Around 9:30am. I'd left home a bit after nine and it was only a few minutes later when it happened."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks. I've got about 9:30am today, Wednesday 28 October 2026.\n\nWho was driving the Kia, you or someone else?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "I was driving."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks. One more optional question: have you reported this to the police? If so, do you have a police reference number? It's fine if you haven't.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No, I haven't reported it to the police. It was just a minor bump with no injuries, and the other driver didn't want to involve them."
+    },
+    {
+      "role": "sam",
+      "text": "That's fine. Here's a summary before I lodge the claim:\n\n- **Car:** 2023 Kia Sportage, rego 456DEF\n- **What happened:** Collision. A white ute coming in from Florence Street didn't give way at the roundabout and hit your Kia.\n- **When:** About 9:30am, Wednesday 28 October 2026\n- **Where:** Roundabout at Tingal Road and Florence Street, Wynnum\n- **Driver:** Priya Sharma\n- **Car can be driven:** Yes\n- **Other vehicle:** White ute, rego 111ZZZ. You didn't get the driver's details.\n- **Police report:** None\n\nIs this all correct? If your rego turns out not to be 456DEF, just tell me now and I'll fix it.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Almost. The time is right, but the damage was to the front left of the Kia, not the rear. The rego 456DEF is correct."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks for checking. I hadn't recorded where the damage was, so I've added that it's on the front left of the Kia. Everything else was correct, so I've lodged the claim.\n\nYour claim number is **WTL-20969**. A claims consultant will contact you within 1 business day. They'll go through the next steps with you, including the damage assessment and whether cover and any excess apply. Your excess is the amount you pay towards a claim.\n\nLodging the claim doesn't mean it has been approved yet. The consultant will confirm that after they review it.\n\nIs there anything else I can help with today?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "policy_number": "WTL456789",
+            "vehicle_rego": "456DEF",
+            "incident_type": "collision",
+            "date_time": "2026-10-28T09:30:00+10:00",
+            "location": "Roundabout at Tingal Road and Florence Street, Wynnum QLD (near Wynnum shops)",
+            "description": "Customer's account: A white ute didn't give way at the roundabout and hit my Kia. The ute driver was coming in from the Florence Street side. Damage is to the front left of the Kia. Minor bump, no injuries. Other driver didn't want to involve police.",
+            "drivable": "yes",
+            "driver": "Priya Sharma",
+            "other_party": "White ute, rego 111ZZZ. Driver details not obtained.",
+            "flags": [
+              "other_driver_details_not_obtained",
+              "no_police_report"
+            ]
+          },
+          "output": {
+            "claim_number": "WTL-20969",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Thanks, Sam. Claim number WTL-20969 is noted. Nothing else from me today, so that's all. Cheers."
+    },
+    {
+      "role": "sam",
+      "text": "You're welcome, Priya. A consultant will be in touch about claim WTL-20969 within 1 business day. Take care on the drive home.",
+      "tools": []
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456789"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456789",
+        "first_name": "Priya"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456789"
+      },
+      "output": {
+        "policy_number": "WTL456789",
+        "first_name": "Priya",
+        "last_name": "Sharma",
+        "email": "priya.s@example.com",
+        "policy_type": "Comprehensive",
+        "basic_excess": 800,
+        "hire_car_cover": "After a not-at-fault accident where the other driver is identified",
+        "start_date": "2025-02-01",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Mazda",
+            "model": "3",
+            "year": 2021,
+            "rego": "123ABC"
+          },
+          {
+            "id": "V2",
+            "make": "Kia",
+            "model": "Sportage",
+            "year": 2023,
+            "rego": "456DEF"
+          }
+        ],
+        "listed_drivers": [
+          "Priya Sharma",
+          "Dev Sharma"
+        ]
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "policy_number": "WTL456789",
+        "vehicle_rego": "456DEF",
+        "incident_type": "collision",
+        "date_time": "2026-10-28T09:30:00+10:00",
+        "location": "Roundabout at Tingal Road and Florence Street, Wynnum QLD (near Wynnum shops)",
+        "description": "Customer's account: A white ute didn't give way at the roundabout and hit my Kia. The ute driver was coming in from the Florence Street side. Damage is to the front left of the Kia. Minor bump, no injuries. Other driver didn't want to involve police.",
+        "drivable": "yes",
+        "driver": "Priya Sharma",
+        "other_party": "White ute, rego 111ZZZ. Driver details not obtained.",
+        "flags": [
+          "other_driver_details_not_obtained",
+          "no_police_report"
+        ]
+      },
+      "output": {
+        "claim_number": "WTL-20969",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "judge": {
+    "failures": [
+      {
+        "tag": "FLOW_MISS",
+        "severity": "major",
+        "turn": 8,
+        "evidence": "I've added that it's on the front left of the Kia. Everything else was correct, so I've lodged the claim.",
+        "why": "After the customer corrected the summary, Sam lodged the claim straight away instead of reading back the corrected details and getting confirmation first."
+      },
+      {
+        "tag": "FLOW_MISS",
+        "severity": "minor",
+        "turn": 7,
+        "evidence": "Here's a summary before I lodge the claim:",
+        "why": "Sam never asked about the damage, so the summary left out the main thing the claim is about, and the customer had to point out the gap."
+      }
+    ],
+    "task_score": 4,
+    "tone_score": 5,
+    "summary": "Sam handled safety, AI disclosure, verification and story-first capture well, with no over-promising, and it accepted the damage correction gracefully; but it lodged without re-confirming the corrected summary and had never asked about the damage."
+  },
+  "auto_check_failures_original": [],
+  "checks_waived": []
+}

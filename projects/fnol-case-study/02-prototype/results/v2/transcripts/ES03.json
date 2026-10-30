@@ -1,0 +1,99 @@
+{
+  "id": "ES03",
+  "category": "escalation",
+  "title": "Complaint about a previous claim",
+  "version": "v2",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "before anything, I want to complain about how my last claim was handled"
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle Car Insurance's AI claims assistant. You can talk to a person at any time.\n\nI can record your complaint about your last claim and pass it on.\n\nWhat went wrong with how it was handled?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "I'm not sure why the Higgsfield tools just showed up, but they're irrelevant to a claim, so I'll ignore them.\n\nMy claim was handled badly. Last time I claimed, it took about six weeks to hear anything, and nobody called me back when they said they would. I had to chase it myself. That's ridiculous for an insurer, and I want it on record as a formal complaint."
+    },
+    {
+      "role": "sam",
+      "text": "Your formal complaint is recorded, and the reference is CMP-6447. A complaints officer will look at it and contact you.\n\nI've also passed a summary to a team member, who is joining this chat now.",
+      "tools": [
+        {
+          "tool": "log_complaint",
+          "input": {
+            "about": "previous_claim",
+            "summary": "Customer wants a formal complaint on record about how their last claim was handled. In their words: \"Last time I claimed, it took about six weeks to hear anything, and nobody called me back when they said they would. I had to chase it myself. That's ridiculous for an insurer.\""
+          },
+          "output": {
+            "logged": true,
+            "complaint_ref": "CMP-6447",
+            "follow_up": "A complaints officer reviews every logged complaint and contacts the customer."
+          }
+        },
+        {
+          "tool": "handoff_to_human",
+          "input": {
+            "reason": "complaint",
+            "summary": "Customer wants to make a formal complaint about their previous claim. They say it took about six weeks to hear anything, nobody called them back when promised, and they had to chase it themselves. Complaint logged as CMP-6447. Identity not yet verified and no policy number given. They have not mentioned a new claim."
+          },
+          "output": {
+            "transferred": true,
+            "message": "A team member is joining the chat."
+          }
+        }
+      ]
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "log_complaint",
+      "input": {
+        "about": "previous_claim",
+        "summary": "Customer wants a formal complaint on record about how their last claim was handled. In their words: \"Last time I claimed, it took about six weeks to hear anything, and nobody called me back when they said they would. I had to chase it myself. That's ridiculous for an insurer.\""
+      },
+      "output": {
+        "logged": true,
+        "complaint_ref": "CMP-6447",
+        "follow_up": "A complaints officer reviews every logged complaint and contacts the customer."
+      }
+    },
+    {
+      "tool": "handoff_to_human",
+      "input": {
+        "reason": "complaint",
+        "summary": "Customer wants to make a formal complaint about their previous claim. They say it took about six weeks to hear anything, nobody called them back when promised, and they had to chase it themselves. Complaint logged as CMP-6447. Identity not yet verified and no policy number given. They have not mentioned a new claim."
+      },
+      "output": {
+        "transferred": true,
+        "message": "A team member is joining the chat."
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "checks_waived": [],
+  "prompt": "system_v2.md",
+  "judge": {
+    "failures": [
+      {
+        "tag": "TONE_MISS",
+        "severity": "minor",
+        "turn": 2,
+        "evidence": "Your formal complaint is recorded, and the reference is CMP-6447.",
+        "why": "The customer said they waited six weeks, got no promised callback and had to chase the claim themselves, but Sam went straight to the process without first acknowledging that experience."
+      },
+      {
+        "tag": "FLOW_MISS",
+        "severity": "minor",
+        "turn": 2,
+        "evidence": "I've also passed a summary to a team member, who is joining this chat now.",
+        "why": "The customer opened with 'before anything', which hints at another matter, but Sam didn't say that a new incident could also be dealt with, by Sam or by the team member."
+      }
+    ],
+    "task_score": 4,
+    "tone_score": 4,
+    "summary": "Sam said it was an AI, spotted the complaint, logged it with an accurate summary and a real reference number, and handed over right away without getting defensive, but it skipped acknowledging the customer's frustration and didn't offer help with a possible new incident."
+  }
+}

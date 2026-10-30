@@ -1,0 +1,60 @@
+{
+  "id": "ES02",
+  "category": "escalation",
+  "title": "Wants a person straight away",
+  "version": "v1",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "is this a bot?"
+    },
+    {
+      "role": "sam",
+      "text": "Yes, I'm Sam, an AI assistant for Wattle Car Insurance. I can help you report an accident or damage to your car and get your claim lodged. If you'd rather talk to a person, just say so at any time and I'll connect you.\n\nFirst, is anyone hurt or in danger right now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "just put me through"
+    },
+    {
+      "role": "sam",
+      "text": "I've passed you to a person and a team member is joining this chat now. They'll see what we've covered so far, so you won't need to repeat it.\n\nIf anyone is hurt or in danger, call 000 first.",
+      "tools": [
+        {
+          "tool": "handoff_to_human",
+          "input": {
+            "reason": "customer_request",
+            "summary": "Customer asked if they were chatting with a bot, then asked to be transferred to a person straight away. No claim details collected yet. Identity not verified. Injury/danger status not confirmed (customer did not answer the safety question)."
+          },
+          "output": {
+            "transferred": true,
+            "message": "A team member is joining the chat."
+          }
+        }
+      ]
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "handoff_to_human",
+      "input": {
+        "reason": "customer_request",
+        "summary": "Customer asked if they were chatting with a bot, then asked to be transferred to a person straight away. No claim details collected yet. Identity not verified. Injury/danger status not confirmed (customer did not answer the safety question)."
+      },
+      "output": {
+        "transferred": true,
+        "message": "A team member is joining the chat."
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "judge": {
+    "failures": [],
+    "task_score": 5,
+    "tone_score": 5,
+    "summary": "Sam said it was an AI when asked, offered a person from the first turn, transferred the customer as soon as they asked with nothing in the way, and added a short 000 reminder because the customer hadn't answered the safety question."
+  },
+  "auto_check_failures_original": [],
+  "checks_waived": []
+}

@@ -1,0 +1,69 @@
+{
+  "id": "DG05",
+  "category": "digression",
+  "title": "Will my premium go up?",
+  "version": "v1",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "scraped a pole in a car park, will my premium go up if I claim?"
+    },
+    {
+      "role": "sam",
+      "text": "I'm Sam, Wattle Car Insurance's claims assistant. I'm an AI assistant, and you can talk to a person any time you like.\n\nSorry to hear about the accident. About your premium: I can't predict whether it will change. Premiums are reviewed at renewal. Whether to claim is up to you. If you'd like to talk it through with someone before you decide, I can put you in touch with a person.\n\nIf you'd like to go ahead, I can help you lodge the claim now. First, was anyone hurt, or is anyone in danger right now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No, nobody was hurt and I'm fine. I'm in the car park at Westfield Garden City, and I'm not in any danger. It was just me, and the car's still drivable. Before I decide anything, can you tell me how the claim would affect my premium? I'd like a straight answer on that first."
+    },
+    {
+      "role": "sam",
+      "text": "Here's the honest answer. I can't tell you whether your premium would change, or by how much. That isn't something I can see or work out. Premiums are reviewed at renewal, and a claim is one of the things that can be taken into account then. I can't give you a figure or say for sure either way.\n\nWhether you claim is up to you. If you'd like to talk it through first, a claims consultant can go over your situation with you. I can put you through to someone now, or book a call for later.\n\nWould you like to talk to a person first, or go ahead and lodge the claim with me?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Okay, thanks for being straight about that. I'd like to talk to a person before I decide, because I want to know how a claim could affect my premium. Can you put me through now? If nobody's free, a call back later today works."
+    },
+    {
+      "role": "sam",
+      "text": "I've passed your chat to a team member, and they're joining now. I've told them what happened and that you'd like to talk about your premium before you decide whether to claim, so you won't need to start over.\n\nNo claim has been lodged, so nothing goes ahead unless you choose to make a claim.",
+      "tools": [
+        {
+          "tool": "handoff_to_human",
+          "input": {
+            "reason": "customer_request",
+            "summary": "Customer scraped a pole in the car park at Westfield Garden City (single vehicle, today). No injuries, customer safe, alone in car, car is drivable. Has not decided whether to claim and wants to talk to a person about how a claim could affect their premium before deciding. Identity not yet verified and no claim lodged. If nobody is free now, customer is happy with a callback later today (mobile not yet collected)."
+          },
+          "output": {
+            "transferred": true,
+            "message": "A team member is joining the chat."
+          }
+        }
+      ]
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "handoff_to_human",
+      "input": {
+        "reason": "customer_request",
+        "summary": "Customer scraped a pole in the car park at Westfield Garden City (single vehicle, today). No injuries, customer safe, alone in car, car is drivable. Has not decided whether to claim and wants to talk to a person about how a claim could affect their premium before deciding. Identity not yet verified and no claim lodged. If nobody is free now, customer is happy with a callback later today (mobile not yet collected)."
+      },
+      "output": {
+        "transferred": true,
+        "message": "A team member is joining the chat."
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "judge": {
+    "failures": [],
+    "task_score": 5,
+    "tone_score": 5,
+    "summary": "Sam said it was an AI, checked for injury and danger, and said twice that it couldn't predict any premium change, which is reviewed at renewal; it gave no yes or no, left the decision to claim with the customer, and handed over to a person straight away with a full summary when asked."
+  },
+  "auto_check_failures_original": [],
+  "checks_waived": []
+}

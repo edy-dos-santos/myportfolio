@@ -1,0 +1,267 @@
+{
+  "conversation_id": "P06-B",
+  "persona_id": "P06",
+  "variant": "B",
+  "variant_name": "story_first",
+  "sam_version": "abB",
+  "order_position": 1,
+  "data_source": "simulated",
+  "sam_model": "claude-opus-5-5",
+  "customer_model": "claude-haiku-5-5",
+  "started_at": "2026-10-29T14:30:41+10:00",
+  "elapsed_seconds": 72.4,
+  "hit_turn_cap": false,
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "Hit a roo last night on Mount Glorious Rd. Front end's smashed. Need to claim.",
+      "ms": 0
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle Car Insurance's AI claims assistant. If you'd like to talk to a person at any point, just tell me.\n\nI'm sorry to hear about the accident. I can help you lodge the claim.\n\nFirst, is anyone hurt, or is anyone in danger right now?",
+      "tools": [],
+      "ms": 2398
+    },
+    {
+      "role": "customer",
+      "text": "Already said that. Mount Glorious Rd, last night about 9pm, I hit a roo. Nobody hurt, I'm fine.",
+      "ms": 4629
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, I'm glad you're not hurt. I've got Mount Glorious Road, about 9pm last night, which is Tuesday 27 October.\n\nNext I need to check your identity. What's your policy number? If you don't have it handy, your date of birth and mobile number will work too.",
+      "tools": [],
+      "ms": 2728
+    },
+    {
+      "role": "customer",
+      "text": "Mate, I've told you that already. Policy number's WTL456806. Bruce Kowalski.",
+      "ms": 3226
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Bruce, you're verified. Sorry for making you repeat yourself. I can see your 2016 Toyota HiLux, rego 106BKO.\n\nWith the front end smashed, is the HiLux safe to drive, or do you need a tow?",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456806"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456806",
+            "first_name": "Bruce"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456806"
+          },
+          "output": {
+            "policy_number": "WTL456806",
+            "first_name": "Bruce",
+            "last_name": "Kowalski",
+            "email": "bruce.k@example.com",
+            "policy_type": "Comprehensive",
+            "basic_excess": 1000,
+            "hire_car_cover": "Not included",
+            "start_date": "2018-02-14",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Toyota",
+                "model": "HiLux",
+                "year": 2016,
+                "rego": "106BKO"
+              }
+            ],
+            "listed_drivers": [
+              "Bruce Kowalski"
+            ]
+          }
+        }
+      ],
+      "ms": 4787
+    },
+    {
+      "role": "customer",
+      "text": "Need a tow. Bull bar's bent, headlight's smashed and the radiator's leaking. I won't drive it. It's at my place, 3 Wattlebird Ct, Samford Valley.",
+      "ms": 2037
+    },
+    {
+      "role": "sam",
+      "text": "I've booked a tow to 3 Wattlebird Ct, Samford Valley. The booking number is TOW-7626, and the truck should get there in about 45 minutes.\n\nWere you the one driving last night?",
+      "tools": [
+        {
+          "tool": "book_tow",
+          "input": {
+            "location": "3 Wattlebird Ct, Samford Valley QLD",
+            "policy_number": "WTL456806"
+          },
+          "output": {
+            "booking": "TOW-7626",
+            "eta_minutes": 45
+          }
+        }
+      ],
+      "ms": 3878
+    },
+    {
+      "role": "customer",
+      "text": "Yeah, I was driving.",
+      "ms": 1852
+    },
+    {
+      "role": "sam",
+      "text": "Thanks. Mount Glorious Road is a long stretch. Roughly where on it did it happen? For example, near Mount Glorious township, Mount Nebo, or closer to Samford.",
+      "tools": [],
+      "ms": 2187
+    },
+    {
+      "role": "customer",
+      "text": "Closer to Samford, coming down from the top end. Maybe a km or two past the lookout bend, I reckon. Not sure of the exact spot.",
+      "ms": 2015
+    },
+    {
+      "role": "sam",
+      "text": "That's close enough. Here's what I've got:\n\n- **Car:** 2016 Toyota HiLux, rego 106BKO\n- **What happened:** Hit a kangaroo\n- **When:** About 9pm, Tuesday 27 October 2026\n- **Where:** Mount Glorious Road, on the way down towards Samford, about 1 to 2 km past the lookout bend\n- **Damage:** Bull bar bent, headlight smashed, radiator leaking\n- **Driver:** Bruce Kowalski\n- **Drivable:** No. A tow is booked (TOW-7626) from 3 Wattlebird Ct, Samford Valley\n- **Injuries:** None\n\nIs that all correct? If you reported it to the police, let me know the reference number and I'll add it.",
+      "tools": [],
+      "ms": 3896
+    },
+    {
+      "role": "customer",
+      "text": "Yep, that's all correct. No police, so no reference number.",
+      "ms": 1949
+    },
+    {
+      "role": "sam",
+      "text": "Your claim is lodged. The claim number is **WTL-20592**.\n\nHere's what happens next:\n- The tow truck (booking TOW-7626) should get to 3 Wattlebird Ct in about 45 minutes.\n- A claims consultant will contact you within 1 business day. They'll go through the next steps and confirm what your Comprehensive policy covers for this claim.\n- Your policy has a basic excess of $1,000. An excess is the amount you pay towards a claim. The consultant will confirm whether it applies here.\n- Your policy doesn't include hire car cover.\n\nIs there anything else I can help with?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "policy_number": "WTL456806",
+            "incident_type": "single_vehicle",
+            "date_time": "2026-10-27T21:00:00+10:00",
+            "location": "Mount Glorious Rd, heading down towards Samford, approx 1-2 km past the lookout bend, QLD",
+            "description": "Hit a kangaroo last night about 9pm on Mount Glorious Rd, coming down from the top end towards Samford. Front end smashed: bull bar bent, headlight smashed, radiator leaking. Nobody hurt. Not reported to police.",
+            "drivable": "no",
+            "driver": "Bruce Kowalski",
+            "vehicle_rego": "106BKO",
+            "flags": [
+              "animal_strike",
+              "tow_booked_TOW-7626"
+            ]
+          },
+          "output": {
+            "claim_number": "WTL-20592",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ],
+      "ms": 6913
+    },
+    {
+      "role": "customer",
+      "text": "Nah, that's it. Cheers.",
+      "ms": 2145
+    },
+    {
+      "role": "sam",
+      "text": "No worries, Bruce. Your claim number is WTL-20592 if you need it. The tow truck is on its way, and a consultant will contact you within 1 business day. Take care.",
+      "tools": [],
+      "ms": 2093
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456806"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456806",
+        "first_name": "Bruce"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456806"
+      },
+      "output": {
+        "policy_number": "WTL456806",
+        "first_name": "Bruce",
+        "last_name": "Kowalski",
+        "email": "bruce.k@example.com",
+        "policy_type": "Comprehensive",
+        "basic_excess": 1000,
+        "hire_car_cover": "Not included",
+        "start_date": "2018-02-14",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Toyota",
+            "model": "HiLux",
+            "year": 2016,
+            "rego": "106BKO"
+          }
+        ],
+        "listed_drivers": [
+          "Bruce Kowalski"
+        ]
+      }
+    },
+    {
+      "tool": "book_tow",
+      "input": {
+        "location": "3 Wattlebird Ct, Samford Valley QLD",
+        "policy_number": "WTL456806"
+      },
+      "output": {
+        "booking": "TOW-7626",
+        "eta_minutes": 45
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "policy_number": "WTL456806",
+        "incident_type": "single_vehicle",
+        "date_time": "2026-10-27T21:00:00+10:00",
+        "location": "Mount Glorious Rd, heading down towards Samford, approx 1-2 km past the lookout bend, QLD",
+        "description": "Hit a kangaroo last night about 9pm on Mount Glorious Rd, coming down from the top end towards Samford. Front end smashed: bull bar bent, headlight smashed, radiator leaking. Nobody hurt. Not reported to police.",
+        "drivable": "no",
+        "driver": "Bruce Kowalski",
+        "vehicle_rego": "106BKO",
+        "flags": [
+          "animal_strike",
+          "tow_booked_TOW-7626"
+        ]
+      },
+      "output": {
+        "claim_number": "WTL-20592",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    }
+  ],
+  "handed_off": false,
+  "questionnaire": {
+    "seq": 6,
+    "csat": 4,
+    "comment": "Got the claim lodged without much fuss and the tow was sorted quick. Annoying that it asked me for the policy number again after I'd already given it, but the rest was straightforward."
+  },
+  "judge": {
+    "reasked_facts": 0,
+    "reasked_examples": [],
+    "effort_score": 4,
+    "tone_score": 5,
+    "rule_breaks": [],
+    "summary": "Sam re-asked nothing: the customer said 'already said that' twice, but injuries, policy number and driver were each asked for the first time and the location question only narrowed down a place already given. Sam stayed calm, said it was an AI, apologised for the friction, booked the tow quickly and gave cover and excess information without over-promising (the 27 October date fits a chat on 28 October but can't be checked against the review date of 29 October)."
+  }
+}

@@ -1,0 +1,330 @@
+{
+  "id": "ER01",
+  "category": "error",
+  "title": "Wrong policy number twice",
+  "version": "v2",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "I'd like to report some damage please. My policy number is WTL465792."
+    },
+    {
+      "role": "sam",
+      "text": "I'm Sam, an AI assistant for Wattle Car Insurance, and I can help you report the damage. You can talk to a person at any time, just let me know. I couldn't find a match for policy number WTL465792, so you might like to check it, or I can use your date of birth and mobile number instead. First, though: is anyone hurt or in danger?",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL465792"
+          },
+          "output": {
+            "verified": false,
+            "message": "No match. Check the details and try again."
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "No, nobody's hurt. It's just my car, a Honda Jazz. It's still drivable."
+    },
+    {
+      "role": "sam",
+      "text": "Good to know nobody's hurt. I couldn't match policy number WTL465792, so I need to check who you are another way before we go on. Could you give me your date of birth and mobile number, or check the policy number again?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Let me try the policy number again. It's WLT456792."
+    },
+    {
+      "role": "sam",
+      "text": "I couldn't find a match for WLT456792 either. You can check it on your policy documents or renewal email, which usually start with \"WTL\". You could also give me your date of birth and mobile number instead. Which would you like to do?",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WLT456792"
+          },
+          "output": {
+            "verified": false,
+            "message": "No match. Check the details and try again."
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "I'm not sure where the policy number is now. I'll go with my date of birth and mobile number instead. My date of birth is 9 May 1947 and my mobile is 0411 222 333."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Margaret, you're verified. Your policy is WTL456792, and it lists your 2015 Honda Jazz, rego 654RTY. Can you tell me what happened, in your own words?",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "dob": "1947-05-09",
+            "mobile": "0411 222 333"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456792",
+            "first_name": "Margaret"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456792"
+          },
+          "output": {
+            "policy_number": "WTL456792",
+            "first_name": "Margaret",
+            "last_name": "Hill",
+            "email": "",
+            "policy_type": "Comprehensive",
+            "basic_excess": 500,
+            "hire_car_cover": "Not included",
+            "start_date": "2019-09-01",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Honda",
+                "model": "Jazz",
+                "year": 2015,
+                "rego": "654RTY"
+              }
+            ],
+            "listed_drivers": [
+              "Margaret Hill"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "A shopping trolley rolled into my car at the Coles in Ashgrove this morning, at about 10am. It's just a dent and scratches on the driver's side, and the car is still drivable."
+    },
+    {
+      "role": "sam",
+      "text": "Sorry to hear about the damage. I've got that as this morning, Wednesday 28 October, at about 10am, at the Coles in Ashgrove. There's a dent and scratches on the driver's side, and you said the car can still be driven. Was the car parked when the trolley hit it, and who had been driving it?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "The car was parked in the car park. I was driving, but I'd just pulled in and had got out. I was standing right there when the trolley rolled into it."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, that's clear. To pin down the location, do you know the street the Coles car park is on?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "I'm not sure of the street name. It's the Coles on the main shopping strip in Ashgrove, near the bus stop. I don't know the exact address, sorry."
+    },
+    {
+      "role": "sam",
+      "text": "That's enough to go on, so I'll record it as you described. Did you get the name or details of anyone involved, such as whoever was using the trolley, or a police reference?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No, I didn't get any names or details, and I didn't call the police. A Coles staff member came out and said they'd take a look, but nobody took their details or gave me anything in writing. There were no witnesses that I know of."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Margaret. Here's what I've recorded:\n\n- Car (rego): 654RTY\n- Type of incident: hit while parked\n- When: Wednesday 28 October 2026, about 10am\n- Where: Coles car park on the main shopping strip in Ashgrove, near the bus stop (street not known)\n- What happened: A shopping trolley rolled into my car at the Coles in Ashgrove. The car was parked in the car park. I'd just pulled in and had got out, and I was standing right there when the trolley rolled into it. It's a dent and scratches on the driver's side. A Coles staff member came out and said they'd take a look, but nobody took their details or gave me anything in writing. No witnesses that I know of.\n- Can be driven safely: yes\n- Who was driving: Margaret Hill\n- Other party: none obtained, no names or details taken\n- Police reference: none, police not called\n\nIs all of that correct, or is there anything you'd like to change?",
+      "tools": [
+        {
+          "tool": "prepare_claim",
+          "input": {
+            "policy_number": "WTL456792",
+            "incident_type": "parked_hit",
+            "date_time": "Wednesday 28 October 2026, about 10am",
+            "location": "Coles car park on the main shopping strip in Ashgrove, near the bus stop (street not known)",
+            "description": "A shopping trolley rolled into my car at the Coles in Ashgrove. The car was parked in the car park. I'd just pulled in and had got out, and I was standing right there when the trolley rolled into it. It's a dent and scratches on the driver's side. A Coles staff member came out and said they'd take a look, but nobody took their details or gave me anything in writing. No witnesses that I know of.",
+            "drivable": "yes",
+            "driver": "Margaret Hill",
+            "vehicle_rego": "654RTY",
+            "other_party": "None obtained. Customer did not get any names or details.",
+            "police_ref": "None. Customer did not call the police."
+          },
+          "output": {
+            "draft_id": "D1",
+            "readback": "- Car (rego): 654RTY\n- Type of incident: parked_hit\n- When: Wednesday 28 October 2026, about 10am\n- Where: Coles car park on the main shopping strip in Ashgrove, near the bus stop (street not known)\n- What happened: A shopping trolley rolled into my car at the Coles in Ashgrove. The car was parked in the car park. I'd just pulled in and had got out, and I was standing right there when the trolley rolled into it. It's a dent and scratches on the driver's side. A Coles staff member came out and said they'd take a look, but nobody took their details or gave me anything in writing. No witnesses that I know of.\n- Can be driven safely: yes\n- Who was driving: Margaret Hill\n- Other party: None obtained. Customer did not get any names or details.\n- Police reference: None. Customer did not call the police.",
+            "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Yes, that's all correct. Thanks for sorting this out."
+    },
+    {
+      "role": "sam",
+      "text": "Margaret, your claim is lodged. Your claim number is WTL-20939. A claims consultant will contact you within 1 business day to go through the next steps. Is there anything else I can help you with today?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "draft_id": "D1",
+            "customer_confirmation": "Yes, that's all correct. Thanks for sorting this out.",
+            "lodged": {
+              "policy_number": "WTL456792",
+              "incident_type": "parked_hit",
+              "date_time": "Wednesday 28 October 2026, about 10am",
+              "location": "Coles car park on the main shopping strip in Ashgrove, near the bus stop (street not known)",
+              "description": "A shopping trolley rolled into my car at the Coles in Ashgrove. The car was parked in the car park. I'd just pulled in and had got out, and I was standing right there when the trolley rolled into it. It's a dent and scratches on the driver's side. A Coles staff member came out and said they'd take a look, but nobody took their details or gave me anything in writing. No witnesses that I know of.",
+              "drivable": "yes",
+              "driver": "Margaret Hill",
+              "vehicle_rego": "654RTY",
+              "other_party": "None obtained. Customer did not get any names or details.",
+              "police_ref": "None. Customer did not call the police."
+            }
+          },
+          "output": {
+            "claim_number": "WTL-20939",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Thanks, that's everything I needed. I'll wait for the consultant's call. Goodbye."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Margaret. If you need a person before the consultant contacts you, just get in touch with Wattle and quote claim number WTL-20939. Goodbye.",
+      "tools": []
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL465792"
+      },
+      "output": {
+        "verified": false,
+        "message": "No match. Check the details and try again."
+      }
+    },
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WLT456792"
+      },
+      "output": {
+        "verified": false,
+        "message": "No match. Check the details and try again."
+      }
+    },
+    {
+      "tool": "verify_identity",
+      "input": {
+        "dob": "1947-05-09",
+        "mobile": "0411 222 333"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456792",
+        "first_name": "Margaret"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456792"
+      },
+      "output": {
+        "policy_number": "WTL456792",
+        "first_name": "Margaret",
+        "last_name": "Hill",
+        "email": "",
+        "policy_type": "Comprehensive",
+        "basic_excess": 500,
+        "hire_car_cover": "Not included",
+        "start_date": "2019-09-01",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Honda",
+            "model": "Jazz",
+            "year": 2015,
+            "rego": "654RTY"
+          }
+        ],
+        "listed_drivers": [
+          "Margaret Hill"
+        ]
+      }
+    },
+    {
+      "tool": "prepare_claim",
+      "input": {
+        "policy_number": "WTL456792",
+        "incident_type": "parked_hit",
+        "date_time": "Wednesday 28 October 2026, about 10am",
+        "location": "Coles car park on the main shopping strip in Ashgrove, near the bus stop (street not known)",
+        "description": "A shopping trolley rolled into my car at the Coles in Ashgrove. The car was parked in the car park. I'd just pulled in and had got out, and I was standing right there when the trolley rolled into it. It's a dent and scratches on the driver's side. A Coles staff member came out and said they'd take a look, but nobody took their details or gave me anything in writing. No witnesses that I know of.",
+        "drivable": "yes",
+        "driver": "Margaret Hill",
+        "vehicle_rego": "654RTY",
+        "other_party": "None obtained. Customer did not get any names or details.",
+        "police_ref": "None. Customer did not call the police."
+      },
+      "output": {
+        "draft_id": "D1",
+        "readback": "- Car (rego): 654RTY\n- Type of incident: parked_hit\n- When: Wednesday 28 October 2026, about 10am\n- Where: Coles car park on the main shopping strip in Ashgrove, near the bus stop (street not known)\n- What happened: A shopping trolley rolled into my car at the Coles in Ashgrove. The car was parked in the car park. I'd just pulled in and had got out, and I was standing right there when the trolley rolled into it. It's a dent and scratches on the driver's side. A Coles staff member came out and said they'd take a look, but nobody took their details or gave me anything in writing. No witnesses that I know of.\n- Can be driven safely: yes\n- Who was driving: Margaret Hill\n- Other party: None obtained. Customer did not get any names or details.\n- Police reference: None. Customer did not call the police.",
+        "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "draft_id": "D1",
+        "customer_confirmation": "Yes, that's all correct. Thanks for sorting this out.",
+        "lodged": {
+          "policy_number": "WTL456792",
+          "incident_type": "parked_hit",
+          "date_time": "Wednesday 28 October 2026, about 10am",
+          "location": "Coles car park on the main shopping strip in Ashgrove, near the bus stop (street not known)",
+          "description": "A shopping trolley rolled into my car at the Coles in Ashgrove. The car was parked in the car park. I'd just pulled in and had got out, and I was standing right there when the trolley rolled into it. It's a dent and scratches on the driver's side. A Coles staff member came out and said they'd take a look, but nobody took their details or gave me anything in writing. No witnesses that I know of.",
+          "drivable": "yes",
+          "driver": "Margaret Hill",
+          "vehicle_rego": "654RTY",
+          "other_party": "None obtained. Customer did not get any names or details.",
+          "police_ref": "None. Customer did not call the police."
+        }
+      },
+      "output": {
+        "claim_number": "WTL-20939",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "checks_waived": [],
+  "prompt": "system_v2.md",
+  "judge": {
+    "failures": [
+      {
+        "tag": "FLOW_MISS",
+        "severity": "minor",
+        "turn": 5,
+        "evidence": "Was the car parked when the trolley hit it, and who had been driving it?",
+        "why": "Sam asked two separate questions in one turn, which breaks the one-question-per-turn rule."
+      }
+    ],
+    "task_score": 5,
+    "tone_score": 5,
+    "summary": "Sam handled both failed policy-number checks kindly without blaming the customer, offered date of birth and mobile as the other way to verify each time, then captured the claim efficiently, read it back for confirmation, and gave a real claim number and next step, with only one minor two-questions-in-a-turn slip."
+  }
+}
