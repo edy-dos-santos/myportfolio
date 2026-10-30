@@ -11,7 +11,7 @@
 - Estimated participant time (modelled from word counts, not measured), mean seconds: A 1025.6, B 812.9.
 - Sam turns, mean: A 13, B 8.8. Questions asked, mean: A 13.3, B 7.9. Repeat questions (keyword heuristic), mean: A 2.1, B 0.8.
 - Ease, SEQ 1 to 7, mean: A 6, B 6.1. Satisfaction, CSAT 1 to 5, mean: A 4.2, B 4.4.
-- Preference: A 3, B 4, no preference 0 (of 7 personas; no preference recorded for P04, P05, P06).
+- Preference: A 4, B 6, no preference 0 (of 10 personas).
 
 > **Recommendation (rule written before the run)** Simulated pilot result: variant B (story_first) had task success for 10 personas against 8, out of 10 paired personas. Confirm with the real study before changing the design. This simulated pilot tests the study design. It does not show how real people behave. Read this result with care. It comes from 10 simulated personas, and a gap of 2 personas is small: one changed outcome would put it below the rule's threshold. Both of A's misses were on one fact, whether the car is safe to drive, and neither was an error by Sam (see Limitations). If both had counted as successes, B would still win, but only on modelled time (21% less). This result is not evidence about real people. The real study should test it.
 
@@ -140,8 +140,8 @@ All results are simulated. Complete pairs: 10 of 10 personas.
 
 | Preference | Personas |
 |---|---|
-| A form-first | 3 |
-| B story-first | 4 |
+| A form-first | 4 |
+| B story-first | 6 |
 | No preference | 0 |
 
 ## Per conversation (simulated)
@@ -215,7 +215,6 @@ Repeat questions show the keyword heuristic first, then the judge's count. Each 
 - Simulated participants can drift from their brief. In P01-A, Chloe's brief says the car drives fine. When Sam asked about the tail-lights, she said: "I haven't checked the tail-lights closely yet, so I'm not sure whether they're working." She then said "I'm at the lights right now", although the crash was that morning, and took it back a turn later: "Sorry, I shouldn't have said I was at the lights." Sam recorded drivable as "unsure", and she confirmed the summary. The facts check expects "yes", so this counts as a failure. The drift is the persona's. But the first doubt came from variant A's form question about the tail-lights, so this miss is partly the test design.
 - The facts check can mark a careful answer as wrong. In P10-A, Jordan's car has a broken headlight. Sam asked: "With the broken headlight, do you feel the car is safe to drive, including at night?" Jordan said: "Not really sure about night driving." Sam recorded "unsure" and noted daylight only. The ground truth allows only "yes", so this counts as a failure. In P10-B, story-first Sam said "a headlight is broken, and the car is safe to drive" without asking, and that counts as a success. The customer had only said "It still drives fine." This is a real Sam error that the metric did not catch.
 - A's two task failures (P01-A, P10-A) are the only facts misses in the run. Both are on the same fact, drivable, and both followed A's fixed safe-to-drive question. Neither is a Sam error. If both had counted as successes, task success would be 10 against 10 and rule 1 would not fire. Rule 2 would then pick B on estimated time (813 s against 1026 s, 21% less, with CSAT 4.4 against 4.2). That time is modelled, not measured. So B stays the recommendation under the rule, but the evidence for it is weak.
-- Preferences were recorded for 7 of 10 personas. None was recorded for P04, P05, P06. The preference result is incomplete. Rule 3 was not reached, so it did not change the recommendation.
 
 Decision rule, as applied: Simulated pilot result: variant B (story_first) had task success for 10 personas against 8 (paired personas only). Confirm with the real study before changing the design.
 
@@ -227,7 +226,7 @@ Changes after the simulated pilot are recorded in the kit's README once the run 
 
 ## Data and files
 
-Generated 2026-10-30T06:32:13+10:00 by build_report.py. Data source: simulated. Files: [ab_results.csv](results/simulated/ab_results.csv), [ab_results.json](results/simulated/ab_results.json), [ab_preferences.csv](results/simulated/ab_preferences.csv).
+Generated 2026-10-30T14:30:28+10:00 by build_report.py. Data source: simulated. Files: [ab_results.csv](results/simulated/ab_results.csv), [ab_results.json](results/simulated/ab_results.json), [ab_preferences.csv](results/simulated/ab_preferences.csv).
 
 ## How to reproduce
 

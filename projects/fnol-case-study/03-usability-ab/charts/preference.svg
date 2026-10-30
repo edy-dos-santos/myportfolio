@@ -27,13 +27,13 @@
 </style>
 <text class="ab-text ab-title" x="10" y="26">Simulated: which chat did personas prefer?</text>
 <text class="ab-text" x="10" y="69">A form-first</text>
-<rect class="ab-a" x="230" y="54" width="94.3" height="24" rx="2"/>
-<text class="ab-text ab-value" x="332.3" y="71">3 of 7</text>
+<rect class="ab-a" x="230" y="54" width="88.0" height="24" rx="2"/>
+<text class="ab-text ab-value" x="326.0" y="71">4 of 10</text>
 <text class="ab-text" x="10" y="113">B story-first</text>
-<rect class="ab-b" x="230" y="98" width="125.7" height="24" rx="2"/>
-<text class="ab-text ab-value" x="363.7" y="115">4 of 7</text>
+<rect class="ab-b" x="230" y="98" width="132.0" height="24" rx="2"/>
+<text class="ab-text ab-value" x="370.0" y="115">6 of 10</text>
 <text class="ab-text" x="10" y="157">No preference</text>
 <rect class="ab-none" x="230" y="142" width="0.0" height="24" rx="2"/>
-<text class="ab-text ab-value" x="238.0" y="159">0 of 7</text>
+<text class="ab-text ab-value" x="238.0" y="159">0 of 10</text>
 <line class="ab-axis" x1="230" y1="44" x2="230" y2="184"/>
 </svg>
