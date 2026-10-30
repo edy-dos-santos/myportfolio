@@ -1,0 +1,293 @@
+{
+  "id": "HP01",
+  "category": "happy_path",
+  "title": "Parked car hit, other driver left a note",
+  "version": "v2",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "Hi, I need to lodge a claim. Someone reversed into my car at Westfield Carindale yesterday arvo. Rear bumper's cracked."
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle Car Insurance's AI claims assistant. You can talk to a person at any time. Just ask.\n\nSorry to hear about the accident. I've got the date as yesterday afternoon, Tuesday 27 October.\n\nFirst, was anyone hurt, or is anyone in danger right now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No, nobody was hurt and nobody's in danger. The car's still drivable."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, I'm glad nobody was hurt. I've noted that the car can still be driven.\n\nNext I need to confirm who you are. What's your policy number? If you don't have it, your date of birth and mobile number will do.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "My policy number is WTL456789."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Priya. You're verified.\n\nI can see two cars on your policy: a 2021 Mazda 3 (rego 123ABC) and a 2023 Kia Sportage (rego 456DEF). Which one was hit?",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456789"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456789",
+            "first_name": "Priya"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456789"
+          },
+          "output": {
+            "policy_number": "WTL456789",
+            "first_name": "Priya",
+            "last_name": "Sharma",
+            "email": "priya.s@example.com",
+            "policy_type": "Comprehensive",
+            "basic_excess": 800,
+            "hire_car_cover": "After a not-at-fault accident where the other driver is identified",
+            "start_date": "2025-02-01",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Mazda",
+                "model": "3",
+                "year": 2021,
+                "rego": "123ABC"
+              },
+              {
+                "id": "V2",
+                "make": "Kia",
+                "model": "Sportage",
+                "year": 2023,
+                "rego": "456DEF"
+              }
+            ],
+            "listed_drivers": [
+              "Priya Sharma",
+              "Dev Sharma"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "The Mazda 3, rego 123ABC."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, I've got the Mazda 3, rego 123ABC.\n\nCould you tell me what happened, in your own words? For example, was the car parked or being driven, roughly what time was it, and where in the car park were you?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Sure. I was parked at Westfield Carindale yesterday, Tuesday 27 October, around 4pm. I'd parked and was back in the shop, so I wasn't in the car. When I came back out, there was a note under the wiper and the rear bumper was cracked. Someone had reversed into me while I was parked."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Priya. So the Mazda was parked, nobody was in it, and the rear bumper was cracked around 4pm on Tuesday 27 October.\n\nWhat did the note under the wiper say? For example, did it have the other driver's name, phone number or rego?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "The note said: \"James, 0412 345 678, rego 789GHI.\" It was just that, no other details, and I didn't see the car leave."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, I've noted the details from the note: James, 0412 345 678, rego 789GHI.\n\nDid you report this to the police, and if so, do you have a reference number?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No, I didn't call the police. Nobody was hurt, and the other driver left a note, so I didn't think it was necessary."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Priya. Here's what I have for your claim:\n\n- Car (rego): 123ABC\n- Type of incident: hit while parked\n- When: Tuesday 27 October 2026, around 4pm\n- Where: Westfield Carindale car park\n- What happened: You were parked at Westfield Carindale and were in the shop, not in the car. When you came back out there was a note under the wiper and the rear bumper was cracked. Someone had reversed into your car while it was parked. You didn't see the car leave.\n- Can be driven safely: yes\n- Who was driving: nobody, the car was parked and empty\n- Other party: note left under the wiper: \"James, 0412 345 678, rego 789GHI.\" No other details.\n- Police reference: not reported to police\n\nIs all of that correct, or would you like to change anything?",
+      "tools": [
+        {
+          "tool": "prepare_claim",
+          "input": {
+            "policy_number": "WTL456789",
+            "vehicle_rego": "123ABC",
+            "incident_type": "parked_hit",
+            "date_time": "Tuesday 27 October 2026, around 4pm",
+            "location": "Westfield Carindale car park",
+            "description": "Customer was parked at Westfield Carindale and was in the shop, not in the car. When she came back out there was a note under the wiper and the rear bumper was cracked. Someone had reversed into her car while it was parked. She didn't see the car leave.",
+            "drivable": "yes",
+            "driver": "None - car was parked and unattended",
+            "other_party": "Note left under wiper: \"James, 0412 345 678, rego 789GHI.\" No other details.",
+            "police_ref": "Not reported to police"
+          },
+          "output": {
+            "draft_id": "D1",
+            "readback": "- Car (rego): 123ABC\n- Type of incident: parked_hit\n- When: Tuesday 27 October 2026, around 4pm\n- Where: Westfield Carindale car park\n- What happened: Customer was parked at Westfield Carindale and was in the shop, not in the car. When she came back out there was a note under the wiper and the rear bumper was cracked. Someone had reversed into her car while it was parked. She didn't see the car leave.\n- Can be driven safely: yes\n- Who was driving: None - car was parked and unattended\n- Other party: Note left under wiper: \"James, 0412 345 678, rego 789GHI.\" No other details.\n- Police reference: Not reported to police",
+            "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "That's all correct. Thanks."
+    },
+    {
+      "role": "sam",
+      "text": "Your claim is lodged, Priya. Your claim number is WTL-20880.\n\nA claims consultant will contact you within 1 business day.\n\nIs there anything else I can help with today?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "draft_id": "D1",
+            "customer_confirmation": "That's all correct. Thanks.",
+            "lodged": {
+              "policy_number": "WTL456789",
+              "vehicle_rego": "123ABC",
+              "incident_type": "parked_hit",
+              "date_time": "Tuesday 27 October 2026, around 4pm",
+              "location": "Westfield Carindale car park",
+              "description": "Customer was parked at Westfield Carindale and was in the shop, not in the car. When she came back out there was a note under the wiper and the rear bumper was cracked. Someone had reversed into her car while it was parked. She didn't see the car leave.",
+              "drivable": "yes",
+              "driver": "None - car was parked and unattended",
+              "other_party": "Note left under wiper: \"James, 0412 345 678, rego 789GHI.\" No other details.",
+              "police_ref": "Not reported to police"
+            }
+          },
+          "output": {
+            "claim_number": "WTL-20880",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Thanks, that's everything I needed. My claim number is WTL-20880. Goodbye."
+    },
+    {
+      "role": "sam",
+      "text": "That's right, your claim number is WTL-20880. A claims consultant will contact you within 1 business day.\n\nThanks for getting in touch, Priya. Goodbye.",
+      "tools": []
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456789"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456789",
+        "first_name": "Priya"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456789"
+      },
+      "output": {
+        "policy_number": "WTL456789",
+        "first_name": "Priya",
+        "last_name": "Sharma",
+        "email": "priya.s@example.com",
+        "policy_type": "Comprehensive",
+        "basic_excess": 800,
+        "hire_car_cover": "After a not-at-fault accident where the other driver is identified",
+        "start_date": "2025-02-01",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Mazda",
+            "model": "3",
+            "year": 2021,
+            "rego": "123ABC"
+          },
+          {
+            "id": "V2",
+            "make": "Kia",
+            "model": "Sportage",
+            "year": 2023,
+            "rego": "456DEF"
+          }
+        ],
+        "listed_drivers": [
+          "Priya Sharma",
+          "Dev Sharma"
+        ]
+      }
+    },
+    {
+      "tool": "prepare_claim",
+      "input": {
+        "policy_number": "WTL456789",
+        "vehicle_rego": "123ABC",
+        "incident_type": "parked_hit",
+        "date_time": "Tuesday 27 October 2026, around 4pm",
+        "location": "Westfield Carindale car park",
+        "description": "Customer was parked at Westfield Carindale and was in the shop, not in the car. When she came back out there was a note under the wiper and the rear bumper was cracked. Someone had reversed into her car while it was parked. She didn't see the car leave.",
+        "drivable": "yes",
+        "driver": "None - car was parked and unattended",
+        "other_party": "Note left under wiper: \"James, 0412 345 678, rego 789GHI.\" No other details.",
+        "police_ref": "Not reported to police"
+      },
+      "output": {
+        "draft_id": "D1",
+        "readback": "- Car (rego): 123ABC\n- Type of incident: parked_hit\n- When: Tuesday 27 October 2026, around 4pm\n- Where: Westfield Carindale car park\n- What happened: Customer was parked at Westfield Carindale and was in the shop, not in the car. When she came back out there was a note under the wiper and the rear bumper was cracked. Someone had reversed into her car while it was parked. She didn't see the car leave.\n- Can be driven safely: yes\n- Who was driving: None - car was parked and unattended\n- Other party: Note left under wiper: \"James, 0412 345 678, rego 789GHI.\" No other details.\n- Police reference: Not reported to police",
+        "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "draft_id": "D1",
+        "customer_confirmation": "That's all correct. Thanks.",
+        "lodged": {
+          "policy_number": "WTL456789",
+          "vehicle_rego": "123ABC",
+          "incident_type": "parked_hit",
+          "date_time": "Tuesday 27 October 2026, around 4pm",
+          "location": "Westfield Carindale car park",
+          "description": "Customer was parked at Westfield Carindale and was in the shop, not in the car. When she came back out there was a note under the wiper and the rear bumper was cracked. Someone had reversed into her car while it was parked. She didn't see the car leave.",
+          "drivable": "yes",
+          "driver": "None - car was parked and unattended",
+          "other_party": "Note left under wiper: \"James, 0412 345 678, rego 789GHI.\" No other details.",
+          "police_ref": "Not reported to police"
+        }
+      },
+      "output": {
+        "claim_number": "WTL-20880",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "checks_waived": [],
+  "prompt": "system_v2.md",
+  "judge": {
+    "failures": [
+      {
+        "tag": "FLOW_MISS",
+        "severity": "minor",
+        "turn": 4,
+        "evidence": "For example, was the car parked or being driven, roughly what time was it, and where in the car park were you?",
+        "why": "The open story prompt carries three sub-questions, which bends the one-question-per-turn rule. It also partly re-asks the time and location the customer had already given roughly ('Westfield Carindale yesterday arvo')."
+      }
+    ],
+    "task_score": 5,
+    "tone_score": 5,
+    "summary": "Sam handled this well: it disclosed it was an AI, checked safety first, verified identity before naming the cars, confirmed the date as Tuesday 27 October, read back the summary and got confirmation before lodging, and gave only the claim number and next step the tool returned. It made no cover or fault promises, and the only issue was one minor bundled question."
+  }
+}

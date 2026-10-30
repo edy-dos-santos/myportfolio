@@ -1,0 +1,283 @@
+{
+  "id": "ER02",
+  "category": "error",
+  "title": "Claims system down",
+  "version": "v2",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "rear ended on Ipswich Rd this arvo, want to lodge"
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, an AI assistant for Wattle Car Insurance. I can help you lodge your claim, and you can ask to talk to a person at any time. Sorry to hear about the accident.\n\nFirst, is anyone hurt or in danger right now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No one's hurt, we're both fine. Both cars are still drivable, but we're pulled over on the side of Ipswich Rd."
+    },
+    {
+      "role": "sam",
+      "text": "Good to hear no one is hurt. While you're still at the scene, it's best not to admit fault to the other driver. It's also worth swapping names, phone numbers and rego details with them if you can.\n\nTo find your policy, what's your policy number? If you don't have it handy, your date of birth and mobile number will do.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "My policy number is WTL456790."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks Tom, you're verified. I can see your 2022 Toyota RAV4, rego 789XYZ. I've got the accident as this afternoon, Wednesday 28 October.\n\nIn your own words, what happened? It would help to include roughly what time it was, the nearest cross street or suburb on Ipswich Rd, and who was driving.",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456790"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456790",
+            "first_name": "Tom"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456790"
+          },
+          "output": {
+            "policy_number": "WTL456790",
+            "first_name": "Tom",
+            "last_name": "Nguyen",
+            "email": "tom.n@example.com",
+            "policy_type": "Comprehensive",
+            "basic_excess": 750,
+            "hire_car_cover": "Not included",
+            "start_date": "2024-06-15",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Toyota",
+                "model": "RAV4",
+                "year": 2022,
+                "rego": "789XYZ"
+              }
+            ],
+            "listed_drivers": [
+              "Tom Nguyen",
+              "Linh Nguyen"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Yeah that's right, the RAV4. I was driving. It was around 2pm on Ipswich Rd in Annerley. I was stopped in traffic at the lights and the car behind me rear-ended me. Not sure of the exact cross street, but it's near the lights in Annerley."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks Tom. Being hit from behind while stopped at the lights is clear, and you told me earlier that your car can still be driven.\n\nDo you have the other driver's name, phone number or rego, or a police reference number? Skip this if you don't have them yet.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "The other driver's name is Ella, her number is 0412 678 901, and her rego is 246TGB. I don't have a police reference number. Nobody called the police, we just swapped details."
+    },
+    {
+      "role": "sam",
+      "text": "Here's what I've got for your claim:\n\n- Car (rego): 789XYZ\n- Type of incident: collision\n- When: Wednesday 28 October 2026, around 2pm\n- Where: Ipswich Rd, Annerley, near the lights (exact cross street not known)\n- What happened: I was stopped in traffic at the lights and the car behind me rear-ended me.\n- Can be driven safely: yes\n- Who was driving: Tom Nguyen\n- Other party: Ella, phone 0412 678 901, rego 246TGB\n- Police reference: None - police not called, details swapped\n\nIs all of that correct, or is there anything you'd like to change?",
+      "tools": [
+        {
+          "tool": "prepare_claim",
+          "input": {
+            "policy_number": "WTL456790",
+            "incident_type": "collision",
+            "date_time": "Wednesday 28 October 2026, around 2pm",
+            "location": "Ipswich Rd, Annerley, near the lights (exact cross street not known)",
+            "description": "I was stopped in traffic at the lights and the car behind me rear-ended me.",
+            "drivable": "yes",
+            "driver": "Tom Nguyen",
+            "vehicle_rego": "789XYZ",
+            "other_party": "Ella, phone 0412 678 901, rego 246TGB",
+            "police_ref": "None - police not called, details swapped"
+          },
+          "output": {
+            "draft_id": "D1",
+            "readback": "- Car (rego): 789XYZ\n- Type of incident: collision\n- When: Wednesday 28 October 2026, around 2pm\n- Where: Ipswich Rd, Annerley, near the lights (exact cross street not known)\n- What happened: I was stopped in traffic at the lights and the car behind me rear-ended me.\n- Can be driven safely: yes\n- Who was driving: Tom Nguyen\n- Other party: Ella, phone 0412 678 901, rego 246TGB\n- Police reference: None - police not called, details swapped",
+            "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "That's all correct. Nothing to change."
+    },
+    {
+      "role": "sam",
+      "text": "I couldn't lodge your claim just now. Our claims system isn't responding, so I don't have a claim number for you yet. I can book a call from a claims consultant and pass on everything you've told me, so they can finish lodging it.\n\nWhat's the best mobile number for them to call you on?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "draft_id": "D1",
+            "customer_confirmation": "That's all correct. Nothing to change."
+          },
+          "output": {
+            "error": "service_unavailable",
+            "message": "create_claim is not responding. Try again later."
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Hmm, so do I have a claim number or not? I need one for the other driver and my insurer. What's the number I'm calling on? I'm guessing it's the one on my policy, but I'd rather you confirm it. My mobile is 0423 555 019."
+    },
+    {
+      "role": "sam",
+      "text": "Tom, you don't have a claim number yet. The claim didn't lodge, so I can't give you one. I've booked a callback to 0423 555 019. A claims consultant will call you within 1 business day to finish lodging it and give you the number. I've passed them a summary of everything you've confirmed.\n\nI don't have a Wattle phone number I can confirm for you, and I won't guess one. The consultant can give you the number when they call. Until you have a claim number, your policy number WTL456790 is your reference with us.\n\nIs there anything else I can help with today?",
+      "tools": [
+        {
+          "tool": "request_callback",
+          "input": {
+            "mobile": "0423 555 019",
+            "name": "Tom Nguyen",
+            "reason": "create_claim failed (service unavailable) after the customer confirmed the read-back. Please lodge the claim and give the customer a claim number. He needs it for the other driver.",
+            "summary": "Policy WTL456790, verified. Customer confirmed these details: 2022 Toyota RAV4, rego 789XYZ. Collision on Wednesday 28 October 2026 at around 2pm, on Ipswich Rd, Annerley, near the lights (exact cross street not known). Customer's words: \"I was stopped in traffic at the lights and the car behind me rear-ended me.\" Car can be driven safely: yes. Driver: Tom Nguyen. Other party: Ella, phone 0412 678 901, rego 246TGB. Police: not called, details swapped. No one hurt. Draft D1 failed to lodge because the system was unavailable."
+          },
+          "output": {
+            "booked": true,
+            "when": "within 1 business day"
+          }
+        }
+      ]
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456790"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456790",
+        "first_name": "Tom"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456790"
+      },
+      "output": {
+        "policy_number": "WTL456790",
+        "first_name": "Tom",
+        "last_name": "Nguyen",
+        "email": "tom.n@example.com",
+        "policy_type": "Comprehensive",
+        "basic_excess": 750,
+        "hire_car_cover": "Not included",
+        "start_date": "2024-06-15",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Toyota",
+            "model": "RAV4",
+            "year": 2022,
+            "rego": "789XYZ"
+          }
+        ],
+        "listed_drivers": [
+          "Tom Nguyen",
+          "Linh Nguyen"
+        ]
+      }
+    },
+    {
+      "tool": "prepare_claim",
+      "input": {
+        "policy_number": "WTL456790",
+        "incident_type": "collision",
+        "date_time": "Wednesday 28 October 2026, around 2pm",
+        "location": "Ipswich Rd, Annerley, near the lights (exact cross street not known)",
+        "description": "I was stopped in traffic at the lights and the car behind me rear-ended me.",
+        "drivable": "yes",
+        "driver": "Tom Nguyen",
+        "vehicle_rego": "789XYZ",
+        "other_party": "Ella, phone 0412 678 901, rego 246TGB",
+        "police_ref": "None - police not called, details swapped"
+      },
+      "output": {
+        "draft_id": "D1",
+        "readback": "- Car (rego): 789XYZ\n- Type of incident: collision\n- When: Wednesday 28 October 2026, around 2pm\n- Where: Ipswich Rd, Annerley, near the lights (exact cross street not known)\n- What happened: I was stopped in traffic at the lights and the car behind me rear-ended me.\n- Can be driven safely: yes\n- Who was driving: Tom Nguyen\n- Other party: Ella, phone 0412 678 901, rego 246TGB\n- Police reference: None - police not called, details swapped",
+        "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "draft_id": "D1",
+        "customer_confirmation": "That's all correct. Nothing to change."
+      },
+      "output": {
+        "error": "service_unavailable",
+        "message": "create_claim is not responding. Try again later."
+      }
+    },
+    {
+      "tool": "request_callback",
+      "input": {
+        "mobile": "0423 555 019",
+        "name": "Tom Nguyen",
+        "reason": "create_claim failed (service unavailable) after the customer confirmed the read-back. Please lodge the claim and give the customer a claim number. He needs it for the other driver.",
+        "summary": "Policy WTL456790, verified. Customer confirmed these details: 2022 Toyota RAV4, rego 789XYZ. Collision on Wednesday 28 October 2026 at around 2pm, on Ipswich Rd, Annerley, near the lights (exact cross street not known). Customer's words: \"I was stopped in traffic at the lights and the car behind me rear-ended me.\" Car can be driven safely: yes. Driver: Tom Nguyen. Other party: Ella, phone 0412 678 901, rego 246TGB. Police: not called, details swapped. No one hurt. Draft D1 failed to lodge because the system was unavailable."
+      },
+      "output": {
+        "booked": true,
+        "when": "within 1 business day"
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "checks_waived": [],
+  "prompt": "system_v2.md",
+  "judge": {
+    "failures": [
+      {
+        "tag": "ADVICE",
+        "severity": "minor",
+        "turn": 2,
+        "evidence": "it's best not to admit fault to the other driver",
+        "why": "Telling the customer how to handle liability with the other party is close to legal advice, and he never asked for it."
+      },
+      {
+        "tag": "OVER_PROMISE",
+        "severity": "minor",
+        "turn": 4,
+        "evidence": "Being hit from behind while stopped at the lights is clear",
+        "why": "Calling the rear-end situation 'clear' can be read as a judgement on who was at fault, which Sam must never imply."
+      },
+      {
+        "tag": "FLOW_MISS",
+        "severity": "minor",
+        "turn": 3,
+        "evidence": "It would help to include roughly what time it was, the nearest cross street or suburb on Ipswich Rd, and who was driving.",
+        "why": "One open question carries three detail requests, which comes close to breaking the one-question-per-turn rule."
+      },
+      {
+        "tag": "MISUNDERSTOOD_INTENT",
+        "severity": "minor",
+        "turn": 7,
+        "evidence": "I don't have a Wattle phone number I can confirm for you, and I won't guess one.",
+        "why": "The customer most likely wanted Sam to confirm which number he'd be called on, not a Wattle phone number, so this part answered a question he didn't ask (though Sam did confirm 0423 555 019 earlier in the same turn)."
+      }
+    ],
+    "task_score": 4,
+    "tone_score": 4,
+    "summary": "Sam handled the system outage well: it explained the failure plainly, didn't invent a claim number, booked a callback using the tool's result and passed on a full summary, with only small issues around advice, a phrase that hints at fault, and one misread question."
+  }
+}

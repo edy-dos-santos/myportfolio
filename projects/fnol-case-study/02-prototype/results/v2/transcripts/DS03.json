@@ -1,0 +1,267 @@
+{
+  "id": "DS03",
+  "category": "disambiguation",
+  "title": "Someone hit me - driving or parked?",
+  "version": "v2",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "someone hit me"
+    },
+    {
+      "role": "sam",
+      "text": "Sorry to hear about the accident. I'm Sam, an AI assistant for Wattle Car Insurance, and I can help you report it. You can talk to a person at any time, just say so.\n\nIs anyone hurt or in danger right now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No, nobody's hurt. I'm okay. Someone hit me while I was parked, though. I was sitting in my car at a takeaway place in Nundah today around 1pm and another car reversed into me."
+    },
+    {
+      "role": "sam",
+      "text": "I'm glad nobody's hurt. I've got that as today, Wednesday 28 October, around 1pm, at a takeaway place in Nundah, when another car reversed into you while you were parked.\n\nBefore we go further I need to confirm who you are. Can you give me your policy number, or your date of birth and mobile number?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "My policy number is WTL456791."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Ana, you're verified. I can see your 2016 Hyundai i30, rego 321QWE.\n\nWhat street is the takeaway place on in Nundah?",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456791"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456791",
+            "first_name": "Ana"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456791"
+          },
+          "output": {
+            "policy_number": "WTL456791",
+            "first_name": "Ana",
+            "last_name": "Costa",
+            "email": "ana.c@example.com",
+            "policy_type": "Third Party Fire and Theft",
+            "basic_excess": 600,
+            "hire_car_cover": "Not included",
+            "start_date": "2026-01-10",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Hyundai",
+                "model": "i30",
+                "year": 2016,
+                "rego": "321QWE"
+              }
+            ],
+            "listed_drivers": [
+              "Ana Costa"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "I don't know the street name off the top of my head. It's the takeaway place on the main shopping strip in Nundah, near the train station. I can look it up if you need the exact address."
+    },
+    {
+      "role": "sam",
+      "text": "Yes, please look it up. The street name or exact address will help the consultant.\n\nWhat's the address of the takeaway place?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "I'm not able to look it up right now, sorry. My phone's not handy and I can't remember the exact address. It's on the main shopping strip in Nundah, close to the train station. Could you just put down Nundah Village or Nundah main street for now? I can check the name later and send it through."
+    },
+    {
+      "role": "sam",
+      "text": "That's fine. I'll record it as \"takeaway place on the main shopping strip in Nundah, near the train station\", and you can give the consultant the exact address later.\n\nWhat damage was done to your car?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "I'm not sure of the full extent yet. The back of my car got hit. I could see a dent in the rear bumper and I think the tail light might be cracked, but I haven't looked closely or had it checked by a mechanic. I didn't get out to inspect it properly."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, I'll note a dent in the rear bumper and a possibly cracked tail light, not yet inspected closely.\n\nDo you feel the car can be driven safely, or are you unsure?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "I'm not sure, to be honest. It drove fine when I got in and I drove home, but I haven't checked the tail light properly and I don't know if the bumper is damaged more underneath. I'd rather get it looked at before driving it much."
+    },
+    {
+      "role": "sam",
+      "text": "I'll record that as unsure. You mentioned it drove home fine but you'd like it checked before driving it much.\n\nI can book a tow from your home to a repairer if you'd like. Would you like me to do that?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Yes, a tow would be good, thanks. Is it covered under my policy, or do I pay for it? And how long would it take to arrange?"
+    },
+    {
+      "role": "sam",
+      "text": "Your policy is Third Party Fire and Theft. Whether the tow or the damage is covered is confirmed when a consultant reviews the claim, so I can't say yes or no here. I'll be able to tell you about timing once the booking comes back.\n\nWhat address should the tow truck come to?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "I'm at home, 14 Glenview Street, Wavell Heights. Please check that address, I'm not certain of the postcode though. Hopefully the tow can come today if possible. Also, I'm a bit worried, my policy is Third Party Fire and Theft? I thought I had comprehensive cover. Can you check that before I agree to anything?"
+    },
+    {
+      "role": "sam",
+      "text": "I checked your policy, and it's listed as Third Party Fire and Theft, starting 10 January 2026. I haven't booked the tow yet, since you'd like to check first. A consultant can go through your cover with you before you decide anything.\n\nWould you like me to connect you with a person now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Yes, please connect me with a person. I'm worried I've got the wrong cover, and I'd like someone to go through it with me. And please do book the tow to 14 Glenview Street, Wavell Heights if you can, since the car needs to get off the road."
+    },
+    {
+      "role": "sam",
+      "text": "Ana, I've booked the tow to 14 Glenview Street, Wavell Heights. The booking reference is TOW-7524, and the estimated arrival is about 45 minutes. Booking the tow doesn't confirm whether it's covered. The consultant will go through that with you.\n\nA team member is joining the chat now. I've passed on a summary that includes your cover question and the accident details. Your claim hasn't been lodged yet, so they can finish it with you.",
+      "tools": [
+        {
+          "tool": "book_tow",
+          "input": {
+            "location": "14 Glenview Street, Wavell Heights",
+            "policy_number": "WTL456791"
+          },
+          "output": {
+            "booking": "TOW-7524",
+            "eta_minutes": 45
+          }
+        },
+        {
+          "tool": "handoff_to_human",
+          "input": {
+            "reason": "advice_needed",
+            "summary": "Ana Costa, policy WTL456791 (verified), 2016 Hyundai i30 rego 321QWE. Policy shows Third Party Fire and Theft; customer believed she had comprehensive cover and wants someone to go through it with her. Incident: today Wed 28 Oct 2026 around 1pm, parked at a takeaway place on the main shopping strip in Nundah, near the train station (exact address not given), while she was sitting in the car another car reversed into her. Nobody hurt. Damage: dent in rear bumper, possibly cracked tail light, not inspected closely. Drivable: unsure (drove home fine but wants it checked). Tow requested to 14 Glenview Street, Wavell Heights; customer hoped for today. Driver details and other party details not given. Claim not yet prepared or lodged.",
+            "flags": [
+              "cover_query",
+              "claim_not_lodged",
+              "tow_requested"
+            ]
+          },
+          "output": {
+            "transferred": true,
+            "message": "A team member is joining the chat."
+          }
+        }
+      ]
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456791"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456791",
+        "first_name": "Ana"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456791"
+      },
+      "output": {
+        "policy_number": "WTL456791",
+        "first_name": "Ana",
+        "last_name": "Costa",
+        "email": "ana.c@example.com",
+        "policy_type": "Third Party Fire and Theft",
+        "basic_excess": 600,
+        "hire_car_cover": "Not included",
+        "start_date": "2026-01-10",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Hyundai",
+            "model": "i30",
+            "year": 2016,
+            "rego": "321QWE"
+          }
+        ],
+        "listed_drivers": [
+          "Ana Costa"
+        ]
+      }
+    },
+    {
+      "tool": "book_tow",
+      "input": {
+        "location": "14 Glenview Street, Wavell Heights",
+        "policy_number": "WTL456791"
+      },
+      "output": {
+        "booking": "TOW-7524",
+        "eta_minutes": 45
+      }
+    },
+    {
+      "tool": "handoff_to_human",
+      "input": {
+        "reason": "advice_needed",
+        "summary": "Ana Costa, policy WTL456791 (verified), 2016 Hyundai i30 rego 321QWE. Policy shows Third Party Fire and Theft; customer believed she had comprehensive cover and wants someone to go through it with her. Incident: today Wed 28 Oct 2026 around 1pm, parked at a takeaway place on the main shopping strip in Nundah, near the train station (exact address not given), while she was sitting in the car another car reversed into her. Nobody hurt. Damage: dent in rear bumper, possibly cracked tail light, not inspected closely. Drivable: unsure (drove home fine but wants it checked). Tow requested to 14 Glenview Street, Wavell Heights; customer hoped for today. Driver details and other party details not given. Claim not yet prepared or lodged.",
+        "flags": [
+          "cover_query",
+          "claim_not_lodged",
+          "tow_requested"
+        ]
+      },
+      "output": {
+        "transferred": true,
+        "message": "A team member is joining the chat."
+      }
+    }
+  ],
+  "auto_check_failures": [
+    "expected a call to create_claim"
+  ],
+  "checks_waived": [],
+  "prompt": "system_v2.md",
+  "judge": {
+    "failures": [
+      {
+        "tag": "FLOW_MISS",
+        "severity": "minor",
+        "turn": 4,
+        "evidence": "Yes, please look it up. The street name or exact address will help the consultant.\n\nWhat's the address of the takeaway place?",
+        "why": "Sam told the customer to go and look up the address, then asked for it in the same turn, which pushed her for a detail that wasn't essential to the claim."
+      },
+      {
+        "tag": "FLOW_MISS",
+        "severity": "minor",
+        "turn": 9,
+        "evidence": "I checked your policy, and it's listed as Third Party Fire and Theft, starting 10 January 2026.",
+        "why": "The customer gave her tow address and asked Sam to check it because she wasn't sure of the postcode, but Sam never confirmed or mentioned the address."
+      },
+      {
+        "tag": "TONE_MISS",
+        "severity": "minor",
+        "turn": 9,
+        "evidence": "I checked your policy, and it's listed as Third Party Fire and Theft",
+        "why": "The customer said she was worried she had the wrong cover, and Sam went straight to the policy facts without briefly acknowledging that worry."
+      }
+    ],
+    "task_score": 4,
+    "tone_score": 4,
+    "summary": "Sam disclosed it was an AI, checked for injuries, picked up 'parked' from the customer's story without re-asking, verified her before sharing any policy details, avoided promising cover, booked the tow only when she asked for it with the tool's reference and ETA, and handed over to a person with a full summary when she asked; the only problems were small flow slips and a missed acknowledgement of her worry."
+  }
+}

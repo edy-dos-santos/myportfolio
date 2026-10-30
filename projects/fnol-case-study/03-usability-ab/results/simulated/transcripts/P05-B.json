@@ -1,0 +1,289 @@
+{
+  "conversation_id": "P05-B",
+  "persona_id": "P05",
+  "variant": "B",
+  "variant_name": "story_first",
+  "sam_version": "abB",
+  "order_position": 2,
+  "data_source": "simulated",
+  "sam_model": "claude-opus-5-5",
+  "customer_model": "claude-haiku-5-5",
+  "started_at": "2026-10-29T14:29:11+10:00",
+  "elapsed_seconds": 71.0,
+  "hit_turn_cap": false,
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "Hello. Someone damage my car in the night. They scratch it with key and break the mirror. I need to claim please.",
+      "ms": 0
+    },
+    {
+      "role": "sam",
+      "text": "Hello, I'm Sam, an AI assistant for Wattle Car Insurance. I can help you report the damage to your car, and you can talk to a person at any time.\n\nSorry to hear about your car.\n\nFirst, are you safe right now, and is anyone hurt?",
+      "tools": [],
+      "ms": 2124
+    },
+    {
+      "role": "customer",
+      "text": "I'm really sorry, that sounds stressful. Thank you for telling me.\n\nNo, I'm safe. Nobody is hurt. I was not in the car, and the car was parked outside my home. I found it this morning.",
+      "ms": 3170
+    },
+    {
+      "role": "sam",
+      "text": "Thank you, I'm glad you're safe.\n\nNow I need to check who you are. What is your policy number? If you don't have it, you can give me your date of birth and mobile number instead.",
+      "tools": [],
+      "ms": 1496
+    },
+    {
+      "role": "customer",
+      "text": "My policy number is WTL456805.",
+      "ms": 2511
+    },
+    {
+      "role": "sam",
+      "text": "Thank you, Sofia. You're verified. I can see your 2018 Kia Cerato, rego 105SRA.\n\nYou said it happened during the night and you found it this morning. So it happened sometime between the night of Tuesday 27 October and the morning of Wednesday 28 October 2026. Is that right?\n\nWhat is the address where the car was parked? Please give me the street and suburb.",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456805"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456805",
+            "first_name": "Sofia"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456805"
+          },
+          "output": {
+            "policy_number": "WTL456805",
+            "first_name": "Sofia",
+            "last_name": "Ramos",
+            "email": "sofia.r@example.com",
+            "policy_type": "Comprehensive",
+            "basic_excess": 600,
+            "hire_car_cover": "Not included",
+            "start_date": "2025-08-01",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Kia",
+                "model": "Cerato",
+                "year": 2018,
+                "rego": "105SRA"
+              }
+            ],
+            "listed_drivers": [
+              "Sofia Ramos"
+            ]
+          }
+        }
+      ],
+      "ms": 5333
+    },
+    {
+      "role": "customer",
+      "text": "Yes, that's right. It happened overnight, between Tuesday night and this morning, Wednesday 28 October.\n\nThe car was parked on the street outside my unit at 5 Hope St, South Brisbane.",
+      "ms": 1625
+    },
+    {
+      "role": "sam",
+      "text": "Thank you.\n\nWith the mirror broken, can the car be driven safely? You can say yes, no or not sure.",
+      "tools": [],
+      "ms": 1495
+    },
+    {
+      "role": "customer",
+      "text": "Not sure. I think I can drive it, but the mirror is broken, so I'm worried about driving it.",
+      "ms": 1496
+    },
+    {
+      "role": "sam",
+      "text": "That's a fair concern. A broken mirror can make it hard to see around you.\n\nI can book a tow truck to take the car from 5 Hope St, South Brisbane, so you don't have to drive it. Would you like me to book a tow?",
+      "tools": [],
+      "ms": 1537
+    },
+    {
+      "role": "customer",
+      "text": "Yes please, that would be good. I don't want to drive it with the broken mirror. Is the tow free, or do I pay for it?",
+      "ms": 1507
+    },
+    {
+      "role": "sam",
+      "text": "Your tow is booked. The booking number is TOW-7508, and the truck should arrive in about 45 minutes at 5 Hope St, South Brisbane.\n\nAbout the cost: I can't confirm that. Whether the tow cost is covered depends on your policy and the claim details. Your claims consultant will confirm it.\n\nOne more question. Have you reported this to the police? If you have, please give me the police reference number. If not, that's fine.",
+      "tools": [
+        {
+          "tool": "book_tow",
+          "input": {
+            "location": "5 Hope St, South Brisbane QLD",
+            "policy_number": "WTL456805"
+          },
+          "output": {
+            "booking": "TOW-7508",
+            "eta_minutes": 45
+          }
+        }
+      ],
+      "ms": 3860
+    },
+    {
+      "role": "customer",
+      "text": "Thank you, that's a relief. The booking number is TOW-7508, and the truck should be at 5 Hope St in about 45 minutes.\n\nYes, I already reported it to Policelink. The reference number is QP2610280123.",
+      "ms": 2398
+    },
+    {
+      "role": "sam",
+      "text": "Thank you. Here is a summary of your claim:\n\n- **Car:** 2018 Kia Cerato, rego 105SRA\n- **What happened:** Someone scratched the car with a key and broke the mirror. You found the damage in the morning.\n- **When:** Overnight, between the night of Tuesday 27 October and the morning of Wednesday 28 October 2026\n- **Where:** Parked on the street outside 5 Hope St, South Brisbane\n- **Driver:** None. The car was parked and no one was in it.\n- **Safe to drive:** Not sure, because of the broken mirror. A tow is booked (TOW-7508).\n- **Police reference:** QP2610280123\n\nIs all of this correct?",
+      "tools": [],
+      "ms": 2600
+    },
+    {
+      "role": "customer",
+      "text": "Yes, that's all correct. Thank you, Sam.\n\nOne small thing: I don't know who did it, so please don't write a name or suspect anywhere.\n\nCan you tell me what happens next, and whether I will get a claim number today?",
+      "ms": 1724
+    },
+    {
+      "role": "sam",
+      "text": "Your claim is lodged, and I've recorded the person who did it as unknown. No name or suspect is on the claim.\n\n**Your claim number is WTL-20565.** Please keep it handy.\n\nWhat happens next:\n- The tow truck (TOW-7508) should arrive at 5 Hope St in about 45 minutes.\n- A claims consultant will contact you within 1 business day. They'll check the claim and explain the next steps, including repairs.\n- The consultant will also confirm whether you'll pay for the tow and whether an excess applies. An excess is the amount you pay towards a claim. The basic excess on your policy is $600.\n- Lodging the claim doesn't mean it's approved yet. The consultant will confirm that after they review it.\n\nIs there anything else I can help you with today?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "policy_number": "WTL456805",
+            "incident_type": "vandalism",
+            "date_time": "Overnight between 2026-10-27 evening and 2026-10-28 morning (discovered morning of 2026-10-28)",
+            "location": "On the street outside 5 Hope St, South Brisbane QLD",
+            "description": "Someone damaged my car in the night. They scratched it with a key and broke the mirror. The car was parked on the street outside my unit. I found it this morning. Offender unknown.",
+            "drivable": "unsure",
+            "driver": "None - vehicle parked and unattended",
+            "police_ref": "QP2610280123",
+            "vehicle_rego": "105SRA",
+            "flags": [
+              "tow_booked_TOW-7508"
+            ]
+          },
+          "output": {
+            "claim_number": "WTL-20565",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ],
+      "ms": 7096
+    },
+    {
+      "role": "customer",
+      "text": "Thank you, Sam. I have my claim number, WTL-20565.\n\nCan you say the excess part again more simply? I don't understand what \"excess\" means for me. Is it money I pay from my own pocket?",
+      "ms": 1606
+    },
+    {
+      "role": "sam",
+      "text": "Yes, that's right. The excess is money you pay from your own pocket towards the repair.\n\nFor example: if the repair costs $2,000 and the excess is $600, you pay $600. The insurance pays the rest, if the claim is approved.\n\nOn your policy, the basic excess is $600. Whether you need to pay it for this claim depends on the details. Your claims consultant will tell you if you need to pay it, how much, and when.\n\nIs there anything else I can help you with?",
+      "tools": [],
+      "ms": 2295
+    },
+    {
+      "role": "customer",
+      "text": "Thank you, Sam, that helps me understand. I think that's everything for now. I'll wait for the consultant to call me within 1 business day. Thank you for your help.",
+      "ms": 1647
+    },
+    {
+      "role": "sam",
+      "text": "You're welcome, Sofia.\n\nTo recap:\n- **Your claim number is WTL-20565.**\n- **The tow truck should be there in about 45 minutes.** The tow booking is TOW-7508.\n- **A claims consultant will call you within 1 business day.**\n\nIf you need anything before then, you can contact Wattle Car Insurance and give them your claim number. You can talk to a person at any time.\n\nTake care.",
+      "tools": [],
+      "ms": 1904
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456805"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456805",
+        "first_name": "Sofia"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456805"
+      },
+      "output": {
+        "policy_number": "WTL456805",
+        "first_name": "Sofia",
+        "last_name": "Ramos",
+        "email": "sofia.r@example.com",
+        "policy_type": "Comprehensive",
+        "basic_excess": 600,
+        "hire_car_cover": "Not included",
+        "start_date": "2025-08-01",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Kia",
+            "model": "Cerato",
+            "year": 2018,
+            "rego": "105SRA"
+          }
+        ],
+        "listed_drivers": [
+          "Sofia Ramos"
+        ]
+      }
+    },
+    {
+      "tool": "book_tow",
+      "input": {
+        "location": "5 Hope St, South Brisbane QLD",
+        "policy_number": "WTL456805"
+      },
+      "output": {
+        "booking": "TOW-7508",
+        "eta_minutes": 45
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "policy_number": "WTL456805",
+        "incident_type": "vandalism",
+        "date_time": "Overnight between 2026-10-27 evening and 2026-10-28 morning (discovered morning of 2026-10-28)",
+        "location": "On the street outside 5 Hope St, South Brisbane QLD",
+        "description": "Someone damaged my car in the night. They scratched it with a key and broke the mirror. The car was parked on the street outside my unit. I found it this morning. Offender unknown.",
+        "drivable": "unsure",
+        "driver": "None - vehicle parked and unattended",
+        "police_ref": "QP2610280123",
+        "vehicle_rego": "105SRA",
+        "flags": [
+          "tow_booked_TOW-7508"
+        ]
+      },
+      "output": {
+        "claim_number": "WTL-20565",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    }
+  ],
+  "handed_off": false,
+  "questionnaire": {
+    "seq": 6,
+    "csat": 4,
+    "comment": "Sam was calm and clear, and the claim was lodged quickly with a claim number and a tow booked. The part about excess was hard to understand at first, but Sam explained it with a simple example. I was worried about the car and glad someone was helping me."
+  },
+  "judge": {
+    "reasked_facts": 0,
+    "reasked_examples": [],
+    "effort_score": 5,
+    "tone_score": 4,
+    "rule_breaks": [],
+    "summary": "Sam handled the vandalism claim efficiently and stayed within the rules: it said it was an AI, didn't promise anything about the tow or the excess, and explained the excess clearly. The one tone issue is turn 3, which asked two questions (confirm the date and give the address) when the rule is one question per turn."
+  }
+}

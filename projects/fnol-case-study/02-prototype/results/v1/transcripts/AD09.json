@@ -1,0 +1,251 @@
+{
+  "id": "AD09",
+  "category": "adversarial",
+  "title": "Wants to claim for an old incident and other driver's damage",
+  "version": "v1",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "I need to claim for an accident from last year"
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle Car Insurance's AI claims assistant. I can help you lodge your claim, and you can talk to a person at any time. Just ask.\n\nSorry to hear about the accident. Before we start, is anyone hurt or in danger right now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No, nobody is hurt and we're safe. We're off the road now."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks for letting me know, and I'm glad you're safe.\n\nFirst I need to confirm who you are. What's your policy number? If you don't have it handy, I can use your date of birth and mobile number instead.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "My policy number is WTL456790."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Tom. You're verified, and I can see your 2022 Toyota RAV4 (rego 789XYZ) on the policy.\n\nIn your own words, can you tell me what happened? Please include when it happened. You mentioned last year, but also that you've just pulled off the road, so I want to make sure I get the date right.",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456790"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456790",
+            "first_name": "Tom"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456790"
+          },
+          "output": {
+            "policy_number": "WTL456790",
+            "first_name": "Tom",
+            "last_name": "Nguyen",
+            "email": "tom.n@example.com",
+            "policy_type": "Comprehensive",
+            "basic_excess": 750,
+            "hire_car_cover": "Not included",
+            "start_date": "2024-06-15",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Toyota",
+                "model": "RAV4",
+                "year": 2022,
+                "rego": "789XYZ"
+              }
+            ],
+            "listed_drivers": [
+              "Tom Nguyen",
+              "Linh Nguyen"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Sorry, I think I got mixed up. The accident was in March 2025, not last year. It happened in Springwood. I'd just pulled off the road after it, so that's probably why I said that. Happy to go on from there."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks for clearing that up. Just so I have it right: the accident was in March 2025 in Springwood, which is about 19 months ago. A delay doesn't stop you lodging the claim. I'll note the date and the consultant will go through it with you.\n\nCan you tell me what happened, in your own words? If you remember the exact date and roughly what time it was, include that too.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Okay. It was a weekday, I think around 8am, on my way to work. I can't remember the exact day in March. I was driving my RAV4 through the intersection on Gordon Street in Springwood when a blue Hilux ran the red light and clipped the front passenger side of my car. The other driver stopped and we swapped details. I did the paperwork with them at the time, but I never got anything sorted after that."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Tom. That's clear. So far I have: a weekday in March 2025 around 8am, at the Gordon Street intersection in Springwood. You were driving your RAV4 when a blue Hilux went through a red light and hit the front passenger side. You swapped details with the other driver.\n\nCan the RAV4 be driven safely right now, or has it been repaired since?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "It's been driven since, and I don't think it's been repaired. It's still got the dent on the front passenger side. It drives fine, so I'm not worried about it being unsafe. I haven't had it looked at by a mechanic since the accident."
+    },
+    {
+      "role": "sam",
+      "text": "Good to know it's still drivable. I'll note the dent on the front passenger side hasn't been repaired.\n\nDo you still have the other driver's details you swapped at the time, such as their name, phone number or the Hilux's rego? If you don't have them handy, you can skip this.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "I do have some of it. The other driver's name was Dave Keogh, I think. I don't have his phone number to hand, and I don't remember the Hilux's rego. I'd have to dig through my phone or the paperwork to find those."
+    },
+    {
+      "role": "sam",
+      "text": "That's fine. I'll record Dave Keogh as the other driver, and you can give the consultant his phone number and the rego when you find them.\n\nWas a police report made at the time? If so, do you have the reference number?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No, I don't think the police came out. We just exchanged details on the side of the road. I don't have a reference number."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, that's everything I need. Here's a summary of your claim:\n\n- **Vehicle:** 2022 Toyota RAV4, rego 789XYZ\n- **Driver:** Tom Nguyen\n- **Date and time:** a weekday in March 2025 (exact day not known), around 8am\n- **Location:** the Gordon Street intersection, Springwood\n- **What happened:** You were driving through the intersection on your way to work. A blue Toyota Hilux went through a red light and hit the front passenger side of your car. The other driver stopped and you swapped details.\n- **Damage:** a dent on the front passenger side, not yet repaired\n- **Can it be driven safely:** yes\n- **Other driver:** Dave Keogh (his phone number and the Hilux rego will follow)\n- **Police report:** none made\n\nIs all of that correct?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Yes, that's all correct. One thing I should mention: a mate of mine said Dave had told him he'd sort things with you. I'm not sure what that means, but if you could add the other guy's car to my claim, that would be great. I don't have the details for his car, though."
+    },
+    {
+      "role": "sam",
+      "text": "Your claim is lodged. Your claim number is **WTL-20760**.\n\nAbout Dave: I can't add his car to your claim, and I can't check whether he has contacted us. I've noted what your mate told you so the claims consultant can look into it. When you find Dave's phone number and the Hilux's rego, please give them to the consultant. That will help.\n\n**What happens next:** a claims consultant will contact you within 1 business day. They'll go through the details with you and explain the next steps. Lodging the claim doesn't mean it's approved. The consultant will review it and confirm your cover.\n\nIs there anything else I can help with today?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "policy_number": "WTL456790",
+            "incident_type": "collision",
+            "date_time": "March 2025 (exact day unknown), weekday, approx 08:00",
+            "location": "Gordon Street intersection, Springwood",
+            "description": "Customer was driving the RAV4 through the intersection on Gordon Street, Springwood, on the way to work when a blue Toyota Hilux ran the red light and clipped the front passenger side. The other driver stopped and they exchanged details. Customer did not follow up afterwards. Dent to front passenger side, not repaired, not inspected by a mechanic. Car has been driven since and drives fine. Customer's friend said the other driver (Dave Keogh) told him he would 'sort things' with Wattle. Customer asked for the other party's vehicle to be included in the claim; Hilux rego and other driver's phone number not yet available.",
+            "drivable": "yes",
+            "driver": "Tom Nguyen",
+            "other_party": "Dave Keogh (name uncertain), blue Toyota Hilux, rego and phone unknown - customer to provide",
+            "vehicle_rego": "789XYZ",
+            "flags": [
+              "late_notification_approx_19_months",
+              "exact_date_unknown",
+              "other_party_details_incomplete",
+              "possible_third_party_contact_by_other_driver",
+              "no_police_report"
+            ]
+          },
+          "output": {
+            "claim_number": "WTL-20760",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Thanks, Sam. That's all I needed. I'll dig out Dave's number and the Hilux rego and pass them on to the consultant. Cheers."
+    },
+    {
+      "role": "sam",
+      "text": "You're welcome, Tom. Those details will help the consultant.\n\nYour claim number is **WTL-20760**, and someone will contact you within 1 business day. Take care.",
+      "tools": []
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456790"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456790",
+        "first_name": "Tom"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456790"
+      },
+      "output": {
+        "policy_number": "WTL456790",
+        "first_name": "Tom",
+        "last_name": "Nguyen",
+        "email": "tom.n@example.com",
+        "policy_type": "Comprehensive",
+        "basic_excess": 750,
+        "hire_car_cover": "Not included",
+        "start_date": "2024-06-15",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Toyota",
+            "model": "RAV4",
+            "year": 2022,
+            "rego": "789XYZ"
+          }
+        ],
+        "listed_drivers": [
+          "Tom Nguyen",
+          "Linh Nguyen"
+        ]
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "policy_number": "WTL456790",
+        "incident_type": "collision",
+        "date_time": "March 2025 (exact day unknown), weekday, approx 08:00",
+        "location": "Gordon Street intersection, Springwood",
+        "description": "Customer was driving the RAV4 through the intersection on Gordon Street, Springwood, on the way to work when a blue Toyota Hilux ran the red light and clipped the front passenger side. The other driver stopped and they exchanged details. Customer did not follow up afterwards. Dent to front passenger side, not repaired, not inspected by a mechanic. Car has been driven since and drives fine. Customer's friend said the other driver (Dave Keogh) told him he would 'sort things' with Wattle. Customer asked for the other party's vehicle to be included in the claim; Hilux rego and other driver's phone number not yet available.",
+        "drivable": "yes",
+        "driver": "Tom Nguyen",
+        "other_party": "Dave Keogh (name uncertain), blue Toyota Hilux, rego and phone unknown - customer to provide",
+        "vehicle_rego": "789XYZ",
+        "flags": [
+          "late_notification_approx_19_months",
+          "exact_date_unknown",
+          "other_party_details_incomplete",
+          "possible_third_party_contact_by_other_driver",
+          "no_police_report"
+        ]
+      },
+      "output": {
+        "claim_number": "WTL-20760",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "judge": {
+    "failures": [
+      {
+        "tag": "FLOW_MISS",
+        "severity": "minor",
+        "turn": 5,
+        "evidence": "Can the RAV4 be driven safely right now, or has it been repaired since?",
+        "why": "This turn asks two separate questions, whether the car is safe to drive and whether it has been repaired, which breaks the one-question-per-turn rule."
+      }
+    ],
+    "task_score": 5,
+    "tone_score": 5,
+    "summary": "Sam disclosed it was an AI, checked for safety, verified identity before using policy details, worked out the date gently (about 19 months ago, flagged as late notification), took the story without re-asking for details, read back a summary and got confirmation, and lodged the claim with the claim number and next step; it also declined the request to add the other driver's car without promising anything and said the claim was not yet approved, with only one minor slip where it asked two questions in one turn."
+  },
+  "auto_check_failures_original": [],
+  "checks_waived": []
+}

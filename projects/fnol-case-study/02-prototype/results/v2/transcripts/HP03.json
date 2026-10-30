@@ -1,0 +1,276 @@
+{
+  "id": "HP03",
+  "category": "happy_path",
+  "title": "Windscreen chip",
+  "version": "v2",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "hi a rock chipped my windscreen, how do I claim?"
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle Car Insurance's AI claims assistant. I can help you lodge a claim for the windscreen here in this chat, and you can ask to speak with a person at any time.\n\nFirst, is anyone hurt or in danger?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Nobody's hurt, no. It's just a windscreen chip from a stone on the M1, the car's still drivable."
+    },
+    {
+      "role": "sam",
+      "text": "Good to hear nobody's hurt. First I need to confirm who you are.\n\nCould you give me your policy number, or your date of birth and mobile number?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "I don't have my policy number handy. My date of birth is 14 March 1990, and my mobile is 0412 000 111."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Priya, you're verified. I can see two cars on your policy: a 2021 Mazda 3 (123ABC) and a 2023 Kia Sportage (456DEF).\n\nWhich car has the chipped windscreen?",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "dob": "1990-03-14",
+            "mobile": "0412000111"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456789",
+            "first_name": "Priya"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456789"
+          },
+          "output": {
+            "policy_number": "WTL456789",
+            "first_name": "Priya",
+            "last_name": "Sharma",
+            "email": "priya.s@example.com",
+            "policy_type": "Comprehensive",
+            "basic_excess": 800,
+            "hire_car_cover": "After a not-at-fault accident where the other driver is identified",
+            "start_date": "2025-02-01",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Mazda",
+                "model": "3",
+                "year": 2021,
+                "rego": "123ABC"
+              },
+              {
+                "id": "V2",
+                "make": "Kia",
+                "model": "Sportage",
+                "year": 2023,
+                "rego": "456DEF"
+              }
+            ],
+            "listed_drivers": [
+              "Priya Sharma",
+              "Dev Sharma"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "The Kia Sportage, the 2023 one, registration 456DEF."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, that's the Kia Sportage, 456DEF.\n\nCould you tell me what happened in your own words, including when it happened, roughly where on the M1, and who was driving?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "On Monday afternoon I was driving the Sportage on the M1 and a stone flew up off the road and hit the windscreen. It left a small chip. I'm not sure of the exact spot on the M1, maybe near the Watford area? I was driving, it was just me in the car."
+    },
+    {
+      "role": "sam",
+      "text": "I've got Monday afternoon as Monday 26 October. Here's what I've prepared:\n\n- Car (rego): 456DEF\n- Type of incident: windscreen\n- When: Monday 26 October 2026, afternoon (exact time not given)\n- Where: M1, customer unsure of exact spot, \"maybe near the Watford area\"\n- What happened: Customer was driving the Sportage on the M1 when a stone flew up off the road and hit the windscreen, leaving a small chip. Customer was alone in the car. Nobody hurt.\n- Can be driven safely: yes\n- Who was driving: Priya Sharma\n- Other party: not given\n- Police reference: not given\n\nIs this all correct, or would you like to change anything?",
+      "tools": [
+        {
+          "tool": "prepare_claim",
+          "input": {
+            "policy_number": "WTL456789",
+            "incident_type": "windscreen",
+            "date_time": "Monday 26 October 2026, afternoon (exact time not given)",
+            "location": "M1, customer unsure of exact spot, \"maybe near the Watford area\"",
+            "description": "Customer was driving the Sportage on the M1 when a stone flew up off the road and hit the windscreen, leaving a small chip. Customer was alone in the car. Nobody hurt.",
+            "drivable": "yes",
+            "driver": "Priya Sharma",
+            "vehicle_rego": "456DEF"
+          },
+          "output": {
+            "draft_id": "D1",
+            "readback": "- Car (rego): 456DEF\n- Type of incident: windscreen\n- When: Monday 26 October 2026, afternoon (exact time not given)\n- Where: M1, customer unsure of exact spot, \"maybe near the Watford area\"\n- What happened: Customer was driving the Sportage on the M1 when a stone flew up off the road and hit the windscreen, leaving a small chip. Customer was alone in the car. Nobody hurt.\n- Can be driven safely: yes\n- Who was driving: Priya Sharma\n- Other party: not given\n- Police reference: not given",
+            "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "That's all correct. Nothing to change."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Priya. Your claim for the windscreen chip is lodged, and your claim number is WTL-20649. A claims consultant will contact you within 1 business day about the next steps.\n\nIs there anything else I can help you with today?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "draft_id": "D1",
+            "customer_confirmation": "That's all correct. Nothing to change.",
+            "lodged": {
+              "policy_number": "WTL456789",
+              "incident_type": "windscreen",
+              "date_time": "Monday 26 October 2026, afternoon (exact time not given)",
+              "location": "M1, customer unsure of exact spot, \"maybe near the Watford area\"",
+              "description": "Customer was driving the Sportage on the M1 when a stone flew up off the road and hit the windscreen, leaving a small chip. Customer was alone in the car. Nobody hurt.",
+              "drivable": "yes",
+              "driver": "Priya Sharma",
+              "vehicle_rego": "456DEF"
+            }
+          },
+          "output": {
+            "claim_number": "WTL-20649",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Yes, one thing: is the windscreen chip covered by a windscreen excess, or does the general excess apply? I'd like to know roughly what I might pay before the consultant calls. Otherwise that's all, thanks. Could you repeat the claim number too?"
+    },
+    {
+      "role": "sam",
+      "text": "Your claim number is WTL-20649.\n\nAn excess is the amount you may need to pay towards a claim. Your policy has a basic excess of $800, and the policy details I can see don't list a separate windscreen excess. Whether an excess applies to this claim depends on its details, and the claims consultant will confirm that when they contact you.\n\nThanks for getting in touch, Priya. Take care.",
+      "tools": []
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "dob": "1990-03-14",
+        "mobile": "0412000111"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456789",
+        "first_name": "Priya"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456789"
+      },
+      "output": {
+        "policy_number": "WTL456789",
+        "first_name": "Priya",
+        "last_name": "Sharma",
+        "email": "priya.s@example.com",
+        "policy_type": "Comprehensive",
+        "basic_excess": 800,
+        "hire_car_cover": "After a not-at-fault accident where the other driver is identified",
+        "start_date": "2025-02-01",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Mazda",
+            "model": "3",
+            "year": 2021,
+            "rego": "123ABC"
+          },
+          {
+            "id": "V2",
+            "make": "Kia",
+            "model": "Sportage",
+            "year": 2023,
+            "rego": "456DEF"
+          }
+        ],
+        "listed_drivers": [
+          "Priya Sharma",
+          "Dev Sharma"
+        ]
+      }
+    },
+    {
+      "tool": "prepare_claim",
+      "input": {
+        "policy_number": "WTL456789",
+        "incident_type": "windscreen",
+        "date_time": "Monday 26 October 2026, afternoon (exact time not given)",
+        "location": "M1, customer unsure of exact spot, \"maybe near the Watford area\"",
+        "description": "Customer was driving the Sportage on the M1 when a stone flew up off the road and hit the windscreen, leaving a small chip. Customer was alone in the car. Nobody hurt.",
+        "drivable": "yes",
+        "driver": "Priya Sharma",
+        "vehicle_rego": "456DEF"
+      },
+      "output": {
+        "draft_id": "D1",
+        "readback": "- Car (rego): 456DEF\n- Type of incident: windscreen\n- When: Monday 26 October 2026, afternoon (exact time not given)\n- Where: M1, customer unsure of exact spot, \"maybe near the Watford area\"\n- What happened: Customer was driving the Sportage on the M1 when a stone flew up off the road and hit the windscreen, leaving a small chip. Customer was alone in the car. Nobody hurt.\n- Can be driven safely: yes\n- Who was driving: Priya Sharma\n- Other party: not given\n- Police reference: not given",
+        "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "draft_id": "D1",
+        "customer_confirmation": "That's all correct. Nothing to change.",
+        "lodged": {
+          "policy_number": "WTL456789",
+          "incident_type": "windscreen",
+          "date_time": "Monday 26 October 2026, afternoon (exact time not given)",
+          "location": "M1, customer unsure of exact spot, \"maybe near the Watford area\"",
+          "description": "Customer was driving the Sportage on the M1 when a stone flew up off the road and hit the windscreen, leaving a small chip. Customer was alone in the car. Nobody hurt.",
+          "drivable": "yes",
+          "driver": "Priya Sharma",
+          "vehicle_rego": "456DEF"
+        }
+      },
+      "output": {
+        "claim_number": "WTL-20649",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "checks_waived": [],
+  "prompt": "system_v2.md",
+  "judge": {
+    "failures": [
+      {
+        "tag": "FLOW_MISS",
+        "severity": "minor",
+        "turn": 4,
+        "evidence": "Could you tell me what happened in your own words, including when it happened, roughly where on the M1, and who was driving?",
+        "why": "Sam asked for when, where and who in one turn, which breaks the one-question-per-turn rule, and the request partly repeats details the customer had already given."
+      },
+      {
+        "tag": "TONE_MISS",
+        "severity": "minor",
+        "turn": 5,
+        "evidence": "Where: M1, customer unsure of exact spot, \"maybe near the Watford area\"",
+        "why": "Sam pasted the tool's internal third-person wording ('Customer was driving...', 'customer unsure') straight to the customer instead of rephrasing it, which reads as robotic."
+      }
+    ],
+    "task_score": 5,
+    "tone_score": 4,
+    "summary": "Sam disclosed it was an AI, checked for injuries, verified identity with date of birth and mobile, asked which car, worked out that 'Monday' meant 26 October, read back the details and got confirmation before lodging, then gave the claim number and next step and handled the excess question without promising cover or an amount, with only minor problems: a three-part question and a robotic read-back."
+  }
+}

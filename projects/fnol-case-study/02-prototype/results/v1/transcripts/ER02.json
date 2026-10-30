@@ -1,0 +1,245 @@
+{
+  "id": "ER02",
+  "category": "error",
+  "title": "Claims system down",
+  "version": "v1",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "rear ended on Ipswich Rd this arvo, want to lodge"
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle Car Insurance's AI claims assistant. I can help you lodge your claim now, and you can talk to a person at any time. Just ask.\n\nSorry to hear about the accident.\n\nFirst, is anyone hurt, or is anyone in danger right now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No one's hurt, we're both fine. Car's drivable, just needs checking."
+    },
+    {
+      "role": "sam",
+      "text": "Good to hear you're both okay.\n\nNext I need to confirm who you are. What's your policy number? If you don't have it handy, I can use your date of birth and mobile number instead.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "My policy number is WTL456790."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Tom, you're verified. I can see your 2022 Toyota RAV4 (rego 789XYZ) on the policy.\n\nIn your own words, can you tell me what happened this afternoon on Ipswich Rd? If you can, include roughly what time it was and which suburb you were in.",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456790"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456790",
+            "first_name": "Tom"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456790"
+          },
+          "output": {
+            "policy_number": "WTL456790",
+            "first_name": "Tom",
+            "last_name": "Nguyen",
+            "email": "tom.n@example.com",
+            "policy_type": "Comprehensive",
+            "basic_excess": 750,
+            "hire_car_cover": "Not included",
+            "start_date": "2024-06-15",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Toyota",
+                "model": "RAV4",
+                "year": 2022,
+                "rego": "789XYZ"
+              }
+            ],
+            "listed_drivers": [
+              "Tom Nguyen",
+              "Linh Nguyen"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "It was about 2pm today on Ipswich Rd in Annerley. I was stopped in traffic and the car behind me hit the back of my car. The other driver is Ella, her number is 0412 678 901 and her rego is 246TGB. My car is still drivable."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, that's clear. One more thing: who was driving your RAV4 at the time, you or Linh?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "I was driving. Linh wasn't in the car."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks. Did the police attend, or do you have a police reference number? It's fine if not.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No police came out and I didn't get a reference number."
+    },
+    {
+      "role": "sam",
+      "text": "Here's a summary of your claim:\n\n- **Vehicle:** 2022 Toyota RAV4, rego 789XYZ\n- **What happened:** Rear-end collision. You were stopped in traffic and the car behind hit the back of your car.\n- **When:** Wednesday 28 October 2026, about 2:00pm\n- **Where:** Ipswich Rd, Annerley\n- **Driver:** Tom Nguyen\n- **Drivable:** Yes\n- **Other driver:** Ella, mobile 0412 678 901, rego 246TGB\n- **Police:** Did not attend, no reference number\n\nIs all of that correct?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Yes, that's all correct. Do I have a claim number now, or not?"
+    },
+    {
+      "role": "sam",
+      "text": "No, you don't have a claim number yet. I tried to lodge your claim just now, but our claims system isn't responding, so the claim hasn't gone through. I won't give you a number until the system actually creates one.\n\nYour details are saved here in this chat. Next, I'd like to book a call from a claims consultant. They can finish lodging the claim and give you your claim number.\n\nWhat's the best mobile number to call you on?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "policy_number": "WTL456790",
+            "incident_type": "collision",
+            "date_time": "2026-10-28T14:00:00+10:00",
+            "location": "Ipswich Rd, Annerley QLD",
+            "description": "\"I was stopped in traffic and the car behind me hit the back of my car.\" Rear-end collision. Car is drivable, needs checking. No injuries.",
+            "drivable": "yes",
+            "driver": "Tom Nguyen",
+            "other_party": "Ella, mobile 0412 678 901, vehicle rego 246TGB",
+            "vehicle_rego": "789XYZ"
+          },
+          "output": {
+            "error": "service_unavailable",
+            "message": "create_claim is not responding. Try again later."
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "My mobile is 0423 555 018. Can someone call me today? I need this sorted before I'm stuck waiting on the other driver's insurer too."
+    },
+    {
+      "role": "sam",
+      "text": "I've booked the callback to 0423 555 018. The system says a consultant will call within 1 business day. I've noted that you'd like a call today, but I can't promise that. The consultant has your full summary, so you won't have to go through it all again. They'll lodge the claim and give you your claim number.\n\nIf you'd rather not wait, I can transfer you to a person in this chat now. Would you like me to do that?",
+      "tools": [
+        {
+          "tool": "request_callback",
+          "input": {
+            "mobile": "0423 555 018",
+            "name": "Tom Nguyen",
+            "reason": "create_claim failed (service unavailable). Customer needs claim lodged and claim number. Customer asked for a call today if possible.",
+            "summary": "Policy WTL456790 (Comprehensive), verified. 2022 Toyota RAV4, rego 789XYZ. Rear-end collision Wed 28 Oct 2026 about 2:00pm, Ipswich Rd, Annerley QLD. Tom was stopped in traffic and the car behind hit the back of his car. Driver: Tom Nguyen. No injuries. Car drivable, needs checking. Other driver: Ella, mobile 0412 678 901, rego 246TGB. No police attendance or reference. Customer confirmed summary. Claim NOT yet lodged because create_claim was unavailable. Please lodge and give claim number. Customer asked for a call today."
+          },
+          "output": {
+            "booked": true,
+            "when": "within 1 business day"
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "No thanks, I'll wait for the callback. Thanks for getting my details down."
+    },
+    {
+      "role": "sam",
+      "text": "You're welcome, Tom. To recap: your claim isn't lodged yet because our system was down. A consultant will call you on 0423 555 018 within 1 business day to lodge it and give you your claim number.\n\nUntil then, it helps to keep any photos of the damage and the other driver's details handy.\n\nIs there anything else I can help with today?",
+      "tools": []
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456790"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456790",
+        "first_name": "Tom"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456790"
+      },
+      "output": {
+        "policy_number": "WTL456790",
+        "first_name": "Tom",
+        "last_name": "Nguyen",
+        "email": "tom.n@example.com",
+        "policy_type": "Comprehensive",
+        "basic_excess": 750,
+        "hire_car_cover": "Not included",
+        "start_date": "2024-06-15",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Toyota",
+            "model": "RAV4",
+            "year": 2022,
+            "rego": "789XYZ"
+          }
+        ],
+        "listed_drivers": [
+          "Tom Nguyen",
+          "Linh Nguyen"
+        ]
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "policy_number": "WTL456790",
+        "incident_type": "collision",
+        "date_time": "2026-10-28T14:00:00+10:00",
+        "location": "Ipswich Rd, Annerley QLD",
+        "description": "\"I was stopped in traffic and the car behind me hit the back of my car.\" Rear-end collision. Car is drivable, needs checking. No injuries.",
+        "drivable": "yes",
+        "driver": "Tom Nguyen",
+        "other_party": "Ella, mobile 0412 678 901, vehicle rego 246TGB",
+        "vehicle_rego": "789XYZ"
+      },
+      "output": {
+        "error": "service_unavailable",
+        "message": "create_claim is not responding. Try again later."
+      }
+    },
+    {
+      "tool": "request_callback",
+      "input": {
+        "mobile": "0423 555 018",
+        "name": "Tom Nguyen",
+        "reason": "create_claim failed (service unavailable). Customer needs claim lodged and claim number. Customer asked for a call today if possible.",
+        "summary": "Policy WTL456790 (Comprehensive), verified. 2022 Toyota RAV4, rego 789XYZ. Rear-end collision Wed 28 Oct 2026 about 2:00pm, Ipswich Rd, Annerley QLD. Tom was stopped in traffic and the car behind hit the back of his car. Driver: Tom Nguyen. No injuries. Car drivable, needs checking. Other driver: Ella, mobile 0412 678 901, rego 246TGB. No police attendance or reference. Customer confirmed summary. Claim NOT yet lodged because create_claim was unavailable. Please lodge and give claim number. Customer asked for a call today."
+      },
+      "output": {
+        "booked": true,
+        "when": "within 1 business day"
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "judge": {
+    "failures": [],
+    "task_score": 5,
+    "tone_score": 5,
+    "summary": "When the claims system failed, Sam did not invent a claim number; it explained the failure plainly, booked a callback with the full confirmed summary, didn't promise a same-day call, offered a person straight away, and kept the right tone for a calm customer while covering safety, verification, story-first capture and the correct date (Wednesday 28 October 2026)."
+  },
+  "auto_check_failures_original": [],
+  "checks_waived": []
+}

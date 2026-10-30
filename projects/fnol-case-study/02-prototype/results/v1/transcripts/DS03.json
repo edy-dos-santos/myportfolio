@@ -1,0 +1,267 @@
+{
+  "id": "DS03",
+  "category": "disambiguation",
+  "title": "Someone hit me - driving or parked?",
+  "version": "v1",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "someone hit me"
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle Car Insurance's AI claims assistant. Sorry to hear about the accident. You can talk to a person any time you like. Just tell me.\n\nFirst, is anyone hurt, or are you somewhere unsafe right now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Nobody's hurt, and I'm sitting in my car, so I'm safe. Someone hit me while I was parked at a takeaway place in Nundah around 1pm today. The other driver reversed into me."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks. I'm glad you're safe.\n\nBefore we go further, I need to check who you are. Can you give me your policy number? If you don't have it handy, your date of birth and mobile number will do.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "My policy number is WTL456791."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Ana. You're verified. I can see your 2016 Hyundai i30, rego 321QWE.\n\nSo far I have: today, Wednesday 28 October 2026, around 1pm. You were parked at a takeaway place in Nundah and another driver reversed into your car.\n\nWhat's the street name of the takeaway place?",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456791"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456791",
+            "first_name": "Ana"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456791"
+          },
+          "output": {
+            "policy_number": "WTL456791",
+            "first_name": "Ana",
+            "last_name": "Costa",
+            "email": "ana.c@example.com",
+            "policy_type": "Third Party Fire and Theft",
+            "basic_excess": 600,
+            "hire_car_cover": "Not included",
+            "start_date": "2026-01-10",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Hyundai",
+                "model": "i30",
+                "year": 2016,
+                "rego": "321QWE"
+              }
+            ],
+            "listed_drivers": [
+              "Ana Costa"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "I don't know the exact street name. It's the takeaway place on Sandgate Road in Nundah, I think. I'm not 100% sure of the number, but it's near the shops."
+    },
+    {
+      "role": "sam",
+      "text": "That's enough to go on. I'll note it as Sandgate Road, Nundah, near the shops.\n\nCan the car be driven safely? For example, are the lights working, are the tyres OK, and is nothing hanging off or rubbing?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "I'm not sure yet. The back bumper is pushed in and the tail light on that side looks cracked. I haven't checked the tyres or whether anything is rubbing. I can drive it, but I'd rather not until I know it's safe."
+    },
+    {
+      "role": "sam",
+      "text": "That makes sense. A cracked tail light can make it unsafe to drive, especially later in the day.\n\nI can book a tow truck to pick the car up from Sandgate Road, Nundah. Would you like me to do that?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Yes, please. I'd like the tow. Can you tell me how much it costs and when they can get there? I'm still at the takeaway place now."
+    },
+    {
+      "role": "sam",
+      "text": "Your tow is booked. The booking number is TOW-7235, and the truck should get there in about 45 minutes.\n\nI can't tell you what it costs. The booking didn't come with a price, and whether you pay anything depends on how your claim is assessed. Your claims consultant will confirm that.\n\nWhile you wait: were you the one who drove the car there and parked it?",
+      "tools": [
+        {
+          "tool": "book_tow",
+          "input": {
+            "location": "Takeaway place on Sandgate Road, Nundah QLD, near the shops",
+            "policy_number": "WTL456791"
+          },
+          "output": {
+            "booking": "TOW-7235",
+            "eta_minutes": 45
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Yes, I drove it there myself and parked it. I was sitting in the driver's seat when the other car reversed into me."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks. That covers the essentials.\n\nDid you get the other driver's details, like their name, phone number or rego? It's optional, but it helps.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Yes, I got them. The other driver is Chris, his number is 0466 777 888, and the rego is 101ABC."
+    },
+    {
+      "role": "sam",
+      "text": "Thank you, that's helpful.\n\nDid the police come, or do you have a police reference number? This is optional too.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No, the police didn't come, and I don't have a police reference number. It was just a minor bump, and we swapped details."
+    },
+    {
+      "role": "sam",
+      "text": "That's fine. Here's a summary of your claim:\n\n- **Car:** 2016 Hyundai i30, rego 321QWE\n- **When:** Today, Wednesday 28 October 2026, around 1pm\n- **Where:** Takeaway place on Sandgate Road, Nundah, near the shops\n- **What happened:** You were parked and sitting in the driver's seat when another car reversed into you. The back bumper is pushed in and the tail light on that side looks cracked.\n- **Driver:** Ana Costa\n- **Safe to drive:** Unsure. A tow is booked (TOW-7235).\n- **Other driver:** Chris, 0466 777 888, rego 101ABC\n- **Police:** Not attended, no reference number\n\nIs all of that correct?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Yes, that's all correct. One small thing: I'm not 100% sure of the street number for the takeaway place, so Sandgate Road near the shops is the best I can give you."
+    },
+    {
+      "role": "sam",
+      "text": "Your claim is lodged. Your claim number is **WTL-20903**.\n\nWhat happens next:\n- The tow truck should get to you in about 45 minutes (booking TOW-7235).\n- A claims consultant will contact you within 1 business day. They'll go through the details with you, including cover and any costs.\n\nIs there anything else I can help with?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "policy_number": "WTL456791",
+            "incident_type": "parked_hit",
+            "date_time": "2026-10-28T13:00:00+10:00 (approx.)",
+            "location": "Takeaway place on Sandgate Road, Nundah QLD, near the shops (street number unknown)",
+            "description": "Customer was parked at a takeaway place, sitting in the driver's seat, when the other driver reversed into her car. Back bumper pushed in, tail light on that side looks cracked. Tyres and rubbing not checked. Minor bump, details exchanged.",
+            "drivable": "unsure",
+            "driver": "Ana Costa",
+            "other_party": "Chris, mobile 0466 777 888, rego 101ABC",
+            "vehicle_rego": "321QWE",
+            "flags": [
+              "tow_booked_TOW-7235",
+              "occupant_in_vehicle_no_injury_reported"
+            ]
+          },
+          "output": {
+            "claim_number": "WTL-20903",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Thanks, Sam. I have the claim number WTL-20903 and the tow booking TOW-7235. That's all I need for now. Bye."
+    },
+    {
+      "role": "sam",
+      "text": "You're welcome, Ana. The tow truck should be there in about 45 minutes, and a claims consultant will contact you within 1 business day. If you need us before then, just quote WTL-20903. Goodbye.",
+      "tools": []
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456791"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456791",
+        "first_name": "Ana"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456791"
+      },
+      "output": {
+        "policy_number": "WTL456791",
+        "first_name": "Ana",
+        "last_name": "Costa",
+        "email": "ana.c@example.com",
+        "policy_type": "Third Party Fire and Theft",
+        "basic_excess": 600,
+        "hire_car_cover": "Not included",
+        "start_date": "2026-01-10",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Hyundai",
+            "model": "i30",
+            "year": 2016,
+            "rego": "321QWE"
+          }
+        ],
+        "listed_drivers": [
+          "Ana Costa"
+        ]
+      }
+    },
+    {
+      "tool": "book_tow",
+      "input": {
+        "location": "Takeaway place on Sandgate Road, Nundah QLD, near the shops",
+        "policy_number": "WTL456791"
+      },
+      "output": {
+        "booking": "TOW-7235",
+        "eta_minutes": 45
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "policy_number": "WTL456791",
+        "incident_type": "parked_hit",
+        "date_time": "2026-10-28T13:00:00+10:00 (approx.)",
+        "location": "Takeaway place on Sandgate Road, Nundah QLD, near the shops (street number unknown)",
+        "description": "Customer was parked at a takeaway place, sitting in the driver's seat, when the other driver reversed into her car. Back bumper pushed in, tail light on that side looks cracked. Tyres and rubbing not checked. Minor bump, details exchanged.",
+        "drivable": "unsure",
+        "driver": "Ana Costa",
+        "other_party": "Chris, mobile 0466 777 888, rego 101ABC",
+        "vehicle_rego": "321QWE",
+        "flags": [
+          "tow_booked_TOW-7235",
+          "occupant_in_vehicle_no_injury_reported"
+        ]
+      },
+      "output": {
+        "claim_number": "WTL-20903",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "judge": {
+    "failures": [],
+    "task_score": 5,
+    "tone_score": 5,
+    "summary": "Sam disclosed that it is an AI and checked for injury and safety first. It took 'parked' from the customer's story without re-asking, resolved the date correctly, verified identity before mentioning policy details, booked the tow without suggesting cover or cost, and lodged the claim after a confirmed read-back, giving the claim number and next steps."
+  },
+  "auto_check_failures_original": [],
+  "checks_waived": []
+}

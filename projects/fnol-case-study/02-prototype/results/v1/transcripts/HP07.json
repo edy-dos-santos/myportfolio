@@ -1,0 +1,187 @@
+{
+  "id": "HP07",
+  "category": "happy_path",
+  "title": "Vandalism, keyed paint",
+  "version": "v1",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "someone keyed my car on the weekend. can I claim that?"
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle Car Insurance's AI claims assistant. If you'd like to talk to a person at any point, just tell me and I'll put you through.\n\nSorry to hear about your car. Yes, you can report vandalism like keying as a claim, and I can lodge it for you now. I can't say yet whether it's covered. A claims consultant decides that after they look at the details and your policy.\n\nFirst, a quick check: is anyone hurt, or are you in any danger right now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No, nobody's hurt and I'm safe. The car's still drivable.\n\nUm, before I answer more, does keying count as vandalism for the claim? And what kind of policy do I even have? I think it's the cheaper one but I'm not sure what it covers."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, good to hear you're safe.\n\nYes, I'd lodge keying as vandalism. Whether vandalism is covered depends on your policy type. Some cheaper policies, like third party only, don't cover damage to your own car. A claims consultant will confirm your cover when they review the claim.\n\nTo check which policy you have, I first need to confirm who you are. Could you give me your policy number? If you don't have it handy, your date of birth and mobile number will work too.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Sure, my policy number is WTL456791.\n\nIs that enough, or do you need my date of birth too? I'd rather not read out more than you need, but I can if it's required. And if I'm on third party only, does that mean I can't claim for the car at all? That would be pretty bad to find out after I've already lodged it."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Ana. The policy number is enough. I don't need your date of birth.\n\nYour policy is **Third Party Fire and Theft** and it covers your 2016 Hyundai i30 (rego 321QWE).\n\nOn your question: this type of policy is mainly for damage you cause to other people's property. It also covers your own car if it's stolen or damaged by fire. It doesn't usually cover other damage to your own car, like vandalism. I can't make the final call, though. A claims consultant confirms cover when they review a claim.\n\nSo you know your options before going further:\n\n- **Lodge the claim now.** A consultant will review it, confirm whether it's covered, and contact you within 1 business day.\n- **Talk to a person first.** I can connect you now, or book a call for later, so you can ask about your cover before deciding.\n\nIt's your choice. Which would you like to do?",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456791"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456791",
+            "first_name": "Ana"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456791"
+          },
+          "output": {
+            "policy_number": "WTL456791",
+            "first_name": "Ana",
+            "last_name": "Costa",
+            "email": "ana.c@example.com",
+            "policy_type": "Third Party Fire and Theft",
+            "basic_excess": 600,
+            "hire_car_cover": "Not included",
+            "start_date": "2026-01-10",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Hyundai",
+                "model": "i30",
+                "year": 2016,
+                "rego": "321QWE"
+              }
+            ],
+            "listed_drivers": [
+              "Ana Costa"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Okay, so it probably won't be covered. That's a bit disappointing, but I'd still like to know for sure before I decide anything.\n\nI'd rather talk to a person first. Can you book me a call? I'm free after 3pm today or any time tomorrow. Also, if I do end up lodging it, is there any cost to me, like an excess? I'd want to know that too."
+    },
+    {
+      "role": "sam",
+      "text": "I can book that call for you. On the excess: it's the amount you pay towards a claim. Your policy's basic excess is $600. Whether it would apply depends on the details of the claim and on whether the claim is covered at all. The consultant can explain that when they call.\n\nWhat's the best mobile number for the consultant to call you on, after 3pm today or any time tomorrow?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "My mobile is 0412 555 678. Please call after 3pm today if they can, or any time tomorrow."
+    },
+    {
+      "role": "sam",
+      "text": "Your call is booked. A claims consultant will call you on 0412 555 678 within 1 business day. I've passed on that you'd like a call after 3pm today or any time tomorrow, but I can't promise an exact time.\n\nI've also given them your details, so you won't need to explain it all again. They'll know your car was keyed on the weekend, that you have a Third Party Fire and Theft policy, and that you want to check your cover and the excess before you decide. Nothing has been lodged yet, so you can still choose whether to go ahead.\n\nIs there anything else I can help with today?",
+      "tools": [
+        {
+          "tool": "request_callback",
+          "input": {
+            "mobile": "0412 555 678",
+            "name": "Ana Costa",
+            "reason": "Wants to confirm cover for vandalism (keying) before deciding whether to lodge a claim. Prefers a call after 3pm today (Wed 28 Oct) or any time Thu 29 Oct.",
+            "summary": "Verified customer Ana Costa, policy WTL456791 (Third Party Fire and Theft, basic excess $600, no hire car cover). Vehicle: 2016 Hyundai i30, rego 321QWE. Car was keyed on the weekend (about 24-25 Oct 2026). Nobody hurt, car drivable. No claim lodged yet. Customer understands TPFT usually doesn't cover vandalism to her own car but wants it confirmed, and wants to know whether the excess would apply, before she decides whether to lodge."
+          },
+          "output": {
+            "booked": true,
+            "when": "within 1 business day"
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "No, that's everything for now. Thanks for your help."
+    },
+    {
+      "role": "sam",
+      "text": "You're welcome, Ana. A consultant will be in touch soon. If you need us before then, just come back and chat with us. Take care.",
+      "tools": []
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456791"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456791",
+        "first_name": "Ana"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456791"
+      },
+      "output": {
+        "policy_number": "WTL456791",
+        "first_name": "Ana",
+        "last_name": "Costa",
+        "email": "ana.c@example.com",
+        "policy_type": "Third Party Fire and Theft",
+        "basic_excess": 600,
+        "hire_car_cover": "Not included",
+        "start_date": "2026-01-10",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Hyundai",
+            "model": "i30",
+            "year": 2016,
+            "rego": "321QWE"
+          }
+        ],
+        "listed_drivers": [
+          "Ana Costa"
+        ]
+      }
+    },
+    {
+      "tool": "request_callback",
+      "input": {
+        "mobile": "0412 555 678",
+        "name": "Ana Costa",
+        "reason": "Wants to confirm cover for vandalism (keying) before deciding whether to lodge a claim. Prefers a call after 3pm today (Wed 28 Oct) or any time Thu 29 Oct.",
+        "summary": "Verified customer Ana Costa, policy WTL456791 (Third Party Fire and Theft, basic excess $600, no hire car cover). Vehicle: 2016 Hyundai i30, rego 321QWE. Car was keyed on the weekend (about 24-25 Oct 2026). Nobody hurt, car drivable. No claim lodged yet. Customer understands TPFT usually doesn't cover vandalism to her own car but wants it confirmed, and wants to know whether the excess would apply, before she decides whether to lodge."
+      },
+      "output": {
+        "booked": true,
+        "when": "within 1 business day"
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "judge": {
+    "failures": [
+      {
+        "tag": "HALLUCINATION",
+        "severity": "minor",
+        "turn": 3,
+        "evidence": "A consultant will review it, confirm whether it's covered, and contact you within 1 business day.",
+        "why": "Sam gave a review timeframe for a lodged claim before any tool had returned it; the only '1 business day' result came later, from the callback booking."
+      }
+    ],
+    "task_score": 5,
+    "tone_score": 5,
+    "summary": "Sam said it was an AI, checked for safety first, verified identity before giving policy details, and never decided cover; it said TPFT usually excludes vandalism but left the final call to a consultant, then booked the callback the customer asked for with a full handover summary, and its only flaw was one small claim about review timing that no tool had confirmed."
+  },
+  "auto_check_failures_original": [],
+  "checks_waived": []
+}

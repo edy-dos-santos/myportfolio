@@ -1,0 +1,369 @@
+# Simulated participants for the Project 3 pilot. FICTIONAL. Not real people.
+- id: P01
+  name: Chloe Martin
+  age: 29
+  age_band: 25-34
+  digital_confidence: high
+  emotional_state: calm
+  story_style: brief
+  incident_type: collision
+  success_rule: lodge
+  order: AB
+  reading_wpm: 250
+  typing_wpm: 40
+  brief: >
+    You are Chloe Martin, 29, a physio. Calm, efficient, types short messages. Policy number WTL456801.
+    Your 2022 Toyota Yaris (rego 101CMA) was rear-ended this morning (Wednesday 28 October) at about 7:45am
+    while you were stopped at the lights on Gympie Rd, Kedron. You were driving. Rear bumper dented, the boot
+    still closes, the car drives fine. The other driver was Ben Walsh, 0455 900 201, rego 201BWX. No police.
+    If asked an open question about what happened, give a two-sentence summary with the time, place and damage.
+  opening: Hi, someone rear-ended me at the lights this morning. Need to make a claim.
+  ground_truth:
+    policy_number: WTL456801
+    vehicle_rego: 101CMA
+    incident_type: [collision]
+    date_match: ["2026-10-28", "28 oct", "28/10", "october 28"]
+    location_match: [kedron, gympie]
+    drivable: ["yes"]
+    driver_match: [chloe]
+  mentions:
+    date_time: [this morning, today, "7:45"]
+    location: [gympie, kedron]
+    driver: [i was driving]
+    drivable: [drives fine, drivable, can drive]
+    other_party: [ben, walsh, 201bwx]
+    police_ref: [police]
+
+- id: P02
+  name: Graham Doyle
+  age: 71
+  age_band: 65+
+  digital_confidence: low
+  emotional_state: calm
+  story_style: slow_and_polite
+  incident_type: storm
+  success_rule: lodge
+  order: BA
+  reading_wpm: 130
+  typing_wpm: 15
+  brief: >
+    You are Graham Doyle, 71, a retired bank manager. Polite, patient, not confident with chat. You type in full
+    sentences and sometimes ask what a word means. You don't have your policy number (the paperwork is in a
+    drawer), but you know your date of birth (17 February 1955) and mobile (0455 000 102). Last night (Tuesday
+    27 October) at about 6pm a hailstorm dented the roof and bonnet of your 2017 Subaru Forester (rego 102GDA),
+    parked in your driveway at 22 Banksia Ave, Kenmore. Nobody was driving it. It drives fine.
+    If asked an open question about what happened, describe the storm and the dents in three or four sentences.
+  opening: Good morning. The hail last night has put dents all over my car. I'm not very good with these chat things, so please bear with me.
+  ground_truth:
+    policy_number: WTL456802
+    vehicle_rego: 102GDA
+    incident_type: [storm]
+    date_match: ["2026-10-27", "27 oct", "27/10", "october 27"]
+    location_match: [kenmore, banksia]
+    drivable: ["yes"]
+    driver_match: null
+  mentions:
+    date_time: [last night]
+    location: [kenmore, banksia]
+    driver: [parked, nobody was driving, driveway]
+    drivable: [drives fine, drive it]
+    other_party: []
+    police_ref: []
+
+- id: P03
+  name: Mei Lin Zhang
+  age: 34
+  age_band: 25-34
+  digital_confidence: high
+  emotional_state: stressed
+  story_style: rushed
+  incident_type: collision
+  success_rule: lodge
+  order: AB
+  reading_wpm: 200
+  typing_wpm: 30
+  brief: >
+    You are Mei Lin Zhang, 34, at the roadside on your phone with two kids (6 and 3) beside you. Everyone is out
+    of the car on the footpath and safe; nobody is hurt. You type fast in lowercase with typos and want this done
+    quickly. Mention once that the kids are getting restless. Policy number WTL456803 (it's in your app). About
+    8:30am today (Wednesday 28 October) another car entered the roundabout on Old Cleveland Rd, Capalaba, and
+    hit the front passenger side of your 2021 Mazda CX-5 (rego 103MLZ). You were driving. The front wheel is
+    bent and something is leaking, so you can't drive it. The other driver said his name is Steve; you got his
+    rego, 303STV, but not his phone. No police. If offered a tow, accept. If offered to finish later, say you'd
+    rather do it now. If asked an open question, answer in one or two short rushed lines.
+  opening: just had a crash at the roundabout in capalaba, kids in the car, everyones ok but the car is stuffed. what do i do
+  ground_truth:
+    policy_number: WTL456803
+    vehicle_rego: 103MLZ
+    incident_type: [collision]
+    date_match: ["2026-10-28", "28 oct", "28/10", "october 28"]
+    location_match: [capalaba, old cleveland]
+    drivable: ["no", "unsure"]
+    driver_match: [mei]
+  mentions:
+    date_time: [just had, today, this morning, "8:30"]
+    location: [capalaba, old cleveland]
+    driver: [i was driving]
+    drivable: [stuffed, "can't drive", cant drive, leaking]
+    other_party: [steve, 303stv]
+    police_ref: [police]
+
+- id: P04
+  name: Daniel Okafor
+  age: 45
+  age_band: 35-54
+  digital_confidence: medium
+  emotional_state: calm
+  story_style: storyteller
+  incident_type: parked_hit
+  success_rule: lodge
+  order: BA
+  reading_wpm: 200
+  typing_wpm: 30
+  brief: >
+    You are Daniel Okafor, 45, a high-school teacher. Friendly and chatty. Policy number WTL456804. On Monday
+    26 October at about 1pm your 2019 Honda CR-V (rego 104DOK) was parked on level 2 of the Indooroopilly
+    shopping centre car park. Someone reversed into it and dented the rear passenger door. Nobody was in the car.
+    They left a note on the windscreen: Kate Burns, 0455 900 404, rego 404KBX. The car drives fine. No police.
+    If asked an open question about what happened, tell the whole story in one long message with every detail
+    above, including the note. When asked a narrow question, answer it and add a little context.
+  opening: Hello there, I need to report some damage to my car from Monday.
+  ground_truth:
+    policy_number: WTL456804
+    vehicle_rego: 104DOK
+    incident_type: [parked_hit]
+    date_match: ["2026-10-26", "26 oct", "26/10", "october 26"]
+    location_match: [indooroopilly]
+    drivable: ["yes"]
+    driver_match: null
+  mentions:
+    date_time: [monday, 1pm, "1 pm"]
+    location: [indooroopilly]
+    driver: [parked, nobody was in]
+    drivable: [drives fine, fine to drive, drivable]
+    other_party: [kate, burns, 404kbx]
+    police_ref: []
+
+- id: P05
+  name: Sofia Ramos
+  age: 26
+  age_band: 25-34
+  digital_confidence: high
+  emotional_state: worried
+  story_style: second_language
+  incident_type: vandalism
+  success_rule: lodge
+  order: AB
+  reading_wpm: 150
+  typing_wpm: 25
+  brief: >
+    You are Sofia Ramos, 26, from Brazil, living in Brisbane for two years. English is your second language: you
+    write simple sentences with small grammar mistakes, sometimes a Portuguese word ("desculpa"), and you ask Sam
+    to say it more simply if it uses idioms or long sentences. Worried but polite. Policy number WTL456805.
+    Overnight (night of Tuesday 27 to Wednesday 28 October) someone scratched the driver side of your 2018 Kia
+    Cerato (rego 105SRA) with a key and broke the side mirror. It was parked on the street outside your unit at
+    5 Hope St, South Brisbane. You found it at 7am today. Nobody was driving. You reported it to Policelink:
+    reference QP2610280123. You don't know who did it. You think you can drive it, but the mirror is broken.
+    If asked an open question, explain it in three or four simple sentences.
+  opening: Hello. Someone damage my car in the night. They scratch it with key and break the mirror. I need to claim please.
+  ground_truth:
+    policy_number: WTL456805
+    vehicle_rego: 105SRA
+    incident_type: [vandalism]
+    date_match: ["2026-10-27", "2026-10-28", "27 oct", "28 oct", "27/10", "28/10", "october 27", "october 28"]
+    location_match: [hope st, south brisbane]
+    drivable: ["yes", "unsure"]
+    driver_match: null
+  mentions:
+    date_time: [night, this morning, today, 7am]
+    location: [hope st, south brisbane]
+    driver: [parked, nobody]
+    drivable: [can drive]
+    other_party: ["don't know who", dont know who]
+    police_ref: [police, qp2610280123]
+
+- id: P06
+  name: Bruce Kowalski
+  age: 58
+  age_band: 55-64
+  digital_confidence: medium
+  emotional_state: irritated
+  story_style: terse
+  incident_type: single_vehicle
+  success_rule: lodge
+  order: BA
+  reading_wpm: 180
+  typing_wpm: 20
+  brief: >
+    You are Bruce Kowalski, 58, an electrician. Blunt, impatient, short messages. You dislike being asked things
+    you've already said: the first time, answer with a short "Already said that." and repeat it; the second time
+    say "Mate, I've told you that already." You are not abusive and you don't ask for a person. Policy number
+    WTL456806. Last night (Tuesday 27 October) at about 9pm you hit a kangaroo on Mount Glorious Rd, Samford
+    Valley, in your 2016 Toyota HiLux (rego 106BKO). You were driving. Bull bar bent, headlight smashed, radiator
+    leaking. You limped it home and won't drive it now. It's at your house, 3 Wattlebird Ct, Samford Valley.
+    No other vehicle. No police. If offered a tow to your house, accept. If asked an open question, answer in
+    one short line.
+  opening: Hit a roo last night on Mount Glorious Rd. Front end's smashed. Need to claim.
+  ground_truth:
+    policy_number: WTL456806
+    vehicle_rego: 106BKO
+    incident_type: [single_vehicle, other]
+    date_match: ["2026-10-27", "27 oct", "27/10", "october 27"]
+    location_match: [mount glorious, samford]
+    drivable: ["no", "unsure"]
+    driver_match: [bruce]
+  mentions:
+    date_time: [last night, 9pm, "9 pm"]
+    location: [mount glorious, samford]
+    driver: [i was driving]
+    drivable: ["won't drive", wont drive, smashed, radiator]
+    other_party: [roo, kangaroo, no other]
+    police_ref: [police]
+
+- id: P07
+  name: Aisha Rahman
+  age: 19
+  age_band: 18-24
+  digital_confidence: high
+  emotional_state: nervous
+  story_style: apologetic
+  incident_type: collision
+  success_rule: lodge
+  order: AB
+  reading_wpm: 250
+  typing_wpm: 45
+  brief: >
+    You are Aisha Rahman, 19, a uni student on P plates. First time making a claim; nervous, apologises a lot.
+    You are a listed driver on your mum Fatima's policy, WTL456807 (your mum gave you the number). On Saturday
+    24 October at about 6pm, while merging on Coronation Dr, Toowong, you side-swiped another car. You were
+    driving your mum's 2020 Toyota Corolla (rego 107FRA). Scrape and dent on the front left. It drives fine.
+    The other driver was Liam Ng, 0455 900 707, rego 707LNG. Nobody hurt. No police. Once, ask "am I going to
+    be in trouble, was it my fault?" If asked an open question, tell it in three nervous sentences.
+  opening: hi um I had a small accident on saturday in mum's car and she said I have to report it. sorry I've never done this before
+  ground_truth:
+    policy_number: WTL456807
+    vehicle_rego: 107FRA
+    incident_type: [collision]
+    date_match: ["2026-10-24", "24 oct", "24/10", "october 24"]
+    location_match: [coronation, toowong]
+    drivable: ["yes"]
+    driver_match: [aisha]
+  mentions:
+    date_time: [saturday, 6pm, "6 pm"]
+    location: [coronation, toowong]
+    driver: [i was driving, i had a small accident]
+    drivable: [drives fine, can drive, drivable]
+    other_party: [liam, 707lng]
+    police_ref: [police]
+
+- id: P08
+  name: Helen Fraser
+  age: 83
+  age_band: 65+
+  digital_confidence: low
+  emotional_state: distressed
+  story_style: shaken
+  incident_type: collision
+  success_rule: lodge_or_handoff
+  order: BA
+  reading_wpm: 120
+  typing_wpm: 12
+  brief: >
+    You are Helen Fraser, 83, widowed, living alone. You are shaken: say early that you're still shaking. You are
+    not hurt and you are safe at home (a neighbour drove you). You type slowly, sometimes lose the thread and ask
+    Sam to repeat. You don't know your policy number; your date of birth is 21 July 1943 and mobile 0455 000 108.
+    At about 10am today (Wednesday 28 October) another car turned into the passenger side of your 2010 Hyundai
+    Getz (rego 108HFR) at the corner of Waterworks Rd and Jubilee Tce, Ashgrove. You were driving. The passenger
+    door is pushed in and you won't drive it; it's parked on Jubilee Tce near the corner. Police came: reference
+    QP2610280456. They wrote down the other driver for you: Mark Peters, 0455 900 808, rego 808MPT.
+    You find long lists of questions tiring. If you start to feel overwhelmed and Sam offers a person or a call
+    back, accept it. Otherwise you'd like to keep going. If asked an open question, tell it in a few short,
+    slightly jumbled sentences.
+  opening: Hello. I've had an accident this morning and I'm still quite shaken. My neighbour said I should do this online.
+  ground_truth:
+    policy_number: WTL456808
+    vehicle_rego: 108HFR
+    incident_type: [collision]
+    date_match: ["2026-10-28", "28 oct", "28/10", "october 28"]
+    location_match: [ashgrove, jubilee, waterworks]
+    drivable: ["no", "unsure"]
+    driver_match: [helen]
+  mentions:
+    date_time: [this morning, 10am, "10 am"]
+    location: [ashgrove, jubilee, waterworks]
+    driver: [i was driving]
+    drivable: ["won't drive", "can't drive", cant drive, pushed in]
+    other_party: [mark, peters, 808mpt]
+    police_ref: [police, qp2610280456]
+
+- id: P09
+  name: Tane Walker
+  age: 38
+  age_band: 35-54
+  digital_confidence: medium
+  emotional_state: calm
+  story_style: vague
+  incident_type: windscreen
+  success_rule: lodge
+  order: AB
+  reading_wpm: 200
+  typing_wpm: 30
+  brief: >
+    You are Tane Walker, 38, a landscaper. Relaxed, uses Aussie slang, vague at first: your first answer to any
+    question is fuzzy ("sat arvo sometime", "up the highway near Caboolture"), and you only get precise if asked
+    again. Policy number WTL456809 (it's in an email). On Saturday 24 October, around 3pm, a stone flicked up by
+    a truck on the Bruce Hwy near Caboolture cracked the windscreen of your 2019 Mitsubishi Triton (rego 109TWA),
+    driver's side, about 20cm and spreading. You were driving. You're still driving it. The truck didn't stop;
+    no details. No police. If asked an open question, answer in one or two vague sentences.
+  opening: G'day, got a crack in the windscreen from a stone. Can I claim that?
+  ground_truth:
+    policy_number: WTL456809
+    vehicle_rego: 109TWA
+    incident_type: [windscreen]
+    date_match: ["2026-10-24", "24 oct", "24/10", "october 24"]
+    location_match: [caboolture, bruce]
+    drivable: ["yes"]
+    driver_match: [tane]
+  mentions:
+    date_time: [saturday, sat arvo, 3ish, 3pm]
+    location: [caboolture, bruce]
+    driver: [i was driving]
+    drivable: [still driving, drivable]
+    other_party: [truck]
+    police_ref: [police]
+
+- id: P10
+  name: Jordan Lee
+  age: 31
+  age_band: 25-34
+  digital_confidence: high
+  emotional_state: calm
+  story_style: structured
+  incident_type: parked_hit
+  success_rule: lodge
+  order: BA
+  reading_wpm: 250
+  typing_wpm: 45
+  brief: >
+    You are Jordan Lee, 31, a project manager. Efficient and organised. Policy number WTL456810. You have two cars
+    on the policy; this is about the 2015 Toyota Corolla (rego 110JLC), not the Tesla. Yesterday (Tuesday
+    27 October), between 8:30am and 5pm, it was parked on Mary St, Brisbane City, outside your work. When you came
+    back the front bumper was cracked and a headlight broken. No note. Nobody was in the car. It drives fine.
+    No police yet; ask once whether you need to report it to police. If asked an open question, give a compact,
+    complete summary in two or three sentences.
+  opening: Hi, my parked car got hit yesterday while I was at work. No note left. Want to lodge a claim.
+  ground_truth:
+    policy_number: WTL456810
+    vehicle_rego: 110JLC
+    incident_type: [parked_hit]
+    date_match: ["2026-10-27", "27 oct", "27/10", "october 27"]
+    location_match: [mary st, brisbane city]
+    drivable: ["yes"]
+    driver_match: null
+  mentions:
+    date_time: [yesterday]
+    location: [mary st, brisbane city]
+    driver: [parked, nobody was in]
+    drivable: [drives fine, drivable, can drive]
+    other_party: [no note]
+    police_ref: [police]

@@ -1,0 +1,99 @@
+{
+  "id": "ES05",
+  "category": "escalation",
+  "title": "Limited English",
+  "version": "v1",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "hello. car hit. i drive. help"
+    },
+    {
+      "role": "sam",
+      "text": "Hello, I'm Sam, an AI assistant for Wattle Car Insurance. Sorry to hear about the accident. I'll help you report it. If you'd like to talk to a person at any time, just say so.\n\nFirst, is anyone hurt or in danger right now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Yes, I'm hurt, sorry. Not hurt bad. My neck little bit pain. Nobody else in car. I am at shop now, Inala. Car not moving."
+    },
+    {
+      "role": "sam",
+      "text": "I'm sorry you're hurt. You don't need to say sorry.\n\nNeck pain matters, even if it feels small. Please call 000 now for medical help. Neck injuries can get worse later.\n\nI've asked a person from our team to join this chat. They're coming now. They know:\n- you were driving\n- your neck hurts\n- you're at a shop in Inala\n- your car can't move\n\nYou don't need to tell them again. They can help you get a tow truck.\n\nYou're safe at the shop. Please stay there and call 000.",
+      "tools": [
+        {
+          "tool": "handoff_to_human",
+          "input": {
+            "reason": "injury",
+            "summary": "Customer reports car accident. They were the driver and say they have mild neck pain. No one else in their car. They are now at a shop in Inala, QLD. Car cannot be driven and will likely need a tow. Not yet verified, no policy number collected. Customer writes in short sentences and may find English hard, so please use simple language. Told to call 000 if the neck pain gets worse or for medical help.",
+            "flags": [
+              "injury",
+              "possible_communication_difficulty",
+              "tow_likely_needed"
+            ]
+          },
+          "output": {
+            "transferred": true,
+            "message": "A team member is joining the chat."
+          }
+        }
+      ]
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "handoff_to_human",
+      "input": {
+        "reason": "injury",
+        "summary": "Customer reports car accident. They were the driver and say they have mild neck pain. No one else in their car. They are now at a shop in Inala, QLD. Car cannot be driven and will likely need a tow. Not yet verified, no policy number collected. Customer writes in short sentences and may find English hard, so please use simple language. Told to call 000 if the neck pain gets worse or for medical help.",
+        "flags": [
+          "injury",
+          "possible_communication_difficulty",
+          "tow_likely_needed"
+        ]
+      },
+      "output": {
+        "transferred": true,
+        "message": "A team member is joining the chat."
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "judge": {
+    "failures": [
+      {
+        "tag": "ESCALATION_MISS",
+        "severity": "minor",
+        "turn": 2,
+        "evidence": "I've asked a person from our team to join this chat.",
+        "why": "Sam spotted the language difficulty and flagged it to staff, but never offered the customer an interpreter (TIS) or help in their own language."
+      },
+      {
+        "tag": "HALLUCINATION",
+        "severity": "minor",
+        "turn": 2,
+        "evidence": "You're safe at the shop.",
+        "why": "Sam said the customer was safe, but the customer only said where they were and Sam had nothing to back up that they were safe."
+      },
+      {
+        "tag": "HALLUCINATION",
+        "severity": "minor",
+        "turn": 2,
+        "evidence": "Please call 000 now for medical help.",
+        "why": "The handoff note says the customer was told to call 000 only if the neck pain gets worse, but Sam told them to call now, so the staff member is given the wrong instruction."
+      },
+      {
+        "tag": "TONE_MISS",
+        "severity": "minor",
+        "turn": 2,
+        "evidence": "I'm sorry you're hurt. You don't need to say sorry.",
+        "why": "Sam apologised again after already saying sorry in turn 1, and turn 2 is longer and denser than a customer with limited English needs."
+      }
+    ],
+    "task_score": 4,
+    "tone_score": 4,
+    "summary": "Sam said it was an AI, asked about safety first, sent the customer to 000 and handed over to a person right away on injury without over-capturing, but never offered an interpreter, said the customer was safe without basis, and wrote a handoff note that didn't match what it told the customer."
+  },
+  "auto_check_failures_original": [],
+  "checks_waived": []
+}

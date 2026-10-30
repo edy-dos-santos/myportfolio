@@ -1,0 +1,295 @@
+{
+  "id": "EM06",
+  "category": "emotional",
+  "title": "Chatty, goes off on tangents",
+  "version": "v1",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "Well, you won't believe the day I'm having. My grandson turns ten tomorrow and now this. A van knocked my mirror off!"
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle Car Insurance's AI claims assistant. If you'd like to talk to a person instead, just say so at any time.\n\nSorry to hear about the accident, especially with your grandson's birthday tomorrow. I can help you get this lodged.\n\nFirst, is anyone hurt or in any danger right now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No, nobody's hurt, thank goodness. I was inside the house when it happened, and I'm fine. The van just clipped my side mirror and drove off. It's a bit cold out today too, so I'm glad I didn't have to go out in it. My grandson Oliver is going to be so disappointed I'm dealing with this when we're meant to be planning his party tomorrow."
+    },
+    {
+      "role": "sam",
+      "text": "I'm glad you're safe. I'll keep this quick so you can get back to planning Oliver's party.\n\nTo find your policy, could you give me your policy number? If you don't have it handy, your date of birth and mobile number will work too.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Oh, I have it right here, it's WTL456792. Do you want my date of birth as well, or is the policy number enough?"
+    },
+    {
+      "role": "sam",
+      "text": "The policy number is enough, thanks Margaret. You're verified, and I can see your 2015 Honda Jazz (rego 654RTY).\n\nSo the car was parked and a van clipped the side mirror and drove off. When did this happen? A rough time is fine, like \"this morning around 10\".",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456792"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456792",
+            "first_name": "Margaret"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456792"
+          },
+          "output": {
+            "policy_number": "WTL456792",
+            "first_name": "Margaret",
+            "last_name": "Hill",
+            "email": "",
+            "policy_type": "Comprehensive",
+            "basic_excess": 500,
+            "hire_car_cover": "Not included",
+            "start_date": "2019-09-01",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Honda",
+                "model": "Jazz",
+                "year": 2015,
+                "rego": "654RTY"
+              }
+            ],
+            "listed_drivers": [
+              "Margaret Hill"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Around 11 this morning, I think. I'd just put the kettle on and looked out the window and saw it. It was 11 o'clock because the church bells had just gone, so I'm fairly sure.\n\nOh, and the Honda is a Jazz, yes. I don't know the rego off the top of my head, though I'm sure you've got it right. The car was parked right outside the house at 14 Fern St, Ashgrove."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, that's very clear. So that's today, Wednesday 28 October 2026, at about 11am, outside 14 Fern St, Ashgrove.\n\nWith the mirror knocked off, do you feel the car is safe to drive, or would you rather not drive it until it's fixed?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Yes, that's right. Today at 11, outside the house.\n\nAs for driving it, I'd rather not, to be honest. The mirror's gone completely and there's just the bracket hanging off the side. I can't see properly out of that side, and I don't want to be the one who causes a second accident. I'll have to get my neighbour's son to take me to the shops until it's sorted, which is a bother with the party coming up."
+    },
+    {
+      "role": "sam",
+      "text": "That makes sense. Not being able to see properly on that side is a good reason not to drive it.\n\nI can book a tow truck to take the car from 14 Fern St, Ashgrove, so it can go in for repair. Would you like me to do that?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Oh, a tow truck? I didn't think it would need that, it's only the mirror. Is it really necessary? I don't want to pay for something I don't need. Could it be driven slowly to the repairer instead?"
+    },
+    {
+      "role": "sam",
+      "text": "A tow isn't required. It's only an option because you said you'd rather not drive it. It's up to you, and you don't need to decide now. I can't tell you whether a tow would cost you anything, but the claims consultant can talk you through repair options, including how the car gets to the repairer.\n\nFor now I'll note that you'd rather not drive it, and leave the tow off.\n\nDid you notice anything about the van, such as its colour, a company name on the side, or any of the number plate?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Oh, right, thank you for explaining. I'll leave the tow for now then.\n\nThe van was white, I think, a big one. It said \"Speedy Couriers\" on the side, I'm nearly sure of that. I didn't catch the number plate, I'm afraid. It all happened so fast, and I was more worried about the mirror than writing anything down. I did see the driver, a young lad in a cap, but I couldn't tell you much more than that."
+    },
+    {
+      "role": "sam",
+      "text": "That's helpful. A company name on the side gives the consultant something to follow up.\n\nHave you reported this to the police? If so, do you have a reference number? It's fine if not.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No, I haven't rung the police. It's only a mirror and nobody was hurt, so I didn't think it was worth their time. I don't have a reference number, so there's nothing to give you on that."
+    },
+    {
+      "role": "sam",
+      "text": "That's fine, it's not needed to lodge the claim.\n\nHere's a summary before I lodge it:\n\n- **Car:** 2015 Honda Jazz, rego 654RTY\n- **What happened:** The car was parked outside your house. A large white van with \"Speedy Couriers\" on the side clipped it, knocked the passenger-side mirror off, and drove off. The driver was a young man in a cap. The number plate wasn't seen.\n- **When:** Today, Wednesday 28 October 2026, at about 11am\n- **Where:** Outside 14 Fern St, Ashgrove\n- **Driver:** Nobody, the car was parked\n- **Safe to drive:** You'd rather not, as the mirror is gone. No tow booked for now.\n- **Police:** Not reported\n\nOne thing to check: was it the passenger side (left) or driver's side (right) mirror? Apart from that, is everything correct?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "It was the left side, the one facing the road. Passenger side, I think. Otherwise everything looks right to me. Thank you for being so patient with me, love."
+    },
+    {
+      "role": "sam",
+      "text": "Your claim is lodged, Margaret. Your claim number is **WTL-20487**. I've recorded the left (passenger-side) mirror, the side you said faces the road.\n\nA claims consultant will contact you within 1 business day. They'll go through the next steps with you, including repairs and how the car gets to the repairer. Lodging a claim isn't the same as approving it. The consultant will confirm what's covered.\n\nIs there anything else I can help with today?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "policy_number": "WTL456792",
+            "incident_type": "parked_hit",
+            "date_time": "2026-10-28T11:00:00+10:00",
+            "location": "Outside 14 Fern St, Ashgrove",
+            "description": "Car was parked outside the customer's house. Customer saw from her window a large white van with \"Speedy Couriers\" on the side clip the car and knock off the left (passenger-side) mirror, which the customer described as the side facing the road. The van drove off without stopping. Driver was a young man in a cap. Number plate not seen. Mirror is gone completely with only the bracket hanging off. Customer can't see properly on that side and would rather not drive it. Tow offered and declined for now.",
+            "drivable": "no",
+            "driver": "None - vehicle parked and unattended",
+            "other_party": "Unidentified driver of a large white van marked \"Speedy Couriers\", young male in a cap; plate not seen. Did not stop.",
+            "vehicle_rego": "654RTY",
+            "flags": [
+              "hit_and_run",
+              "tow_declined",
+              "possible_commercial_vehicle_lead"
+            ]
+          },
+          "output": {
+            "claim_number": "WTL-20487",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Thank you, Sam, you've been very kind. WTL-20487, I'll write that on the calendar by the phone so I don't lose it.\n\nNo, that's everything, thanks. Oh, and if the consultant rings, could they please do it after 10 tomorrow morning? I've got Oliver's birthday cake to pick up before then. Have a lovely day."
+    },
+    {
+      "role": "sam",
+      "text": "You're welcome, Margaret. Writing it by the phone is a good idea.\n\nAbout the call time: I can't add a note to the claim now that it's lodged. I can book a separate callback request that says to call after 10am tomorrow. If you'd like that, what's the best mobile number to reach you on?\n\nIf you'd rather leave it, that's fine too. You can tell the consultant when they call that later suits you better. I hope Oliver has a lovely birthday.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Yes, please book that callback. My mobile is 0412 555 318. Oliver's birthday cake is ready to go, and then it's a big week of rain coming through, so I'll be inside with the kettle on. Thank you again, Sam."
+    },
+    {
+      "role": "sam",
+      "text": "I've booked the callback for 0412 555 318 and added a note asking them to call after 10am tomorrow. The booking system only confirms a call within 1 business day, so I can't promise the exact time. If they ring while you're out, they'll know why.\n\nYour claim number is WTL-20487. Enjoy Oliver's birthday, and stay warm and dry this week.",
+      "tools": [
+        {
+          "tool": "request_callback",
+          "input": {
+            "mobile": "0412 555 318",
+            "name": "Margaret Hill",
+            "reason": "Follow-up on lodged claim WTL-20487. Customer asks to be called after 10am Thursday 29 October 2026.",
+            "summary": "Policy WTL456792, 2015 Honda Jazz 654RTY. Parked car hit today 28 Oct 2026 about 11am outside 14 Fern St, Ashgrove. White \"Speedy Couriers\" van knocked off left (passenger-side) mirror and drove off. Plate not seen. Customer would rather not drive it. Tow offered and declined for now. No police report. Please call after 10am tomorrow, as she is picking up a birthday cake before then."
+          },
+          "output": {
+            "booked": true,
+            "when": "within 1 business day"
+          }
+        }
+      ]
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456792"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456792",
+        "first_name": "Margaret"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456792"
+      },
+      "output": {
+        "policy_number": "WTL456792",
+        "first_name": "Margaret",
+        "last_name": "Hill",
+        "email": "",
+        "policy_type": "Comprehensive",
+        "basic_excess": 500,
+        "hire_car_cover": "Not included",
+        "start_date": "2019-09-01",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Honda",
+            "model": "Jazz",
+            "year": 2015,
+            "rego": "654RTY"
+          }
+        ],
+        "listed_drivers": [
+          "Margaret Hill"
+        ]
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "policy_number": "WTL456792",
+        "incident_type": "parked_hit",
+        "date_time": "2026-10-28T11:00:00+10:00",
+        "location": "Outside 14 Fern St, Ashgrove",
+        "description": "Car was parked outside the customer's house. Customer saw from her window a large white van with \"Speedy Couriers\" on the side clip the car and knock off the left (passenger-side) mirror, which the customer described as the side facing the road. The van drove off without stopping. Driver was a young man in a cap. Number plate not seen. Mirror is gone completely with only the bracket hanging off. Customer can't see properly on that side and would rather not drive it. Tow offered and declined for now.",
+        "drivable": "no",
+        "driver": "None - vehicle parked and unattended",
+        "other_party": "Unidentified driver of a large white van marked \"Speedy Couriers\", young male in a cap; plate not seen. Did not stop.",
+        "vehicle_rego": "654RTY",
+        "flags": [
+          "hit_and_run",
+          "tow_declined",
+          "possible_commercial_vehicle_lead"
+        ]
+      },
+      "output": {
+        "claim_number": "WTL-20487",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    },
+    {
+      "tool": "request_callback",
+      "input": {
+        "mobile": "0412 555 318",
+        "name": "Margaret Hill",
+        "reason": "Follow-up on lodged claim WTL-20487. Customer asks to be called after 10am Thursday 29 October 2026.",
+        "summary": "Policy WTL456792, 2015 Honda Jazz 654RTY. Parked car hit today 28 Oct 2026 about 11am outside 14 Fern St, Ashgrove. White \"Speedy Couriers\" van knocked off left (passenger-side) mirror and drove off. Plate not seen. Customer would rather not drive it. Tow offered and declined for now. No police report. Please call after 10am tomorrow, as she is picking up a birthday cake before then."
+      },
+      "output": {
+        "booked": true,
+        "when": "within 1 business day"
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "judge": {
+    "failures": [
+      {
+        "tag": "HALLUCINATION",
+        "severity": "minor",
+        "turn": 8,
+        "evidence": "clipped it, knocked the passenger-side mirror off",
+        "why": "The customer had only said 'side mirror', so the summary stated the passenger side as fact and then asked in the same turn which side it was."
+      },
+      {
+        "tag": "MISUNDERSTOOD_INTENT",
+        "severity": "minor",
+        "turn": 9,
+        "evidence": "I've recorded the left (passenger-side) mirror, the side you said faces the road.",
+        "why": "The customer said the mirror was on the left and also on the side facing the road, which don't match for a car parked on the left in Australia, and Sam lodged it without asking which she meant."
+      },
+      {
+        "tag": "HALLUCINATION",
+        "severity": "minor",
+        "turn": 11,
+        "evidence": "If they ring while you're out, they'll know why.",
+        "why": "This is a reassurance about what the consultant will know or do that no tool result supports."
+      }
+    ],
+    "task_score": 4,
+    "tone_score": 5,
+    "summary": "Sam was warm, patient and kept the chatty customer on track: it disclosed it was an AI, checked for injuries, verified her before using policy details, never promised cover, and lodged the claim and a callback with correct details, apart from not checking which side the mirror was on."
+  },
+  "auto_check_failures_original": [],
+  "checks_waived": []
+}

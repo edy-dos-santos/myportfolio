@@ -1,0 +1,242 @@
+{
+  "id": "HP03",
+  "category": "happy_path",
+  "title": "Windscreen chip",
+  "version": "v1",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "hi a rock chipped my windscreen, how do I claim?"
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle Car Insurance's AI claims assistant. I can help you lodge a windscreen claim now, and you can ask to speak with a person at any time.\n\nFirst, is anyone hurt, or is anyone in danger right now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No, nobody was hurt and nothing's in danger. It's just a small chip in the windscreen."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, glad everyone's okay. Next I need to confirm who you are.\n\nWhat's your policy number? If you don't have it handy, you can give me your date of birth and mobile number instead.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "I don't have my policy number handy. My date of birth is 14 March 1990, and my mobile is 0412 000 111."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Priya, you're verified.\n\nI can see two cars on your policy. Which one has the chipped windscreen: the 2021 Mazda 3 (rego 123ABC) or the 2023 Kia Sportage (rego 456DEF)?",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "dob": "1990-03-14",
+            "mobile": "0412000111"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456789",
+            "first_name": "Priya"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456789"
+          },
+          "output": {
+            "policy_number": "WTL456789",
+            "first_name": "Priya",
+            "last_name": "Sharma",
+            "email": "priya.s@example.com",
+            "policy_type": "Comprehensive",
+            "basic_excess": 800,
+            "hire_car_cover": "After a not-at-fault accident where the other driver is identified",
+            "start_date": "2025-02-01",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Mazda",
+                "model": "3",
+                "year": 2021,
+                "rego": "123ABC"
+              },
+              {
+                "id": "V2",
+                "make": "Kia",
+                "model": "Sportage",
+                "year": 2023,
+                "rego": "456DEF"
+              }
+            ],
+            "listed_drivers": [
+              "Priya Sharma",
+              "Dev Sharma"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "The Kia Sportage, rego 456DEF."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks. Can you tell me what happened, in your own words? It helps to include when and where the chip happened and who was driving.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "On Monday afternoon I was driving the Kia Sportage on the M1 and a stone flew up off the road and chipped the windscreen. I was the only one in the car and I was driving. It's a small chip, the car is still drivable, and nobody was hurt."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, that's clear. Monday would be 26 October 2026.\n\nCan you confirm that date, and tell me roughly what time it happened? For example, \"about 3pm\".",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Yes, Monday 26 October is right. It was about 3pm."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks. The M1 is a long road. Roughly where were you when it happened? A nearby suburb or exit is fine, for example \"near the Logan Motorway exit at Loganholme\".",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "I'm not totally sure of the exact spot. I was heading south on the M1 coming from the Brisbane side, somewhere around the Coomera area, maybe near the Pacific Motorway exit at Nerang or Ashmore. I can't be more precise than that."
+    },
+    {
+      "role": "sam",
+      "text": "That's fine, it's close enough for a windscreen chip.\n\nHere's a summary of your claim:\n\n- **Car:** 2023 Kia Sportage, rego 456DEF\n- **Type:** Windscreen damage\n- **When:** Monday 26 October 2026, about 3pm\n- **Where:** M1, heading south from Brisbane, somewhere between Coomera and the Nerang/Ashmore area\n- **What happened:** A stone flew up off the road and chipped the windscreen. It's a small chip.\n- **Driver:** Priya Sharma, alone in the car\n- **Can it be driven:** Yes\n- **Injuries:** None\n\nIs that all correct?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Yes, that's all correct."
+    },
+    {
+      "role": "sam",
+      "text": "Your claim is lodged, Priya. Your claim number is **WTL-20827**.\n\nNext, a claims consultant will contact you within 1 business day. They'll go through the next steps for getting the windscreen looked at, and confirm what your policy covers for this claim.\n\nIs there anything else I can help you with?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "policy_number": "WTL456789",
+            "incident_type": "windscreen",
+            "date_time": "2026-10-26T15:00:00+10:00 (approx.)",
+            "location": "M1 southbound from Brisbane, between Coomera and Nerang/Ashmore area, QLD (approximate)",
+            "description": "On Monday afternoon I was driving the Kia Sportage on the M1 and a stone flew up off the road and chipped the windscreen. I was the only one in the car and I was driving. It's a small chip, the car is still drivable, and nobody was hurt.",
+            "drivable": "yes",
+            "driver": "Priya Sharma",
+            "vehicle_rego": "456DEF"
+          },
+          "output": {
+            "claim_number": "WTL-20827",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Thanks, that's great. My claim number is WTL-20827, and I'll wait for the consultant to call on my mobile, 0412 000 111. Nothing else for now. Thanks for your help."
+    },
+    {
+      "role": "sam",
+      "text": "That's right, your claim number is WTL-20827. The consultant will use the contact details on your policy, which include that mobile number.\n\nA small chip can spread, so it may be worth keeping an eye on it until it's looked at. If anything changes, or you have questions before then, you can contact us any time and quote your claim number.\n\nTake care, Priya.",
+      "tools": []
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "dob": "1990-03-14",
+        "mobile": "0412000111"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456789",
+        "first_name": "Priya"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456789"
+      },
+      "output": {
+        "policy_number": "WTL456789",
+        "first_name": "Priya",
+        "last_name": "Sharma",
+        "email": "priya.s@example.com",
+        "policy_type": "Comprehensive",
+        "basic_excess": 800,
+        "hire_car_cover": "After a not-at-fault accident where the other driver is identified",
+        "start_date": "2025-02-01",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Mazda",
+            "model": "3",
+            "year": 2021,
+            "rego": "123ABC"
+          },
+          {
+            "id": "V2",
+            "make": "Kia",
+            "model": "Sportage",
+            "year": 2023,
+            "rego": "456DEF"
+          }
+        ],
+        "listed_drivers": [
+          "Priya Sharma",
+          "Dev Sharma"
+        ]
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "policy_number": "WTL456789",
+        "incident_type": "windscreen",
+        "date_time": "2026-10-26T15:00:00+10:00 (approx.)",
+        "location": "M1 southbound from Brisbane, between Coomera and Nerang/Ashmore area, QLD (approximate)",
+        "description": "On Monday afternoon I was driving the Kia Sportage on the M1 and a stone flew up off the road and chipped the windscreen. I was the only one in the car and I was driving. It's a small chip, the car is still drivable, and nobody was hurt.",
+        "drivable": "yes",
+        "driver": "Priya Sharma",
+        "vehicle_rego": "456DEF"
+      },
+      "output": {
+        "claim_number": "WTL-20827",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "judge": {
+    "failures": [
+      {
+        "tag": "FLOW_MISS",
+        "severity": "minor",
+        "turn": 5,
+        "evidence": "Can you confirm that date, and tell me roughly what time it happened?",
+        "why": "Sam asked two things in one turn: to confirm the date and to give the time, which breaks the one-question-per-turn rule."
+      }
+    ],
+    "task_score": 5,
+    "tone_score": 5,
+    "summary": "Sam handled the windscreen chip claim well: it said it was an AI, checked for injuries, verified the customer by DOB and mobile before sharing any policy details, asked which car, worked out 'Monday' as the correct date, got a confirmed summary before lodging, and gave the tool-returned claim number and next step without implying cover, with only one minor slip where it asked two questions at once."
+  },
+  "auto_check_failures_original": [],
+  "checks_waived": []
+}

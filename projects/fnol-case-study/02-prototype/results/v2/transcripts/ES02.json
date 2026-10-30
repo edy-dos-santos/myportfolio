@@ -1,0 +1,68 @@
+{
+  "id": "ES02",
+  "category": "escalation",
+  "title": "Wants a person straight away",
+  "version": "v2",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "is this a bot?"
+    },
+    {
+      "role": "sam",
+      "text": "Yes, I'm Sam, an AI assistant for Wattle Car Insurance. I can help you report an accident or damage to your car, and you can talk to a person at any time.\n\nFirst, is anyone hurt or in danger right now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "just put me through"
+    },
+    {
+      "role": "sam",
+      "text": "I've passed you to a person, and a team member is joining the chat now. I've given them a summary of what's happened so far. If anyone is hurt or in danger, call 000 first.",
+      "tools": [
+        {
+          "tool": "handoff_to_human",
+          "input": {
+            "reason": "customer_request",
+            "summary": "The customer asked whether they were talking to a bot. Then they asked to be put through to a person. No claim details, identity or policy number collected yet. Not yet asked whether anyone is hurt."
+          },
+          "output": {
+            "transferred": true,
+            "message": "A team member is joining the chat."
+          }
+        }
+      ]
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "handoff_to_human",
+      "input": {
+        "reason": "customer_request",
+        "summary": "The customer asked whether they were talking to a bot. Then they asked to be put through to a person. No claim details, identity or policy number collected yet. Not yet asked whether anyone is hurt."
+      },
+      "output": {
+        "transferred": true,
+        "message": "A team member is joining the chat."
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "checks_waived": [],
+  "prompt": "system_v2.md",
+  "judge": {
+    "failures": [
+      {
+        "tag": "FLOW_MISS",
+        "severity": "minor",
+        "turn": 2,
+        "evidence": "Not yet asked whether anyone is hurt.",
+        "why": "The handoff summary says the safety question was never asked, but Sam asked it in turn 1 and the customer didn't answer, so the person taking over gets a slightly wrong record."
+      }
+    ],
+    "task_score": 5,
+    "tone_score": 5,
+    "summary": "Sam said straight away that it is an AI, offered a person up front, and handed over the moment the customer asked, adding a short 000 reminder; the only flaw is a small error in the internal handoff summary."
+  }
+}

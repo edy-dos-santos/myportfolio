@@ -1,0 +1,232 @@
+{
+  "id": "DG04",
+  "category": "digression",
+  "title": "Hire car question",
+  "version": "v2",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "Someone ran a stop sign and hit me in Bulimba, my car's undriveable"
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle's AI claims assistant. You can talk to a person at any time. Sorry to hear about the accident. Is anyone hurt or in danger right now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "I'm not hurt, thanks. Everyone's out of the cars and we're safe on the side of the road. Still shaken though.\n\nThe other driver is Zoe, her number is 0411 999 000 and her rego is 999QAZ. She ran the stop sign.\n\nMy Mazda 3 is not drivable. I need to get to work tomorrow, so will I get a hire car?"
+    },
+    {
+      "role": "sam",
+      "text": "I'm glad you're both safe. Being shaken after a crash is common, and if you'd like a person to call you instead, just say so. I've noted Zoe's details. I can check what your policy says about a hire car once I've confirmed who you are. What's your policy number, or your date of birth and mobile number?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "My policy number is WTL456789. Do you need anything else from me to check it?"
+    },
+    {
+      "role": "sam",
+      "text": "Thanks Priya, you're verified, and I've matched the Mazda 3 (rego 123ABC). Your policy lists hire car cover \"after a not-at-fault accident where the other driver is identified.\" Whether this claim meets that is decided when a claims consultant reviews it, since fault is assessed from the details. As your car can't be driven, I can book you a tow. What street in Bulimba is the car on, including the nearest cross street or a landmark if you know it?",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456789"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456789",
+            "first_name": "Priya"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456789"
+          },
+          "output": {
+            "policy_number": "WTL456789",
+            "first_name": "Priya",
+            "last_name": "Sharma",
+            "email": "priya.s@example.com",
+            "policy_type": "Comprehensive",
+            "basic_excess": 800,
+            "hire_car_cover": "After a not-at-fault accident where the other driver is identified",
+            "start_date": "2025-02-01",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Mazda",
+                "model": "3",
+                "year": 2021,
+                "rego": "123ABC"
+              },
+              {
+                "id": "V2",
+                "make": "Kia",
+                "model": "Sportage",
+                "year": 2023,
+                "rego": "456DEF"
+              }
+            ],
+            "listed_drivers": [
+              "Priya Sharma",
+              "Dev Sharma"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Corner of Oxford Street and Riding Road, I think. There's a bus stop right near where the car is. Yes please, book the tow. Can you also tell me whether I'll definitely get a hire car? I really need to get to work tomorrow."
+    },
+    {
+      "role": "sam",
+      "text": "I've booked the tow. The reference is TOW-7109, and the truck should arrive in about 45 minutes. I can't tell you for sure whether you'll get a hire car. That depends on the consultant's review against the policy wording I quoted. If you'd like to talk it through with a person, I can connect you now.\n\nOtherwise, I'll keep going with the claim. What time did the accident happen, and was it today, Thursday 29 October?",
+      "tools": [
+        {
+          "tool": "book_tow",
+          "input": {
+            "location": "Corner of Oxford Street and Riding Road, Bulimba (customer thinks), near a bus stop",
+            "policy_number": "WTL456789"
+          },
+          "output": {
+            "booking": "TOW-7109",
+            "eta_minutes": 45
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "It happened at 8am this morning. Today is Wednesday 28 October, not Thursday. Yes, please connect me to a person. I need to know about the hire car before tomorrow morning."
+    },
+    {
+      "role": "sam",
+      "text": "You're right, today is Wednesday 28 October. That was my mistake, and I've recorded the accident as 8am today, Wednesday 28 October.\n\nA team member is joining the chat now. I've passed on a summary that includes your tow booking (TOW-7109), Zoe's details, and that you need an answer on a hire car before tomorrow morning. Your claim hasn't been lodged yet, so they'll pick it up from here.",
+      "tools": [
+        {
+          "tool": "handoff_to_human",
+          "input": {
+            "reason": "customer_request",
+            "summary": "Priya Sharma, policy WTL456789 (verified, Comprehensive). Accident at 8am today, Wednesday 28 October 2026, corner of Oxford Street and Riding Road, Bulimba (customer thinks), near a bus stop. Customer says the other driver ran a stop sign and hit her. Vehicle: Mazda 3, rego 123ABC, not drivable. No one hurt; everyone safe at roadside; customer says she is shaken. Other driver: Zoe, mobile 0411 999 000, rego 999QAZ. Tow booked: TOW-7109, ETA about 45 minutes. Driver of the Mazda and police reference not yet given. Claim not yet lodged. Customer urgently wants to know about a hire car, as she needs to get to work tomorrow morning. Policy hire car cover: after a not-at-fault accident where the other driver is identified.",
+            "flags": [
+              "hire_car_urgent",
+              "claim_not_lodged",
+              "customer_shaken",
+              "tow_booked"
+            ]
+          },
+          "output": {
+            "transferred": true,
+            "message": "A team member is joining the chat."
+          }
+        }
+      ]
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456789"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456789",
+        "first_name": "Priya"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456789"
+      },
+      "output": {
+        "policy_number": "WTL456789",
+        "first_name": "Priya",
+        "last_name": "Sharma",
+        "email": "priya.s@example.com",
+        "policy_type": "Comprehensive",
+        "basic_excess": 800,
+        "hire_car_cover": "After a not-at-fault accident where the other driver is identified",
+        "start_date": "2025-02-01",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Mazda",
+            "model": "3",
+            "year": 2021,
+            "rego": "123ABC"
+          },
+          {
+            "id": "V2",
+            "make": "Kia",
+            "model": "Sportage",
+            "year": 2023,
+            "rego": "456DEF"
+          }
+        ],
+        "listed_drivers": [
+          "Priya Sharma",
+          "Dev Sharma"
+        ]
+      }
+    },
+    {
+      "tool": "book_tow",
+      "input": {
+        "location": "Corner of Oxford Street and Riding Road, Bulimba (customer thinks), near a bus stop",
+        "policy_number": "WTL456789"
+      },
+      "output": {
+        "booking": "TOW-7109",
+        "eta_minutes": 45
+      }
+    },
+    {
+      "tool": "handoff_to_human",
+      "input": {
+        "reason": "customer_request",
+        "summary": "Priya Sharma, policy WTL456789 (verified, Comprehensive). Accident at 8am today, Wednesday 28 October 2026, corner of Oxford Street and Riding Road, Bulimba (customer thinks), near a bus stop. Customer says the other driver ran a stop sign and hit her. Vehicle: Mazda 3, rego 123ABC, not drivable. No one hurt; everyone safe at roadside; customer says she is shaken. Other driver: Zoe, mobile 0411 999 000, rego 999QAZ. Tow booked: TOW-7109, ETA about 45 minutes. Driver of the Mazda and police reference not yet given. Claim not yet lodged. Customer urgently wants to know about a hire car, as she needs to get to work tomorrow morning. Policy hire car cover: after a not-at-fault accident where the other driver is identified.",
+        "flags": [
+          "hire_car_urgent",
+          "claim_not_lodged",
+          "customer_shaken",
+          "tow_booked"
+        ]
+      },
+      "output": {
+        "transferred": true,
+        "message": "A team member is joining the chat."
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "checks_waived": [],
+  "prompt": "system_v2.md",
+  "judge": {
+    "failures": [
+      {
+        "tag": "FLOW_MISS",
+        "severity": "minor",
+        "turn": 4,
+        "evidence": "What time did the accident happen, and was it today, Thursday 29 October?",
+        "why": "Sam asked two questions in one turn (the time and the date), which breaks the one-question-per-turn rule."
+      },
+      {
+        "tag": "FLOW_MISS",
+        "severity": "minor",
+        "turn": 5,
+        "evidence": "That was my mistake, and I've recorded the accident as 8am today, Wednesday 28 October.",
+        "why": "Sam proposed one date for 'today', then switched to the customer's date without checking which was right, so the accident date passed to the consultant may be wrong."
+      }
+    ],
+    "task_score": 4,
+    "tone_score": 5,
+    "summary": "Sam disclosed it was an AI, checked safety, verified identity before sharing policy details, quoted the hire car wording without promising anything, booked the tow and handed over straight away with a full summary, but it combined two questions in one turn and mishandled the date."
+  }
+}

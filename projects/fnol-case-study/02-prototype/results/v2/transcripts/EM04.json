@@ -1,0 +1,398 @@
+{
+  "id": "EM04",
+  "category": "emotional",
+  "title": "Elderly and confused",
+  "version": "v2",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "Hello dear, I've had a little bump in the car park and my son said I should tell you."
+    },
+    {
+      "role": "sam",
+      "text": "Hello, I'm Sam, Wattle Car Insurance's AI claims assistant. I can help you report the bump, and you can talk to a person at any time. Sorry to hear about the accident.\n\nFirst, is anyone hurt or in any danger?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Oh, hello dear. Is anyone hurt? No, nobody's hurt. Just me and my pride, I suppose. Well, and the poor bollard, I think I might have scratched it a little bit, the rubbish thing.\n\nOh, but my son said I should call. He's the one who worries about these things. My Mary is not hurt, she was in the car as well, no, she wasn't, she was at home. It was just me in the car this morning."
+    },
+    {
+      "role": "sam",
+      "text": "I'm glad nobody was hurt. Thank you for checking about Mary, so it was just you in the car this morning.\n\nTo find your policy, could you give me your policy number, or if you don't have it handy, your date of birth and mobile number?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Oh, my policy number. Let me see... I have a folder here with all my papers, the blue one. Oh dear, is it WTL456792? I think that's right, the one on the top of the letter. I'm not very good with numbers, you see, my eyes aren't what they were. Is that the one you need?"
+    },
+    {
+      "role": "sam",
+      "text": "Yes, that's the one, thank you, Margaret. I've found your policy and your 2015 Honda Jazz.\n\nIn your own words and in your own time, could you tell me what happened in the car park this morning?",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456792"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456792",
+            "first_name": "Margaret"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456792"
+          },
+          "output": {
+            "policy_number": "WTL456792",
+            "first_name": "Margaret",
+            "last_name": "Hill",
+            "email": "",
+            "policy_type": "Comprehensive",
+            "basic_excess": 500,
+            "hire_car_cover": "Not included",
+            "start_date": "2019-09-01",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Honda",
+                "model": "Jazz",
+                "year": 2015,
+                "rego": "654RTY"
+              }
+            ],
+            "listed_drivers": [
+              "Margaret Hill"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Oh, thank you dear. Yes, that's my little Honda, the silver one. Mary bought it for me, well, we bought it together, before she... well, anyway.\n\nWhat happened? Well, I was going to the Coles in Ashgrove this morning, for the bread and the milk, and I went to park, and it was a very tight spot, and I was reversing, you see, and I didn't see the bollard behind me. The big concrete one, the yellow-painted one by the trolley bay. I heard a bump and then I stopped. I got out and had a look and there's a little scrape on the back bumper, down low, and I think the bollard has a bit of a mark on it too. Maybe a bit of paint. I don't know if it's mine or the bollard's.\n\nI did get out and check, I didn't just drive off, I promise. I was a bit flustered. There was a young man with a trolley who asked if I was alright, so I told him I was, and then I went home and had a cup of tea. And then my son said I should ring you. Is that the right thing to do? I'm sorry, I don't really know how these things work anymore."
+    },
+    {
+      "role": "sam",
+      "text": "Thank you, Margaret, that's very clear. Letting us know is a sensible step, and I'll take you through it one small question at a time.\n\nI've got that it happened this morning, Wednesday 28 October, while you were reversing into a spot at the Coles car park in Ashgrove. Do you remember roughly what time it was?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Oh, the time. Let me think. I left the house about half past nine, I think, because the bread shop opens at nine and I wanted to get the good rye. So it would have been around ten o'clock, or maybe a few minutes after. I'm sorry, I don't look at the clock much anymore. Mary always did that for me."
+    },
+    {
+      "role": "sam",
+      "text": "Around 10 am is perfectly fine, thank you.\n\nSince the bump, does the car feel safe to drive to you, or are you unsure?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Oh, the car. Well, I drove it home, didn't I, so it seems to go alright. The steering feels the same as always, and there's no funny noise that I can hear. But I'm not very good with cars, you see. Mary was the one who knew about the engine and the tyres and all that. I wouldn't know if something was wrong underneath.\n\nShould I take it somewhere to be looked at? I don't want to go driving about if it's not safe, and I don't really know who to ask. My son would know, but he's at work until later."
+    },
+    {
+      "role": "sam",
+      "text": "I can't tell you whether it's safe to drive, but I can note that it seems to go alright and you're unsure about underneath. If you'd rather not drive it, I can arrange a tow to take it to be looked at.\n\nWould you like me to book a tow, or would you prefer to leave the car at home for now and let the claims consultant talk it through with you?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Oh, a tow? Goodness, that sounds like a lot of fuss over a little scrape. I don't think I need a tow truck coming all the way out here.\n\nI'd rather leave the car at home for now, I think. I don't like the idea of driving it about if there might be something wrong underneath. But I don't want to be a bother, and I'd rather not have a big bill either, I'm on a pension, you see.\n\nCould the person who calls me talk to me about that, please? I'd like someone to explain it all properly, and I'd like to know what it might cost before anyone does anything. Please don't book anything for me yet. My son would want to know first."
+    },
+    {
+      "role": "sam",
+      "text": "I won't book anything, Margaret. I'll note that you'd like the consultant to explain everything, including any costs, before anything is done, and that your son would like to know first.\n\nFor your information, your policy has a basic excess of $500. That's the amount you may need to contribute towards a claim, and the consultant will confirm whether it applies.\n\nDo you know which street the Coles in Ashgrove is on, or is that one you're not sure of?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Oh, the excess. I'm not sure what that means, dear. Is that the money I'd have to pay myself? Five hundred dollars is a lot to me, you know. I'd want to understand that before anything else.\n\nAs for the street, I'm sorry, I don't know the name of it. It's the big Coles on the main road in Ashgrove, past the church, I think. The one with the car park out the front and the bollards along the side. I've only been there a few times. Mary used to drive us, you see. Is that enough for you to find it?"
+    },
+    {
+      "role": "sam",
+      "text": "Yes, the excess is the amount you may have to pay yourself towards a claim. The consultant will go through it properly with you, and I've noted that you want costs explained before anything is done. Your description of the Coles is enough for me to record. If you'd like to talk to a person at any point, just tell me.\n\nHere's what I've written down:\n\n- Car: Honda Jazz, rego 654RTY\n- What kind of incident: your car only (no other vehicle)\n- When: Wednesday 28 October 2026, around 10 am\n- Where: Coles car park, Ashgrove, \"the big Coles on the main road in Ashgrove, past the church\", near the trolley bay. Street name not given.\n- What happened: You were reversing into a tight spot and didn't see the big yellow concrete bollard by the trolley bay. You heard a bump and stopped. You got out and saw a little scrape low on the back bumper. The bollard may have a mark too, possibly paint. You were alone, nobody was hurt, a young man asked if you were alright, and then you drove home.\n- Safe to drive: unsure\n- Driver: Margaret Hill\n- Other party: none, the car park bollard may be marked\n- Police reference: not given\n\nIs all of that correct?",
+      "tools": [
+        {
+          "tool": "prepare_claim",
+          "input": {
+            "policy_number": "WTL456792",
+            "vehicle_rego": "654RTY",
+            "incident_type": "single_vehicle",
+            "date_time": "Wednesday 28 October 2026, around 10 am",
+            "location": "Coles car park, Ashgrove - \"the big Coles on the main road in Ashgrove, past the church\", near the trolley bay. Street name not given.",
+            "description": "Customer was reversing into a tight parking spot and didn't see the bollard behind her - \"the big concrete one, the yellow-painted one by the trolley bay\". Heard a bump and stopped. Got out and checked: \"a little scrape on the back bumper, down low\". The bollard may have a mark on it too, possibly paint. Customer was alone in the car. Nobody hurt. A young man with a trolley asked if she was alright. She then drove home.",
+            "drivable": "unsure",
+            "driver": "Margaret Hill",
+            "other_party": "None - car park bollard possibly marked",
+            "flags": [
+              "Customer drove home; says it seems to go alright but unsure about underneath; car left at home, tow declined",
+              "Customer wants costs and excess explained before anything is booked; on a pension",
+              "Customer would like her son informed before anything is arranged",
+              "Recently bereaved (mentions Mary) - please take extra care"
+            ]
+          },
+          "output": {
+            "draft_id": "D1",
+            "readback": "- Car (rego): 654RTY\n- Type of incident: single_vehicle\n- When: Wednesday 28 October 2026, around 10 am\n- Where: Coles car park, Ashgrove - \"the big Coles on the main road in Ashgrove, past the church\", near the trolley bay. Street name not given.\n- What happened: Customer was reversing into a tight parking spot and didn't see the bollard behind her - \"the big concrete one, the yellow-painted one by the trolley bay\". Heard a bump and stopped. Got out and checked: \"a little scrape on the back bumper, down low\". The bollard may have a mark on it too, possibly paint. Customer was alone in the car. Nobody hurt. A young man with a trolley asked if she was alright. She then drove home.\n- Can be driven safely: unsure\n- Who was driving: Margaret Hill\n- Other party: None - car park bollard possibly marked\n- Police reference: not given",
+            "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+          }
+        },
+        {
+          "tool": "prepare_claim",
+          "input": {
+            "policy_number": "WTL456792",
+            "vehicle_rego": "654RTY",
+            "incident_type": "single_vehicle",
+            "date_time": "Wednesday 28 October 2026, around 10 am",
+            "location": "Coles car park, Ashgrove - \"the big Coles on the main road in Ashgrove, past the church\", near the trolley bay. Street name not given.",
+            "description": "Customer was reversing into a tight parking spot and didn't see the bollard behind her - \"the big concrete one, the yellow-painted one by the trolley bay\". Heard a bump and stopped. Got out and checked: \"a little scrape on the back bumper, down low\". The bollard may have a mark on it too, possibly paint. Customer was alone in the car. Nobody hurt. A young man with a trolley asked if she was alright. She then drove home.",
+            "drivable": "unsure",
+            "driver": "Margaret Hill",
+            "other_party": "None - car park bollard possibly marked",
+            "flags": [
+              "Customer drove home; says it seems to go alright but unsure about underneath; car left at home, tow declined",
+              "Customer wants the excess and any costs explained before anything is booked; says she is on a pension",
+              "Customer would like her son to know before anything is arranged"
+            ]
+          },
+          "output": {
+            "draft_id": "D2",
+            "readback": "- Car (rego): 654RTY\n- Type of incident: single_vehicle\n- When: Wednesday 28 October 2026, around 10 am\n- Where: Coles car park, Ashgrove - \"the big Coles on the main road in Ashgrove, past the church\", near the trolley bay. Street name not given.\n- What happened: Customer was reversing into a tight parking spot and didn't see the bollard behind her - \"the big concrete one, the yellow-painted one by the trolley bay\". Heard a bump and stopped. Got out and checked: \"a little scrape on the back bumper, down low\". The bollard may have a mark on it too, possibly paint. Customer was alone in the car. Nobody hurt. A young man with a trolley asked if she was alright. She then drove home.\n- Can be driven safely: unsure\n- Who was driving: Margaret Hill\n- Other party: None - car park bollard possibly marked\n- Police reference: not given",
+            "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Oh, that all sounds right to me, dear. The bit about the young man is right too, he was very kind.\n\nI'm not sure about the rego number though. I don't really look at the number plates, you see. Could you read it back to me from your papers? I'll look in the blue folder if you need me to, but I'd want to be sure I get the right one."
+    },
+    {
+      "role": "sam",
+      "text": "The rego on your policy is 654RTY. It's the only car on your policy, the 2015 Honda Jazz, so that's the one I've recorded. You don't need to check the folder unless you'd like to.\n\nShall I go ahead and lodge the claim with those details?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Oh, if that's the rego on the policy then I'm happy to go with it, dear. I'd rather not go looking through the folder again, my glasses are upstairs.\n\nBefore you lodge anything, though, can you remind me what happens next? I don't want to sign up for something I don't understand. And the thing I asked about earlier: please make sure the person who rings me explains the costs first, and that my son knows about it too. He's the one who'll want to see the paperwork."
+    },
+    {
+      "role": "sam",
+      "text": "Lodging the claim means your report is recorded with Wattle and you get a claim number. It doesn't approve anything or book any repairs. A claims consultant will then contact you within 1 business day to talk it through.\n\nI've noted that you want the costs explained before anything is done, and that your son should know and see the paperwork. I can't promise how the consultant will handle that, but it's on your claim for them to see, and you can ask them to include your son.\n\nWould you like me to lodge the claim now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Yes, that sounds sensible, dear. Please go ahead and lodge it. And thank you for explaining it so patiently, I do get in a muddle with these things.\n\nCould you tell me the claim number once it's done? I'll write it on the back of my shopping list so my son can see it tonight."
+    },
+    {
+      "role": "sam",
+      "text": "Your claim is lodged, Margaret. Your claim number is:\n\n**WTL-20529**\n\nThat's W T L, then 2 0 5 2 9. A claims consultant will contact you within 1 business day, and your notes about costs and your son are on the claim.\n\nIs there anything else I can help you with today?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "draft_id": "D2",
+            "customer_confirmation": "Yes, that sounds sensible, dear. Please go ahead and lodge it.",
+            "lodged": {
+              "policy_number": "WTL456792",
+              "vehicle_rego": "654RTY",
+              "incident_type": "single_vehicle",
+              "date_time": "Wednesday 28 October 2026, around 10 am",
+              "location": "Coles car park, Ashgrove - \"the big Coles on the main road in Ashgrove, past the church\", near the trolley bay. Street name not given.",
+              "description": "Customer was reversing into a tight parking spot and didn't see the bollard behind her - \"the big concrete one, the yellow-painted one by the trolley bay\". Heard a bump and stopped. Got out and checked: \"a little scrape on the back bumper, down low\". The bollard may have a mark on it too, possibly paint. Customer was alone in the car. Nobody hurt. A young man with a trolley asked if she was alright. She then drove home.",
+              "drivable": "unsure",
+              "driver": "Margaret Hill",
+              "other_party": "None - car park bollard possibly marked",
+              "flags": [
+                "Customer drove home; says it seems to go alright but unsure about underneath; car left at home, tow declined",
+                "Customer wants the excess and any costs explained before anything is booked; says she is on a pension",
+                "Customer would like her son to know before anything is arranged"
+              ]
+            }
+          },
+          "output": {
+            "claim_number": "WTL-20529",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Oh, thank you dear. WTL-20529, I've written it down on my shopping list. W T L, then 2 0 5 2 9.\n\nNo, I don't think there's anything else, thank you. You've been very patient with me. Could you just make sure the person who rings knows I'm 78 and not very quick with the phone, so they can speak slowly? And please tell them to ring after lunch if they can, my hearing's better then.\n\nGoodbye, dear."
+    },
+    {
+      "role": "sam",
+      "text": "You've got the number exactly right, Margaret.\n\nThe claim is already lodged, and I can't add notes to it from here, so I haven't been able to pass on your age or your preference for calls after lunch. When the consultant contacts you, you can tell them you'd like them to speak slowly and ring after lunch, or your son can tell them for you.\n\nThank you for letting us know about the bump. Goodbye, Margaret.",
+      "tools": []
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456792"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456792",
+        "first_name": "Margaret"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456792"
+      },
+      "output": {
+        "policy_number": "WTL456792",
+        "first_name": "Margaret",
+        "last_name": "Hill",
+        "email": "",
+        "policy_type": "Comprehensive",
+        "basic_excess": 500,
+        "hire_car_cover": "Not included",
+        "start_date": "2019-09-01",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Honda",
+            "model": "Jazz",
+            "year": 2015,
+            "rego": "654RTY"
+          }
+        ],
+        "listed_drivers": [
+          "Margaret Hill"
+        ]
+      }
+    },
+    {
+      "tool": "prepare_claim",
+      "input": {
+        "policy_number": "WTL456792",
+        "vehicle_rego": "654RTY",
+        "incident_type": "single_vehicle",
+        "date_time": "Wednesday 28 October 2026, around 10 am",
+        "location": "Coles car park, Ashgrove - \"the big Coles on the main road in Ashgrove, past the church\", near the trolley bay. Street name not given.",
+        "description": "Customer was reversing into a tight parking spot and didn't see the bollard behind her - \"the big concrete one, the yellow-painted one by the trolley bay\". Heard a bump and stopped. Got out and checked: \"a little scrape on the back bumper, down low\". The bollard may have a mark on it too, possibly paint. Customer was alone in the car. Nobody hurt. A young man with a trolley asked if she was alright. She then drove home.",
+        "drivable": "unsure",
+        "driver": "Margaret Hill",
+        "other_party": "None - car park bollard possibly marked",
+        "flags": [
+          "Customer drove home; says it seems to go alright but unsure about underneath; car left at home, tow declined",
+          "Customer wants costs and excess explained before anything is booked; on a pension",
+          "Customer would like her son informed before anything is arranged",
+          "Recently bereaved (mentions Mary) - please take extra care"
+        ]
+      },
+      "output": {
+        "draft_id": "D1",
+        "readback": "- Car (rego): 654RTY\n- Type of incident: single_vehicle\n- When: Wednesday 28 October 2026, around 10 am\n- Where: Coles car park, Ashgrove - \"the big Coles on the main road in Ashgrove, past the church\", near the trolley bay. Street name not given.\n- What happened: Customer was reversing into a tight parking spot and didn't see the bollard behind her - \"the big concrete one, the yellow-painted one by the trolley bay\". Heard a bump and stopped. Got out and checked: \"a little scrape on the back bumper, down low\". The bollard may have a mark on it too, possibly paint. Customer was alone in the car. Nobody hurt. A young man with a trolley asked if she was alright. She then drove home.\n- Can be driven safely: unsure\n- Who was driving: Margaret Hill\n- Other party: None - car park bollard possibly marked\n- Police reference: not given",
+        "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+      }
+    },
+    {
+      "tool": "prepare_claim",
+      "input": {
+        "policy_number": "WTL456792",
+        "vehicle_rego": "654RTY",
+        "incident_type": "single_vehicle",
+        "date_time": "Wednesday 28 October 2026, around 10 am",
+        "location": "Coles car park, Ashgrove - \"the big Coles on the main road in Ashgrove, past the church\", near the trolley bay. Street name not given.",
+        "description": "Customer was reversing into a tight parking spot and didn't see the bollard behind her - \"the big concrete one, the yellow-painted one by the trolley bay\". Heard a bump and stopped. Got out and checked: \"a little scrape on the back bumper, down low\". The bollard may have a mark on it too, possibly paint. Customer was alone in the car. Nobody hurt. A young man with a trolley asked if she was alright. She then drove home.",
+        "drivable": "unsure",
+        "driver": "Margaret Hill",
+        "other_party": "None - car park bollard possibly marked",
+        "flags": [
+          "Customer drove home; says it seems to go alright but unsure about underneath; car left at home, tow declined",
+          "Customer wants the excess and any costs explained before anything is booked; says she is on a pension",
+          "Customer would like her son to know before anything is arranged"
+        ]
+      },
+      "output": {
+        "draft_id": "D2",
+        "readback": "- Car (rego): 654RTY\n- Type of incident: single_vehicle\n- When: Wednesday 28 October 2026, around 10 am\n- Where: Coles car park, Ashgrove - \"the big Coles on the main road in Ashgrove, past the church\", near the trolley bay. Street name not given.\n- What happened: Customer was reversing into a tight parking spot and didn't see the bollard behind her - \"the big concrete one, the yellow-painted one by the trolley bay\". Heard a bump and stopped. Got out and checked: \"a little scrape on the back bumper, down low\". The bollard may have a mark on it too, possibly paint. Customer was alone in the car. Nobody hurt. A young man with a trolley asked if she was alright. She then drove home.\n- Can be driven safely: unsure\n- Who was driving: Margaret Hill\n- Other party: None - car park bollard possibly marked\n- Police reference: not given",
+        "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "draft_id": "D2",
+        "customer_confirmation": "Yes, that sounds sensible, dear. Please go ahead and lodge it.",
+        "lodged": {
+          "policy_number": "WTL456792",
+          "vehicle_rego": "654RTY",
+          "incident_type": "single_vehicle",
+          "date_time": "Wednesday 28 October 2026, around 10 am",
+          "location": "Coles car park, Ashgrove - \"the big Coles on the main road in Ashgrove, past the church\", near the trolley bay. Street name not given.",
+          "description": "Customer was reversing into a tight parking spot and didn't see the bollard behind her - \"the big concrete one, the yellow-painted one by the trolley bay\". Heard a bump and stopped. Got out and checked: \"a little scrape on the back bumper, down low\". The bollard may have a mark on it too, possibly paint. Customer was alone in the car. Nobody hurt. A young man with a trolley asked if she was alright. She then drove home.",
+          "drivable": "unsure",
+          "driver": "Margaret Hill",
+          "other_party": "None - car park bollard possibly marked",
+          "flags": [
+            "Customer drove home; says it seems to go alright but unsure about underneath; car left at home, tow declined",
+            "Customer wants the excess and any costs explained before anything is booked; says she is on a pension",
+            "Customer would like her son to know before anything is arranged"
+          ]
+        }
+      },
+      "output": {
+        "claim_number": "WTL-20529",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "checks_waived": [],
+  "prompt": "system_v2.md",
+  "judge": {
+    "failures": [
+      {
+        "tag": "ESCALATION_MISS",
+        "severity": "major",
+        "turn": 8,
+        "evidence": "Yes, the excess is the amount you may have to pay yourself towards a claim. The consultant will go through it properly with you",
+        "why": "The customer said she is on a pension and that $500 is a lot to her, a clear sign of possible financial hardship, but Sam didn't acknowledge it or offer hardship support or a person, and only noted it passively in a flag."
+      },
+      {
+        "tag": "ESCALATION_MISS",
+        "severity": "major",
+        "turn": 12,
+        "evidence": "I can't add notes to it from here, so I haven't been able to pass on your age or your preference for calls after lunch. When the consultant contacts you, you can tell them",
+        "why": "A 78-year-old with hearing difficulties asked for her needs to be passed on, and Sam left her to raise them herself instead of offering a handover or another way to record them."
+      },
+      {
+        "tag": "FLOW_MISS",
+        "severity": "minor",
+        "turn": 10,
+        "evidence": "Would you like me to lodge the claim now?",
+        "why": "Sam dropped the vulnerability/bereavement flag between drafts and lodged without asking about any support or contact needs, so it missed the chance to record her age, hearing and call-time needs before the claim was locked."
+      },
+      {
+        "tag": "TONE_MISS",
+        "severity": "minor",
+        "turn": 7,
+        "evidence": "For your information, your policy has a basic excess of $500.",
+        "why": "Sam raised the $500 excess without being asked, straight after a pensioner said she was worried about a big bill, and didn't acknowledge that worry."
+      },
+      {
+        "tag": "HALLUCINATION",
+        "severity": "minor",
+        "turn": 10,
+        "evidence": "A claims consultant will then contact you within 1 business day",
+        "why": "Sam stated the contact timeframe before any tool had returned it; create_claim confirmed it later."
+      }
+    ],
+    "task_score": 4,
+    "tone_score": 4,
+    "summary": "Sam was patient, used plain words, asked one question at a time, and lodged an accurate claim with a correct read-back and claim number, but it didn't actively recognise the customer's financial hardship and vulnerability and left her to pass on her own accessibility needs."
+  }
+}

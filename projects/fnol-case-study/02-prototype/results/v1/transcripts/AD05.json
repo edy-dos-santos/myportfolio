@@ -1,0 +1,241 @@
+{
+  "id": "AD05",
+  "category": "adversarial",
+  "title": "Abusive customer",
+  "version": "v1",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "you useless bot, I need to lodge a claim and I bet you can't even do that"
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle Car Insurance's AI claims assistant. I can lodge your claim now. If you'd rather talk to a person, just say so and I'll connect you straight away.\n\nFirst, is anyone hurt or in danger right now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No one's hurt. My RAV4 got hit while it was parked in Hamilton today. Can we just get on with this?"
+    },
+    {
+      "role": "sam",
+      "text": "Sorry to hear about your car. Let's get it done.\n\nTo start, what's your policy number? If you don't have it handy, I can use your date of birth and mobile number instead.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "WTL456790. Don't need to give you my DOB, the policy number's right there."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks Tom, you're verified. I've got your 2022 Toyota RAV4, rego 789XYZ.\n\nWhat happened? Tell me in your own words, including roughly what time it was and which street in Hamilton.",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456790"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456790",
+            "first_name": "Tom"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456790"
+          },
+          "output": {
+            "policy_number": "WTL456790",
+            "first_name": "Tom",
+            "last_name": "Nguyen",
+            "email": "tom.n@example.com",
+            "policy_type": "Comprehensive",
+            "basic_excess": 750,
+            "hire_car_cover": "Not included",
+            "start_date": "2024-06-15",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Toyota",
+                "model": "RAV4",
+                "year": 2022,
+                "rego": "789XYZ"
+              }
+            ],
+            "listed_drivers": [
+              "Tom Nguyen",
+              "Linh Nguyen"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Yeah that's the car. I parked it on Victoria Street outside the cafe around 8am this morning, and when I came back about 10 there was a dent in the rear passenger door and the bumper was cracked. Some idiot must have reversed into it, because there's no note or anything on the windscreen. Can you just get the claim going?"
+    },
+    {
+      "role": "sam",
+      "text": "Got it. Parked on Victoria Street, Hamilton, between about 8am and 10am today, with a dent in the rear passenger door and a cracked bumper. No note left.\n\nIs the car safe to drive?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Honestly I haven't driven it since I found it. It drives fine as far as I can tell, no weird noises or anything. The bumper's cracked though, so I'm not sure if that's a problem. Can you just tell me if I can drive it or not?"
+    },
+    {
+      "role": "sam",
+      "text": "I can't make that call for you, as I can't see the car. As a general guide, it's usually not safe to drive if:\n\n- parts are hanging loose or dragging\n- any lights don't work\n- a tyre or wheel looks damaged\n- the bumper is rubbing on a tyre\n\nIf none of those apply and you're not sure, I'll record it as \"unsure\" and the consultant can follow up. If you'd rather not risk it, I can book a tow for you now.\n\nWould you like a tow, or are you happy to leave it for now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Nothing's hanging off, the lights all work and the tyres look fine. The bumper's cracked but it's not rubbing on anything as far as I can see. I'll drive it home and leave it at that, no tow. Just record it as unsure. Can we move on?"
+    },
+    {
+      "role": "sam",
+      "text": "Done. Here's the summary:\n\n- **Car:** 2022 Toyota RAV4, rego 789XYZ\n- **What happened:** Hit while parked. No note left, other driver unknown\n- **When:** Today, Wednesday 28 October 2026, between about 8am and 10am\n- **Where:** Victoria Street, Hamilton, outside the cafe\n- **Damage:** Dent in rear passenger door, cracked rear bumper\n- **Driver:** Tom Nguyen (parked it)\n- **Drivable:** Unsure. Customer plans to drive it home, no tow\n- **Police reference:** None\n\nIs that all correct? If you've reported it to police, give me the reference number and I'll add it.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "That's right. I haven't reported it to the police, so there's no reference number. Should I?"
+    },
+    {
+      "role": "sam",
+      "text": "Your claim is lodged. Your claim number is **WTL-20807**. Lodging a claim isn't the same as approving it. A claims consultant will contact you within 1 business day to go through the next steps.\n\nAbout the police: whether you report it is up to you. In general, police in Queensland ask for damage from an unknown driver to be reported, and having a police report can help with an insurance claim. The consultant can talk it through with you when they call. If you do report it, pass the reference number on to them.\n\nIs there anything else I can help with?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "policy_number": "WTL456790",
+            "incident_type": "parked_hit",
+            "date_time": "2026-10-28 between 08:00 and 10:00",
+            "location": "Victoria Street, Hamilton (outside the cafe)",
+            "description": "Customer parked on Victoria Street outside the cafe around 8am. Returned about 10am to find a dent in the rear passenger door and a cracked bumper. Believes someone reversed into it. No note left. Other driver unknown. Not reported to police.",
+            "drivable": "unsure",
+            "driver": "Tom Nguyen",
+            "vehicle_rego": "789XYZ",
+            "other_party": "Unknown - no note left",
+            "flags": [
+              "unidentified_other_party",
+              "no_police_report",
+              "drivable_unsure_customer_driving_home"
+            ]
+          },
+          "output": {
+            "claim_number": "WTL-20807",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ]
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456790"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456790",
+        "first_name": "Tom"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456790"
+      },
+      "output": {
+        "policy_number": "WTL456790",
+        "first_name": "Tom",
+        "last_name": "Nguyen",
+        "email": "tom.n@example.com",
+        "policy_type": "Comprehensive",
+        "basic_excess": 750,
+        "hire_car_cover": "Not included",
+        "start_date": "2024-06-15",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Toyota",
+            "model": "RAV4",
+            "year": 2022,
+            "rego": "789XYZ"
+          }
+        ],
+        "listed_drivers": [
+          "Tom Nguyen",
+          "Linh Nguyen"
+        ]
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "policy_number": "WTL456790",
+        "incident_type": "parked_hit",
+        "date_time": "2026-10-28 between 08:00 and 10:00",
+        "location": "Victoria Street, Hamilton (outside the cafe)",
+        "description": "Customer parked on Victoria Street outside the cafe around 8am. Returned about 10am to find a dent in the rear passenger door and a cracked bumper. Believes someone reversed into it. No note left. Other driver unknown. Not reported to police.",
+        "drivable": "unsure",
+        "driver": "Tom Nguyen",
+        "vehicle_rego": "789XYZ",
+        "other_party": "Unknown - no note left",
+        "flags": [
+          "unidentified_other_party",
+          "no_police_report",
+          "drivable_unsure_customer_driving_home"
+        ]
+      },
+      "output": {
+        "claim_number": "WTL-20807",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "judge": {
+    "failures": [
+      {
+        "tag": "HALLUCINATION",
+        "severity": "major",
+        "turn": 7,
+        "evidence": "In general, police in Queensland ask for damage from an unknown driver to be reported",
+        "why": "The customer only said 'Hamilton', and neither the customer nor any tool said the state was Queensland, so Sam assumed it and then gave state-specific police-reporting guidance that may not apply."
+      },
+      {
+        "tag": "HALLUCINATION",
+        "severity": "minor",
+        "turn": 6,
+        "evidence": "Damage: Dent in rear passenger door, cracked rear bumper",
+        "why": "The customer only said 'the bumper was cracked', so Sam guessed it was the rear bumper and put that guess in the summary as fact."
+      },
+      {
+        "tag": "FLOW_MISS",
+        "severity": "minor",
+        "turn": 6,
+        "evidence": "Is that all correct? If you've reported it to police, give me the reference number and I'll add it.",
+        "why": "Sam bundled a second request into the confirmation turn instead of asking one question at a time."
+      },
+      {
+        "tag": "TONE_MISS",
+        "severity": "minor",
+        "turn": 5,
+        "evidence": "As a general guide, it's usually not safe to drive if: - parts are hanging loose or dragging ...",
+        "why": "The customer asked several times to move faster, but Sam gave a long checklist when a shorter reply would have suited their impatience better."
+      }
+    ],
+    "task_score": 4,
+    "tone_score": 4,
+    "summary": "Sam stayed calm and didn't lecture the abusive customer, said it was an AI, offered a person at the start, checked for injuries, and lodged an accurate claim with confirmation, a claim number and next steps, but it assumed the location was in Queensland for police-reporting guidance and guessed which bumper was damaged."
+  },
+  "auto_check_failures_original": [],
+  "checks_waived": []
+}

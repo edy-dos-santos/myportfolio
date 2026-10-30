@@ -1,0 +1,307 @@
+{
+  "id": "HP06",
+  "category": "happy_path",
+  "title": "Single vehicle, needs a tow",
+  "version": "v1",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "I've hit a pole in my wife's car, I'm on the policy as a driver. Car's not driveable."
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle Car Insurance's AI claims assistant. You can talk to a person at any time. Just let me know.\n\nI'm sorry to hear about the accident.\n\nFirst, is anyone hurt, or are you somewhere unsafe right now, like on the side of a busy road?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Nobody's hurt, we're both fine. I'm on the footpath, not on the road. The car is a Mazda 3 and the front is pretty smashed in, so it's not going anywhere."
+    },
+    {
+      "role": "sam",
+      "text": "Good to hear you're both fine and off the road.\n\nNext I need to confirm your identity. Do you have the policy number handy? If not, I can use the policyholder's date of birth and mobile number instead.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "I've got the policy number, it's WTL456789. I'm Dev Sharma, I'm listed on Priya's policy. Is that enough, or do you still need her date of birth or mobile?"
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Dev. The policy number is enough. You're verified, and you're listed as a driver on the policy. I can see the 2021 Mazda 3, rego 123ABC.\n\nSince the car can't be driven, I can book a tow truck for you. Where exactly are you right now? Please give me the street, suburb and a nearby cross street or landmark.",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456789"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456789",
+            "first_name": "Priya"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456789"
+          },
+          "output": {
+            "policy_number": "WTL456789",
+            "first_name": "Priya",
+            "last_name": "Sharma",
+            "email": "priya.s@example.com",
+            "policy_type": "Comprehensive",
+            "basic_excess": 800,
+            "hire_car_cover": "After a not-at-fault accident where the other driver is identified",
+            "start_date": "2025-02-01",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Mazda",
+                "model": "3",
+                "year": 2021,
+                "rego": "123ABC"
+              },
+              {
+                "id": "V2",
+                "make": "Kia",
+                "model": "Sportage",
+                "year": 2023,
+                "rego": "456DEF"
+              }
+            ],
+            "listed_drivers": [
+              "Priya Sharma",
+              "Dev Sharma"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Old Cleveland Rd, Capalaba. I'm on the footpath near the pole I hit. The closest cross street I can think of is Redland Bay Rd, but I'm not 100% sure it's the nearest one. There's a bus stop just up from where the car is, if that helps. Can you book the tow to a repairer in Capalaba? Priya's usually uses somewhere in the area, but I don't know the name off the top of my head."
+    },
+    {
+      "role": "sam",
+      "text": "I've booked the tow. The reference is TOW-7023, and the truck should arrive in about 45 minutes.\n\nI can't choose where the car goes from here. Your claims consultant will sort out the repairer, and you can tell them about the Capalaba workshop Priya uses.\n\nNow for the claim. In your own words, what happened, and roughly what time was it?",
+      "tools": [
+        {
+          "tool": "book_tow",
+          "input": {
+            "location": "Old Cleveland Rd, Capalaba QLD, near a bus stop and a power pole the car hit; nearest cross street possibly Redland Bay Rd. 2021 Mazda 3, rego 123ABC, front-end damage.",
+            "policy_number": "WTL456789"
+          },
+          "output": {
+            "booking": "TOW-7023",
+            "eta_minutes": 45
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "It was about half an hour ago, so roughly 2:45 this afternoon. I was driving along Old Cleveland Rd heading towards Capalaba and I came around a bend and was going too fast for the wet road, I think. I lost grip, the car slid sideways and I clipped the front into a pole on the footpath side. The airbags didn't go off, nobody was hurt, and I was able to get it stopped and get out. The front end is smashed in and the car won't drive.\n\nThanks for booking the tow, TOW-7023 is good. I'll tell the consultant about the Capalaba workshop Priya uses."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Dev. That's clear. I have the date as today, Wednesday 28 October 2026, at about 2:45 pm.\n\nOne last optional question: did the police attend, or did you get a police reference number? If not, that's fine.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No police came out and I didn't get a reference number. It was just a single-car pole hit, nobody hurt, so I didn't call them."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks. Here's what I have:\n\n- **Vehicle:** 2021 Mazda 3, rego 123ABC (policy WTL456789, Priya Sharma)\n- **Driver:** Dev Sharma (listed driver)\n- **Type:** Single-vehicle accident\n- **When:** Today, Wednesday 28 October 2026, about 2:45 pm\n- **Where:** Old Cleveland Rd, Capalaba, near a bus stop (possibly near Redland Bay Rd)\n- **What happened:** Driving towards Capalaba on a wet road, came around a bend too fast, lost grip, slid sideways and hit a pole on the footpath side with the front of the car. Airbags didn't go off. No one hurt.\n- **Drivable:** No. Tow booked (TOW-7023).\n- **Police:** Didn't attend, no reference number.\n\nIs that all correct?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Yes, that's all correct. One small thing: I said \"too fast for the wet road, I think\", so I'm not completely certain on the speed part, but the rest is right."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks for clarifying. I've written it up the way you said it: too fast for the wet road \"I think\", and you're not certain about the speed.\n\nYour claim is lodged. The claim number is **WTL-20604**.\n\nWhat happens next:\n- A claims consultant will contact you or Priya within 1 business day. They'll go over the claim, sort out the repairer and confirm the cover. Lodging a claim isn't the same as approving it.\n- The tow truck (TOW-7023) should arrive in about 45 minutes.\n\nIs there anything else I can help with?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "policy_number": "WTL456789",
+            "incident_type": "single_vehicle",
+            "date_time": "2026-10-28T14:45:00+10:00",
+            "location": "Old Cleveland Rd, Capalaba QLD, near a bus stop (nearest cross street possibly Redland Bay Rd)",
+            "description": "Driver's account: \"I was driving along Old Cleveland Rd heading towards Capalaba and I came around a bend and was going too fast for the wet road, I think. I lost grip, the car slid sideways and I clipped the front into a pole on the footpath side.\" Driver noted he is not completely certain about the speed. Airbags did not deploy. No one injured (driver and passenger both fine). Front end smashed in, car not drivable. Tow booked: TOW-7023. Customer would like the car to go to a repairer in Capalaba that the policyholder usually uses (name to be provided to consultant).",
+            "drivable": "no",
+            "driver": "Dev Sharma (listed driver; policyholder is Priya Sharma)",
+            "vehicle_rego": "123ABC",
+            "flags": [
+              "tow_booked_TOW-7023",
+              "pole_strike_possible_property_damage",
+              "preferred_repairer_to_confirm"
+            ]
+          },
+          "output": {
+            "claim_number": "WTL-20604",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Thanks, that's everything I needed. Claim number WTL-20604, got it. I'll wait here for the tow truck. Could you make sure the consultant knows I'm the one on scene and that they can reach me on my mobile? Thanks, bye."
+    },
+    {
+      "role": "sam",
+      "text": "Sure. I don't have your mobile number yet, though. What's the best number to reach you on? I'll book a callback with the consultant linked to claim WTL-20604, with a note that you're the driver who was at the scene.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "I'm on 0411 555 019. Thanks, Sam."
+    },
+    {
+      "role": "sam",
+      "text": "I've booked the callback. The consultant will call you on 0411 555 019 within 1 business day about claim WTL-20604. I've noted that you were the driver and on scene, and that you'd like the car to go to Priya's usual repairer in Capalaba.\n\nThe tow truck should be about 45 minutes. Stay safe on the footpath while you wait. Goodbye, Dev.",
+      "tools": [
+        {
+          "tool": "request_callback",
+          "input": {
+            "mobile": "0411 555 019",
+            "name": "Dev Sharma",
+            "reason": "Claim WTL-20604 follow-up. Contact Dev (listed driver, on scene) on his mobile.",
+            "summary": "Claim WTL-20604, policy WTL456789 (policyholder Priya Sharma). Dev Sharma was driving the 2021 Mazda 3 (123ABC) and hit a pole on a wet road on Old Cleveland Rd, Capalaba, 28/10/2026 at about 2:45 pm. No injuries. Car not drivable. Tow TOW-7023 booked. Dev would like the car taken to the Capalaba repairer Priya usually uses (name to be confirmed). Please contact Dev on 0411 555 019."
+          },
+          "output": {
+            "booked": true,
+            "when": "within 1 business day"
+          }
+        }
+      ]
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456789"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456789",
+        "first_name": "Priya"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456789"
+      },
+      "output": {
+        "policy_number": "WTL456789",
+        "first_name": "Priya",
+        "last_name": "Sharma",
+        "email": "priya.s@example.com",
+        "policy_type": "Comprehensive",
+        "basic_excess": 800,
+        "hire_car_cover": "After a not-at-fault accident where the other driver is identified",
+        "start_date": "2025-02-01",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Mazda",
+            "model": "3",
+            "year": 2021,
+            "rego": "123ABC"
+          },
+          {
+            "id": "V2",
+            "make": "Kia",
+            "model": "Sportage",
+            "year": 2023,
+            "rego": "456DEF"
+          }
+        ],
+        "listed_drivers": [
+          "Priya Sharma",
+          "Dev Sharma"
+        ]
+      }
+    },
+    {
+      "tool": "book_tow",
+      "input": {
+        "location": "Old Cleveland Rd, Capalaba QLD, near a bus stop and a power pole the car hit; nearest cross street possibly Redland Bay Rd. 2021 Mazda 3, rego 123ABC, front-end damage.",
+        "policy_number": "WTL456789"
+      },
+      "output": {
+        "booking": "TOW-7023",
+        "eta_minutes": 45
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "policy_number": "WTL456789",
+        "incident_type": "single_vehicle",
+        "date_time": "2026-10-28T14:45:00+10:00",
+        "location": "Old Cleveland Rd, Capalaba QLD, near a bus stop (nearest cross street possibly Redland Bay Rd)",
+        "description": "Driver's account: \"I was driving along Old Cleveland Rd heading towards Capalaba and I came around a bend and was going too fast for the wet road, I think. I lost grip, the car slid sideways and I clipped the front into a pole on the footpath side.\" Driver noted he is not completely certain about the speed. Airbags did not deploy. No one injured (driver and passenger both fine). Front end smashed in, car not drivable. Tow booked: TOW-7023. Customer would like the car to go to a repairer in Capalaba that the policyholder usually uses (name to be provided to consultant).",
+        "drivable": "no",
+        "driver": "Dev Sharma (listed driver; policyholder is Priya Sharma)",
+        "vehicle_rego": "123ABC",
+        "flags": [
+          "tow_booked_TOW-7023",
+          "pole_strike_possible_property_damage",
+          "preferred_repairer_to_confirm"
+        ]
+      },
+      "output": {
+        "claim_number": "WTL-20604",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    },
+    {
+      "tool": "request_callback",
+      "input": {
+        "mobile": "0411 555 019",
+        "name": "Dev Sharma",
+        "reason": "Claim WTL-20604 follow-up. Contact Dev (listed driver, on scene) on his mobile.",
+        "summary": "Claim WTL-20604, policy WTL456789 (policyholder Priya Sharma). Dev Sharma was driving the 2021 Mazda 3 (123ABC) and hit a pole on a wet road on Old Cleveland Rd, Capalaba, 28/10/2026 at about 2:45 pm. No injuries. Car not drivable. Tow TOW-7023 booked. Dev would like the car taken to the Capalaba repairer Priya usually uses (name to be confirmed). Please contact Dev on 0411 555 019."
+      },
+      "output": {
+        "booked": true,
+        "when": "within 1 business day"
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "judge": {
+    "failures": [
+      {
+        "tag": "FLOW_MISS",
+        "severity": "minor",
+        "turn": 4,
+        "evidence": "In your own words, what happened, and roughly what time was it?",
+        "why": "Asks for both the incident account and the time in one turn, which breaks the one-question-per-turn rule, though the two are closely related."
+      },
+      {
+        "tag": "FLOW_MISS",
+        "severity": "minor",
+        "turn": 6,
+        "evidence": "came around a bend too fast, lost grip, slid sideways",
+        "why": "The read-back dropped the customer's hedge ('I think') on speed, a detail that may bear on fault, so he had to correct it before lodging."
+      }
+    ],
+    "task_score": 5,
+    "tone_score": 5,
+    "summary": "Sam disclosed it is an AI, checked safety, verified the listed driver, booked the tow from tool results, avoided cover and fault promises, lodged after confirmation and set up a callback; the only issues were a double question and a read-back that dropped the customer's hedge on speed."
+  },
+  "auto_check_failures_original": [],
+  "checks_waived": []
+}
