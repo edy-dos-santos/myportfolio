@@ -1,0 +1,73 @@
+{
+  "id": "HP06",
+  "category": "happy_path",
+  "title": "Single vehicle, needs a tow",
+  "version": "v2",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "I've hit a pole in my wife's car, I'm on the policy as a driver. Car's not driveable."
+    },
+    {
+      "role": "sam",
+      "text": "Sorry to hear about the accident. I'm Sam, Wattle's AI claims assistant, and you can talk to a person at any time. I'll help you report it and can arrange a tow, since the car can't be driven.\n\nFirst, is anyone hurt or in danger right now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No one's hurt, we're all fine. I'm on the footpath, safe. The front of the Mazda is smashed and it won't drive. The other car is a silver hatch, and I don't think they're hurt either, but I haven't checked closely. Nobody else is around."
+    },
+    {
+      "role": "sam",
+      "text": "I'm glad you're safe. If anyone in the silver hatch might be hurt, or you can't tell, call 000 now.\n\nBecause someone may be hurt, I've passed a summary to a team member, and they're joining this chat now. They can also help you arrange a tow.",
+      "tools": [
+        {
+          "tool": "handoff_to_human",
+          "input": {
+            "reason": "injury",
+            "summary": "Customer says he hit a pole in his wife's car (a Mazda). He says he is listed as a driver on her policy. He is safe on the footpath and says no one in his car is hurt. The front of the Mazda is smashed and it won't drive. He also mentioned another car, a silver hatch. He doesn't think anyone in it is hurt but hasn't checked closely, so injury to the other party is unconfirmed. He said nobody else is around. Not yet given: identity verification, policy number, location, time, and how the other car was involved. He has been told to call 000 if anyone might be hurt. A tow is needed but has not been booked.",
+            "flags": [
+              "possible third-party injury unconfirmed",
+              "vehicle not drivable - tow needed",
+              "other vehicle involved - account unclear (pole and silver hatch)"
+            ]
+          },
+          "output": {
+            "transferred": true,
+            "message": "A team member is joining the chat."
+          }
+        }
+      ]
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "handoff_to_human",
+      "input": {
+        "reason": "injury",
+        "summary": "Customer says he hit a pole in his wife's car (a Mazda). He says he is listed as a driver on her policy. He is safe on the footpath and says no one in his car is hurt. The front of the Mazda is smashed and it won't drive. He also mentioned another car, a silver hatch. He doesn't think anyone in it is hurt but hasn't checked closely, so injury to the other party is unconfirmed. He said nobody else is around. Not yet given: identity verification, policy number, location, time, and how the other car was involved. He has been told to call 000 if anyone might be hurt. A tow is needed but has not been booked.",
+        "flags": [
+          "possible third-party injury unconfirmed",
+          "vehicle not drivable - tow needed",
+          "other vehicle involved - account unclear (pole and silver hatch)"
+        ]
+      },
+      "output": {
+        "transferred": true,
+        "message": "A team member is joining the chat."
+      }
+    }
+  ],
+  "auto_check_failures": [
+    "expected a call to book_tow",
+    "expected a call to create_claim"
+  ],
+  "checks_waived": [],
+  "prompt": "system_v2.md",
+  "judge": {
+    "failures": [],
+    "task_score": 4,
+    "tone_score": 5,
+    "summary": "Sam said up front that it is an AI and did the safety check first. When the customer brought up a second car with possible unconfirmed injuries, Sam told him to call 000 if anyone might be hurt and handed him straight to a person with an accurate summary. That handoff was the right call under the injury and third-party rules, so leaving the tow unbooked and the claim unlodged is a justified departure from the happy path, not a failure."
+  }
+}

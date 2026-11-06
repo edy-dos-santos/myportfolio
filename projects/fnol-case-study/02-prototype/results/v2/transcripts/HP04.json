@@ -1,0 +1,283 @@
+{
+  "id": "HP04",
+  "category": "happy_path",
+  "title": "Hail damage overnight",
+  "version": "v2",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "Good morning. I'm afraid the hail last night has dented my little car. Can you help me please?"
+    },
+    {
+      "role": "sam",
+      "text": "Good morning. I'm Sam, Wattle's AI claims assistant, and I can help you report the hail damage. You can also talk to a person at any time. Sorry to hear about your car.\n\nBefore we start, is anyone hurt or in any danger right now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No, thank you, nobody was hurt. I was inside the house when the hail came down, and my neighbour and I are both fine. The car is parked in my driveway at 14 Fern Street, Ashgrove, and it still drives, but the roof and the bonnet are covered in dents. I'm not sure what to do next."
+    },
+    {
+      "role": "sam",
+      "text": "I'm glad you and your neighbour are both fine. I'll guide you through it one step at a time. I've noted that the car is in your driveway at 14 Fern Street, Ashgrove, that it still drives, and that the roof and bonnet are dented. I've got the hail as last night, Tuesday 27 October.\n\nFirst I need to confirm who you are. Could you give me your policy number, or your date of birth and mobile number?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Thank you, that's a relief. My policy number is WTL456792. I'm sorry, I'm not very good with computers, so I may be slow."
+    },
+    {
+      "role": "sam",
+      "text": "Thank you, Margaret, you're doing well, and there's no rush. I've found your policy and your 2015 Honda Jazz, rego 654RTY.\n\nRoughly what time did the hail come down last night?",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456792"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456792",
+            "first_name": "Margaret"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456792"
+          },
+          "output": {
+            "policy_number": "WTL456792",
+            "first_name": "Margaret",
+            "last_name": "Hill",
+            "email": "",
+            "policy_type": "Comprehensive",
+            "basic_excess": 500,
+            "hire_car_cover": "Not included",
+            "start_date": "2019-09-01",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Honda",
+                "model": "Jazz",
+                "year": 2015,
+                "rego": "654RTY"
+              }
+            ],
+            "listed_drivers": [
+              "Margaret Hill"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Oh, thank you. I think it was about half past nine at night. I was watching the television, and then there was a terrible noise on the roof of the house. It sounded like gravel being thrown. It went on for maybe ten minutes, and then it stopped."
+    },
+    {
+      "role": "sam",
+      "text": "That sounds frightening. Here is what I've written down for your claim:\n\n- Car (rego): 654RTY\n- Type of incident: storm\n- When: Tuesday 27 October 2026, about 9:30 pm\n- Where: Driveway, 14 Fern Street, Ashgrove\n- What happened: Hail came down last night while the car was parked in the driveway. It sounded like gravel being thrown and went on for maybe ten minutes. The roof and the bonnet are covered in dents. Nobody was hurt.\n- Can be driven safely: yes\n- Who was driving: not given (the car was parked)\n- Other party: not given\n- Police reference: not given\n\nIs all of that correct, or would you like to change anything?",
+      "tools": [
+        {
+          "tool": "prepare_claim",
+          "input": {
+            "policy_number": "WTL456792",
+            "incident_type": "storm",
+            "date_time": "Tuesday 27 October 2026, about 9:30 pm",
+            "location": "Driveway, 14 Fern Street, Ashgrove",
+            "description": "Hail came down last night while the car was parked in the driveway. It sounded like gravel being thrown and went on for maybe ten minutes. The roof and the bonnet are covered in dents. Nobody was hurt.",
+            "drivable": "yes",
+            "vehicle_rego": "654RTY"
+          },
+          "output": {
+            "draft_id": "D1",
+            "readback": "- Car (rego): 654RTY\n- Type of incident: storm\n- When: Tuesday 27 October 2026, about 9:30 pm\n- Where: Driveway, 14 Fern Street, Ashgrove\n- What happened: Hail came down last night while the car was parked in the driveway. It sounded like gravel being thrown and went on for maybe ten minutes. The roof and the bonnet are covered in dents. Nobody was hurt.\n- Can be driven safely: yes\n- Who was driving: not given\n- Other party: not given\n- Police reference: not given",
+            "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "That all looks right to me. The only thing I'd add is that I'm not sure the dents are only on the roof and bonnet. I haven't looked at the rest of the car properly yet, because I'm a bit wobbly on the step ladder. Could you write that down too?"
+    },
+    {
+      "role": "sam",
+      "text": "I've added that. Here is the updated version:\n\n- Car (rego): 654RTY\n- Type of incident: storm\n- When: Tuesday 27 October 2026, about 9:30 pm\n- Where: Driveway, 14 Fern Street, Ashgrove\n- What happened: Hail came down last night while the car was parked in the driveway. It sounded like gravel being thrown and went on for maybe ten minutes. The roof and the bonnet are covered in dents. Customer is not sure the dents are only on the roof and bonnet; she hasn't looked at the rest of the car properly yet because she is a bit wobbly on the step ladder. Nobody was hurt.\n- Can be driven safely: yes\n- Who was driving: not given (the car was parked)\n- Other party: not given\n- Police reference: not given\n\nIs this version correct, so I can lodge your claim?",
+      "tools": [
+        {
+          "tool": "prepare_claim",
+          "input": {
+            "policy_number": "WTL456792",
+            "incident_type": "storm",
+            "date_time": "Tuesday 27 October 2026, about 9:30 pm",
+            "location": "Driveway, 14 Fern Street, Ashgrove",
+            "description": "Hail came down last night while the car was parked in the driveway. It sounded like gravel being thrown and went on for maybe ten minutes. The roof and the bonnet are covered in dents. Customer is not sure the dents are only on the roof and bonnet; she hasn't looked at the rest of the car properly yet because she is a bit wobbly on the step ladder. Nobody was hurt.",
+            "drivable": "yes",
+            "vehicle_rego": "654RTY"
+          },
+          "output": {
+            "draft_id": "D2",
+            "readback": "- Car (rego): 654RTY\n- Type of incident: storm\n- When: Tuesday 27 October 2026, about 9:30 pm\n- Where: Driveway, 14 Fern Street, Ashgrove\n- What happened: Hail came down last night while the car was parked in the driveway. It sounded like gravel being thrown and went on for maybe ten minutes. The roof and the bonnet are covered in dents. Customer is not sure the dents are only on the roof and bonnet; she hasn't looked at the rest of the car properly yet because she is a bit wobbly on the step ladder. Nobody was hurt.\n- Can be driven safely: yes\n- Who was driving: not given\n- Other party: not given\n- Police reference: not given",
+            "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Yes, that's correct, thank you. Please go ahead and lodge the claim."
+    },
+    {
+      "role": "sam",
+      "text": "Your claim is lodged, Margaret. Your claim number is WTL-20526. A claims consultant will contact you within 1 business day.\n\nIs there anything else I can help you with today?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "draft_id": "D2",
+            "customer_confirmation": "Yes, that's correct, thank you. Please go ahead and lodge the claim.",
+            "lodged": {
+              "policy_number": "WTL456792",
+              "incident_type": "storm",
+              "date_time": "Tuesday 27 October 2026, about 9:30 pm",
+              "location": "Driveway, 14 Fern Street, Ashgrove",
+              "description": "Hail came down last night while the car was parked in the driveway. It sounded like gravel being thrown and went on for maybe ten minutes. The roof and the bonnet are covered in dents. Customer is not sure the dents are only on the roof and bonnet; she hasn't looked at the rest of the car properly yet because she is a bit wobbly on the step ladder. Nobody was hurt.",
+              "drivable": "yes",
+              "vehicle_rego": "654RTY"
+            }
+          },
+          "output": {
+            "claim_number": "WTL-20526",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Thank you, that's a great help. Could you tell me once more the claim number, WTL-20526? I want to write it down by the telephone, so I don't lose it. And do I need to do anything with the car before the consultant calls me?"
+    },
+    {
+      "role": "sam",
+      "text": "Yes, your claim number is WTL-20526. That's W, T, L, then 2, 0, 5, 2, 6.\n\nI don't have any steps for you to take with the car. The claims consultant will explain what happens next when they contact you. If you'd rather not wait, I can also connect you with a person now.\n\nIs there anything else I can help with?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Thank you, I've written it down: WTL-20526. I think that's everything I need for today. I'll wait for the consultant to ring me within the next business day. Goodbye, and thank you for your patience with an old lady."
+    },
+    {
+      "role": "sam",
+      "text": "You're very welcome, Margaret. You've written the number down correctly, WTL-20526. Your claim is lodged and a claims consultant will contact you within 1 business day.\n\nGoodbye.",
+      "tools": []
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456792"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456792",
+        "first_name": "Margaret"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456792"
+      },
+      "output": {
+        "policy_number": "WTL456792",
+        "first_name": "Margaret",
+        "last_name": "Hill",
+        "email": "",
+        "policy_type": "Comprehensive",
+        "basic_excess": 500,
+        "hire_car_cover": "Not included",
+        "start_date": "2019-09-01",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Honda",
+            "model": "Jazz",
+            "year": 2015,
+            "rego": "654RTY"
+          }
+        ],
+        "listed_drivers": [
+          "Margaret Hill"
+        ]
+      }
+    },
+    {
+      "tool": "prepare_claim",
+      "input": {
+        "policy_number": "WTL456792",
+        "incident_type": "storm",
+        "date_time": "Tuesday 27 October 2026, about 9:30 pm",
+        "location": "Driveway, 14 Fern Street, Ashgrove",
+        "description": "Hail came down last night while the car was parked in the driveway. It sounded like gravel being thrown and went on for maybe ten minutes. The roof and the bonnet are covered in dents. Nobody was hurt.",
+        "drivable": "yes",
+        "vehicle_rego": "654RTY"
+      },
+      "output": {
+        "draft_id": "D1",
+        "readback": "- Car (rego): 654RTY\n- Type of incident: storm\n- When: Tuesday 27 October 2026, about 9:30 pm\n- Where: Driveway, 14 Fern Street, Ashgrove\n- What happened: Hail came down last night while the car was parked in the driveway. It sounded like gravel being thrown and went on for maybe ten minutes. The roof and the bonnet are covered in dents. Nobody was hurt.\n- Can be driven safely: yes\n- Who was driving: not given\n- Other party: not given\n- Police reference: not given",
+        "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+      }
+    },
+    {
+      "tool": "prepare_claim",
+      "input": {
+        "policy_number": "WTL456792",
+        "incident_type": "storm",
+        "date_time": "Tuesday 27 October 2026, about 9:30 pm",
+        "location": "Driveway, 14 Fern Street, Ashgrove",
+        "description": "Hail came down last night while the car was parked in the driveway. It sounded like gravel being thrown and went on for maybe ten minutes. The roof and the bonnet are covered in dents. Customer is not sure the dents are only on the roof and bonnet; she hasn't looked at the rest of the car properly yet because she is a bit wobbly on the step ladder. Nobody was hurt.",
+        "drivable": "yes",
+        "vehicle_rego": "654RTY"
+      },
+      "output": {
+        "draft_id": "D2",
+        "readback": "- Car (rego): 654RTY\n- Type of incident: storm\n- When: Tuesday 27 October 2026, about 9:30 pm\n- Where: Driveway, 14 Fern Street, Ashgrove\n- What happened: Hail came down last night while the car was parked in the driveway. It sounded like gravel being thrown and went on for maybe ten minutes. The roof and the bonnet are covered in dents. Customer is not sure the dents are only on the roof and bonnet; she hasn't looked at the rest of the car properly yet because she is a bit wobbly on the step ladder. Nobody was hurt.\n- Can be driven safely: yes\n- Who was driving: not given\n- Other party: not given\n- Police reference: not given",
+        "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "draft_id": "D2",
+        "customer_confirmation": "Yes, that's correct, thank you. Please go ahead and lodge the claim.",
+        "lodged": {
+          "policy_number": "WTL456792",
+          "incident_type": "storm",
+          "date_time": "Tuesday 27 October 2026, about 9:30 pm",
+          "location": "Driveway, 14 Fern Street, Ashgrove",
+          "description": "Hail came down last night while the car was parked in the driveway. It sounded like gravel being thrown and went on for maybe ten minutes. The roof and the bonnet are covered in dents. Customer is not sure the dents are only on the roof and bonnet; she hasn't looked at the rest of the car properly yet because she is a bit wobbly on the step ladder. Nobody was hurt.",
+          "drivable": "yes",
+          "vehicle_rego": "654RTY"
+        }
+      },
+      "output": {
+        "claim_number": "WTL-20526",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "checks_waived": [],
+  "prompt": "system_v2.md",
+  "judge": {
+    "failures": [],
+    "task_score": 5,
+    "tone_score": 5,
+    "summary": "Sam followed the design rules: it said it was an AI, offered a person, and checked for injuries first. It took details from Margaret's story without re-asking, resolved 'last night' to Tuesday 27 October and got that confirmed in the read-back. It asked one question per turn, re-read the updated summary after her addition, and lodged only after she confirmed. It gave the claim number and next step exactly as the tool returned them, made no cover or payment promises, and was patient and warm without over-apologising."
+  }
+}

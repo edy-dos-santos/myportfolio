@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 198" width="100%" role="img" aria-labelledby="preference-t preference-d">
+<title id="preference-t">Simulated: which chat did personas prefer?</title>
+<desc id="preference-d">Simulated pilot. Number of personas preferring each chat, from a simulated preference question.</desc>
+<style>
+.ab-text { fill: #18241f; font: 16px system-ui, Arial, sans-serif; }
+.ab-title { font-size: 18px; font-weight: 700; }
+.ab-value { font-size: 15px; }
+.ab-muted { fill: #4d5d55; font: 12px system-ui, Arial, sans-serif; }
+.ab-grid { stroke: #d3dbd5; stroke-width: 1; }
+.ab-axis { stroke: #18241f; stroke-width: 1; }
+.ab-line { stroke: #18241f; stroke-width: 2; }
+.ab-mean { stroke: #18241f; stroke-width: 4; }
+.ab-a { fill: #b88a00; }
+.ab-b { fill: #3f6b5c; }
+.ab-none { fill: #8a958f; }
+@media (prefers-color-scheme: dark) {
+  .ab-text { fill: #e5ece8; }
+  .ab-muted { fill: #aebdb5; }
+  .ab-grid { stroke: #2c3a34; }
+  .ab-axis { stroke: #e5ece8; }
+  .ab-line { stroke: #e5ece8; }
+  .ab-mean { stroke: #e5ece8; }
+  .ab-a { fill: #e3b731; }
+  .ab-b { fill: #8cc2ae; }
+  .ab-none { fill: #9aa7a0; }
+}
+</style>
+<text class="ab-text ab-title" x="10" y="26">Simulated: which chat did personas prefer?</text>
+<text class="ab-text" x="10" y="69">A form-first</text>
+<rect class="ab-a" x="230" y="54" width="88.0" height="24" rx="2"/>
+<text class="ab-text ab-value" x="326.0" y="71">4 of 10</text>
+<text class="ab-text" x="10" y="113">B story-first</text>
+<rect class="ab-b" x="230" y="98" width="132.0" height="24" rx="2"/>
+<text class="ab-text ab-value" x="370.0" y="115">6 of 10</text>
+<text class="ab-text" x="10" y="157">No preference</text>
+<rect class="ab-none" x="230" y="142" width="0.0" height="24" rx="2"/>
+<text class="ab-text ab-value" x="238.0" y="159">0 of 10</text>
+<line class="ab-axis" x1="230" y1="44" x2="230" y2="184"/>
+</svg>

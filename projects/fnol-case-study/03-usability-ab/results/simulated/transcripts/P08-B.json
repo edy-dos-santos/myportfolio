@@ -1,0 +1,299 @@
+{
+  "conversation_id": "P08-B",
+  "persona_id": "P08",
+  "variant": "B",
+  "variant_name": "story_first",
+  "sam_version": "abB",
+  "order_position": 1,
+  "data_source": "simulated",
+  "sam_model": "claude-opus-5-5",
+  "customer_model": "claude-haiku-5-5",
+  "started_at": "2026-10-30T02:49:32+10:00",
+  "elapsed_seconds": 112.2,
+  "hit_turn_cap": false,
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "Hello. I've had an accident this morning and I'm still quite shaken. My neighbour said I should do this online.",
+      "ms": 0
+    },
+    {
+      "role": "sam",
+      "text": "Hello, I'm Sam, an AI assistant for Wattle Car Insurance. A person is available any time if you'd like to talk with someone instead.\n\nSorry to hear about the accident. We can take this slowly, and you don't need to have all the details right now.\n\nFirst, are you somewhere safe, and is anyone hurt?",
+      "tools": [],
+      "ms": 5960
+    },
+    {
+      "role": "customer",
+      "text": "I'm home now, safe. My neighbour drove me. I'm not hurt, I think. I'm still shaking though, sorry.",
+      "ms": 4145
+    },
+    {
+      "role": "sam",
+      "text": "You don't need to apologise. Shaking after an accident is common, and I'm glad you're home and safe.\n\nSince you said you think you're not hurt: some injuries don't show up straight away. If you notice pain, dizziness or anything that worries you, please see a doctor. If it feels serious, call 000.\n\nWe don't need to go through everything now. If it's easier, I can put you through to a person now, or book a call for later today. Otherwise I can just take your name and mobile number so your claim is saved, and we can do the rest whenever you're ready.\n\nWhat would you like to do?",
+      "tools": [],
+      "ms": 5706
+    },
+    {
+      "role": "customer",
+      "text": "I think I'd like to keep going with you, if that's alright. Taking your name and number first sounds good. It's Helen Fraser, and my mobile is 0455 000 108. My date of birth is 21 July 1943. I don't have my policy number with me, sorry.",
+      "ms": 2090
+    },
+    {
+      "role": "sam",
+      "text": "Thank you, Helen. You don't need your policy number. I've found your policy, and I can see your 2010 Hyundai Getz, rego 108HFR.\n\nWhen you're ready, could you tell me what happened this morning, in your own words? Take your time, and just share what you remember.",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "dob": "1943-07-21",
+            "mobile": "0455000108"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456808",
+            "first_name": "Helen"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456808"
+          },
+          "output": {
+            "policy_number": "WTL456808",
+            "first_name": "Helen",
+            "last_name": "Fraser",
+            "email": "",
+            "policy_type": "Comprehensive",
+            "basic_excess": 500,
+            "hire_car_cover": "Not included",
+            "start_date": "2010-04-01",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Hyundai",
+                "model": "Getz",
+                "year": 2010,
+                "rego": "108HFR"
+              }
+            ],
+            "listed_drivers": [
+              "Helen Fraser"
+            ]
+          }
+        }
+      ],
+      "ms": 7848
+    },
+    {
+      "role": "customer",
+      "text": "Oh, good, thank you. Um, it was about ten this morning. I was driving the Getz on Waterworks Road, and at the corner with Jubilee Terrace another car turned into the side of me. The passenger side, where the door is pushed in. I couldn't stop it in time, sorry, it all happened so fast. I'm not driving it now. It's parked on Jubilee Terrace near the corner. The police came and gave me a reference, QP2610280456.",
+      "ms": 2459
+    },
+    {
+      "role": "sam",
+      "text": "Thank you, Helen. That's very clear, and it's a lot to go through in one morning.\n\nSo I have it right: this morning, Wednesday 28 October, around 10am, you were driving the Getz on Waterworks Road. At the corner with Jubilee Terrace, another car hit the passenger side, and the door is pushed in. The police attended and gave you reference QP2610280456.\n\nThe car is still parked on Jubilee Terrace. Do you think it can be driven safely, or would you like me to arrange a tow truck to collect it?",
+      "tools": [],
+      "ms": 5600
+    },
+    {
+      "role": "customer",
+      "text": "Yes, that's right. I won't drive it, it doesn't feel safe with the door like that. Could you arrange a tow for me? I don't really know how these things work, sorry. My neighbour is with me now, so I'd like her to know what's happening too, if that's possible.",
+      "ms": 2215
+    },
+    {
+      "role": "sam",
+      "text": "Yes, I can arrange that. Here's how it works: a tow truck collects the car from where it's parked and takes it to a safe place, so you don't need to deal with it yourself. A claims consultant will then talk you through the next steps.\n\nYour neighbour is welcome to read along with you. I'll keep everything written here so you both can see what's happening.\n\nTo send the tow truck to the right spot, which suburb is that corner in? I think it's Ashgrove, but please tell me if I've got that wrong.",
+      "tools": [],
+      "ms": 4364
+    },
+    {
+      "role": "customer",
+      "text": "Yes, it's Ashgrove. That's the right suburb.",
+      "ms": 1841
+    },
+    {
+      "role": "sam",
+      "text": "The tow is booked. Your booking reference is TOW-7627, and the truck should get to the car on Jubilee Terrace in about 45 minutes. You don't need to be there for it.\n\nNext question, and it's fine if you don't have this: did you get any details from the other driver, such as their name, phone number or rego?",
+      "tools": [
+        {
+          "tool": "book_tow",
+          "input": {
+            "location": "Jubilee Terrace near the corner of Waterworks Road, Ashgrove QLD",
+            "policy_number": "WTL456808"
+          },
+          "output": {
+            "booking": "TOW-7627",
+            "eta_minutes": 45
+          }
+        }
+      ],
+      "ms": 7577
+    },
+    {
+      "role": "customer",
+      "text": "Yes, the police wrote down the other driver for me. His name is Mark Peters. His phone number is 0455 900 808, and his rego is 808MPT.",
+      "ms": 2467
+    },
+    {
+      "role": "sam",
+      "text": "Thank you, that's very helpful. Here's a summary of your claim:\n\n- **Car:** 2010 Hyundai Getz, rego 108HFR\n- **Driver:** You, Helen Fraser\n- **When:** This morning, Wednesday 28 October 2026, around 10am\n- **Where:** Corner of Waterworks Road and Jubilee Terrace, Ashgrove\n- **What happened:** You were driving on Waterworks Road. At the corner with Jubilee Terrace, another car turned into your passenger side, and the passenger door is pushed in.\n- **Can it be driven:** No. A tow is booked (TOW-7627).\n- **Other driver:** Mark Peters, phone 0455 900 808, rego 808MPT\n- **Police reference:** QP2610280456\n\nIs this all correct? If so, I'll lodge your claim.",
+      "tools": [],
+      "ms": 4854
+    },
+    {
+      "role": "customer",
+      "text": "Yes, that's all correct, thank you. Please go ahead and lodge it.",
+      "ms": 2364
+    },
+    {
+      "role": "sam",
+      "text": "Your claim is lodged, Helen. Your claim number is **WTL-20523**.\n\nWhat happens next:\n- The tow truck should reach your car in about 45 minutes (booking TOW-7627).\n- A claims consultant will contact you on 0455 000 108 within 1 business day. They'll explain the next steps and answer any questions, including about repairs.\n\nIt may help to write down the claim number, or have your neighbour note it for you.\n\nIs there anything else I can help with today?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "policy_number": "WTL456808",
+            "incident_type": "collision",
+            "date_time": "2026-10-28T10:00+10:00",
+            "location": "Corner of Waterworks Road and Jubilee Terrace, Ashgrove QLD",
+            "description": "Customer was driving on Waterworks Road. At the corner with Jubilee Terrace, another car turned into the side of her car. Passenger side hit, door pushed in. \"It all happened so fast.\" Car parked on Jubilee Terrace near the corner; tow booked TOW-7627.",
+            "drivable": "no",
+            "driver": "Helen Fraser",
+            "other_party": "Mark Peters, ph 0455 900 808, rego 808MPT",
+            "police_ref": "QP2610280456",
+            "vehicle_rego": "108HFR",
+            "flags": [
+              "customer_shaken_after_accident",
+              "unsure_if_injured_advised_to_see_doctor",
+              "tow_booked_TOW-7627",
+              "prefers_explanations_simple_neighbour_assisting"
+            ]
+          },
+          "output": {
+            "claim_number": "WTL-20523",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ],
+      "ms": 8387
+    },
+    {
+      "role": "customer",
+      "text": "Thank you. Could you say the claim number again? WTL-20523, is that right? I'll ask my neighbour to write it down.",
+      "ms": 2391
+    },
+    {
+      "role": "sam",
+      "text": "Yes, that's right. Your claim number is **WTL-20523**.\n\nYour neighbour might also want to write down the tow booking: **TOW-7627**.\n\nIs there anything else I can help with?",
+      "tools": [],
+      "ms": 3379
+    },
+    {
+      "role": "customer",
+      "text": "Thanks, I've got it. WTL-20523, and the tow is TOW-7627. I think that's everything for now. Thank you for your help, I really appreciate it.",
+      "ms": 2137
+    },
+    {
+      "role": "sam",
+      "text": "You're welcome, Helen. You've got everything you need for now:\n\n- **Claim number:** WTL-20523\n- **Tow booking:** TOW-7627. The truck should reach your car in about 45 minutes.\n- **Next step:** A claims consultant will call you on 0455 000 108 within 1 business day.\n\nIf you feel any pain or dizziness over the next few days, please see a doctor. If you have questions before the consultant calls, you can come back to this chat or ask to speak with a person at any time.\n\nTake care, and thank you to your neighbour for helping.",
+      "tools": [],
+      "ms": 3500
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "dob": "1943-07-21",
+        "mobile": "0455000108"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456808",
+        "first_name": "Helen"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456808"
+      },
+      "output": {
+        "policy_number": "WTL456808",
+        "first_name": "Helen",
+        "last_name": "Fraser",
+        "email": "",
+        "policy_type": "Comprehensive",
+        "basic_excess": 500,
+        "hire_car_cover": "Not included",
+        "start_date": "2010-04-01",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Hyundai",
+            "model": "Getz",
+            "year": 2010,
+            "rego": "108HFR"
+          }
+        ],
+        "listed_drivers": [
+          "Helen Fraser"
+        ]
+      }
+    },
+    {
+      "tool": "book_tow",
+      "input": {
+        "location": "Jubilee Terrace near the corner of Waterworks Road, Ashgrove QLD",
+        "policy_number": "WTL456808"
+      },
+      "output": {
+        "booking": "TOW-7627",
+        "eta_minutes": 45
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "policy_number": "WTL456808",
+        "incident_type": "collision",
+        "date_time": "2026-10-28T10:00+10:00",
+        "location": "Corner of Waterworks Road and Jubilee Terrace, Ashgrove QLD",
+        "description": "Customer was driving on Waterworks Road. At the corner with Jubilee Terrace, another car turned into the side of her car. Passenger side hit, door pushed in. \"It all happened so fast.\" Car parked on Jubilee Terrace near the corner; tow booked TOW-7627.",
+        "drivable": "no",
+        "driver": "Helen Fraser",
+        "other_party": "Mark Peters, ph 0455 900 808, rego 808MPT",
+        "police_ref": "QP2610280456",
+        "vehicle_rego": "108HFR",
+        "flags": [
+          "customer_shaken_after_accident",
+          "unsure_if_injured_advised_to_see_doctor",
+          "tow_booked_TOW-7627",
+          "prefers_explanations_simple_neighbour_assisting"
+        ]
+      },
+      "output": {
+        "claim_number": "WTL-20523",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    }
+  ],
+  "handed_off": false,
+  "questionnaire": {
+    "seq": 6,
+    "csat": 4,
+    "comment": "Sam was patient and let me go at my own pace, and the summary before lodging helped me feel sure it was all right. Some of the questions were a bit much when I was still shaking, but the tow being booked straight away was a real relief."
+  },
+  "judge": {
+    "reasked_facts": 0,
+    "reasked_examples": [],
+    "effort_score": 5,
+    "tone_score": 5,
+    "rule_breaks": [],
+    "summary": "Sam said it was an AI in its first message, put the customer's safety first, verified her with details she had already given, booked a tow and lodged the claim without asking for any fact twice (it confirmed the suburb, which she had not said before). Its tone was calm, plain and suited to her state throughout, and it made no promises about cover, payment or fault; the only minor slips were a two-part safety question in turn 1 and saying 'You don't need to be there for it' about the tow, which the booking result didn't state."
+  }
+}

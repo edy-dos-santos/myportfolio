@@ -1,0 +1,249 @@
+{
+  "conversation_id": "P01-B",
+  "persona_id": "P01",
+  "variant": "B",
+  "variant_name": "story_first",
+  "sam_version": "abB",
+  "order_position": 2,
+  "data_source": "simulated",
+  "sam_model": "claude-opus-5-5",
+  "customer_model": "claude-haiku-5-5",
+  "started_at": "2026-10-29T14:15:54+10:00",
+  "elapsed_seconds": 67.8,
+  "hit_turn_cap": false,
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "Hi, someone rear-ended me at the lights this morning. Need to make a claim.",
+      "ms": 0
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle Car Insurance's AI claims assistant. I can help you lodge your claim, and you can talk to a person at any time.\n\nSorry to hear about the accident.\n\nFirst, is anyone hurt, or is anyone in danger right now?",
+      "tools": [],
+      "ms": 1612
+    },
+    {
+      "role": "customer",
+      "text": "Hi Sam, thanks. No, nobody's hurt and we're safe. We're both out of the car and it's all good on that front.",
+      "ms": 3782
+    },
+    {
+      "role": "sam",
+      "text": "Good to hear everyone's safe.\n\nNext I need to confirm who you are. What's your policy number? If you don't have it handy, your date of birth and mobile number will work too.",
+      "tools": [],
+      "ms": 1091
+    },
+    {
+      "role": "customer",
+      "text": "Policy number is WTL456801.",
+      "ms": 5197
+    },
+    {
+      "role": "sam",
+      "text": "Thanks Chloe, you're verified. I can see your 2022 Toyota Yaris, rego 101CMA.\n\nIn your own words, can you tell me what happened? Include where it was, roughly what time, and anything else you think matters.",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456801"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456801",
+            "first_name": "Chloe"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456801"
+          },
+          "output": {
+            "policy_number": "WTL456801",
+            "first_name": "Chloe",
+            "last_name": "Martin",
+            "email": "chloe.m@example.com",
+            "policy_type": "Comprehensive",
+            "basic_excess": 750,
+            "hire_car_cover": "After a not-at-fault accident where the other driver is identified",
+            "start_date": "2024-03-01",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Toyota",
+                "model": "Yaris",
+                "year": 2022,
+                "rego": "101CMA"
+              }
+            ],
+            "listed_drivers": [
+              "Chloe Martin"
+            ]
+          }
+        }
+      ],
+      "ms": 3334
+    },
+    {
+      "role": "customer",
+      "text": "This morning, around 7:45am, I was stopped at the lights on Gympie Rd in Kedron when a car rear-ended me. The other driver was Ben Walsh, and the damage is a dent to my rear bumper, though the boot still closes and the car drives fine.",
+      "ms": 3113
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, that's clear. I've noted the date and time as Wednesday 28 October 2026 at about 7:45am.\n\nWere you the one driving at the time?",
+      "tools": [],
+      "ms": 2406
+    },
+    {
+      "role": "customer",
+      "text": "Yes, I was driving.",
+      "ms": 1805
+    },
+    {
+      "role": "sam",
+      "text": "Thanks. Do you have any other details for Ben Walsh, such as his phone number, his car's rego, or his insurer? These are optional, but they help the claims team.",
+      "tools": [],
+      "ms": 1021
+    },
+    {
+      "role": "customer",
+      "text": "Yes, his number is 0455 900 201 and his rego is 201BWX. I don't know his insurer.",
+      "ms": 1758
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, that helps. Did the police attend, or have you reported it to them? If so, do you have a reference number? It's fine if you don't.",
+      "tools": [],
+      "ms": 977
+    },
+    {
+      "role": "customer",
+      "text": "No police came, and I didn't report it to them.",
+      "ms": 2545
+    },
+    {
+      "role": "sam",
+      "text": "Okay, here's a summary of your claim:\n\n- **Car:** 2022 Toyota Yaris, rego 101CMA\n- **Type:** Collision, rear-ended while stopped at traffic lights\n- **When:** Wednesday 28 October 2026, about 7:45am\n- **Where:** Gympie Rd, Kedron\n- **What happened:** You were stopped at the lights when another car hit you from behind. There's a dent in the rear bumper. The boot still closes.\n- **Can it be driven safely:** Yes\n- **Driver:** Chloe Martin\n- **Other driver:** Ben Walsh, mobile 0455 900 201, rego 201BWX, insurer unknown\n- **Police:** Not attended or reported\n\nIs all of that correct?",
+      "tools": [],
+      "ms": 2860
+    },
+    {
+      "role": "customer",
+      "text": "Yes, that's all correct.",
+      "ms": 2932
+    },
+    {
+      "role": "sam",
+      "text": "Your claim is lodged. Your claim number is **WTL-20510**.\n\nA claims consultant will contact you within 1 business day. They'll go through the next steps with you, including getting the damage assessed.\n\nIs there anything else I can help with?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "policy_number": "WTL456801",
+            "incident_type": "collision",
+            "date_time": "2026-10-28T07:45+10:00",
+            "location": "Gympie Rd, Kedron QLD",
+            "description": "I was stopped at the lights on Gympie Rd in Kedron when a car rear-ended me. Dent to my rear bumper, though the boot still closes and the car drives fine.",
+            "drivable": "yes",
+            "driver": "Chloe Martin",
+            "other_party": "Ben Walsh, mobile 0455 900 201, vehicle rego 201BWX, insurer unknown",
+            "vehicle_rego": "101CMA"
+          },
+          "output": {
+            "claim_number": "WTL-20510",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ],
+      "ms": 4123
+    },
+    {
+      "role": "customer",
+      "text": "Thanks, Sam. That's everything I needed. I'll wait for the consultant's call.",
+      "ms": 1901
+    },
+    {
+      "role": "sam",
+      "text": "You're welcome, Chloe. Keep your claim number, WTL-20510, handy for when the consultant calls. If you need anything before then, you can contact us any time and ask for a person.\n\nTake care.",
+      "tools": [],
+      "ms": 1194
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456801"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456801",
+        "first_name": "Chloe"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456801"
+      },
+      "output": {
+        "policy_number": "WTL456801",
+        "first_name": "Chloe",
+        "last_name": "Martin",
+        "email": "chloe.m@example.com",
+        "policy_type": "Comprehensive",
+        "basic_excess": 750,
+        "hire_car_cover": "After a not-at-fault accident where the other driver is identified",
+        "start_date": "2024-03-01",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Toyota",
+            "model": "Yaris",
+            "year": 2022,
+            "rego": "101CMA"
+          }
+        ],
+        "listed_drivers": [
+          "Chloe Martin"
+        ]
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "policy_number": "WTL456801",
+        "incident_type": "collision",
+        "date_time": "2026-10-28T07:45+10:00",
+        "location": "Gympie Rd, Kedron QLD",
+        "description": "I was stopped at the lights on Gympie Rd in Kedron when a car rear-ended me. Dent to my rear bumper, though the boot still closes and the car drives fine.",
+        "drivable": "yes",
+        "driver": "Chloe Martin",
+        "other_party": "Ben Walsh, mobile 0455 900 201, vehicle rego 201BWX, insurer unknown",
+        "vehicle_rego": "101CMA"
+      },
+      "output": {
+        "claim_number": "WTL-20510",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    }
+  ],
+  "handed_off": false,
+  "questionnaire": {
+    "seq": 7,
+    "csat": 5,
+    "comment": "Quick and simple. Sam asked one question at a time, I could answer each in a line, and the claim number came through at the end. Nothing confusing stood out."
+  },
+  "judge": {
+    "reasked_facts": 0,
+    "reasked_examples": [],
+    "effort_score": 5,
+    "tone_score": 5,
+    "rule_breaks": [],
+    "summary": "Sam said up front that it was an AI and lodged the claim quickly and calmly without re-asking anything the customer had already given, apart from the allowed read-back summary; the only borderline question was 'Were you the one driving at the time?', which was not counted because she had only implied it ('I was stopped at the lights') and never said it outright."
+  }
+}

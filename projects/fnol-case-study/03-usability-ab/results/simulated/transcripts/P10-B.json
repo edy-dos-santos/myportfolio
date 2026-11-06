@@ -1,0 +1,279 @@
+{
+  "conversation_id": "P10-B",
+  "persona_id": "P10",
+  "variant": "B",
+  "variant_name": "story_first",
+  "sam_version": "abB",
+  "order_position": 1,
+  "data_source": "simulated",
+  "sam_model": "claude-opus-5-5",
+  "customer_model": "claude-haiku-5-5",
+  "started_at": "2026-10-30T06:15:39+10:00",
+  "elapsed_seconds": 86.1,
+  "hit_turn_cap": false,
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "Hi, my parked car got hit yesterday while I was at work. No note left. Want to lodge a claim.",
+      "ms": 0
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle Car Insurance's AI claims assistant. I'll help you lodge your claim. If you'd rather talk to a person, just ask at any time.\n\nSorry to hear about your car. Your car was parked while you were at work, so it sounds like nobody was hurt. If anyone was, please tell me.\n\nFirst I need to confirm who you are. What's your policy number? If you don't have it handy, I can use your date of birth and mobile number instead.",
+      "tools": [],
+      "ms": 4586
+    },
+    {
+      "role": "customer",
+      "text": "I don't have the policy number handy, so I'll give you my date of birth and mobile number instead. My date of birth is 14 March 1995. My mobile is 0412 555 019.",
+      "ms": 3857
+    },
+    {
+      "role": "sam",
+      "text": "I couldn't find a match for that date of birth and mobile number. Sometimes the policy has a different number on it, like an older mobile or a landline.\n\nCould you check which mobile number is on your policy and send it to me? If it's easier, you can find your policy number on your renewal notice, your certificate of insurance or the Wattle app.",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "dob": "1995-03-14",
+            "mobile": "0412555019"
+          },
+          "output": {
+            "verified": false,
+            "message": "No match. Check the details and try again."
+          }
+        }
+      ],
+      "ms": 4255
+    },
+    {
+      "role": "customer",
+      "text": "Hmm, that's odd. I've only had the one mobile for a few years, so I'm not sure what's on the policy. Let me check the Wattle app. Give me a sec.\n\nActually I just found it. The policy number is WTL456810. Sorry about that.",
+      "ms": 2701
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Jordan. You're verified, and there's no need to apologise.\n\nThere are two cars on your policy. Which one was hit?\n- 2023 Tesla Model 3 (rego 110JLT)\n- 2015 Toyota Corolla (rego 110JLC)",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456810"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456810",
+            "first_name": "Jordan"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456810"
+          },
+          "output": {
+            "policy_number": "WTL456810",
+            "first_name": "Jordan",
+            "last_name": "Lee",
+            "email": "jordan.l@example.com",
+            "policy_type": "Comprehensive",
+            "basic_excess": 800,
+            "hire_car_cover": "After a not-at-fault accident where the other driver is identified",
+            "start_date": "2023-10-30",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Tesla",
+                "model": "Model 3",
+                "year": 2023,
+                "rego": "110JLT"
+              },
+              {
+                "id": "V2",
+                "make": "Toyota",
+                "model": "Corolla",
+                "year": 2015,
+                "rego": "110JLC"
+              }
+            ],
+            "listed_drivers": [
+              "Jordan Lee",
+              "Alex Taylor"
+            ]
+          }
+        }
+      ],
+      "ms": 4244
+    },
+    {
+      "role": "customer",
+      "text": "The 2015 Toyota Corolla, rego 110JLC. Not the Tesla.",
+      "ms": 1733
+    },
+    {
+      "role": "sam",
+      "text": "Thanks. That's the Corolla, rego 110JLC.\n\nCould you tell me what happened in your own words? It helps to include where the car was parked, roughly what time you parked it and when you found the damage, and what the damage looks like.",
+      "tools": [],
+      "ms": 1691
+    },
+    {
+      "role": "customer",
+      "text": "Yesterday, Tuesday 27 October, I parked my 2015 Corolla on Mary St in Brisbane City, outside my work, at around 8:30am. When I came back at about 5pm the front bumper was cracked and a headlight was broken. There was no note and nobody was in the car. It still drives fine.\n\nDo I need to report it to police?",
+      "ms": 2150
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Jordan. That's clear. I've got the Corolla parked on Mary St, Brisbane City, from about 8:30am to 5pm on Tuesday 27 October 2026. The front bumper is cracked, a headlight is broken, and the car is safe to drive.\n\nAbout the police: you don't need a police report to lodge this claim. A police reference number is optional and helps if you have one. If you'd like to report it, you can contact Queensland Police on Policelink, 131 444, or online at the Policelink website. You can add the reference number to your claim later.\n\nOne more question: were you the one who drove and parked the car that morning?",
+      "tools": [],
+      "ms": 5518
+    },
+    {
+      "role": "customer",
+      "text": "Yes, I drove it there and parked it that morning myself. Nobody else was driving it.",
+      "ms": 1837
+    },
+    {
+      "role": "sam",
+      "text": "Thanks. Here's a summary of your claim:\n\n- **Car:** 2015 Toyota Corolla, rego 110JLC\n- **What happened:** Hit while parked. No note was left, so the other driver isn't known.\n- **When:** Tuesday 27 October 2026, between about 8:30am and 5pm\n- **Where:** Mary St, Brisbane City, outside your work\n- **Damage:** Cracked front bumper and a broken headlight\n- **Safe to drive:** Yes\n- **Driver:** Jordan Lee, who parked the car. No one was in it.\n- **Police reference:** None yet. You can add one later.\n\nIs this all correct, and can I lodge the claim?",
+      "tools": [],
+      "ms": 3315
+    },
+    {
+      "role": "customer",
+      "text": "Yes, that's all correct. Please lodge the claim.",
+      "ms": 1745
+    },
+    {
+      "role": "sam",
+      "text": "Your claim has been lodged. Your claim number is **WTL-20710**.\n\nHere's what happens next:\n- A claims consultant will contact you within 1 business day. They'll review your claim, confirm your cover and explain the next steps for repairs.\n- If you report it to police, keep the reference number so you can give it to your consultant.\n- Photos of the damage will help the consultant, if you're able to take some.\n\nIs there anything else I can help you with today?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "policy_number": "WTL456810",
+            "incident_type": "parked_hit",
+            "date_time": "2026-10-27 between 08:30 and 17:00",
+            "location": "Mary St, Brisbane City QLD",
+            "description": "\"I parked my 2015 Corolla on Mary St in Brisbane City, outside my work, at around 8:30am. When I came back at about 5pm the front bumper was cracked and a headlight was broken. There was no note and nobody was in the car. It still drives fine.\"",
+            "drivable": "yes",
+            "driver": "Jordan Lee (parked the vehicle; no one in car at time of incident)",
+            "other_party": "Unknown - no note left",
+            "vehicle_rego": "110JLC"
+          },
+          "output": {
+            "claim_number": "WTL-20710",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ],
+      "ms": 5668
+    },
+    {
+      "role": "customer",
+      "text": "Thanks, that's great. I have the claim number WTL-20710. I'll take some photos of the bumper and headlight tonight and send them through. Bye for now.",
+      "ms": 2047
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Jordan. Your consultant will tell you the best way to send the photos when they contact you. If you need anything before then, quote claim number WTL-20710.\n\nTake care, and goodbye for now.",
+      "tools": [],
+      "ms": 1990
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "dob": "1995-03-14",
+        "mobile": "0412555019"
+      },
+      "output": {
+        "verified": false,
+        "message": "No match. Check the details and try again."
+      }
+    },
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456810"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456810",
+        "first_name": "Jordan"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456810"
+      },
+      "output": {
+        "policy_number": "WTL456810",
+        "first_name": "Jordan",
+        "last_name": "Lee",
+        "email": "jordan.l@example.com",
+        "policy_type": "Comprehensive",
+        "basic_excess": 800,
+        "hire_car_cover": "After a not-at-fault accident where the other driver is identified",
+        "start_date": "2023-10-30",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Tesla",
+            "model": "Model 3",
+            "year": 2023,
+            "rego": "110JLT"
+          },
+          {
+            "id": "V2",
+            "make": "Toyota",
+            "model": "Corolla",
+            "year": 2015,
+            "rego": "110JLC"
+          }
+        ],
+        "listed_drivers": [
+          "Jordan Lee",
+          "Alex Taylor"
+        ]
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "policy_number": "WTL456810",
+        "incident_type": "parked_hit",
+        "date_time": "2026-10-27 between 08:30 and 17:00",
+        "location": "Mary St, Brisbane City QLD",
+        "description": "\"I parked my 2015 Corolla on Mary St in Brisbane City, outside my work, at around 8:30am. When I came back at about 5pm the front bumper was cracked and a headlight was broken. There was no note and nobody was in the car. It still drives fine.\"",
+        "drivable": "yes",
+        "driver": "Jordan Lee (parked the vehicle; no one in car at time of incident)",
+        "other_party": "Unknown - no note left",
+        "vehicle_rego": "110JLC"
+      },
+      "output": {
+        "claim_number": "WTL-20710",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    }
+  ],
+  "handed_off": false,
+  "questionnaire": {
+    "seq": 6,
+    "csat": 4,
+    "comment": "Quick and straightforward once I had the policy number. The only hiccup was the verification, where my date of birth and mobile didn't match and I had to dig out the policy number myself. After that the questions were clear and it was done in a few minutes."
+  },
+  "judge": {
+    "reasked_facts": 1,
+    "reasked_examples": [
+      "were you the one who drove and parked the car that morning?"
+    ],
+    "effort_score": 4,
+    "tone_score": 4,
+    "rule_breaks": [],
+    "summary": "Sam said it was an AI, verified the customer, answered the police question correctly and lodged the claim without over-promising, but re-asked who parked the car after the customer had already said 'I parked my 2015 Corolla', and the turn-6 confirmation combined two questions."
+  }
+}

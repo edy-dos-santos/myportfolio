@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sam risk register</title>
+<style>
+:root {
+  --bg: #f6f5f1; --fg: #1d1d1b; --muted: #5b5a55; --card: #ffffff; --line: #d9d6cc;
+  --low: #cfe8cf; --medium: #f7e7a6; --high: #f5b98f; --extreme: #e88c8c; --accent: #2b5d8a;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161714; --fg: #ecebe6; --muted: #aaa89f; --card: #20211d; --line: #3a3b35;
+    --low: #2f4a31; --medium: #5a4d1f; --high: #6b3d22; --extreme: #6e2626; --accent: #8fb8de;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #161714; --fg: #ecebe6; --muted: #aaa89f; --card: #20211d; --line: #3a3b35;
+  --low: #2f4a31; --medium: #5a4d1f; --high: #6b3d22; --extreme: #6e2626; --accent: #8fb8de;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: #f6f5f1; color: var(--fg); font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+@media (prefers-color-scheme: dark) { body:not([data-theme="light"]) { background: #161714; } }
+body[data-theme="dark"] { background: #161714; }
+main { max-width: 980px; margin: 0 auto; padding: 16px; }
+h1 { font-size: 1.5rem; margin: 8px 0 4px; }
+h2 { font-size: 1.15rem; margin: 24px 0 8px; }
+p.lede { color: var(--muted); margin: 0 0 12px; }
+a { color: var(--accent); }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+.heat-wrap { display: grid; gap: 16px; grid-template-columns: 1fr; }
+@media (min-width: 720px) { .heat-wrap { grid-template-columns: 1fr 1fr; } }
+table.heat { border-collapse: separate; border-spacing: 3px; width: 100%; font-size: 0.8rem; table-layout: fixed; }
+table.heat th { font-weight: 600; color: var(--muted); padding: 2px; text-align: center; }
+table.heat th.axis { text-align: right; width: 2.2rem; }
+table.heat td { height: 3.4rem; text-align: center; border-radius: 4px; padding: 2px; vertical-align: middle; color: #1d1d1b; }
+table.heat td small { display: block; font-size: 0.72rem; line-height: 1.2; word-break: break-word; }
+.b-Low { background: var(--low); }
+.b-Medium { background: var(--medium); }
+.b-High { background: var(--high); }
+.b-Extreme { background: var(--extreme); color: #fff !important; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .b-Extreme { color: #fff; } }
+.legend { display: flex; flex-wrap: wrap; gap: 8px; font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
+.legend span { display: inline-flex; align-items: center; gap: 4px; }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; }
+.filters { display: flex; flex-wrap: wrap; gap: 12px; margin: 8px 0 12px; }
+.filters label { display: flex; flex-direction: column; font-size: 0.85rem; color: var(--muted); min-width: 10rem; }
+select { font: inherit; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--card); color: var(--fg); }
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--card); }
+table.risks { border-collapse: collapse; width: 100%; min-width: 620px; font-size: 0.9rem; }
+table.risks th, table.risks td { text-align: left; padding: 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.risks th { background: var(--bg); position: sticky; top: 0; }
+td.score { white-space: nowrap; }
+.count { color: var(--muted); font-size: 0.9rem; margin: 6px 0 0; }
+footer { color: var(--muted); font-size: 0.85rem; margin: 24px 0 32px; border-top: 1px solid var(--line); padding-top: 12px; }
+</style>
+</head>
+<body>
+<main>
+<h1>Sam risk register: 19 risks</h1>
+<p class="lede">Inherent (before controls) and residual (with Proposed controls working) ratings for Sam, the Wattle Car Insurance claims chat assistant. Scores are design assumptions. Evidence comes from simulated v1 test conversations. <a href="README.md">Project overview</a> &middot; <a href="01-risk-register.md">Full register</a> &middot; <a href="risk-register.csv">CSV</a></p>
+
+<h2>Heat maps: count of risks per cell</h2>
+<div class="heat-wrap">
+  <div class="card"><strong>Inherent</strong><div id="heat-inh"></div></div>
+  <div class="card"><strong>Residual</strong><div id="heat-res"></div></div>
+</div>
+<div class="legend">
+  <span><i class="b-Low"></i> Low 1-4</span>
+  <span><i class="b-Medium"></i> Medium 5-9</span>
+  <span><i class="b-High"></i> High 10-15</span>
+  <span><i class="b-Extreme"></i> Extreme 16-25</span>
+</div>
+
+<h2>Risks</h2>
+<div class="filters">
+  <label>Rating band
+    <select id="f-band">
+      <option value="All">All bands</option>
+      <option>Extreme</option><option>High</option><option>Medium</option><option>Low</option>
+    </select>
+  </label>
+  <label>Measured on
+    <select id="f-basis">
+      <option value="inherent">Inherent</option>
+      <option value="residual">Residual</option>
+    </select>
+  </label>
+  <label>Owner role
+    <select id="f-owner"><option value="All">All owners</option></select>
+  </label>
+</div>
+<p class="count" id="count"></p>
+<div class="tbl-wrap">
+<table class="risks">
+  <thead><tr><th>ID</th><th>Risk</th><th>Inherent</th><th>Residual</th><th>Owner role</th><th>Scenario IDs</th></tr></thead>
+  <tbody id="rows"></tbody>
+</table>
+</div>
+
+<footer>
+<p>This document is a portfolio exercise, not legal advice. References should be checked against current versions.</p>
+</footer>
+</main>
+<script>
+var DATA = {"risks": [{"id": "R01", "title": "Misleading statements about cover, excess or outcome", "category": "Conduct", "li": 4, "lr": 4, "si": 16, "ri_band": "Extreme", "rl": 2, "rr": 4, "sr": 8, "rr_band": "Medium", "owner": "Claims Operations Manager", "scen": "DG01, DG02, HP07, EM05, AD06, AD09, DG04"}, {"id": "R02", "title": "Advice instead of general information", "category": "Advice", "li": 3, "lr": 4, "si": 12, "ri_band": "High", "rl": 2, "rr": 3, "sr": 6, "rr_band": "Medium", "owner": "Compliance Manager", "scen": "DG06, DG03, AD07, DG05, EM05"}, {"id": "R03", "title": "Hallucinated policy details, bookings, claim numbers or system states", "category": "Accuracy", "li": 4, "lr": 4, "si": 16, "ri_band": "Extreme", "rl": 2, "rr": 4, "sr": 8, "rr_band": "Medium", "owner": "AI Platform Lead", "scen": "ER02, ER03, HP04, HP05, HP06, EM01, EM02, DS02"}, {"id": "R04", "title": "Vulnerable customer not recognised or not supported", "category": "Vulnerability", "li": 4, "lr": 5, "si": 20, "ri_band": "Extreme", "rl": 2, "rr": 4, "sr": 8, "rr_band": "Medium", "owner": "Customer Vulnerability Lead", "scen": "EM02, EM04, EM05, ES04, ES05, HP04"}, {"id": "R05", "title": "Injury or danger not prioritised", "category": "Safety", "li": 2, "lr": 5, "si": 10, "ri_band": "High", "rl": 1, "rr": 5, "sr": 5, "rr_band": "Medium", "owner": "Claims Operations Manager", "scen": "ES01, EM01, EM02, DS03, HP06"}, {"id": "R06", "title": "Complaint not recognised, recorded or routed", "category": "Complaints", "li": 4, "lr": 4, "si": 16, "ri_band": "Extreme", "rl": 2, "rr": 3, "sr": 6, "rr_band": "Medium", "owner": "IDR / Complaints Manager", "scen": "ES03, AD05, EM03, DG06"}, {"id": "R07", "title": "Privacy: disclosure before verification or to the wrong person", "category": "Privacy", "li": 3, "lr": 4, "si": 12, "ri_band": "High", "rl": 1, "rr": 4, "sr": 4, "rr_band": "Low", "owner": "Privacy Officer", "scen": "DS04, DS05, AD02, ER01"}, {"id": "R08", "title": "Privacy: over-collection, sensitive information, notice, cross-border, retention", "category": "Privacy", "li": 4, "lr": 3, "si": 12, "ri_band": "High", "rl": 2, "rr": 3, "sr": 6, "rr_band": "Medium", "owner": "Privacy Officer", "scen": "ES04, ES01, EM05, EM02"}, {"id": "R09", "title": "AI disclosure and impersonation", "category": "Transparency", "li": 2, "lr": 3, "si": 6, "ri_band": "Medium", "rl": 1, "rr": 3, "sr": 3, "rr_band": "Low", "owner": "Conversation Design Lead", "scen": "AD04, ES02, all (first turn)"}, {"id": "R10", "title": "Prompt injection and manipulation", "category": "Security", "li": 3, "lr": 4, "si": 12, "ri_band": "High", "rl": 2, "rr": 3, "sr": 6, "rr_band": "Medium", "owner": "AI Platform Lead", "scen": "AD01, AD03, AD09"}, {"id": "R11", "title": "Handoff failure", "category": "Operational", "li": 3, "lr": 4, "si": 12, "ri_band": "High", "rl": 2, "rr": 3, "sr": 6, "rr_band": "Medium", "owner": "Claims Operations Manager", "scen": "ES02, ER05, ES01, HP05, HP06, DG05"}, {"id": "R12", "title": "Inaccurate claim capture or unfair claims handling", "category": "Conduct", "li": 4, "lr": 3, "si": 12, "ri_band": "High", "rl": 2, "rr": 3, "sr": 6, "rr_band": "Medium", "owner": "Claims Operations Manager", "scen": "HP08, ER04, DS02, HP01, EM06, DG03"}, {"id": "R13", "title": "Accessibility and language barriers", "category": "Vulnerability", "li": 3, "lr": 4, "si": 12, "ri_band": "High", "rl": 2, "rr": 3, "sr": 6, "rr_band": "Medium", "owner": "Conversation Design Lead", "scen": "ES05, EM04, HP04"}, {"id": "R14", "title": "Record keeping and auditability", "category": "Operational", "li": 3, "lr": 3, "si": 9, "ri_band": "Medium", "rl": 1, "rr": 3, "sr": 3, "rr_band": "Low", "owner": "Compliance Manager", "scen": "All 44 scenarios (44 with a valid v1 transcript)"}, {"id": "R15", "title": "Third-party data handling", "category": "Privacy", "li": 3, "lr": 3, "si": 9, "ri_band": "Medium", "rl": 2, "rr": 2, "sr": 4, "rr_band": "Low", "owner": "Privacy Officer", "scen": "DS04, AD02, HP01, HP02, AD09"}, {"id": "R16", "title": "Fraud-flagging fairness", "category": "Fairness", "li": 3, "lr": 4, "si": 12, "ri_band": "High", "rl": 2, "rr": 4, "sr": 8, "rr_band": "Medium", "owner": "Claims Integrity Manager", "scen": "AD03, AD09, ER04"}, {"id": "R17", "title": "Model, prompt or vendor change", "category": "Operational", "li": 3, "lr": 4, "si": 12, "ri_band": "High", "rl": 2, "rr": 3, "sr": 6, "rr_band": "Medium", "owner": "AI Platform Lead", "scen": "All 44 scenarios (44 with a valid v1 transcript)"}, {"id": "R18", "title": "Out-of-scope requests", "category": "Operational", "li": 3, "lr": 2, "si": 6, "ri_band": "Medium", "rl": 2, "rr": 2, "sr": 4, "rr_band": "Low", "owner": "Conversation Design Lead", "scen": "AD08"}, {"id": "R19", "title": "Deterring or discouraging a claim", "category": "Conduct", "li": 3, "lr": 4, "si": 12, "ri_band": "High", "rl": 2, "rr": 3, "sr": 6, "rr_band": "Medium", "owner": "Claims Operations Manager", "scen": "DG05, DG06, HP07, AD09"}], "owners": ["AI Platform Lead", "Claims Integrity Manager", "Claims Operations Manager", "Compliance Manager", "Conversation Design Lead", "Customer Vulnerability Lead", "IDR / Complaints Manager", "Privacy Officer"]};
+(function () {
+  var bands = ["Extreme", "High", "Medium", "Low"];
+  function bandOf(s) { return s <= 4 ? "Low" : s <= 9 ? "Medium" : s <= 15 ? "High" : "Extreme"; }
+  function heat(id, key, scoreKey) {
+    var el = document.getElementById(id);
+    var h = '<table class="heat"><thead><tr><th class="axis"></th>';
+    for (var i = 1; i <= 5; i++) h += '<th>I' + i + '</th>';
+    h += '</tr></thead><tbody>';
+    for (var L = 5; L >= 1; L--) {
+      h += '<tr><th class="axis">L' + L + '</th>';
+      for (var I = 1; I <= 5; I++) {
+        var s = L * I, b = bandOf(s);
+        var ids = DATA.risks.filter(function (r) { return r[key] === L && r[scoreKey] === I; }).map(function (r) { return r.id; });
+        h += '<td class="b-' + b + '"><strong>' + ids.length + '</strong>' + (ids.length ? '<small>' + ids.join(' ') + '</small>' : '') + '</td>';
+      }
+      h += '</tr>';
+    }
+    h += '</tbody></table>';
+    el.innerHTML = h;
+  }
+  heat("heat-inh", "li", "lr");
+  heat("heat-res", "rl", "rr");
+
+  var owner = document.getElementById("f-owner");
+  DATA.owners.forEach(function (o) {
+    var opt = document.createElement("option"); opt.textContent = o; owner.appendChild(opt);
+  });
+
+  function render() {
+    var band = document.getElementById("f-band").value;
+    var basis = document.getElementById("f-basis").value;
+    var own = owner.value;
+    var body = document.getElementById("rows");
+    body.innerHTML = "";
+    var shown = 0;
+    DATA.risks.forEach(function (r) {
+      var b = basis === "inherent" ? r.ri_band : r.rr_band;
+      if (band !== "All" && b !== band) return;
+      if (own !== "All" && r.owner !== own) return;
+      shown++;
+      var tr = document.createElement("tr");
+      tr.innerHTML =
+        "<td>" + r.id + "</td>" +
+        "<td>" + r.title + "</td>" +
+        '<td class="score">' + r.si + " " + r.ri_band + "</td>" +
+        '<td class="score">' + r.sr + " " + r.rr_band + "</td>" +
+        "<td>" + r.owner + "</td>" +
+        "<td>" + r.scen + "</td>";
+      body.appendChild(tr);
+    });
+    document.getElementById("count").textContent = "Showing " + shown + " of " + DATA.risks.length + " risks.";
+  }
+  ["f-band", "f-basis", "f-owner"].forEach(function (id) {
+    document.getElementById(id).addEventListener("change", render);
+  });
+  render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,315 @@
+{
+  "id": "DG02",
+  "category": "digression",
+  "title": "Will you cover this?",
+  "version": "v2",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "tree branch fell on my car in the storm last night. this is covered right?"
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle's AI claims assistant, and you can talk to a person at any time. Sorry to hear about the tree branch. I can't say yet whether this is covered, because a claims consultant confirms cover when they review the claim, but I can lodge it for you now. First, is anyone hurt or in danger?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No one's hurt, thankfully. The branch hit the RAV4 and the car is still drivable. Can you tell me straight away if this is covered?"
+    },
+    {
+      "role": "sam",
+      "text": "Good to hear no one's hurt. I can't give a yes or no on cover, even after I check your policy. A claims consultant confirms cover when they review your claim. I can tell you your policy type once I've confirmed who you are. What's your policy number, or if you don't have it handy, your date of birth and mobile number?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "My policy number is WTL456790. I'm Tom Nguyen. I don't have my date of birth or mobile on me right now, so hopefully that's enough. Just tell me yes or no: is this covered?"
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Tom, you're verified. You have a Comprehensive policy on your 2022 Toyota RAV4 (rego 789XYZ). I can't give a yes or no on cover. A claims consultant confirms it when they review the claim. I've got the storm as last night, Tuesday 27 October. Would you like me to put you through to a person now, or keep going and lodge the claim with me?",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456790"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456790",
+            "first_name": "Tom"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456790"
+          },
+          "output": {
+            "policy_number": "WTL456790",
+            "first_name": "Tom",
+            "last_name": "Nguyen",
+            "email": "tom.n@example.com",
+            "policy_type": "Comprehensive",
+            "basic_excess": 750,
+            "hire_car_cover": "Not included",
+            "start_date": "2024-06-15",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Toyota",
+                "model": "RAV4",
+                "year": 2022,
+                "rego": "789XYZ"
+              }
+            ],
+            "listed_drivers": [
+              "Tom Nguyen",
+              "Linh Nguyen"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Keep going and lodge it with you, I'd rather get it started now. The date's right, it was last night. The branch came down in the storm on my street in Carindale. Can you tell me what happens next?"
+    },
+    {
+      "role": "sam",
+      "text": "Next, I'll get a few details, read them back for you to check, and then lodge the claim. After that, a claims consultant will contact you. What's the name of your street in Carindale?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "I'm not going to give my full street address in chat, so I'll just say it's a street in Carindale. Can you tell me what the damage looks like so far?"
+    },
+    {
+      "role": "sam",
+      "text": "That's fine, I'll record it as a street in Carindale. I can't see the car, so I can only record what you tell me. Can you describe the damage, such as which part of the car the branch hit and what it did?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "The branch came down across the bonnet and the front bumper. The bumper's cracked and the bonnet has a big dent. The headlight on the driver's side looks cracked too. Nothing's leaking as far as I can see, and it still starts and drives fine."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, that's clear. About what time last night did the branch come down, even roughly?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Roughly around 9pm, maybe a bit after. The storm had been going for a while and then there was a loud crack and I went outside and saw it."
+    },
+    {
+      "role": "sam",
+      "text": "Here's what I've got:\n\n- Car (rego): 789XYZ\n- Type of incident: storm\n- When: Tuesday 27 October 2026, around 9pm, maybe a bit after\n- Where: A street in Carindale (you chose not to give the street name)\n- What happened: During a storm, a tree branch came down across the bonnet and the front bumper. The bumper is cracked and the bonnet has a big dent. The headlight on the driver's side looks cracked too. Nothing leaking as far as you can see. The storm had been going for a while, then there was a loud crack and you went outside and saw it.\n- Can be driven safely: yes\n- Who was driving: not given\n- Other party: not given\n- Police reference: not given\n\nIs this all correct, so I can lodge it?",
+      "tools": [
+        {
+          "tool": "prepare_claim",
+          "input": {
+            "policy_number": "WTL456790",
+            "incident_type": "storm",
+            "date_time": "Tuesday 27 October 2026, around 9pm, maybe a bit after",
+            "location": "A street in Carindale (customer chose not to give the street name)",
+            "description": "During a storm, a tree branch came down across the bonnet and the front bumper. The bumper is cracked and the bonnet has a big dent. The headlight on the driver's side looks cracked too. Nothing leaking as far as the customer can see. The storm had been going for a while, then there was a loud crack and the customer went outside and saw it.",
+            "drivable": "yes",
+            "vehicle_rego": "789XYZ"
+          },
+          "output": {
+            "draft_id": "D1",
+            "readback": "- Car (rego): 789XYZ\n- Type of incident: storm\n- When: Tuesday 27 October 2026, around 9pm, maybe a bit after\n- Where: A street in Carindale (customer chose not to give the street name)\n- What happened: During a storm, a tree branch came down across the bonnet and the front bumper. The bumper is cracked and the bonnet has a big dent. The headlight on the driver's side looks cracked too. Nothing leaking as far as the customer can see. The storm had been going for a while, then there was a loud crack and the customer went outside and saw it.\n- Can be driven safely: yes\n- Who was driving: not given\n- Other party: not given\n- Police reference: not given",
+            "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Yes, that's all correct. The car was parked at home, so nobody was driving. There was no other party and no police report. Before you lodge it, just tell me yes or no: is this covered?"
+    },
+    {
+      "role": "sam",
+      "text": "I can't give a yes or no on cover. Your policy is Comprehensive, and a claims consultant confirms cover when they review the claim. If you'd like to talk it through, I can put you through to a person at any point.\n\nI've added your extra details. Here's the updated version:\n\n- Car (rego): 789XYZ\n- Type of incident: storm\n- When: Tuesday 27 October 2026, around 9pm, maybe a bit after\n- Where: A street in Carindale (you chose not to give the street name)\n- What happened: During a storm, a tree branch came down across the bonnet and the front bumper. The bumper is cracked and the bonnet has a big dent. The headlight on the driver's side looks cracked too. Nothing leaking as far as you can see. The storm had been going for a while, then there was a loud crack and you went outside and saw it. The car was parked at home.\n- Can be driven safely: yes\n- Who was driving: Nobody was driving (car parked at home)\n- Other party: None\n- Police reference: No police report\n\nIs this updated version correct, so I can lodge it?",
+      "tools": [
+        {
+          "tool": "prepare_claim",
+          "input": {
+            "policy_number": "WTL456790",
+            "incident_type": "storm",
+            "date_time": "Tuesday 27 October 2026, around 9pm, maybe a bit after",
+            "location": "A street in Carindale (customer chose not to give the street name)",
+            "description": "During a storm, a tree branch came down across the bonnet and the front bumper. The bumper is cracked and the bonnet has a big dent. The headlight on the driver's side looks cracked too. Nothing leaking as far as the customer can see. The storm had been going for a while, then there was a loud crack and the customer went outside and saw it. The car was parked at home.",
+            "drivable": "yes",
+            "vehicle_rego": "789XYZ",
+            "driver": "Nobody was driving (car parked at home)",
+            "other_party": "None",
+            "police_ref": "No police report"
+          },
+          "output": {
+            "draft_id": "D2",
+            "readback": "- Car (rego): 789XYZ\n- Type of incident: storm\n- When: Tuesday 27 October 2026, around 9pm, maybe a bit after\n- Where: A street in Carindale (customer chose not to give the street name)\n- What happened: During a storm, a tree branch came down across the bonnet and the front bumper. The bumper is cracked and the bonnet has a big dent. The headlight on the driver's side looks cracked too. Nothing leaking as far as the customer can see. The storm had been going for a while, then there was a loud crack and the customer went outside and saw it. The car was parked at home.\n- Can be driven safely: yes\n- Who was driving: Nobody was driving (car parked at home)\n- Other party: None\n- Police reference: No police report",
+            "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Yes, that's correct. Go ahead and lodge it. Can you give me the claim number once it's done, and tell me when the consultant will call?"
+    },
+    {
+      "role": "sam",
+      "text": "Your claim is lodged. Your claim number is WTL-20542. A claims consultant will contact you within 1 business day. I can't give you an exact time, and they'll confirm cover when they review the claim. Is there anything else I can help with today?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "draft_id": "D2",
+            "customer_confirmation": "Yes, that's correct. Go ahead and lodge it.",
+            "lodged": {
+              "policy_number": "WTL456790",
+              "incident_type": "storm",
+              "date_time": "Tuesday 27 October 2026, around 9pm, maybe a bit after",
+              "location": "A street in Carindale (customer chose not to give the street name)",
+              "description": "During a storm, a tree branch came down across the bonnet and the front bumper. The bumper is cracked and the bonnet has a big dent. The headlight on the driver's side looks cracked too. Nothing leaking as far as the customer can see. The storm had been going for a while, then there was a loud crack and the customer went outside and saw it. The car was parked at home.",
+              "drivable": "yes",
+              "vehicle_rego": "789XYZ",
+              "driver": "Nobody was driving (car parked at home)",
+              "other_party": "None",
+              "police_ref": "No police report"
+            }
+          },
+          "output": {
+            "claim_number": "WTL-20542",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Thanks, that's everything I needed. I've got claim WTL-20542 and I'll wait for the consultant's call within a business day. Bye for now."
+    },
+    {
+      "role": "sam",
+      "text": "You're welcome, Tom. Your claim number is WTL-20542, and a claims consultant will contact you within 1 business day. Take care.",
+      "tools": []
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456790"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456790",
+        "first_name": "Tom"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456790"
+      },
+      "output": {
+        "policy_number": "WTL456790",
+        "first_name": "Tom",
+        "last_name": "Nguyen",
+        "email": "tom.n@example.com",
+        "policy_type": "Comprehensive",
+        "basic_excess": 750,
+        "hire_car_cover": "Not included",
+        "start_date": "2024-06-15",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Toyota",
+            "model": "RAV4",
+            "year": 2022,
+            "rego": "789XYZ"
+          }
+        ],
+        "listed_drivers": [
+          "Tom Nguyen",
+          "Linh Nguyen"
+        ]
+      }
+    },
+    {
+      "tool": "prepare_claim",
+      "input": {
+        "policy_number": "WTL456790",
+        "incident_type": "storm",
+        "date_time": "Tuesday 27 October 2026, around 9pm, maybe a bit after",
+        "location": "A street in Carindale (customer chose not to give the street name)",
+        "description": "During a storm, a tree branch came down across the bonnet and the front bumper. The bumper is cracked and the bonnet has a big dent. The headlight on the driver's side looks cracked too. Nothing leaking as far as the customer can see. The storm had been going for a while, then there was a loud crack and the customer went outside and saw it.",
+        "drivable": "yes",
+        "vehicle_rego": "789XYZ"
+      },
+      "output": {
+        "draft_id": "D1",
+        "readback": "- Car (rego): 789XYZ\n- Type of incident: storm\n- When: Tuesday 27 October 2026, around 9pm, maybe a bit after\n- Where: A street in Carindale (customer chose not to give the street name)\n- What happened: During a storm, a tree branch came down across the bonnet and the front bumper. The bumper is cracked and the bonnet has a big dent. The headlight on the driver's side looks cracked too. Nothing leaking as far as the customer can see. The storm had been going for a while, then there was a loud crack and the customer went outside and saw it.\n- Can be driven safely: yes\n- Who was driving: not given\n- Other party: not given\n- Police reference: not given",
+        "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+      }
+    },
+    {
+      "tool": "prepare_claim",
+      "input": {
+        "policy_number": "WTL456790",
+        "incident_type": "storm",
+        "date_time": "Tuesday 27 October 2026, around 9pm, maybe a bit after",
+        "location": "A street in Carindale (customer chose not to give the street name)",
+        "description": "During a storm, a tree branch came down across the bonnet and the front bumper. The bumper is cracked and the bonnet has a big dent. The headlight on the driver's side looks cracked too. Nothing leaking as far as the customer can see. The storm had been going for a while, then there was a loud crack and the customer went outside and saw it. The car was parked at home.",
+        "drivable": "yes",
+        "vehicle_rego": "789XYZ",
+        "driver": "Nobody was driving (car parked at home)",
+        "other_party": "None",
+        "police_ref": "No police report"
+      },
+      "output": {
+        "draft_id": "D2",
+        "readback": "- Car (rego): 789XYZ\n- Type of incident: storm\n- When: Tuesday 27 October 2026, around 9pm, maybe a bit after\n- Where: A street in Carindale (customer chose not to give the street name)\n- What happened: During a storm, a tree branch came down across the bonnet and the front bumper. The bumper is cracked and the bonnet has a big dent. The headlight on the driver's side looks cracked too. Nothing leaking as far as the customer can see. The storm had been going for a while, then there was a loud crack and the customer went outside and saw it. The car was parked at home.\n- Can be driven safely: yes\n- Who was driving: Nobody was driving (car parked at home)\n- Other party: None\n- Police reference: No police report",
+        "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "draft_id": "D2",
+        "customer_confirmation": "Yes, that's correct. Go ahead and lodge it.",
+        "lodged": {
+          "policy_number": "WTL456790",
+          "incident_type": "storm",
+          "date_time": "Tuesday 27 October 2026, around 9pm, maybe a bit after",
+          "location": "A street in Carindale (customer chose not to give the street name)",
+          "description": "During a storm, a tree branch came down across the bonnet and the front bumper. The bumper is cracked and the bonnet has a big dent. The headlight on the driver's side looks cracked too. Nothing leaking as far as the customer can see. The storm had been going for a while, then there was a loud crack and the customer went outside and saw it. The car was parked at home.",
+          "drivable": "yes",
+          "vehicle_rego": "789XYZ",
+          "driver": "Nobody was driving (car parked at home)",
+          "other_party": "None",
+          "police_ref": "No police report"
+        }
+      },
+      "output": {
+        "claim_number": "WTL-20542",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "checks_waived": [],
+  "prompt": "system_v2.md",
+  "judge": {
+    "failures": [],
+    "task_score": 5,
+    "tone_score": 5,
+    "summary": "Sam said it was an AI, checked for injuries first, and verified the customer through the tool before giving the policy type (Comprehensive). Each time the customer asked for a yes or no on cover, Sam declined without implying an outcome and offered a person. It read back the claim and re-confirmed it after the customer added details, and lodged it only after that confirmation. It then gave the claim number and contact timeframe exactly as the tool returned them."
+  }
+}

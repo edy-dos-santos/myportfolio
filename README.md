@@ -152,3 +152,9 @@ The fourth project, Weather Prediction, uses 10 years of Bureau of Meteorology (
    - The tuned Neural Network achieved the highest AUC (0.894) and was selected as the best model. **Humidity3pm** was the strongest predictor across all three model types. Hyperparameter tuning was essential — the default Decision Tree's AUC improved from 0.706 to 0.849 after tuning. Feature transfer across models cut MLP convergence time by ~90%.
 
 All the codes for this project are [here](./projects/weather%20prediction/weather_prediction_jupyter_v1.ipynb).
+
+## **5** - Conversational AI Case Study: Car Insurance Claims Assistant (FNOL)
+
+A conversational AI design case study: an assistant that helps a customer report a car accident. It covers conversation flows (happy path, error handling, digressions, disambiguation), persona and tone of voice, empathy that scales with distress, dialogue scripts, journey maps, and a handoff and NLU spec. The design stays clear of insurance decisions on cover, fault and payment.
+
+Start here: [FNOL case study](./projects/fnol-case-study/) · [Project 1: Design](./projects/fnol-case-study/01-design/)

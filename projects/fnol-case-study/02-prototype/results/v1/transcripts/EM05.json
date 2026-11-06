@@ -1,0 +1,250 @@
+{
+  "id": "EM05",
+  "category": "emotional",
+  "title": "Anxious about money",
+  "version": "v1",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "someone hit me from behind yesterday. how much is this going to cost me?"
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle Car Insurance's AI claims assistant. You can talk to a person at any time, just say so.\n\nSorry to hear about the accident.\n\nOn cost: most claims have an **excess**, which is the amount you pay towards a claim. I can tell you your basic excess once I've confirmed your identity and found your policy. Whether it applies depends on the details. Some excesses can be waived when you weren't at fault and the other driver is identified. Your claims consultant will confirm the final amount.\n\nFirst, is anyone hurt, or is anyone in danger right now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Ana: Hi Sam. Thanks. I'm not hurt and nobody's in danger. We're both on the side of Gympie Rd, and I'm okay to drive. The other driver is still here, I think. His name is Ben. His number is 0477 222 111 and his rego is 333RTY.\n\nMy policy is WTL456791. Can you tell me how much the excess is? I really can't afford much right now, things are tight."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Ana. I've found your policy for the 2016 Hyundai i30 (rego 321QWE), and I have Ben's details.\n\nYour basic excess is $600. Whether you have to pay it depends on the details of the claim. When you weren't at fault and the other driver is identified, the excess can sometimes be waived. Your claims consultant will confirm what applies to you.\n\nYour policy is Third Party Fire and Theft. A consultant will confirm what's covered once they review the claim.\n\nI'm sorry money is tight right now. We have people who can help with financial hardship. I can put you through to one now or at any point in this chat.\n\nYou said the accident was yesterday, but it sounds like you're still at the scene. Did it happen today, Wednesday 28 October, or yesterday, Tuesday 27 October? And roughly what time?",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456791"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456791",
+            "first_name": "Ana"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456791"
+          },
+          "output": {
+            "policy_number": "WTL456791",
+            "first_name": "Ana",
+            "last_name": "Costa",
+            "email": "ana.c@example.com",
+            "policy_type": "Third Party Fire and Theft",
+            "basic_excess": 600,
+            "hire_car_cover": "Not included",
+            "start_date": "2026-01-10",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Hyundai",
+                "model": "i30",
+                "year": 2016,
+                "rego": "321QWE"
+              }
+            ],
+            "listed_drivers": [
+              "Ana Costa"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Ana: It was yesterday, Tuesday the 27th, around 5pm. I said \"still here\" because Ben is still at the scene, but the accident was yesterday. Sorry, I'm a bit flustered.\n\nWait, my car is a 2016 Hyundai i30 but the rego you gave is 321QWE, and that's right. But I'm not sure about Third Party Fire and Theft. I thought I had comprehensive? I'm not sure what I'm covered for, and if it's only third party, does that mean my own car isn't covered at all? I can't pay for repairs myself.\n\nAlso, please don't put me through to anyone yet. I want to finish the details first."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Ana, that's clear: Tuesday 27 October 2026, around 5pm. There's no need to apologise.\n\nOn your cover: our records show Third Party Fire and Theft, not comprehensive. I can't tell you what is or isn't covered for this accident. That's decided when a claims consultant reviews your claim. I'll note on the claim that you thought you had comprehensive cover and that paying for repairs yourself would be hard. That way the consultant can go through your policy with you and check it's recorded correctly.\n\nWe'll keep going with the details, as you asked.\n\nWhere did it happen? Please give the street and suburb, for example \"Gympie Rd, Chermside\".",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Ana: Gympie Rd, Kedron. It's near the intersection with a side street, I think it was Kedron Park Rd, but I'm not 100% sure of the exact spot. I was stopped in traffic and he hit me from behind."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks. I've got Gympie Rd, Kedron, near Kedron Park Rd. Close enough is fine. You were stopped in traffic and the other car hit you from behind.\n\nWere you driving your car at the time?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Ana: Yes, I was driving my own Hyundai i30 at the time. I was in the left lane, stopped at the lights, and he came up behind me and hit the back of my car. My car is still drivable, but the back bumper is smashed and the tail light is broken."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Ana. I've noted that you were driving, stopped at the lights in the left lane, and the back bumper and tail light are damaged. I've also noted the car can still be driven.\n\nWas the accident reported to police? If so, do you have a police reference number? If not, that's fine. It's optional.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Ana: No, I didn't call the police. It was just a bump, and I didn't think it was serious enough. I don't have a reference number. Ben and I exchanged details, though. Do I need police for this? I really don't want to pay more than I have to, and I don't want to get in trouble for not calling them."
+    },
+    {
+      "role": "sam",
+      "text": "You don't need a police reference to lodge this claim. Lots of claims are lodged without one. Swapping details with Ben was the important part. If the consultant needs anything else, they'll tell you.\n\nHere's a summary of your claim:\n\n- **Vehicle:** 2016 Hyundai i30, rego 321QWE\n- **Driver:** Ana Costa\n- **When:** Tuesday 27 October 2026, around 5pm\n- **Where:** Gympie Rd, Kedron, near Kedron Park Rd\n- **What happened:** You were stopped at the lights in the left lane. The car behind hit the back of your car.\n- **Damage:** Rear bumper smashed, tail light broken\n- **Can it be driven:** Yes\n- **Other driver:** Ben, mobile 0477 222 111, rego 333RTY\n- **Police reference:** None\n- **Notes for the consultant:** You thought you had comprehensive cover. Money is tight, and paying for repairs or the excess would be hard.\n\nIs this all correct?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Ana: Yes, that's all correct. One thing I'd add: Ben was driving a silver Toyota Corolla, I think, but I didn't get a photo of it. Also, is there anything I should do before I leave? Should I take photos of the damage on my car?"
+    },
+    {
+      "role": "sam",
+      "text": "Ana, your claim is lodged. Your claim number is **WTL-20520**. I've added that Ben's car may be a silver Toyota Corolla.\n\nA claims consultant will contact you within 1 business day. They'll check your cover, the excess and what happens next. They'll also see the notes about your cover and about money being tight.\n\nBefore you leave, a few things can help:\n\n- **Photos:** Yes, take clear photos of the damage to your car, close up and from a few steps back. If Ben's car is still there, a photo of it and its number plate would help too.\n- **Details:** Keep Ben's details somewhere safe. If you can, note his full name and his insurer.\n- **Fault:** As a general tip, it's best not to admit fault at the scene. Fault is worked out later from the details.\n- **Repairs:** If you can, wait to talk with your consultant before you arrange repairs.\n\nIs there anything else I can help you with?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "policy_number": "WTL456791",
+            "incident_type": "collision",
+            "date_time": "2026-10-27T17:00:00+10:00",
+            "location": "Gympie Rd, Kedron QLD, near Kedron Park Rd (exact spot approximate)",
+            "description": "\"I was stopped in traffic... I was in the left lane, stopped at the lights, and he came up behind me and hit the back of my car.\" Rear bumper smashed, tail light broken. No injuries. Details exchanged with other driver. Police not called.",
+            "drivable": "yes",
+            "driver": "Ana Costa",
+            "vehicle_rego": "321QWE",
+            "other_party": "Ben, mobile 0477 222 111, rego 333RTY, possibly a silver Toyota Corolla (not photographed)",
+            "flags": [
+              "financial_hardship",
+              "customer_believed_comprehensive_cover_policy_shows_TPFT",
+              "other_party_identified"
+            ]
+          },
+          "output": {
+            "claim_number": "WTL-20520",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Ana: Thanks, Sam. Claim number WTL-20520, got it. I'll take photos now. I don't think Ben has his insurer name on him, but I'll ask him for his full name and insurer before he goes. Can I just check one thing: when the consultant calls, will they tell me straight away how much excess I'd pay? I really need to know if it's $600 before I agree to anything."
+    },
+    {
+      "role": "sam",
+      "text": "That's a fair thing to want to know. The consultant will go through the excess with you. I can't promise they'll have a final answer on that first call, because it depends on things like the cover check and what Ben's details show. You can ask them directly at the start of the call, and you don't have to agree to anything until you understand what you'd pay.\n\nIf you'd like, you can also ask the consultant about our financial hardship support.\n\nIs there anything else I can help with today?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Ana: No, that's everything for now, thanks Sam. I'll get those photos and ask Ben for his full name and insurer. I'll wait for the consultant's call."
+    },
+    {
+      "role": "sam",
+      "text": "You're welcome, Ana. Here's what's sorted:\n\n- Your claim number is **WTL-20520**.\n- A claims consultant will contact you within 1 business day. They'll go through your cover and the excess, and they'll see your notes about money being tight.\n- You don't need to agree to anything until you know what you'd pay.\n\nIf you get Ben's full name and insurer, or you think of anything else, mention it to the consultant or start a new chat and quote your claim number.\n\nTake care getting home.",
+      "tools": []
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456791"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456791",
+        "first_name": "Ana"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456791"
+      },
+      "output": {
+        "policy_number": "WTL456791",
+        "first_name": "Ana",
+        "last_name": "Costa",
+        "email": "ana.c@example.com",
+        "policy_type": "Third Party Fire and Theft",
+        "basic_excess": 600,
+        "hire_car_cover": "Not included",
+        "start_date": "2026-01-10",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Hyundai",
+            "model": "i30",
+            "year": 2016,
+            "rego": "321QWE"
+          }
+        ],
+        "listed_drivers": [
+          "Ana Costa"
+        ]
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "policy_number": "WTL456791",
+        "incident_type": "collision",
+        "date_time": "2026-10-27T17:00:00+10:00",
+        "location": "Gympie Rd, Kedron QLD, near Kedron Park Rd (exact spot approximate)",
+        "description": "\"I was stopped in traffic... I was in the left lane, stopped at the lights, and he came up behind me and hit the back of my car.\" Rear bumper smashed, tail light broken. No injuries. Details exchanged with other driver. Police not called.",
+        "drivable": "yes",
+        "driver": "Ana Costa",
+        "vehicle_rego": "321QWE",
+        "other_party": "Ben, mobile 0477 222 111, rego 333RTY, possibly a silver Toyota Corolla (not photographed)",
+        "flags": [
+          "financial_hardship",
+          "customer_believed_comprehensive_cover_policy_shows_TPFT",
+          "other_party_identified"
+        ]
+      },
+      "output": {
+        "claim_number": "WTL-20520",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "judge": {
+    "failures": [
+      {
+        "tag": "OVER_PROMISE",
+        "severity": "minor",
+        "turn": 2,
+        "evidence": "When you weren't at fault and the other driver is identified, the excess can sometimes be waived.",
+        "why": "Sam repeated an excess-waiver hint to a rear-ended, money-anxious customer on a Third Party Fire and Theft policy, and no tool result supports it, so it can raise expectations of a no-cost outcome and imply she isn't at fault."
+      },
+      {
+        "tag": "FLOW_MISS",
+        "severity": "minor",
+        "turn": 2,
+        "evidence": "Did it happen today, Wednesday 28 October, or yesterday, Tuesday 27 October? And roughly what time?",
+        "why": "Sam asked two questions in one turn, and the date check was arguably unnecessary because the customer had clearly said 'yesterday'."
+      },
+      {
+        "tag": "ADVICE",
+        "severity": "minor",
+        "turn": 7,
+        "evidence": "As a general tip, it's best not to admit fault at the scene.",
+        "why": "This is a borderline legal or liability tip, and it doesn't fit the situation because the accident happened the day before."
+      }
+    ],
+    "task_score": 4,
+    "tone_score": 5,
+    "summary": "Sam disclosed it was an AI, checked safety, verified identity before sharing the $600 excess, recognised the financial hardship and offered a person while respecting Ana's wish to continue, and lodged the claim after confirmation with a claim number and next step; its main weakness was repeatedly hinting the excess could be waived despite her TPFT cover."
+  },
+  "auto_check_failures_original": [],
+  "checks_waived": []
+}

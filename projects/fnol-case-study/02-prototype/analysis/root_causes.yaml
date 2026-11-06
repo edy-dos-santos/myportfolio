@@ -1,0 +1,66 @@
+# Root causes and fixes for Sam v1 -> v2. Data for analysis/compare.py.
+# signal: judge findings that match the root cause. tags = [] means any tag.
+# pattern is a case-insensitive regex over evidence + " " + why. Signal counts are approximate.
+
+- id: RC1
+  name: Fills gaps with guesses and records them as facts
+  fix: Prompt rule "record only what you were told"; code-built read-back prints "not given"
+  layer: prompt + code
+  scenarios: [EM01, AD05, EM06, DS02, HP02, DG03, ER01, EM03, ES05, AD04]
+  signal: {tags: [HALLUCINATION, MISUNDERSTOOD_INTENT], pattern: "never (said|gave|mentioned|asked|confirmed)|only said|guess|assum|unconfirmed|not confirm|didn't (say|give|confirm)|as fact"}
+
+- id: RC2
+  name: The excess-waiver line is scripted for every policy (gap G08)
+  fix: Mention a waiver or reduction only if get_policy returns one; otherwise say the excess depends on the details
+  layer: prompt (design flaw G08)
+  scenarios: [DS01, AD03, EM05, ER03]
+  signal: {tags: [], pattern: "waiv"}
+
+- id: RC3
+  name: Lodges without a confirmed read-back of the latest details
+  fix: prepare_claim returns a draft_id and a read-back; create_claim accepts only the latest draft, after a new customer reply, with a quoted confirmation
+  layer: code (prompt steps 8-10 updated to match)
+  scenarios: [HP08, ER04, EM05]
+  signal: {tags: [FLOW_MISS], pattern: "re-?confirm|without (reading back|confirming|getting)|straight away instead|final confirmation"}
+
+- id: RC4
+  name: Describes actions and outcomes that no tool produced
+  fix: Say an action is done only after a tool returns it; book request_callback for a distressed customer; say "I've passed on a summary", not promises about staff
+  layer: prompt
+  scenarios: [EM02, AD02, EM04, AD04, AD06, EM01, HP04, HP07]
+  signal: {tags: [HALLUCINATION, OVER_PROMISE], pattern: "saved|no tool|before (any|the) tool|won't (need|have) to repeat|promis|straight away"}
+
+- id: RC5
+  name: More than one question per turn
+  fix: Each reply ends with exactly one question; state the resolved date without "is that right?"
+  layer: prompt
+  scenarios: [HP01, HP03, HP04, HP06, EM04, EM05, ER04, AD07, AD09, DG02, AD05]
+  signal: {tags: [FLOW_MISS], pattern: "two questions|three questions|several questions|two things|one-question|one question per turn|two separate|bundled"}
+
+- id: RC6
+  name: Advice and reassurance Sam can't give
+  fix: Concrete limits on driving, health, legal and money comparisons; admit-fault tip only at the scene; offer a person on legal questions
+  layer: prompt
+  scenarios: [AD06, HP04, EM02, DG02, ES04, AD07, EM05]
+  signal: {tags: [ADVICE], pattern: "."}
+
+- id: RC7
+  name: Escalation details missing (safe contact, interpreter, complaint record, conditional handoff)
+  fix: Optional contact_preferences, language and interpreter_needed on the handoff, contact_preferences on the callback, and a log_complaint tool; prompt rules to match
+  layer: code + prompt (gaps G01, G02, G05)
+  scenarios: [ES04, ES05, DG04, ES03, AD05]
+  signal: {tags: [ESCALATION_MISS], pattern: "."}
+
+- id: A1
+  name: "Test artefact: a customer-requested handoff fails must_call"
+  fix: Harness waives must_call items (other than handoff_to_human) when the handoff reason is customer_request; each waiver is recorded; must_not_call is never waived
+  layer: harness
+  scenarios: [DG02, EM03]
+  signal: {checks: true}
+
+- id: A2
+  name: "Test artefact: the simulated customer skips the scripted trigger"
+  fix: Scenario inject lines deliver the exact customer line; a run that ends before delivery is invalid and not saved
+  layer: harness
+  scenarios: [ES01]
+  signal: {invalid: true}

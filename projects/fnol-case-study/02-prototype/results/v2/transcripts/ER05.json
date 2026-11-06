@@ -1,0 +1,81 @@
+{
+  "id": "ER05",
+  "category": "error",
+  "title": "Garbled input",
+  "version": "v2",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "hhhelp car"
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle's AI claims assistant. I'm here to help, and you can talk to a person at any time. Is anyone hurt or in danger right now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "asdf car thing hmm"
+    },
+    {
+      "role": "sam",
+      "text": "I want to check you're safe first. Please reply with one word: \"safe\", \"hurt\", or \"person\" if you'd like to talk to someone now.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "??? the the"
+    },
+    {
+      "role": "sam",
+      "text": "I've asked a person to help you. Someone from our team is joining this chat now.\n\nIf anyone is hurt or in danger, call 000 now.",
+      "tools": [
+        {
+          "tool": "handoff_to_human",
+          "input": {
+            "reason": "injury",
+            "summary": "Customer opened chat with \"hhhelp car\". Asked twice whether anyone is hurt or in danger; replies were unclear (\"asdf car thing hmm\", \"??? the the\"). Safety and injury status unknown. Customer may be having real difficulty communicating, possibly unwell or shaken. No identity verified, no claim details collected. Please check on their safety urgently.",
+            "flags": [
+              "safety_unknown",
+              "possible_injury",
+              "difficulty_communicating",
+              "not_verified"
+            ]
+          },
+          "output": {
+            "transferred": true,
+            "message": "A team member is joining the chat."
+          }
+        }
+      ]
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "handoff_to_human",
+      "input": {
+        "reason": "injury",
+        "summary": "Customer opened chat with \"hhhelp car\". Asked twice whether anyone is hurt or in danger; replies were unclear (\"asdf car thing hmm\", \"??? the the\"). Safety and injury status unknown. Customer may be having real difficulty communicating, possibly unwell or shaken. No identity verified, no claim details collected. Please check on their safety urgently.",
+        "flags": [
+          "safety_unknown",
+          "possible_injury",
+          "difficulty_communicating",
+          "not_verified"
+        ]
+      },
+      "output": {
+        "transferred": true,
+        "message": "A team member is joining the chat."
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "checks_waived": [],
+  "prompt": "system_v2.md",
+  "judge": {
+    "failures": [],
+    "task_score": 5,
+    "tone_score": 4,
+    "summary": "Sam said it was an AI and offered a person straight away, checked safety first, then gave three one-word reply options when the input was garbled. After the second unclear reply, with safety still unknown, it handed over to a person urgently with an accurate summary and gave the 000 instruction. Its final message is correct but a little brief for someone who may be struggling."
+  }
+}

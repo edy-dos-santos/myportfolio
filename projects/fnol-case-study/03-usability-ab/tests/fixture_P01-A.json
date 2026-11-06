@@ -1,0 +1,41 @@
+{
+  "conversation_id": "P01-A",
+  "persona_id": "P01",
+  "variant": "A",
+  "variant_name": "form_first",
+  "sam_version": "abA",
+  "order_position": 1,
+  "data_source": "simulated",
+  "sam_model": "claude-opus-5-5",
+  "customer_model": "claude-haiku-5-5",
+  "started_at": "2026-10-28T09:00:00+10:00",
+  "elapsed_seconds": 96.2,
+  "hit_turn_cap": false,
+  "transcript": [
+    {"role": "customer", "text": "Hi, someone rear-ended me at the lights this morning. Need to make a claim.", "ms": 0},
+    {"role": "sam", "text": "Hi, I'm Sam, an AI assistant for Wattle Car Insurance. A person is available any time. Is anyone hurt?", "tools": [], "ms": 6120},
+    {"role": "customer", "text": "No, all fine. Policy WTL456801.", "ms": 1900},
+    {"role": "sam", "text": "Thanks Chloe, you're verified. When did it happen?", "tools": [
+      {"tool": "verify_identity", "input": {"policy_number": "WTL456801"}, "output": {"verified": true, "policy_number": "WTL456801", "first_name": "Chloe"}},
+      {"tool": "get_policy", "input": {"policy_number": "WTL456801"}, "output": {"policy_number": "WTL456801", "policy_type": "Comprehensive", "vehicles": [{"id": "V1", "make": "Toyota", "model": "Yaris", "year": 2022, "rego": "101CMA"}], "listed_drivers": ["Chloe Martin"], "basic_excess": 750}}
+    ], "ms": 7405},
+    {"role": "customer", "text": "This morning about 7:45, on Gympie Rd in Kedron.", "ms": 2100},
+    {"role": "sam", "text": "Where did it happen?", "tools": [], "ms": 4010},
+    {"role": "customer", "text": "Gympie Rd, Kedron, like I said.", "ms": 1500},
+    {"role": "sam", "text": "Can the car be driven safely?", "tools": [], "ms": 3880},
+    {"role": "customer", "text": "Yes it drives fine. I was driving.", "ms": 1700},
+    {"role": "sam", "text": "Here's what I have: rear-ended at the lights on Gympie Rd, Kedron, this morning at 7:45. Is that all correct?", "tools": [], "ms": 5210},
+    {"role": "customer", "text": "Yes.", "ms": 900},
+    {"role": "sam", "text": "Your claim number is WTL-20500. A claims consultant will contact you within 1 business day. Is there anything else?", "tools": [
+      {"tool": "create_claim", "input": {"policy_number": "WTL456801", "vehicle_rego": "101CMA", "incident_type": "collision", "date_time": "2026-10-28 07:45", "location": "Gympie Rd, Kedron", "description": "Rear-ended at lights", "drivable": "yes", "driver": "Chloe Martin"}, "output": {"claim_number": "WTL-20500", "status": "lodged"}}
+    ], "ms": 6744},
+    {"role": "customer", "text": "No thanks.", "ms": 1100}
+  ],
+  "tool_calls": [
+    {"tool": "verify_identity", "input": {"policy_number": "WTL456801"}, "output": {"verified": true, "policy_number": "WTL456801", "first_name": "Chloe"}},
+    {"tool": "get_policy", "input": {"policy_number": "WTL456801"}, "output": {"policy_number": "WTL456801", "policy_type": "Comprehensive", "vehicles": [{"id": "V1", "make": "Toyota", "model": "Yaris", "year": 2022, "rego": "101CMA"}], "listed_drivers": ["Chloe Martin"], "basic_excess": 750}},
+    {"tool": "create_claim", "input": {"policy_number": "WTL456801", "vehicle_rego": "101CMA", "incident_type": "collision", "date_time": "2026-10-28 07:45", "location": "Gympie Rd, Kedron", "description": "Rear-ended at lights", "drivable": "yes", "driver": "Chloe Martin"}, "output": {"claim_number": "WTL-20500", "status": "lodged"}}
+  ],
+  "handed_off": false,
+  "questionnaire": {"seq": 6, "csat": 4, "comment": "Quick."}
+}

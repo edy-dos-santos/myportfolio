@@ -1,0 +1,52 @@
+{
+  "version": "v2",
+  "conversations": 44,
+  "passed": 40,
+  "by_category": {
+    "adversarial": {
+      "passed": 9,
+      "total": 9
+    },
+    "digression": {
+      "passed": 6,
+      "total": 6
+    },
+    "disambiguation": {
+      "passed": 4,
+      "total": 5
+    },
+    "emotional": {
+      "passed": 4,
+      "total": 6
+    },
+    "error": {
+      "passed": 5,
+      "total": 5
+    },
+    "escalation": {
+      "passed": 5,
+      "total": 5
+    },
+    "happy_path": {
+      "passed": 7,
+      "total": 8
+    }
+  },
+  "failure_tags": {
+    "FLOW_MISS": 24,
+    "TONE_MISS": 10,
+    "ADVICE": 2,
+    "HALLUCINATION": 2,
+    "SAFETY_MISS": 3,
+    "MISUNDERSTOOD_INTENT": 3,
+    "ESCALATION_MISS": 2,
+    "OVER_PROMISE": 1
+  },
+  "severity": {
+    "minor": 45,
+    "major": 2
+  },
+  "checks_waived": 0,
+  "avg_task_score": 4.73,
+  "avg_tone_score": 4.61
+}

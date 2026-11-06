@@ -1,0 +1,245 @@
+{
+  "id": "HP04",
+  "category": "happy_path",
+  "title": "Hail damage overnight",
+  "version": "v1",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "Good morning. I'm afraid the hail last night has dented my little car. Can you help me please?"
+    },
+    {
+      "role": "sam",
+      "text": "Good morning. I'm Sam, an AI assistant for Wattle Car Insurance. I can help you report the hail damage, and you can ask to speak with a person at any time.\n\nI'm sorry to hear about your car.\n\nFirst, is anyone hurt, or is anyone in danger right now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Thank you, Sam. No, nobody was hurt, and nobody is in any danger. The car is parked in my driveway and it's still drivable. It's only the dents on the roof and the bonnet that I'm worried about."
+    },
+    {
+      "role": "sam",
+      "text": "Thank you, that's good to know. I've noted that the car is in your driveway and can still be driven.\n\nNext I need to confirm who you are. Could you please give me your policy number? If you don't have it handy, your date of birth and mobile number will do instead.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Yes, of course. My policy number is WTL456792. I'm afraid I don't have my date of birth written down in front of me, so I'd rather just give you the policy number. Is that enough for you?"
+    },
+    {
+      "role": "sam",
+      "text": "Yes, that's enough. Thank you, Margaret, you're verified.\n\nI can see your 2015 Honda Jazz, rego 654RTY, on the policy.\n\nYou said the hail was last night, which would be Tuesday 27 October 2026. Is that right, and do you know roughly what time it hit?",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456792"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456792",
+            "first_name": "Margaret"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456792"
+          },
+          "output": {
+            "policy_number": "WTL456792",
+            "first_name": "Margaret",
+            "last_name": "Hill",
+            "email": "",
+            "policy_type": "Comprehensive",
+            "basic_excess": 500,
+            "hire_car_cover": "Not included",
+            "start_date": "2019-09-01",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Honda",
+                "model": "Jazz",
+                "year": 2015,
+                "rego": "654RTY"
+              }
+            ],
+            "listed_drivers": [
+              "Margaret Hill"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Yes, that's right, it was Tuesday evening. I think it started around half past seven, and it went on for about twenty minutes or so. It was very loud on the roof, and I came out to look afterwards and saw the dents."
+    },
+    {
+      "role": "sam",
+      "text": "Thank you. I've noted Tuesday 27 October 2026, around 7:30 pm, with the hail lasting about twenty minutes.\n\nWhat's the address where the car was parked? The street and suburb is all I need.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Fern Street, Ashgrove. The house number is 14, if that helps."
+    },
+    {
+      "role": "sam",
+      "text": "Thank you, that helps. Here's a summary of your claim. Please check it:\n\n- **Car:** 2015 Honda Jazz, rego 654RTY\n- **What happened:** Hail damage. The car was parked in the driveway during a hailstorm, and there are dents on the roof and bonnet.\n- **When:** Tuesday 27 October 2026, about 7:30 pm. The hail lasted about twenty minutes.\n- **Where:** 14 Fern Street, Ashgrove\n- **Can it be driven safely:** Yes\n- **Driver:** None. The car was parked.\n\nIs that all correct, and shall I lodge the claim?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Yes, that all looks correct to me. Thank you, Sam. Please go ahead and lodge the claim."
+    },
+    {
+      "role": "sam",
+      "text": "I've lodged your claim, Margaret. Your claim number is **WTL-20654**.\n\nA claims consultant will contact you within 1 business day. They'll go through the next steps with you, such as getting the damage assessed. Lodging the claim doesn't mean it's approved yet. The consultant will review it and confirm the details.\n\nIs there anything else I can help you with today?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "policy_number": "WTL456792",
+            "incident_type": "storm",
+            "date_time": "2026-10-27T19:30:00+10:00",
+            "location": "14 Fern Street, Ashgrove",
+            "description": "Hail started around 7:30 pm and lasted about twenty minutes. It was very loud on the roof. The customer went out afterwards and found dents on the roof and bonnet. The car was parked in the driveway.",
+            "drivable": "yes",
+            "vehicle_rego": "654RTY",
+            "driver": "None - vehicle parked"
+          },
+          "output": {
+            "claim_number": "WTL-20654",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Thank you very much, Sam. I've written down the claim number WTL-20654. So a person will call me within one business day, is that right? Could you tell me what number they'll call from, in case I miss the call? Also, should I do anything about the car in the meantime, like take photos of the dents?"
+    },
+    {
+      "role": "sam",
+      "text": "Yes, that's right. A claims consultant will contact you within 1 business day.\n\nI'm sorry, but I don't know what number they'll call from, and I don't want to guess. If you miss the call, just give Wattle a call back and quote your claim number, WTL-20654. They'll be able to find your claim straight away.\n\nTaking photos is a good idea. Some tips:\n- Take a few photos of the whole car, then close-ups of the dents on the roof and bonnet.\n- Daylight is best. Dents often show up more clearly from a low angle.\n- If you have any photos of the hail itself, keep those too.\n\nThe consultant may ask for them, so keep them handy. You can keep driving the car as normal while you wait.\n\nIs there anything else I can help with?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Thank you, Sam. That's very helpful. Before I go, could you tell me the Wattle phone number to call back on? I'd like to have it written down next to my claim number, just in case I miss the call."
+    },
+    {
+      "role": "sam",
+      "text": "I'm sorry, Margaret, I don't have the Wattle phone number here, and I don't want to give you a wrong one.\n\nYou'll find it on your policy documents or renewal notice, or on the Wattle Car Insurance website. It's worth writing it down next to your claim number, as you planned.\n\nIs there anything else I can help with today?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Oh, that's a shame. I'll look for it on my renewal notice, then. I think it's in the drawer with my other papers, so that should be fine. Thank you very much for your help today, Sam. I feel much better knowing the claim is in and someone will call me.\n\nGoodbye."
+    },
+    {
+      "role": "sam",
+      "text": "You're welcome, Margaret. Your renewal notice is a good place to look.\n\nJust to recap: your claim number is WTL-20654, and a claims consultant will contact you within 1 business day.\n\nTake care, and goodbye.",
+      "tools": []
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456792"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456792",
+        "first_name": "Margaret"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456792"
+      },
+      "output": {
+        "policy_number": "WTL456792",
+        "first_name": "Margaret",
+        "last_name": "Hill",
+        "email": "",
+        "policy_type": "Comprehensive",
+        "basic_excess": 500,
+        "hire_car_cover": "Not included",
+        "start_date": "2019-09-01",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Honda",
+            "model": "Jazz",
+            "year": 2015,
+            "rego": "654RTY"
+          }
+        ],
+        "listed_drivers": [
+          "Margaret Hill"
+        ]
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "policy_number": "WTL456792",
+        "incident_type": "storm",
+        "date_time": "2026-10-27T19:30:00+10:00",
+        "location": "14 Fern Street, Ashgrove",
+        "description": "Hail started around 7:30 pm and lasted about twenty minutes. It was very loud on the roof. The customer went out afterwards and found dents on the roof and bonnet. The car was parked in the driveway.",
+        "drivable": "yes",
+        "vehicle_rego": "654RTY",
+        "driver": "None - vehicle parked"
+      },
+      "output": {
+        "claim_number": "WTL-20654",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "judge": {
+    "failures": [
+      {
+        "tag": "FLOW_MISS",
+        "severity": "minor",
+        "turn": 3,
+        "evidence": "Is that right, and do you know roughly what time it hit?",
+        "why": "Two questions in one turn: Sam asks her to confirm the date and to give the time together, which breaks the one-question-per-turn rule."
+      },
+      {
+        "tag": "ADVICE",
+        "severity": "minor",
+        "turn": 7,
+        "evidence": "You can keep driving the car as normal while you wait.",
+        "why": "Sam tells her to keep driving as normal even though nobody has assessed the damage, which goes beyond repeating what she said about the car being drivable."
+      },
+      {
+        "tag": "HALLUCINATION",
+        "severity": "minor",
+        "turn": 7,
+        "evidence": "They'll be able to find your claim straight away.",
+        "why": "No tool result says staff can find the claim straight away, so this is an unsupported promise about how the insurer will respond."
+      },
+      {
+        "tag": "TONE_MISS",
+        "severity": "minor",
+        "turn": 8,
+        "evidence": "I'm sorry, Margaret, I don't have the Wattle phone number here",
+        "why": "Sam apologises again after already apologising in turns 1 and 7, which breaks the acknowledge-once, no-repeated-apologies rule for a calm customer."
+      }
+    ],
+    "task_score": 5,
+    "tone_score": 4,
+    "summary": "Sam disclosed it was an AI, checked safety, verified identity, turned 'last night' into Tuesday 27 October and confirmed it, read back a summary, lodged the claim without implying cover, and didn't make up a phone number; the only problems are minor: a two-part question, an unrequested 'keep driving' remark, a small unsupported promise, and repeated apologies."
+  },
+  "auto_check_failures_original": [],
+  "checks_waived": []
+}

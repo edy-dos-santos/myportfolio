@@ -1,0 +1,269 @@
+{
+  "id": "HP07",
+  "category": "happy_path",
+  "title": "Vandalism, keyed paint",
+  "version": "v2",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "someone keyed my car on the weekend. can I claim that?"
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle's AI claims assistant, and you can talk to a person at any time. Sorry to hear about your car. You can lodge a claim for this, and a claims consultant will confirm what your policy covers once they review it. First, are you safe right now, and is anyone hurt?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Hi Sam, thanks. I'm okay, nobody was hurt. The car is still drivable."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks for letting me know. I've noted the car can still be driven. Next I need to confirm who you are. What's your policy number? If you don't have it handy, your date of birth and mobile number will work too.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "My policy number is WTL456791. Sorry, I'm not sure what type of policy it is, but that's the number on my papers."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Ana, you're verified. Your policy is Third Party Fire and Theft, and it covers your 2016 Hyundai i30, rego 321QWE. Whether this damage is covered is confirmed when a claims consultant reviews the claim, and it's your choice whether to lodge one. I can also put you through to a person if you'd like to talk it over first.\n\nWould you like to go ahead and tell me what happened, in your own words?",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456791"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456791",
+            "first_name": "Ana"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456791"
+          },
+          "output": {
+            "policy_number": "WTL456791",
+            "first_name": "Ana",
+            "last_name": "Costa",
+            "email": "ana.c@example.com",
+            "policy_type": "Third Party Fire and Theft",
+            "basic_excess": 600,
+            "hire_car_cover": "Not included",
+            "start_date": "2026-01-10",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Hyundai",
+                "model": "i30",
+                "year": 2016,
+                "rego": "321QWE"
+              }
+            ],
+            "listed_drivers": [
+              "Ana Costa"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Yes, I'd like to lodge a claim. On Saturday night (24 October) I parked my i30 in a car park in Fortitude Valley, and when I came back to it someone had keyed down the side of the car. I didn't see anyone and I don't know who did it. I haven't had it looked at yet. It's still drivable and nobody was hurt."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Ana. I've got that as Saturday 24 October, in a car park in Fortitude Valley. What's the name of the car park, or the street it's on?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "I'm not sure of the exact name. It's a public car park on one of the streets off Brunswick Street, I think. I can't remember which one."
+    },
+    {
+      "role": "sam",
+      "text": "That's fine, I'll record it as a public car park off Brunswick Street, Fortitude Valley. Roughly what time did you park the car, and what time did you come back to it?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "I parked around 7:30pm and came back to the car at about 10:15pm."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, I've got that as between about 7:30pm and 10:15pm on Saturday 24 October. Have you reported this to the police, and if so, do you have a reference number?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No, I haven't reported it to the police. I didn't think they'd do anything about it. I don't have a reference number."
+    },
+    {
+      "role": "sam",
+      "text": "Here's what I've got for your claim:\n\n- Car (rego): 321QWE\n- Type of incident: vandalism\n- When: Saturday 24 October 2026, between about 7:30pm and 10:15pm\n- Where: Public car park off Brunswick Street, Fortitude Valley (exact street and car park name not known)\n- What happened: \"I parked my i30 in a car park in Fortitude Valley, and when I came back to it someone had keyed down the side of the car. I didn't see anyone and I don't know who did it. I haven't had it looked at yet.\" Nobody was hurt.\n- Can be driven safely: yes\n- Who was driving: Ana Costa (parked the car)\n- Other party: Unknown, you didn't see who did it\n- Police reference: Not reported to police\n\nIs everything here correct, or is there anything you'd like to change?",
+      "tools": [
+        {
+          "tool": "prepare_claim",
+          "input": {
+            "policy_number": "WTL456791",
+            "incident_type": "vandalism",
+            "date_time": "Saturday 24 October 2026, between about 7:30pm and 10:15pm",
+            "location": "Public car park off Brunswick Street, Fortitude Valley (exact street and car park name not known)",
+            "description": "\"I parked my i30 in a car park in Fortitude Valley, and when I came back to it someone had keyed down the side of the car. I didn't see anyone and I don't know who did it. I haven't had it looked at yet.\" Nobody was hurt.",
+            "drivable": "yes",
+            "driver": "Ana Costa (parked the car)",
+            "other_party": "Unknown - customer did not see who did it",
+            "police_ref": "Not reported to police",
+            "vehicle_rego": "321QWE"
+          },
+          "output": {
+            "draft_id": "D1",
+            "readback": "- Car (rego): 321QWE\n- Type of incident: vandalism\n- When: Saturday 24 October 2026, between about 7:30pm and 10:15pm\n- Where: Public car park off Brunswick Street, Fortitude Valley (exact street and car park name not known)\n- What happened: \"I parked my i30 in a car park in Fortitude Valley, and when I came back to it someone had keyed down the side of the car. I didn't see anyone and I don't know who did it. I haven't had it looked at yet.\" Nobody was hurt.\n- Can be driven safely: yes\n- Who was driving: Ana Costa (parked the car)\n- Other party: Unknown - customer did not see who did it\n- Police reference: Not reported to police",
+            "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Yes, that all looks right to me. Nothing to change."
+    },
+    {
+      "role": "sam",
+      "text": "Your claim is lodged, Ana. Your claim number is WTL-20822. A claims consultant will contact you within 1 business day. They'll review the claim and confirm what your policy covers.\n\nIs there anything else I can help you with today?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "draft_id": "D1",
+            "customer_confirmation": "Yes, that all looks right to me. Nothing to change.",
+            "lodged": {
+              "policy_number": "WTL456791",
+              "incident_type": "vandalism",
+              "date_time": "Saturday 24 October 2026, between about 7:30pm and 10:15pm",
+              "location": "Public car park off Brunswick Street, Fortitude Valley (exact street and car park name not known)",
+              "description": "\"I parked my i30 in a car park in Fortitude Valley, and when I came back to it someone had keyed down the side of the car. I didn't see anyone and I don't know who did it. I haven't had it looked at yet.\" Nobody was hurt.",
+              "drivable": "yes",
+              "driver": "Ana Costa (parked the car)",
+              "other_party": "Unknown - customer did not see who did it",
+              "police_ref": "Not reported to police",
+              "vehicle_rego": "321QWE"
+            }
+          },
+          "output": {
+            "claim_number": "WTL-20822",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Thanks, Sam. That's all I need for now. Bye."
+    },
+    {
+      "role": "sam",
+      "text": "You're welcome, Ana. If you need anything, have your claim number WTL-20822 handy. Goodbye.",
+      "tools": []
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456791"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456791",
+        "first_name": "Ana"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456791"
+      },
+      "output": {
+        "policy_number": "WTL456791",
+        "first_name": "Ana",
+        "last_name": "Costa",
+        "email": "ana.c@example.com",
+        "policy_type": "Third Party Fire and Theft",
+        "basic_excess": 600,
+        "hire_car_cover": "Not included",
+        "start_date": "2026-01-10",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Hyundai",
+            "model": "i30",
+            "year": 2016,
+            "rego": "321QWE"
+          }
+        ],
+        "listed_drivers": [
+          "Ana Costa"
+        ]
+      }
+    },
+    {
+      "tool": "prepare_claim",
+      "input": {
+        "policy_number": "WTL456791",
+        "incident_type": "vandalism",
+        "date_time": "Saturday 24 October 2026, between about 7:30pm and 10:15pm",
+        "location": "Public car park off Brunswick Street, Fortitude Valley (exact street and car park name not known)",
+        "description": "\"I parked my i30 in a car park in Fortitude Valley, and when I came back to it someone had keyed down the side of the car. I didn't see anyone and I don't know who did it. I haven't had it looked at yet.\" Nobody was hurt.",
+        "drivable": "yes",
+        "driver": "Ana Costa (parked the car)",
+        "other_party": "Unknown - customer did not see who did it",
+        "police_ref": "Not reported to police",
+        "vehicle_rego": "321QWE"
+      },
+      "output": {
+        "draft_id": "D1",
+        "readback": "- Car (rego): 321QWE\n- Type of incident: vandalism\n- When: Saturday 24 October 2026, between about 7:30pm and 10:15pm\n- Where: Public car park off Brunswick Street, Fortitude Valley (exact street and car park name not known)\n- What happened: \"I parked my i30 in a car park in Fortitude Valley, and when I came back to it someone had keyed down the side of the car. I didn't see anyone and I don't know who did it. I haven't had it looked at yet.\" Nobody was hurt.\n- Can be driven safely: yes\n- Who was driving: Ana Costa (parked the car)\n- Other party: Unknown - customer did not see who did it\n- Police reference: Not reported to police",
+        "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "draft_id": "D1",
+        "customer_confirmation": "Yes, that all looks right to me. Nothing to change.",
+        "lodged": {
+          "policy_number": "WTL456791",
+          "incident_type": "vandalism",
+          "date_time": "Saturday 24 October 2026, between about 7:30pm and 10:15pm",
+          "location": "Public car park off Brunswick Street, Fortitude Valley (exact street and car park name not known)",
+          "description": "\"I parked my i30 in a car park in Fortitude Valley, and when I came back to it someone had keyed down the side of the car. I didn't see anyone and I don't know who did it. I haven't had it looked at yet.\" Nobody was hurt.",
+          "drivable": "yes",
+          "driver": "Ana Costa (parked the car)",
+          "other_party": "Unknown - customer did not see who did it",
+          "police_ref": "Not reported to police",
+          "vehicle_rego": "321QWE"
+        }
+      },
+      "output": {
+        "claim_number": "WTL-20822",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "checks_waived": [],
+  "prompt": "system_v2.md",
+  "judge": {
+    "failures": [],
+    "task_score": 5,
+    "tone_score": 5,
+    "summary": "Sam said it was an AI, checked safety, verified identity before sharing any policy details, and never said or hinted that vandalism was covered under the Third Party Fire and Theft policy. It worked out the date correctly (Saturday 24 October 2026), took one detail per turn without re-asking anything, read back the claim and got confirmation before lodging, and gave the claim number and next step exactly as the tool returned them."
+  }
+}

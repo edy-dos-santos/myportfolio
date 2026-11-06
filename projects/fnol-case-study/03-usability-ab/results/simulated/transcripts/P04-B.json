@@ -1,0 +1,237 @@
+{
+  "conversation_id": "P04-B",
+  "persona_id": "P04",
+  "variant": "B",
+  "variant_name": "story_first",
+  "sam_version": "abB",
+  "order_position": 1,
+  "data_source": "simulated",
+  "sam_model": "claude-opus-5-5",
+  "customer_model": "claude-haiku-5-5",
+  "started_at": "2026-10-29T14:25:49+10:00",
+  "elapsed_seconds": 59.3,
+  "hit_turn_cap": false,
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "Hello there, I need to report some damage to my car from Monday.",
+      "ms": 0
+    },
+    {
+      "role": "sam",
+      "text": "Hello, I'm Sam, Wattle Car Insurance's AI claims assistant. I can help you report the damage to your car, and you can talk to a person at any time. Just ask.\n\nSorry to hear about the damage. First, was anyone hurt, or is anyone in danger right now?",
+      "tools": [],
+      "ms": 2231
+    },
+    {
+      "role": "customer",
+      "text": "No, nobody was hurt and nothing's in danger. The car was parked and empty when it happened, and it still drives fine. Thanks for checking, that's a relief to hear the question first.",
+      "ms": 4080
+    },
+    {
+      "role": "sam",
+      "text": "I'm glad everyone is safe. Next I need to confirm who you are. What's your policy number? If you don't have it handy, I can use your date of birth and mobile number instead.",
+      "tools": [],
+      "ms": 1645
+    },
+    {
+      "role": "customer",
+      "text": "Sure, my policy number is WTL456804. I don't have my date of birth memorised, so I'd rather not give that out in chat anyway. Is the policy number enough?",
+      "ms": 1718
+    },
+    {
+      "role": "sam",
+      "text": "Yes, the policy number is enough. Thanks, Daniel, you're verified. I can see your 2019 Honda CR-V, rego 104DOK, on the policy.\n\nCan you tell me what happened, in your own words? Include where the car was parked and roughly what time, if you know.",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456804"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456804",
+            "first_name": "Daniel"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456804"
+          },
+          "output": {
+            "policy_number": "WTL456804",
+            "first_name": "Daniel",
+            "last_name": "Okafor",
+            "email": "daniel.o@example.com",
+            "policy_type": "Comprehensive",
+            "basic_excess": 700,
+            "hire_car_cover": "Not included",
+            "start_date": "2021-11-20",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Honda",
+                "model": "CR-V",
+                "year": 2019,
+                "rego": "104DOK"
+              }
+            ],
+            "listed_drivers": [
+              "Daniel Okafor",
+              "Grace Okafor"
+            ]
+          }
+        }
+      ],
+      "ms": 4335
+    },
+    {
+      "role": "customer",
+      "text": "Thanks! Yep, that's my CR-V, rego 104DOK.\n\nSo on Monday 26 October, around 1pm, I'd parked on level 2 of the Indooroopilly shopping centre car park. I was only gone for a bit, and when I got back someone had reversed into the car. The rear passenger door has a dent in it. Nobody was in the car at the time, so no one got hurt, and the car still drives fine.\n\nThey didn't drive off without a word, though. They left a note under the wiper on the windscreen. It said to call Kate Burns on 0455 900 404 and it listed her rego as 404KBX. I've got a photo of the note on my phone if you need it. We didn't call the police, since it was just the damage and nobody was hurt.",
+      "ms": 3027
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Daniel, that's very clear. It's good that the other driver left her details.\n\nOne more thing: who drove the car there and parked it? Was it you, or Grace?",
+      "tools": [],
+      "ms": 2195
+    },
+    {
+      "role": "customer",
+      "text": "I drove it there and parked it myself. Grace wasn't in the car that day. It was just me, so I'm the only one who can say how it was parked.",
+      "ms": 1594
+    },
+    {
+      "role": "sam",
+      "text": "Thanks. Here's a summary before I lodge the claim:\n\n- **Car:** 2019 Honda CR-V, rego 104DOK\n- **What happened:** Hit while parked. Another car reversed into it and dented the rear passenger door.\n- **When:** Monday 26 October 2026, around 1pm\n- **Where:** Level 2 car park, Indooroopilly Shopping Centre, Indooroopilly QLD\n- **Driver:** Daniel Okafor (you drove there and parked it)\n- **Can it be driven:** Yes, it drives fine\n- **Other party:** Kate Burns, 0455 900 404, rego 404KBX (from a note she left on your windscreen)\n- **Police:** Not reported, so there's no reference number\n- **Injuries:** None\n\nPlease keep the photo of the note. The claims consultant may ask you for it.\n\nIs all of that correct?",
+      "tools": [],
+      "ms": 3348
+    },
+    {
+      "role": "customer",
+      "text": "Yes, that's all correct. I'll keep the photo of the note on my phone.",
+      "ms": 1472
+    },
+    {
+      "role": "sam",
+      "text": "Your claim is lodged. Your claim number is **WTL-20508**.\n\nHere's what happens next: a claims consultant will contact you within 1 business day. They'll go through the details with you, may ask for the photo of the note, and will explain the next steps for getting the door repaired.\n\nIs there anything else I can help you with?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "policy_number": "WTL456804",
+            "incident_type": "parked_hit",
+            "date_time": "2026-10-26T13:00:00+10:00",
+            "location": "Level 2 car park, Indooroopilly Shopping Centre, Indooroopilly QLD",
+            "description": "Car was parked on level 2 of the Indooroopilly shopping centre car park around 1pm. When I got back, someone had reversed into it and the rear passenger door was dented. Nobody was in the car and no one was hurt. The other driver left a note under the wiper with her name, number and rego. Customer has a photo of the note. Police not called.",
+            "drivable": "yes",
+            "driver": "Daniel Okafor",
+            "other_party": "Kate Burns, mobile 0455 900 404, rego 404KBX (details from note left on windscreen)",
+            "vehicle_rego": "104DOK",
+            "flags": [
+              "photo_of_note_available"
+            ]
+          },
+          "output": {
+            "claim_number": "WTL-20508",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ],
+      "ms": 5732
+    },
+    {
+      "role": "customer",
+      "text": "Brilliant, thanks, Sam. I've got the claim number WTL-20508 written down. That's all I needed, so I'll leave it there. Have a good one!",
+      "ms": 1664
+    },
+    {
+      "role": "sam",
+      "text": "You're welcome, Daniel. You'll hear from a claims consultant within 1 business day. Your claim number is WTL-20508 if you need to contact us before then. Take care.",
+      "tools": [],
+      "ms": 1440
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456804"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456804",
+        "first_name": "Daniel"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456804"
+      },
+      "output": {
+        "policy_number": "WTL456804",
+        "first_name": "Daniel",
+        "last_name": "Okafor",
+        "email": "daniel.o@example.com",
+        "policy_type": "Comprehensive",
+        "basic_excess": 700,
+        "hire_car_cover": "Not included",
+        "start_date": "2021-11-20",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Honda",
+            "model": "CR-V",
+            "year": 2019,
+            "rego": "104DOK"
+          }
+        ],
+        "listed_drivers": [
+          "Daniel Okafor",
+          "Grace Okafor"
+        ]
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "policy_number": "WTL456804",
+        "incident_type": "parked_hit",
+        "date_time": "2026-10-26T13:00:00+10:00",
+        "location": "Level 2 car park, Indooroopilly Shopping Centre, Indooroopilly QLD",
+        "description": "Car was parked on level 2 of the Indooroopilly shopping centre car park around 1pm. When I got back, someone had reversed into it and the rear passenger door was dented. Nobody was in the car and no one was hurt. The other driver left a note under the wiper with her name, number and rego. Customer has a photo of the note. Police not called.",
+        "drivable": "yes",
+        "driver": "Daniel Okafor",
+        "other_party": "Kate Burns, mobile 0455 900 404, rego 404KBX (details from note left on windscreen)",
+        "vehicle_rego": "104DOK",
+        "flags": [
+          "photo_of_note_available"
+        ]
+      },
+      "output": {
+        "claim_number": "WTL-20508",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    }
+  ],
+  "handed_off": false,
+  "questionnaire": {
+    "seq": 6,
+    "csat": 5,
+    "comment": "Really easy to get through. Sam asked one question at a time, the claim number and next steps were clear, and I was told a consultant would call within a business day. The only thing I'd have liked is a bit more detail on how the door repair gets sorted, but that's a small thing."
+  },
+  "judge": {
+    "reasked_facts": 1,
+    "reasked_examples": [
+      "who drove the car there and parked it? Was it you, or Grace?"
+    ],
+    "effort_score": 4,
+    "tone_score": 5,
+    "rule_breaks": [],
+    "summary": "Sam said up front that it was an AI, checked safety first, kept a calm and plain tone with one question per turn and no exclamation marks, and lodged the claim accurately without promising cover. The one unneeded question was who drove, because the customer had already said \"I'd parked\"; with Grace also on the policy, a short confirmation would have been enough."
+  }
+}

@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Story-first vs form-first</title>
+<style>
+:root {
+  --bg: #f7f9f6; --fg: #18241f; --muted: #4d5d55; --line: #d3dbd5; --link: #2a5a4b;
+  --code-bg: #e9efeb; --box-bg: #eef5f1; --banner-bg: #ffe08a; --banner-fg: #1d1500; --banner-line: #7a5c00;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101815; --fg: #e5ece8; --muted: #aebdb5; --line: #2c3a34; --link: #8cc2ae;
+    --code-bg: #202e28; --box-bg: #1a2a24; --banner-bg: #5c4a00; --banner-fg: #fff6d6; --banner-line: #e3b731;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #101815; --fg: #e5ece8; --muted: #aebdb5; --line: #2c3a34; --link: #8cc2ae;
+  --code-bg: #202e28; --box-bg: #1a2a24; --banner-bg: #5c4a00; --banner-fg: #fff6d6; --banner-line: #e3b731;
+}
+body { margin: 0; background: #f7f9f6; background: var(--bg); color: var(--fg);
+  font: 16px/1.55 system-ui, Arial, sans-serif; }
+main { max-width: 960px; margin: 0 auto; padding: 16px; box-sizing: border-box; }
+h1 { font-size: 1.6rem; line-height: 1.25; }
+h2 { font-size: 1.25rem; margin-top: 2.2rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+h3 { font-size: 1.05rem; margin-top: 1.4rem; }
+a { color: var(--link); }
+code { background: var(--code-bg); padding: 0 .25em; border-radius: 3px; font-size: .92em; word-break: break-word; }
+.banner { background: var(--banner-bg); color: var(--banner-fg); border: 2px solid var(--banner-line);
+  border-radius: 6px; padding: 12px 14px; font-weight: 700; }
+.banner p { margin: 0; }
+.box { background: var(--box-bg); border-left: 4px solid var(--link); padding: 10px 14px; border-radius: 4px; }
+.box h3 { margin: 0 0 .3rem; }
+.box p { margin: 0; }
+.tablewrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .92rem; }
+th, td { border-bottom: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
+figure { margin: 1.2rem 0 .4rem; }
+figure svg { display: block; width: 100%; height: auto; max-width: 640px; }
+.chart-scroll { overflow-x: auto; }
+.chart-scroll svg { min-width: 520px; }
+figcaption { color: var(--muted); font-size: .92rem; }
+details { margin: .3rem 0 1rem; }
+summary { cursor: pointer; color: var(--link); }
+footer { color: var(--muted); font-size: .9rem; }
+</style>
+</head>
+<body>
+<main>
+
+<h1>Project 3: story-first vs form-first (simulated pilot)</h1>
+<section id="s1" data-section="1">
+<div class="banner" role="note"><p>SIMULATED PILOT. Participants are LLM personas, not real people. This de-risks the study design; it is not user research.</p></div>
+<p>20 of 20 conversations complete. </p>
+</section>
+<section id="s2" data-section="2">
+<h2>Summary (simulated)</h2>
+<ul><li>Task success: A 80.0% (8 of 10); B 100.0% (10 of 10).</li><li>Estimated participant time (modelled from word counts, not measured), mean seconds: A 1025.6, B 812.9.</li><li>Sam turns, mean: A 13, B 8.8. Questions asked, mean: A 13.3, B 7.9. Repeat questions (keyword heuristic), mean: A 2.1, B 0.8.</li><li>Ease, SEQ 1 to 7, mean: A 6, B 6.1. Satisfaction, CSAT 1 to 5, mean: A 4.2, B 4.4.</li><li>Preference: A 4, B 6, no preference 0 (of 10 personas).</li></ul>
+<div class="box"><h3>Recommendation (rule written before the run)</h3><p>Simulated pilot result: variant B (story_first) had task success for 10 personas against 8, out of 10 paired personas. Confirm with the real study before changing the design. This simulated pilot tests the study design. It does not show how real people behave. Read this result with care. It comes from 10 simulated personas, and a gap of 2 personas is small: one changed outcome would put it below the rule&#x27;s threshold. Both of A&#x27;s misses were on one fact, whether the car is safe to drive, and neither was an error by Sam (see Limitations). If both had counted as successes, B would still win, but only on modelled time (21% less). This result is not evidence about real people. The real study should test it.</p></div>
+</section>
+<section id="s3" data-section="3">
+<h2>What we tested</h2>
+<p>One variable changes: how Sam captures the claim. Everything else stays the same: the same model, tools, policies, personas and questionnaire. Variant A (form-first) asks each detail one at a time, in a fixed order. Variant B (story-first) lets the customer tell it in their own words, then asks only for the gaps. B is the Project 1 design. A is the comparison, written for this test.</p>
+<div class="tablewrap"><table><thead><tr><th>Variant A: form-first (line 24)</th><th>Variant B: story-first (line 24)</th></tr></thead><tbody><tr><td>5. Collect the details one at a time, in this fixed order: (1) date and time, (2) location (street and suburb), (3) type of incident, (4) who was driving, (5) whether the car can be driven safely, (6) a short description of what happened and the damage, (7) the other driver&#x27;s details, (8) any police reference. Ask one short, direct question for each and move to the next once you have an answer. Don&#x27;t invite the customer to tell the whole story first. If they have already mentioned a detail, confirm it when you reach it in the order (&quot;You mentioned Logan Rd, Mount Gravatt. Is that right?&quot;) instead of skipping it.</td><td>5. Ask them to tell you what happened in their own words. Extract as much as you can from their story, and only ask for what&#x27;s missing.</td></tr></tbody></table></div>
+<p>Why A confirms rather than skips: a guided form gives every field its own turn. That is the strategy under test. So when A reaches a detail the customer already gave, it confirms it ("You mentioned Logan Rd, Mount Gravatt. Is that right?") instead of skipping it.</p>
+<p>Prompt files: <code>02-prototype/agent/prompts/system_ab_form.md</code> and <code>02-prototype/agent/prompts/system_ab_story.md</code>. Both are copies of <code>system_v1.md</code>; only line 24 differs.</p>
+</section>
+<section id="s4" data-section="4">
+<h2>Method</h2>
+<p><strong>Hypothesis (written before the run, 28 October 2026):</strong> story-first (B) needs fewer questions and less participant time than form-first (A), with equal or better task success. Form-first may capture facts more completely for vague or low-confidence personas.</p>
+<h3>Simulated participants</h3>
+<p>Ten LLM personas, all fictional. Each runs both variants. Ages 19 to 83; digital confidence 5 high, 3 medium, 2 low.</p>
+<div class="tablewrap"><table><thead><tr><th>ID</th><th>Name</th><th>Age</th><th>Digital confidence</th><th>State</th><th>Incident</th><th>Order</th></tr></thead><tbody><tr><td>P01</td><td>Chloe Martin</td><td>29</td><td>high</td><td>calm</td><td>collision</td><td>AB</td></tr><tr><td>P02</td><td>Graham Doyle</td><td>71</td><td>low</td><td>calm</td><td>storm</td><td>BA</td></tr><tr><td>P03</td><td>Mei Lin Zhang</td><td>34</td><td>high</td><td>stressed</td><td>collision</td><td>AB</td></tr><tr><td>P04</td><td>Daniel Okafor</td><td>45</td><td>medium</td><td>calm</td><td>parked_hit</td><td>BA</td></tr><tr><td>P05</td><td>Sofia Ramos</td><td>26</td><td>high</td><td>worried</td><td>vandalism</td><td>AB</td></tr><tr><td>P06</td><td>Bruce Kowalski</td><td>58</td><td>medium</td><td>irritated</td><td>single_vehicle</td><td>BA</td></tr><tr><td>P07</td><td>Aisha Rahman</td><td>19</td><td>high</td><td>nervous</td><td>collision</td><td>AB</td></tr><tr><td>P08</td><td>Helen Fraser</td><td>83</td><td>low</td><td>distressed</td><td>collision</td><td>BA</td></tr><tr><td>P09</td><td>Tane Walker</td><td>38</td><td>medium</td><td>calm</td><td>windscreen</td><td>AB</td></tr><tr><td>P10</td><td>Jordan Lee</td><td>31</td><td>high</td><td>calm</td><td>parked_hit</td><td>BA</td></tr></tbody></table></div>
+<p>Counterbalancing: order AB means variant A runs first (5 personas), order BA means variant B runs first (5 personas). The order is fixed per persona, not randomised.</p>
+<h3>Models</h3>
+<ul><li>Sam: <code>claude-opus-5-5</code> at low effort (sam.py).</li><li>Simulated participants: <code>claude-haiku-5-5</code>.</li><li>Judge: <code>claude-opus-5-5</code>. It grades Sam only and is never told the variant.</li></ul>
+<h3>Metrics</h3>
+<ul><li>Task success: a claim lodged with all key facts correct. For Helen Fraser (P08), a handoff or callback also counts.</li><li>Facts correct: up to seven facts checked against the first successful create_claim call. The driver is not checked when nobody was driving (P02, P04, P05 and P10), so those personas have six.</li><li>Questions asked: question sentences in Sam's turns.</li><li>Repeat questions: keyword heuristic. Sam asks about a slot the customer already covered. The judge's count is shown for cross-check.</li><li>Estimated participant time: word counts divided by the persona's reading and typing speed. A model, not a measure.</li><li>SEQ (1-7) and CSAT (1-5): the simulated participant's answers after the chat.</li></ul>
+<h3>Decision rule (written before the run)</h3>
+<p>The same team wrote the plan, the prompts and this rule, and runs the test. The rule is fixed in <code>PLAN.md</code> before any full run. It is not registered with a third party.</p>
+<p>n is the number of personas with both variants complete. With fewer than 6, there is no recommendation. All four rules use only personas with both variants complete.</p>
+<ul><li>If task success differs by 2 or more personas, recommend the higher.</li><li>Else, if mean estimated time differs by 15% or more (against the slower variant), and the faster variant's mean CSAT is not lower by more than 0.5, recommend the faster.</li><li>Else, if one variant is preferred by at least 7 of 10 personas, recommend it.</li><li>Else: no clear winner. Keep the current design (B) and let the real study decide.</li></ul>
+</section>
+<section id="s5" data-section="5">
+<h2>Results (simulated)</h2>
+<p>All results are simulated. Complete pairs: 10 of 10 personas.</p>
+<figure id="chart-success"><div class="chart-scroll">
+<svg viewBox="0 0 640 176" width="100%" role="img" aria-labelledby="success-t success-d">
+<title id="success-t">Simulated: task success by variant (% of personas)</title>
+<desc id="success-d">Simulated pilot. Share of personas whose task succeeded, by variant.</desc>
+<style>
+.ab-text { fill: #18241f; font: 16px system-ui, Arial, sans-serif; }
+.ab-title { font-size: 18px; font-weight: 700; }
+.ab-value { font-size: 15px; }
+.ab-muted { fill: #4d5d55; font: 12px system-ui, Arial, sans-serif; }
+.ab-grid { stroke: #d3dbd5; stroke-width: 1; }
+.ab-axis { stroke: #18241f; stroke-width: 1; }
+.ab-line { stroke: #18241f; stroke-width: 2; }
+.ab-mean { stroke: #18241f; stroke-width: 4; }
+.ab-a { fill: #b88a00; }
+.ab-b { fill: #3f6b5c; }
+.ab-none { fill: #8a958f; }
+@media (prefers-color-scheme: dark) {
+  .ab-text { fill: #e5ece8; }
+  .ab-muted { fill: #aebdb5; }
+  .ab-grid { stroke: #2c3a34; }
+  .ab-axis { stroke: #e5ece8; }
+  .ab-line { stroke: #e5ece8; }
+  .ab-mean { stroke: #e5ece8; }
+  .ab-a { fill: #e3b731; }
+  .ab-b { fill: #8cc2ae; }
+  .ab-none { fill: #9aa7a0; }
+}
+</style>
+<text class="ab-text ab-title" x="10" y="26">Simulated: task success by variant (% of</text>
+<text class="ab-text ab-title" x="10" y="48">personas)</text>
+<text class="ab-text" x="10" y="91">A form-first (n=10)</text>
+<rect class="ab-a" x="230" y="76" width="176.0" height="24" rx="2"/>
+<text class="ab-text ab-value" x="414.0" y="93">80.0% (8 of 10)</text>
+<text class="ab-text" x="10" y="135">B story-first (n=10)</text>
+<rect class="ab-b" x="230" y="120" width="220.0" height="24" rx="2"/>
+<text class="ab-text ab-value" x="458.0" y="137">100.0% (10 of 10)</text>
+<line class="ab-axis" x1="230" y1="66" x2="230" y2="162"/>
+</svg>
+</div><figcaption>Share of personas whose task succeeded, by variant.</figcaption></figure>
+<details><summary>Data for this chart</summary><div class="tablewrap"><table><thead><tr><th>Variant</th><th>Task success</th></tr></thead><tbody><tr><td>A form-first</td><td>80.0% (8 of 10)</td></tr><tr><td>B story-first</td><td>100.0% (10 of 10)</td></tr></tbody></table></div></details>
+<figure id="chart-time"><div class="chart-scroll">
+<svg viewBox="0 0 640 488" width="100%" role="img" aria-labelledby="time-t time-d">
+<title id="time-t">Simulated: estimated participant time per persona (seconds)</title>
+<desc id="time-d">Simulated pilot. Modelled reading and typing time per persona, A and B joined. Not measured.</desc>
+<style>
+.ab-text { fill: #18241f; font: 16px system-ui, Arial, sans-serif; }
+.ab-title { font-size: 18px; font-weight: 700; }
+.ab-value { font-size: 15px; }
+.ab-muted { fill: #4d5d55; font: 12px system-ui, Arial, sans-serif; }
+.ab-grid { stroke: #d3dbd5; stroke-width: 1; }
+.ab-axis { stroke: #18241f; stroke-width: 1; }
+.ab-line { stroke: #18241f; stroke-width: 2; }
+.ab-mean { stroke: #18241f; stroke-width: 4; }
+.ab-a { fill: #b88a00; }
+.ab-b { fill: #3f6b5c; }
+.ab-none { fill: #8a958f; }
+@media (prefers-color-scheme: dark) {
+  .ab-text { fill: #e5ece8; }
+  .ab-muted { fill: #aebdb5; }
+  .ab-grid { stroke: #2c3a34; }
+  .ab-axis { stroke: #e5ece8; }
+  .ab-line { stroke: #e5ece8; }
+  .ab-mean { stroke: #e5ece8; }
+  .ab-a { fill: #e3b731; }
+  .ab-b { fill: #8cc2ae; }
+  .ab-none { fill: #9aa7a0; }
+}
+</style>
+<text class="ab-text ab-title" x="10" y="26">Simulated: estimated participant time per</text>
+<text class="ab-text ab-title" x="10" y="48">persona (seconds)</text>
+<line class="ab-grid" x1="230.0" y1="70" x2="230.0" y2="448"/>
+<text class="ab-muted" x="216.0" y="466">0</text>
+<line class="ab-grid" x1="305.0" y1="70" x2="305.0" y2="448"/>
+<text class="ab-muted" x="291.0" y="466">1343</text>
+<line class="ab-grid" x1="380.0" y1="70" x2="380.0" y2="448"/>
+<text class="ab-muted" x="366.0" y="466">2687</text>
+<text class="ab-text" x="10" y="95">P01 Chloe Martin</text>
+<line class="ab-line" x1="258.1" y1="90" x2="247.3" y2="90"/>
+<circle class="ab-a" cx="258.1" cy="90" r="7"/>
+<circle class="ab-b" cx="247.3" cy="90" r="7"/>
+<text class="ab-text ab-value" x="270.1" y="95">A 502.7 s / B 309.2 s</text>
+<text class="ab-text" x="10" y="131">P02 Graham Doyle</text>
+<line class="ab-line" x1="336.5" y1="126" x2="297.3" y2="126"/>
+<circle class="ab-a" cx="336.5" cy="126" r="7"/>
+<circle class="ab-b" cx="297.3" cy="126" r="7"/>
+<text class="ab-text ab-value" x="348.5" y="131">A 1907.2 s / B 1205.8 s</text>
+<text class="ab-text" x="10" y="167">P03 Mei Lin Zhang</text>
+<line class="ab-line" x1="253.1" y1="162" x2="270.8" y2="162"/>
+<circle class="ab-a" cx="253.1" cy="162" r="7"/>
+<circle class="ab-b" cx="270.8" cy="162" r="7"/>
+<text class="ab-text ab-value" x="282.8" y="167">A 413 s / B 730.9 s</text>
+<text class="ab-text" x="10" y="203">P04 Daniel Okafor</text>
+<line class="ab-line" x1="294.2" y1="198" x2="269.5" y2="198"/>
+<circle class="ab-a" cx="294.2" cy="198" r="7"/>
+<circle class="ab-b" cx="269.5" cy="198" r="7"/>
+<text class="ab-text ab-value" x="306.2" y="203">A 1149.2 s / B 707.9 s</text>
+<text class="ab-text" x="10" y="239">P05 Sofia Ramos</text>
+<line class="ab-line" x1="292.4" y1="234" x2="284.8" y2="234"/>
+<circle class="ab-a" cx="292.4" cy="234" r="7"/>
+<circle class="ab-b" cx="284.8" cy="234" r="7"/>
+<text class="ab-text ab-value" x="304.4" y="239">A 1118.4 s / B 981.6 s</text>
+<text class="ab-text" x="10" y="275">P06 Bruce Kowalski</text>
+<line class="ab-line" x1="268.1" y1="270" x2="258.8" y2="270"/>
+<circle class="ab-a" cx="268.1" cy="270" r="7"/>
+<circle class="ab-b" cx="258.8" cy="270" r="7"/>
+<text class="ab-text ab-value" x="280.1" y="275">A 681.7 s / B 515.7 s</text>
+<text class="ab-text" x="10" y="311">P07 Aisha Rahman</text>
+<line class="ab-line" x1="273.0" y1="306" x2="263.9" y2="306"/>
+<circle class="ab-a" cx="273.0" cy="306" r="7"/>
+<circle class="ab-b" cx="263.9" cy="306" r="7"/>
+<text class="ab-text ab-value" x="285.0" y="311">A 770.9 s / B 608.1 s</text>
+<text class="ab-text" x="10" y="347">P08 Helen Fraser</text>
+<line class="ab-line" x1="366.4" y1="342" x2="344.9" y2="342"/>
+<circle class="ab-a" cx="366.4" cy="342" r="7"/>
+<circle class="ab-b" cx="344.9" cy="342" r="7"/>
+<text class="ab-text ab-value" x="378.4" y="347">A 2442.5 s / B 2058.5 s</text>
+<text class="ab-text" x="10" y="383">P09 Tane Walker</text>
+<line class="ab-line" x1="267.3" y1="378" x2="262.0" y2="378"/>
+<circle class="ab-a" cx="267.3" cy="378" r="7"/>
+<circle class="ab-b" cx="262.0" cy="378" r="7"/>
+<text class="ab-text ab-value" x="279.3" y="383">A 667.9 s / B 573.5 s</text>
+<text class="ab-text" x="10" y="419">P10 Jordan Lee</text>
+<line class="ab-line" x1="263.6" y1="414" x2="254.4" y2="414"/>
+<circle class="ab-a" cx="263.6" cy="414" r="7"/>
+<circle class="ab-b" cx="254.4" cy="414" r="7"/>
+<text class="ab-text ab-value" x="275.6" y="419">A 602.7 s / B 437.5 s</text>
+</svg>
+</div><figcaption>Modelled reading and typing time per persona, from word counts. Not measured. Each row is one persona; A and B are joined.</figcaption></figure>
+<details><summary>Data for this chart</summary><div class="tablewrap"><table><thead><tr><th>Persona</th><th>A (s)</th><th>B (s)</th></tr></thead><tbody><tr><td>P01 Chloe Martin</td><td>502.7</td><td>309.2</td></tr><tr><td>P02 Graham Doyle</td><td>1907.2</td><td>1205.8</td></tr><tr><td>P03 Mei Lin Zhang</td><td>413.0</td><td>730.9</td></tr><tr><td>P04 Daniel Okafor</td><td>1149.2</td><td>707.9</td></tr><tr><td>P05 Sofia Ramos</td><td>1118.4</td><td>981.6</td></tr><tr><td>P06 Bruce Kowalski</td><td>681.7</td><td>515.7</td></tr><tr><td>P07 Aisha Rahman</td><td>770.9</td><td>608.1</td></tr><tr><td>P08 Helen Fraser</td><td>2442.5</td><td>2058.5</td></tr><tr><td>P09 Tane Walker</td><td>667.9</td><td>573.5</td></tr><tr><td>P10 Jordan Lee</td><td>602.7</td><td>437.5</td></tr></tbody></table></div></details>
+<figure id="chart-effort"><div class="chart-scroll">
+<svg viewBox="0 0 640 304" width="100%" role="img" aria-labelledby="effort-t effort-d">
+<title id="effort-t">Simulated: Sam turns, questions and repeat questions (mean per conversation)</title>
+<desc id="effort-d">Simulated pilot. Mean Sam turns, questions and repeat questions per conversation, by variant.</desc>
+<style>
+.ab-text { fill: #18241f; font: 16px system-ui, Arial, sans-serif; }
+.ab-title { font-size: 18px; font-weight: 700; }
+.ab-value { font-size: 15px; }
+.ab-muted { fill: #4d5d55; font: 12px system-ui, Arial, sans-serif; }
+.ab-grid { stroke: #d3dbd5; stroke-width: 1; }
+.ab-axis { stroke: #18241f; stroke-width: 1; }
+.ab-line { stroke: #18241f; stroke-width: 2; }
+.ab-mean { stroke: #18241f; stroke-width: 4; }
+.ab-a { fill: #b88a00; }
+.ab-b { fill: #3f6b5c; }
+.ab-none { fill: #8a958f; }
+@media (prefers-color-scheme: dark) {
+  .ab-text { fill: #e5ece8; }
+  .ab-muted { fill: #aebdb5; }
+  .ab-grid { stroke: #2c3a34; }
+  .ab-axis { stroke: #e5ece8; }
+  .ab-line { stroke: #e5ece8; }
+  .ab-mean { stroke: #e5ece8; }
+  .ab-a { fill: #e3b731; }
+  .ab-b { fill: #8cc2ae; }
+  .ab-none { fill: #9aa7a0; }
+}
+</style>
+<text class="ab-text ab-title" x="10" y="26">Simulated: Sam turns, questions and repeat</text>
+<text class="ab-text ab-title" x="10" y="48">questions (mean per conversation)</text>
+<text class="ab-text" x="10" y="90">Sam turns</text>
+<rect class="ab-a" x="260" y="76" width="211.8" height="22" rx="2"/>
+<text class="ab-text ab-value" x="479.8" y="92">A 13.0</text>
+<rect class="ab-b" x="260" y="104" width="143.4" height="22" rx="2"/>
+<text class="ab-text ab-value" x="411.4" y="120">B 8.8</text>
+<text class="ab-text" x="10" y="164">Questions asked</text>
+<rect class="ab-a" x="260" y="150" width="216.7" height="22" rx="2"/>
+<text class="ab-text ab-value" x="484.7" y="166">A 13.3</text>
+<rect class="ab-b" x="260" y="178" width="128.7" height="22" rx="2"/>
+<text class="ab-text ab-value" x="396.7" y="194">B 7.9</text>
+<text class="ab-text" x="10" y="238">Repeat questions (heuristic)</text>
+<rect class="ab-a" x="260" y="224" width="34.2" height="22" rx="2"/>
+<text class="ab-text ab-value" x="302.2" y="240">A 2.1</text>
+<rect class="ab-b" x="260" y="252" width="13.0" height="22" rx="2"/>
+<text class="ab-text ab-value" x="281.0" y="268">B 0.8</text>
+<line class="ab-axis" x1="260" y1="66" x2="260" y2="298"/>
+</svg>
+</div><figcaption>Mean Sam turns, questions and repeat questions per conversation. Repeat questions use a keyword heuristic.</figcaption></figure>
+<details><summary>Data for this chart</summary><div class="tablewrap"><table><thead><tr><th>Measure</th><th>A</th><th>B</th></tr></thead><tbody><tr><td>Sam turns</td><td>13</td><td>8.8</td></tr><tr><td>Questions asked</td><td>13.3</td><td>7.9</td></tr><tr><td>Repeat questions (heuristic)</td><td>2.1</td><td>0.8</td></tr></tbody></table></div></details>
+<figure id="chart-seq"><div class="chart-scroll">
+<svg viewBox="0 0 640 268" width="100%" role="img" aria-labelledby="seq-t seq-d">
+<title id="seq-t">Simulated: ease rating, SEQ 1-7</title>
+<desc id="seq-d">Simulated pilot. One dot per conversation; the tick is the mean. Scale 1 (very difficult) to 7 (very easy).</desc>
+<style>
+.ab-text { fill: #18241f; font: 16px system-ui, Arial, sans-serif; }
+.ab-title { font-size: 18px; font-weight: 700; }
+.ab-value { font-size: 15px; }
+.ab-muted { fill: #4d5d55; font: 12px system-ui, Arial, sans-serif; }
+.ab-grid { stroke: #d3dbd5; stroke-width: 1; }
+.ab-axis { stroke: #18241f; stroke-width: 1; }
+.ab-line { stroke: #18241f; stroke-width: 2; }
+.ab-mean { stroke: #18241f; stroke-width: 4; }
+.ab-a { fill: #b88a00; }
+.ab-b { fill: #3f6b5c; }
+.ab-none { fill: #8a958f; }
+@media (prefers-color-scheme: dark) {
+  .ab-text { fill: #e5ece8; }
+  .ab-muted { fill: #aebdb5; }
+  .ab-grid { stroke: #2c3a34; }
+  .ab-axis { stroke: #e5ece8; }
+  .ab-line { stroke: #e5ece8; }
+  .ab-mean { stroke: #e5ece8; }
+  .ab-a { fill: #e3b731; }
+  .ab-b { fill: #8cc2ae; }
+  .ab-none { fill: #9aa7a0; }
+}
+</style>
+<text class="ab-text ab-title" x="10" y="26">Simulated: ease rating, SEQ 1-7</text>
+<line class="ab-grid" x1="150.0" y1="70" x2="150.0" y2="208"/>
+<text class="ab-muted" x="146.0" y="226">1</text>
+<line class="ab-grid" x1="225.0" y1="70" x2="225.0" y2="208"/>
+<text class="ab-muted" x="221.0" y="226">2</text>
+<line class="ab-grid" x1="300.0" y1="70" x2="300.0" y2="208"/>
+<text class="ab-muted" x="296.0" y="226">3</text>
+<line class="ab-grid" x1="375.0" y1="70" x2="375.0" y2="208"/>
+<text class="ab-muted" x="371.0" y="226">4</text>
+<line class="ab-grid" x1="450.0" y1="70" x2="450.0" y2="208"/>
+<text class="ab-muted" x="446.0" y="226">5</text>
+<line class="ab-grid" x1="525.0" y1="70" x2="525.0" y2="208"/>
+<text class="ab-muted" x="521.0" y="226">6</text>
+<line class="ab-grid" x1="600.0" y1="70" x2="600.0" y2="208"/>
+<text class="ab-muted" x="596.0" y="226">7</text>
+<text class="ab-text" x="10" y="115">A form-first</text>
+<circle class="ab-a" cx="525.0" cy="98" r="5"/>
+<circle class="ab-a" cx="525.0" cy="119" r="5"/>
+<circle class="ab-a" cx="525.0" cy="113" r="5"/>
+<circle class="ab-a" cx="525.0" cy="107" r="5"/>
+<circle class="ab-a" cx="525.0" cy="101" r="5"/>
+<circle class="ab-a" cx="525.0" cy="122" r="5"/>
+<circle class="ab-a" cx="525.0" cy="116" r="5"/>
+<circle class="ab-a" cx="525.0" cy="110" r="5"/>
+<circle class="ab-a" cx="525.0" cy="104" r="5"/>
+<circle class="ab-a" cx="525.0" cy="98" r="5"/>
+<line class="ab-mean" x1="525.0" y1="90" x2="525.0" y2="130"/>
+<text class="ab-muted" x="495.0" y="84">mean 6.0</text>
+<text class="ab-text" x="10" y="190">B story-first</text>
+<circle class="ab-b" cx="600.0" cy="173" r="5"/>
+<circle class="ab-b" cx="525.0" cy="194" r="5"/>
+<circle class="ab-b" cx="525.0" cy="188" r="5"/>
+<circle class="ab-b" cx="525.0" cy="182" r="5"/>
+<circle class="ab-b" cx="525.0" cy="176" r="5"/>
+<circle class="ab-b" cx="525.0" cy="197" r="5"/>
+<circle class="ab-b" cx="525.0" cy="191" r="5"/>
+<circle class="ab-b" cx="525.0" cy="185" r="5"/>
+<circle class="ab-b" cx="525.0" cy="179" r="5"/>
+<circle class="ab-b" cx="525.0" cy="173" r="5"/>
+<line class="ab-mean" x1="532.5" y1="165" x2="532.5" y2="205"/>
+<text class="ab-muted" x="502.5" y="159">mean 6.1</text>
+<text class="ab-muted" x="10" y="258">A values: 6, 6, 6, 6, 6, 6, 6, 6, 6, 6. B values: 7, 6, 6, 6, 6, 6, 6, 6, 6, 6.</text>
+</svg>
+</div><figcaption>SEQ ease rating per conversation (1 very difficult, 7 very easy). The tick is the mean.</figcaption></figure>
+<details><summary>Data for this chart</summary><div class="tablewrap"><table><thead><tr><th>Variant</th><th>Mean SEQ</th><th>n</th></tr></thead><tbody><tr><td>A form-first</td><td>6</td><td>10</td></tr><tr><td>B story-first</td><td>6.1</td><td>10</td></tr></tbody></table></div></details>
+<figure id="chart-csat"><div class="chart-scroll">
+<svg viewBox="0 0 640 268" width="100%" role="img" aria-labelledby="csat-t csat-d">
+<title id="csat-t">Simulated: satisfaction, CSAT 1-5</title>
+<desc id="csat-d">Simulated pilot. One dot per conversation; the tick is the mean. Scale 1 (very dissatisfied) to 5.</desc>
+<style>
+.ab-text { fill: #18241f; font: 16px system-ui, Arial, sans-serif; }
+.ab-title { font-size: 18px; font-weight: 700; }
+.ab-value { font-size: 15px; }
+.ab-muted { fill: #4d5d55; font: 12px system-ui, Arial, sans-serif; }
+.ab-grid { stroke: #d3dbd5; stroke-width: 1; }
+.ab-axis { stroke: #18241f; stroke-width: 1; }
+.ab-line { stroke: #18241f; stroke-width: 2; }
+.ab-mean { stroke: #18241f; stroke-width: 4; }
+.ab-a { fill: #b88a00; }
+.ab-b { fill: #3f6b5c; }
+.ab-none { fill: #8a958f; }
+@media (prefers-color-scheme: dark) {
+  .ab-text { fill: #e5ece8; }
+  .ab-muted { fill: #aebdb5; }
+  .ab-grid { stroke: #2c3a34; }
+  .ab-axis { stroke: #e5ece8; }
+  .ab-line { stroke: #e5ece8; }
+  .ab-mean { stroke: #e5ece8; }
+  .ab-a { fill: #e3b731; }
+  .ab-b { fill: #8cc2ae; }
+  .ab-none { fill: #9aa7a0; }
+}
+</style>
+<text class="ab-text ab-title" x="10" y="26">Simulated: satisfaction, CSAT 1-5</text>
+<line class="ab-grid" x1="150.0" y1="70" x2="150.0" y2="208"/>
+<text class="ab-muted" x="146.0" y="226">1</text>
+<line class="ab-grid" x1="262.5" y1="70" x2="262.5" y2="208"/>
+<text class="ab-muted" x="258.5" y="226">2</text>
+<line class="ab-grid" x1="375.0" y1="70" x2="375.0" y2="208"/>
+<text class="ab-muted" x="371.0" y="226">3</text>
+<line class="ab-grid" x1="487.5" y1="70" x2="487.5" y2="208"/>
+<text class="ab-muted" x="483.5" y="226">4</text>
+<line class="ab-grid" x1="600.0" y1="70" x2="600.0" y2="208"/>
+<text class="ab-muted" x="596.0" y="226">5</text>
+<text class="ab-text" x="10" y="115">A form-first</text>
+<circle class="ab-a" cx="487.5" cy="98" r="5"/>
+<circle class="ab-a" cx="600.0" cy="119" r="5"/>
+<circle class="ab-a" cx="487.5" cy="113" r="5"/>
+<circle class="ab-a" cx="487.5" cy="107" r="5"/>
+<circle class="ab-a" cx="487.5" cy="101" r="5"/>
+<circle class="ab-a" cx="487.5" cy="122" r="5"/>
+<circle class="ab-a" cx="600.0" cy="116" r="5"/>
+<circle class="ab-a" cx="487.5" cy="110" r="5"/>
+<circle class="ab-a" cx="487.5" cy="104" r="5"/>
+<circle class="ab-a" cx="487.5" cy="98" r="5"/>
+<line class="ab-mean" x1="510.0" y1="90" x2="510.0" y2="130"/>
+<text class="ab-muted" x="480.0" y="84">mean 4.2</text>
+<text class="ab-text" x="10" y="190">B story-first</text>
+<circle class="ab-b" cx="600.0" cy="173" r="5"/>
+<circle class="ab-b" cx="600.0" cy="194" r="5"/>
+<circle class="ab-b" cx="487.5" cy="188" r="5"/>
+<circle class="ab-b" cx="600.0" cy="182" r="5"/>
+<circle class="ab-b" cx="487.5" cy="176" r="5"/>
+<circle class="ab-b" cx="487.5" cy="197" r="5"/>
+<circle class="ab-b" cx="600.0" cy="191" r="5"/>
+<circle class="ab-b" cx="487.5" cy="185" r="5"/>
+<circle class="ab-b" cx="487.5" cy="179" r="5"/>
+<circle class="ab-b" cx="487.5" cy="173" r="5"/>
+<line class="ab-mean" x1="532.5" y1="165" x2="532.5" y2="205"/>
+<text class="ab-muted" x="502.5" y="159">mean 4.4</text>
+<text class="ab-muted" x="10" y="258">A values: 4, 5, 4, 4, 4, 4, 5, 4, 4, 4. B values: 5, 5, 4, 5, 4, 4, 5, 4, 4, 4.</text>
+</svg>
+</div><figcaption>CSAT satisfaction per conversation (1 very dissatisfied, 5 very satisfied). The tick is the mean.</figcaption></figure>
+<details><summary>Data for this chart</summary><div class="tablewrap"><table><thead><tr><th>Variant</th><th>Mean CSAT</th><th>n</th></tr></thead><tbody><tr><td>A form-first</td><td>4.2</td><td>10</td></tr><tr><td>B story-first</td><td>4.4</td><td>10</td></tr></tbody></table></div></details>
+<figure id="chart-preference"><div class="chart-scroll">
+<svg viewBox="0 0 640 198" width="100%" role="img" aria-labelledby="preference-t preference-d">
+<title id="preference-t">Simulated: which chat did personas prefer?</title>
+<desc id="preference-d">Simulated pilot. Number of personas preferring each chat, from a simulated preference question.</desc>
+<style>
+.ab-text { fill: #18241f; font: 16px system-ui, Arial, sans-serif; }
+.ab-title { font-size: 18px; font-weight: 700; }
+.ab-value { font-size: 15px; }
+.ab-muted { fill: #4d5d55; font: 12px system-ui, Arial, sans-serif; }
+.ab-grid { stroke: #d3dbd5; stroke-width: 1; }
+.ab-axis { stroke: #18241f; stroke-width: 1; }
+.ab-line { stroke: #18241f; stroke-width: 2; }
+.ab-mean { stroke: #18241f; stroke-width: 4; }
+.ab-a { fill: #b88a00; }
+.ab-b { fill: #3f6b5c; }
+.ab-none { fill: #8a958f; }
+@media (prefers-color-scheme: dark) {
+  .ab-text { fill: #e5ece8; }
+  .ab-muted { fill: #aebdb5; }
+  .ab-grid { stroke: #2c3a34; }
+  .ab-axis { stroke: #e5ece8; }
+  .ab-line { stroke: #e5ece8; }
+  .ab-mean { stroke: #e5ece8; }
+  .ab-a { fill: #e3b731; }
+  .ab-b { fill: #8cc2ae; }
+  .ab-none { fill: #9aa7a0; }
+}
+</style>
+<text class="ab-text ab-title" x="10" y="26">Simulated: which chat did personas prefer?</text>
+<text class="ab-text" x="10" y="69">A form-first</text>
+<rect class="ab-a" x="230" y="54" width="88.0" height="24" rx="2"/>
+<text class="ab-text ab-value" x="326.0" y="71">4 of 10</text>
+<text class="ab-text" x="10" y="113">B story-first</text>
+<rect class="ab-b" x="230" y="98" width="132.0" height="24" rx="2"/>
+<text class="ab-text ab-value" x="370.0" y="115">6 of 10</text>
+<text class="ab-text" x="10" y="157">No preference</text>
+<rect class="ab-none" x="230" y="142" width="0.0" height="24" rx="2"/>
+<text class="ab-text ab-value" x="238.0" y="159">0 of 10</text>
+<line class="ab-axis" x1="230" y1="44" x2="230" y2="184"/>
+</svg>
+</div><figcaption>Which chat each simulated persona said they would rather use.</figcaption></figure>
+<details><summary>Data for this chart</summary><div class="tablewrap"><table><thead><tr><th>Preference</th><th>Personas</th></tr></thead><tbody><tr><td>A form-first</td><td>4</td></tr><tr><td>B story-first</td><td>6</td></tr><tr><td>No preference</td><td>0</td></tr></tbody></table></div></details>
+</section>
+<section id="s6" data-section="6">
+<h2>Per conversation (simulated)</h2>
+<p>Repeat questions show the keyword heuristic first, then the judge's count. Each ID links to the transcript.</p>
+<div class="tablewrap"><table><thead><tr><th>Conversation</th><th>Persona</th><th>Variant</th><th>Success</th><th>Facts</th><th>Sam turns</th><th>Questions</th><th>Repeats (heur. / judge)</th><th>Est. seconds</th><th>SEQ</th><th>CSAT</th></tr></thead><tbody><tr><td><a href="results/simulated/transcripts/P01-A.md">P01-A</a></td><td>Chloe Martin</td><td>A</td><td>no</td><td>6/7</td><td>14</td><td>14</td><td>1 / 2</td><td>502.7</td><td>6</td><td>4</td></tr><tr><td><a href="results/simulated/transcripts/P01-B.md">P01-B</a></td><td>Chloe Martin</td><td>B</td><td>yes</td><td>7/7</td><td>9</td><td>9</td><td>0 / 0</td><td>309.2</td><td>7</td><td>5</td></tr><tr><td><a href="results/simulated/transcripts/P02-A.md">P02-A</a></td><td>Graham Doyle</td><td>A</td><td>yes</td><td>6/6</td><td>11</td><td>11</td><td>1 / 2</td><td>1907.2</td><td>6</td><td>5</td></tr><tr><td><a href="results/simulated/transcripts/P02-B.md">P02-B</a></td><td>Graham Doyle</td><td>B</td><td>yes</td><td>6/6</td><td>6</td><td>4</td><td>1 / 0</td><td>1205.8</td><td>6</td><td>5</td></tr><tr><td><a href="results/simulated/transcripts/P03-A.md">P03-A</a></td><td>Mei Lin Zhang</td><td>A</td><td>yes</td><td>7/7</td><td>10</td><td>10</td><td>3 / 0</td><td>413.0</td><td>6</td><td>4</td></tr><tr><td><a href="results/simulated/transcripts/P03-B.md">P03-B</a></td><td>Mei Lin Zhang</td><td>B</td><td>yes</td><td>7/7</td><td>9</td><td>7</td><td>1 / 0</td><td>730.9</td><td>6</td><td>4</td></tr><tr><td><a href="results/simulated/transcripts/P04-A.md">P04-A</a></td><td>Daniel Okafor</td><td>A</td><td>yes</td><td>6/6</td><td>13</td><td>15</td><td>2 / 2</td><td>1149.2</td><td>6</td><td>4</td></tr><tr><td><a href="results/simulated/transcripts/P04-B.md">P04-B</a></td><td>Daniel Okafor</td><td>B</td><td>yes</td><td>6/6</td><td>7</td><td>7</td><td>0 / 1</td><td>707.9</td><td>6</td><td>5</td></tr><tr><td><a href="results/simulated/transcripts/P05-A.md">P05-A</a></td><td>Sofia Ramos</td><td>A</td><td>yes</td><td>6/6</td><td>13</td><td>14</td><td>2 / 1</td><td>1118.4</td><td>6</td><td>4</td></tr><tr><td><a href="results/simulated/transcripts/P05-B.md">P05-B</a></td><td>Sofia Ramos</td><td>B</td><td>yes</td><td>6/6</td><td>10</td><td>10</td><td>0 / 0</td><td>981.6</td><td>6</td><td>4</td></tr><tr><td><a href="results/simulated/transcripts/P06-A.md">P06-A</a></td><td>Bruce Kowalski</td><td>A</td><td>yes</td><td>7/7</td><td>12</td><td>12</td><td>3 / 1</td><td>681.7</td><td>6</td><td>4</td></tr><tr><td><a href="results/simulated/transcripts/P06-B.md">P06-B</a></td><td>Bruce Kowalski</td><td>B</td><td>yes</td><td>7/7</td><td>8</td><td>7</td><td>2 / 0</td><td>515.7</td><td>6</td><td>4</td></tr><tr><td><a href="results/simulated/transcripts/P07-A.md">P07-A</a></td><td>Aisha Rahman</td><td>A</td><td>yes</td><td>7/7</td><td>12</td><td>13</td><td>2 / 2</td><td>770.9</td><td>6</td><td>5</td></tr><tr><td><a href="results/simulated/transcripts/P07-B.md">P07-B</a></td><td>Aisha Rahman</td><td>B</td><td>yes</td><td>7/7</td><td>12</td><td>11</td><td>0 / 1</td><td>608.1</td><td>6</td><td>5</td></tr><tr><td><a href="results/simulated/transcripts/P08-A.md">P08-A</a></td><td>Helen Fraser</td><td>A</td><td>yes</td><td>7/7</td><td>16</td><td>16</td><td>3 / 3</td><td>2442.5</td><td>6</td><td>4</td></tr><tr><td><a href="results/simulated/transcripts/P08-B.md">P08-B</a></td><td>Helen Fraser</td><td>B</td><td>yes</td><td>7/7</td><td>10</td><td>9</td><td>3 / 0</td><td>2058.5</td><td>6</td><td>4</td></tr><tr><td><a href="results/simulated/transcripts/P09-A.md">P09-A</a></td><td>Tane Walker</td><td>A</td><td>yes</td><td>7/7</td><td>15</td><td>13</td><td>1 / 2</td><td>667.9</td><td>6</td><td>4</td></tr><tr><td><a href="results/simulated/transcripts/P09-B.md">P09-B</a></td><td>Tane Walker</td><td>B</td><td>yes</td><td>7/7</td><td>9</td><td>8</td><td>1 / 0</td><td>573.5</td><td>6</td><td>4</td></tr><tr><td><a href="results/simulated/transcripts/P10-A.md">P10-A</a></td><td>Jordan Lee</td><td>A</td><td>no</td><td>5/6</td><td>14</td><td>15</td><td>3 / 4</td><td>602.7</td><td>6</td><td>4</td></tr><tr><td><a href="results/simulated/transcripts/P10-B.md">P10-B</a></td><td>Jordan Lee</td><td>B</td><td>yes</td><td>6/6</td><td>8</td><td>7</td><td>0 / 1</td><td>437.5</td><td>6</td><td>4</td></tr></tbody></table></div>
+</section>
+<section id="s7" data-section="7">
+<h2>What the simulated participants said (simulated)</h2>
+<h3>Form-first (A)</h3>
+<ul><li>P01 Chloe Martin (variant A): "It was quick and easy to get through. The questions were in a sensible order and the claim number came through at the end. I'd have liked a clearer heads-up on the tail-light check earlier, and the assistant didn't ask me about the other driver's insurer." (simulated)</li><li>P02 Graham Doyle (variant A): "The assistant asked one simple question at a time, so I never felt rushed, and it was easy to answer without my policy number. It was clear what was needed and I knew where things stood by the end, with a claim number and a call coming within a business day." (simulated)</li><li>P03 Mei Lin Zhang (variant A): "Pretty quick and it got the claim lodged without me having to dig through stuff with the kids going crazy. The tow being booked straight away was a big relief. Only thing I'd say is it asked for a few things twice and I didn't know the other street name, but it was fine." (simulated)</li><li>P04 Daniel Okafor (variant A): "Pretty smooth. Sam asked one clear question at a time, and I could answer each one without digging for details. The only thing I noticed was being asked for my date of birth, which felt like a bit much when my policy number was enough, though Sam did say I didn't have to give it." (simulated)</li><li>P05 Sofia Ramos (variant A): "Sam was polite and the questions were easy to answer one at a time, and the tow was booked quickly. I was worried about the car and I did not get the tow cost or know if I need to be there when the truck comes, but the consultant will follow up." (simulated)</li><li>P06 Bruce Kowalski (variant A): "Quick and to the point, got the claim lodged and a tow booked without much fuss. Got asked the same things a couple of times though, which annoyed me a bit." (simulated)</li><li>P07 Aisha Rahman (variant A): "Sam was patient and made it easy to follow one question at a time, and I didn't feel judged even though I kept apologising and worrying about being in trouble. The claim number and what happens next were clear, which helped me feel calmer about it." (simulated)</li><li>P08 Helen Fraser (variant A): "Sam was patient and let me go one question at a time, which helped a lot while I was still shaking. I did lose track a few times and had to ask for the claim number again, but it was all written down clearly in the end." (simulated)</li><li>P09 Tane Walker (variant A): "Pretty easy, mate. It asked one thing at a time and I didn't have to dig for anything, though it took me a minute to find the policy number. Didn't love that it kept asking about police and the truck, but I could just say no and it moved on." (simulated)</li><li>P10 Jordan Lee (variant A): "Pretty straightforward. Sam asked clear questions one at a time and I got my claim lodged with a number. It was a bit repetitive, though: I gave my policy details, the car, the date and the location, and then had to confirm them again in the summary." (simulated)</li></ul>
+<h3>Story-first (B)</h3>
+<ul><li>P01 Chloe Martin (variant B): "Quick and simple. Sam asked one question at a time, I could answer each in a line, and the claim number came through at the end. Nothing confusing stood out." (simulated)</li><li>P02 Graham Doyle (variant B): "Sam was patient and clear, asked one question at a time, and never made me feel silly for not having my policy number. I got my claim number written down and knew what would happen next, which was a relief." (simulated)</li><li>P03 Mei Lin Zhang (variant B): "Pretty quick and easy once I gave the basics, and they got the tow booked and the claim lodged while I was still on the roadside. Felt a bit repetitive having to say the same details twice, and I wish it had asked about the kids' safety sooner, but overall it did what I needed." (simulated)</li><li>P04 Daniel Okafor (variant B): "Really easy to get through. Sam asked one question at a time, the claim number and next steps were clear, and I was told a consultant would call within a business day. The only thing I'd have liked is a bit more detail on how the door repair gets sorted, but that's a small thing." (simulated)</li><li>P05 Sofia Ramos (variant B): "Sam was calm and clear, and the claim was lodged quickly with a claim number and a tow booked. The part about excess was hard to understand at first, but Sam explained it with a simple example. I was worried about the car and glad someone was helping me." (simulated)</li><li>P06 Bruce Kowalski (variant B): "Got the claim lodged without much fuss and the tow was sorted quick. Annoying that it asked me for the policy number again after I'd already given it, but the rest was straightforward." (simulated)</li><li>P07 Aisha Rahman (variant B): "It was really easy to follow, Sam went one step at a time and never made me feel silly for not knowing things like the other car's make. I got my claim number and knew what to do next, which was a relief since I'd never done this before." (simulated)</li><li>P08 Helen Fraser (variant B): "Sam was patient and let me go at my own pace, and the summary before lodging helped me feel sure it was all right. Some of the questions were a bit much when I was still shaking, but the tow being booked straight away was a real relief." (simulated)</li><li>P09 Tane Walker (variant B): "Pretty easy, mate. Didn't have to dig much, it asked the right stuff and I got a claim number straight away. Only thing is I had to hunt for the policy number in my emails." (simulated)</li><li>P10 Jordan Lee (variant B): "Quick and straightforward once I had the policy number. The only hiccup was the verification, where my date of birth and mobile didn't match and I had to dig out the policy number myself. After that the questions were clear and it was done in a few minutes." (simulated)</li></ul>
+</section>
+<section id="s8" data-section="8">
+<h2>Limitations</h2>
+<ul><li>The participants are LLM personas, not people. They are simulated and cannot show real confusion, distress or trust.</li><li>The same model family plays Sam, the participants and the judge. Their blind spots may match.</li><li>LLM raters tend to score chats positively. Read the ease and satisfaction scores as relative only.</li><li>No memory between a persona's two chats, so order effects cannot appear here. Counterbalancing in this pilot only rehearses the protocol.</li><li>The repeat-question count is a keyword heuristic. The keyword heuristic and the judge agree on which variant repeats more questions.</li><li>Estimated participant time is modelled from word counts, not measured.</li><li>n = 10 simulated personas. Complete pairs: 10. With n this small, a gap of 2 personas in task success is small.</li><li>No conversation reached the 20-turn cap.</li><li>Form-first's prompt tells Sam to ask each detail in turn and to confirm details already given. So some of A's extra questions and repeat questions are built into its prompt, not discovered by the test. The test compares two prompt texts that carry two strategies. It does not isolate the strategy from its wording.</li><li>Estimated time comes from word counts, so it rises with the length of Sam's messages. That is also a prompt effect.</li><li>The repeat-question heuristic uses broad keywords such as 'today', 'saturday' and 'night'. For vague personas (P05, P09), a fair follow-up for a precise time counts as a repeat. This penalises story-first's gap questions more, so it works against the hypothesis. Compare with the judge's count.</li><li>Simulated participants can drift from their brief. In P01-A, Chloe's brief says the car drives fine. When Sam asked about the tail-lights, she said: "I haven't checked the tail-lights closely yet, so I'm not sure whether they're working." She then said "I'm at the lights right now", although the crash was that morning, and took it back a turn later: "Sorry, I shouldn't have said I was at the lights." Sam recorded drivable as "unsure", and she confirmed the summary. The facts check expects "yes", so this counts as a failure. The drift is the persona's. But the first doubt came from variant A's form question about the tail-lights, so this miss is partly the test design.</li><li>The facts check can mark a careful answer as wrong. In P10-A, Jordan's car has a broken headlight. Sam asked: "With the broken headlight, do you feel the car is safe to drive, including at night?" Jordan said: "Not really sure about night driving." Sam recorded "unsure" and noted daylight only. The ground truth allows only "yes", so this counts as a failure. In P10-B, story-first Sam said "a headlight is broken, and the car is safe to drive" without asking, and that counts as a success. The customer had only said "It still drives fine." This is a real Sam error that the metric did not catch.</li><li>A's two task failures (P01-A, P10-A) are the only facts misses in the run. Both are on the same fact, drivable, and both followed A's fixed safe-to-drive question. Neither is a Sam error. If both had counted as successes, task success would be 10 against 10 and rule 1 would not fire. Rule 2 would then pick B on estimated time (813 s against 1026 s, 21% less, with CSAT 4.4 against 4.2). That time is modelled, not measured. So B stays the recommendation under the rule, but the evidence for it is weak.</li></ul>
+<p>Decision rule, as applied: Simulated pilot result: variant B (story_first) had task success for 10 personas against 8 (paired personas only). Confirm with the real study before changing the design.</p>
+</section>
+<section id="s9" data-section="9">
+<h2>Next: the real study</h2>
+<p>This pilot tests the study design. It does not show how real people behave. The real study uses 8 to 10 people, the same two variants and two task cards. Read the kit at <a href="real-study-kit/README.md">real-study-kit/README.md</a>. Confirm the result with the real study before changing the design.</p>
+<p>Changes after the simulated pilot are recorded in the kit's README once the run is complete.</p>
+</section>
+<section id="s10" data-section="10">
+<h2>Data and files</h2>
+<p>Generated 2026-10-30T14:30:28+10:00 by build_report.py. Data source: simulated. Files: <a href="results/simulated/ab_results.csv">ab_results.csv</a>, <a href="results/simulated/ab_results.json">ab_results.json</a>, <a href="results/simulated/ab_preferences.csv">ab_preferences.csv</a>.</p>
+</section>
+</main>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 268" width="100%" role="img" aria-labelledby="seq-t seq-d">
+<title id="seq-t">Simulated: ease rating, SEQ 1-7</title>
+<desc id="seq-d">Simulated pilot. One dot per conversation; the tick is the mean. Scale 1 (very difficult) to 7 (very easy).</desc>
+<style>
+.ab-text { fill: #18241f; font: 16px system-ui, Arial, sans-serif; }
+.ab-title { font-size: 18px; font-weight: 700; }
+.ab-value { font-size: 15px; }
+.ab-muted { fill: #4d5d55; font: 12px system-ui, Arial, sans-serif; }
+.ab-grid { stroke: #d3dbd5; stroke-width: 1; }
+.ab-axis { stroke: #18241f; stroke-width: 1; }
+.ab-line { stroke: #18241f; stroke-width: 2; }
+.ab-mean { stroke: #18241f; stroke-width: 4; }
+.ab-a { fill: #b88a00; }
+.ab-b { fill: #3f6b5c; }
+.ab-none { fill: #8a958f; }
+@media (prefers-color-scheme: dark) {
+  .ab-text { fill: #e5ece8; }
+  .ab-muted { fill: #aebdb5; }
+  .ab-grid { stroke: #2c3a34; }
+  .ab-axis { stroke: #e5ece8; }
+  .ab-line { stroke: #e5ece8; }
+  .ab-mean { stroke: #e5ece8; }
+  .ab-a { fill: #e3b731; }
+  .ab-b { fill: #8cc2ae; }
+  .ab-none { fill: #9aa7a0; }
+}
+</style>
+<text class="ab-text ab-title" x="10" y="26">Simulated: ease rating, SEQ 1-7</text>
+<line class="ab-grid" x1="150.0" y1="70" x2="150.0" y2="208"/>
+<text class="ab-muted" x="146.0" y="226">1</text>
+<line class="ab-grid" x1="225.0" y1="70" x2="225.0" y2="208"/>
+<text class="ab-muted" x="221.0" y="226">2</text>
+<line class="ab-grid" x1="300.0" y1="70" x2="300.0" y2="208"/>
+<text class="ab-muted" x="296.0" y="226">3</text>
+<line class="ab-grid" x1="375.0" y1="70" x2="375.0" y2="208"/>
+<text class="ab-muted" x="371.0" y="226">4</text>
+<line class="ab-grid" x1="450.0" y1="70" x2="450.0" y2="208"/>
+<text class="ab-muted" x="446.0" y="226">5</text>
+<line class="ab-grid" x1="525.0" y1="70" x2="525.0" y2="208"/>
+<text class="ab-muted" x="521.0" y="226">6</text>
+<line class="ab-grid" x1="600.0" y1="70" x2="600.0" y2="208"/>
+<text class="ab-muted" x="596.0" y="226">7</text>
+<text class="ab-text" x="10" y="115">A form-first</text>
+<circle class="ab-a" cx="525.0" cy="98" r="5"/>
+<circle class="ab-a" cx="525.0" cy="119" r="5"/>
+<circle class="ab-a" cx="525.0" cy="113" r="5"/>
+<circle class="ab-a" cx="525.0" cy="107" r="5"/>
+<circle class="ab-a" cx="525.0" cy="101" r="5"/>
+<circle class="ab-a" cx="525.0" cy="122" r="5"/>
+<circle class="ab-a" cx="525.0" cy="116" r="5"/>
+<circle class="ab-a" cx="525.0" cy="110" r="5"/>
+<circle class="ab-a" cx="525.0" cy="104" r="5"/>
+<circle class="ab-a" cx="525.0" cy="98" r="5"/>
+<line class="ab-mean" x1="525.0" y1="90" x2="525.0" y2="130"/>
+<text class="ab-muted" x="495.0" y="84">mean 6.0</text>
+<text class="ab-text" x="10" y="190">B story-first</text>
+<circle class="ab-b" cx="600.0" cy="173" r="5"/>
+<circle class="ab-b" cx="525.0" cy="194" r="5"/>
+<circle class="ab-b" cx="525.0" cy="188" r="5"/>
+<circle class="ab-b" cx="525.0" cy="182" r="5"/>
+<circle class="ab-b" cx="525.0" cy="176" r="5"/>
+<circle class="ab-b" cx="525.0" cy="197" r="5"/>
+<circle class="ab-b" cx="525.0" cy="191" r="5"/>
+<circle class="ab-b" cx="525.0" cy="185" r="5"/>
+<circle class="ab-b" cx="525.0" cy="179" r="5"/>
+<circle class="ab-b" cx="525.0" cy="173" r="5"/>
+<line class="ab-mean" x1="532.5" y1="165" x2="532.5" y2="205"/>
+<text class="ab-muted" x="502.5" y="159">mean 6.1</text>
+<text class="ab-muted" x="10" y="258">A values: 6, 6, 6, 6, 6, 6, 6, 6, 6, 6. B values: 7, 6, 6, 6, 6, 6, 6, 6, 6, 6.</text>
+</svg>

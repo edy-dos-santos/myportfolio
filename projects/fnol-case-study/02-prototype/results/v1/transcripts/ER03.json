@@ -1,0 +1,220 @@
+{
+  "id": "ER03",
+  "category": "error",
+  "title": "Policy system down",
+  "version": "v1",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "my parked car got hit overnight on Oxford St"
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle Car Insurance's AI claims assistant. If you'd like to talk to a person at any time, just say so.\n\nSorry to hear your car was hit. I'll help you lodge the claim.\n\nFirst, is anyone hurt or in danger right now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Hi Sam. No one's hurt, and I'm safe. The car is parked on Oxford St in Bulimba and I'm not in it, so there's no danger right now."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, that's good to know.\n\nNext I need to confirm who you are. What's your policy number? If you don't have it handy, I can use your date of birth and mobile number instead.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "My policy number is WTL456789."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Priya, you're verified.\n\nI tried twice to look up your policy details, but our system isn't responding right now. That means I can't see which cars are on your policy. We can keep going and I'll take the car's details from you.\n\nWhat's the registration number of the car that was hit?",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456789"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456789",
+            "first_name": "Priya"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456789"
+          },
+          "output": {
+            "error": "service_unavailable",
+            "message": "get_policy is not responding. Try again later."
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456789"
+          },
+          "output": {
+            "error": "service_unavailable",
+            "message": "get_policy is not responding. Try again later."
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "I don't have the rego in front of me right now, but it's a Mazda 3. Can I check it in the app or on the registration slip, or can you just tell me what to look for? Also, how much is my excess?"
+    },
+    {
+      "role": "sam",
+      "text": "Yes, you can find the rego in the Wattle app, on your registration certificate, or on the car's number plate. We don't need it right now, though. \"Mazda 3\" is enough to keep going, and the consultant can add the rego later.\n\nAbout your excess: the excess is the amount you pay towards a claim. I can't tell you yours right now because I can't get into your policy details. Whether an excess applies also depends on what happened. For example, it can sometimes be waived if you weren't at fault and the other driver is identified. The claims consultant will confirm your excess when they contact you.\n\nNow, can you tell me in your own words what happened? It would help to know when you parked the car, when you found the damage, and what the damage looks like.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Sure. I parked on Oxford St in Bulimba around 9pm last night, Tuesday 27 October. When I came out this morning around 7am, the rear driver's side quarter panel had a dent and some paint was scratched. The car is still drivable. I didn't see anyone near it and I wasn't there when it happened. There was no note left on the windscreen."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Priya, that's clear. So the car was parked on Oxford St in Bulimba from about 9pm on Tuesday 27 October until about 7am today, Wednesday 28 October, and you can still drive it.\n\nHave you reported it to the police? If you have, what's the reference number? It's fine if you haven't.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "I haven't reported it to the police. I didn't think it was serious enough, since there was no note and I didn't see anyone around. Do I need to report it to them for the claim?"
+    },
+    {
+      "role": "sam",
+      "text": "You don't need a police report to lodge the claim today. The claims consultant can tell you if anything else is needed for your claim.\n\nOne last detail: were you the one who drove and parked the car last night?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Yes, I was the one who drove and parked the car last night. I'm the only driver on it."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks. Here's a summary of your claim:\n\n- **Car:** Mazda 3 (rego to be added later)\n- **What happened:** Hit while parked. Nobody saw it happen and no note was left.\n- **When:** Between about 9pm on Tuesday 27 October and 7am on Wednesday 28 October 2026\n- **Where:** Oxford St, Bulimba\n- **Damage:** Dent and scratched paint on the rear driver's side quarter panel\n- **Can it be driven:** Yes\n- **Driver:** You, Priya. You parked the car.\n- **Other driver:** Unknown\n- **Police report:** Not reported\n\nIs that all correct?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Yes, that's all correct. One thing to add: I'd like to know my excess before I go, if the consultant can confirm it."
+    },
+    {
+      "role": "sam",
+      "text": "I've lodged your claim, Priya. I've used your summary and noted that you'd like your excess confirmed.\n\n**Your claim number is WTL-20562.**\n\nWhat happens next:\n- A claims consultant will contact you within 1 business day.\n- They'll confirm your excess and whether it applies to this claim.\n- They'll also confirm what your policy covers. Lodging a claim isn't the same as approving it. The consultant will review it first.\n- Have your rego ready when they call. You can find it in the Wattle app or on your registration certificate.\n\nIs there anything else I can help with today?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "policy_number": "WTL456789",
+            "incident_type": "parked_hit",
+            "date_time": "Between 2026-10-27 21:00 and 2026-10-28 07:00 (Australia/Brisbane)",
+            "location": "Oxford St, Bulimba QLD",
+            "description": "Customer parked on Oxford St, Bulimba around 9pm Tuesday 27 October. Returned around 7am Wednesday 28 October and found a dent and scratched paint on the rear driver's side quarter panel. Didn't see anyone near the car, wasn't there when it happened, no note left on the windscreen. Not reported to police.",
+            "drivable": "yes",
+            "driver": "Priya (policyholder, only driver; parked the car)",
+            "vehicle_rego": "Unknown - Mazda 3, rego to be provided",
+            "other_party": "Unknown - no witness, no note",
+            "flags": [
+              "rego_missing",
+              "get_policy_unavailable_vehicle_not_confirmed",
+              "customer_requests_excess_confirmation"
+            ]
+          },
+          "output": {
+            "claim_number": "WTL-20562",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Thanks, Sam. I've got the claim number WTL-20562. I'll wait for the consultant's call within 1 business day and grab the rego from the app. That's all I need for now, thanks."
+    },
+    {
+      "role": "sam",
+      "text": "You're welcome, Priya. Your claim number is WTL-20562, and a consultant will contact you within 1 business day. If anything changes before then, or you'd like to speak to a person, just get in touch with us. Take care.",
+      "tools": []
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456789"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456789",
+        "first_name": "Priya"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456789"
+      },
+      "output": {
+        "error": "service_unavailable",
+        "message": "get_policy is not responding. Try again later."
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456789"
+      },
+      "output": {
+        "error": "service_unavailable",
+        "message": "get_policy is not responding. Try again later."
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "policy_number": "WTL456789",
+        "incident_type": "parked_hit",
+        "date_time": "Between 2026-10-27 21:00 and 2026-10-28 07:00 (Australia/Brisbane)",
+        "location": "Oxford St, Bulimba QLD",
+        "description": "Customer parked on Oxford St, Bulimba around 9pm Tuesday 27 October. Returned around 7am Wednesday 28 October and found a dent and scratched paint on the rear driver's side quarter panel. Didn't see anyone near the car, wasn't there when it happened, no note left on the windscreen. Not reported to police.",
+        "drivable": "yes",
+        "driver": "Priya (policyholder, only driver; parked the car)",
+        "vehicle_rego": "Unknown - Mazda 3, rego to be provided",
+        "other_party": "Unknown - no witness, no note",
+        "flags": [
+          "rego_missing",
+          "get_policy_unavailable_vehicle_not_confirmed",
+          "customer_requests_excess_confirmation"
+        ]
+      },
+      "output": {
+        "claim_number": "WTL-20562",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "judge": {
+    "failures": [
+      {
+        "tag": "HALLUCINATION",
+        "severity": "minor",
+        "turn": 4,
+        "evidence": "it can sometimes be waived if you weren't at fault and the other driver is identified",
+        "why": "Sam gave an excess waiver condition that no tool returned while the policy system was down, and in a parked-hit case it hints at a not-at-fault outcome, when it should only have said the consultant will confirm the excess."
+      }
+    ],
+    "task_score": 5,
+    "tone_score": 5,
+    "summary": "Sam handled the policy outage well: it verified identity, didn't guess the excess or vehicles, captured the claim one question at a time, confirmed the summary, lodged it and gave the claim number and next steps; the only slip was an unprompted remark about when the excess can be waived."
+  },
+  "auto_check_failures_original": [],
+  "checks_waived": []
+}

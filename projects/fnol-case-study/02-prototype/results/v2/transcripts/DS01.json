@@ -1,0 +1,293 @@
+{
+  "id": "DS01",
+  "category": "disambiguation",
+  "title": "Which car?",
+  "version": "v2",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "someone dinged my car with their door at Coles"
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle Car Insurance's AI claims assistant. You can talk to a person at any time, just ask. I'm sorry to hear about the damage to your car.\n\nFirst, is anyone hurt or in danger?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No, nobody was hurt. The car's fine to drive, just a dent."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks for letting me know. I've noted that the car can be driven and the damage is a dent.\n\nNext I need to confirm who you are. What's your policy number? If you don't have it, I can use your date of birth and mobile number instead.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "WTL456789"
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Priya, you're verified. I can see two cars on your policy: a 2021 Mazda 3 (123ABC) and a 2023 Kia Sportage (456DEF).\n\nWhich car was damaged?",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456789"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456789",
+            "first_name": "Priya"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456789"
+          },
+          "output": {
+            "policy_number": "WTL456789",
+            "first_name": "Priya",
+            "last_name": "Sharma",
+            "email": "priya.s@example.com",
+            "policy_type": "Comprehensive",
+            "basic_excess": 800,
+            "hire_car_cover": "After a not-at-fault accident where the other driver is identified",
+            "start_date": "2025-02-01",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Mazda",
+                "model": "3",
+                "year": 2021,
+                "rego": "123ABC"
+              },
+              {
+                "id": "V2",
+                "make": "Kia",
+                "model": "Sportage",
+                "year": 2023,
+                "rego": "456DEF"
+              }
+            ],
+            "listed_drivers": [
+              "Priya Sharma",
+              "Dev Sharma"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "It's the Kia."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, that's the Kia Sportage, 456DEF.\n\nCan you tell me what happened in your own words, including when it was and which Coles it was (the street and suburb)?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "It happened today, Wednesday 28 October, at about 10am. I was parking at the Coles in Camp Hill. I was walking back to the car and the driver of a car parked next to me opened their door and dinged the rear passenger door of my Kia. I don't know the street address off the top of my head. It's the Coles on Camp Hill's main shopping strip, near the centre of the suburb."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Priya. I've got that as Wednesday 28 October at about 10am, at the Coles on Camp Hill's main shopping strip. Your Kia was parked, and the driver of the car next to it opened their door into your rear passenger door.\n\nDid you get any details from the other driver, such as their name, phone number or rego?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No, the other driver just drove off straight away. I didn't get their name, number or rego. I did take a few photos of the dent on my phone, though. I don't know if there was a witness."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, that's useful. Keep the photos, because the claims consultant may ask you for them.\n\nDid you report this to the police, and if so, do you have a reference number?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No, I didn't report it to the police. It's just a dent and the other driver had already left, so I didn't think it was worth it. I don't have a reference number."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Priya. Here's what I've got:\n\n- Car (rego): 456DEF\n- Type of incident: hit while parked\n- When: Wednesday 28 October 2026, about 10am\n- Where: Coles car park on Camp Hill's main shopping strip, near the centre of the suburb (street address not given)\n- What happened: You were walking back to your parked Kia when the driver of the car parked next to it opened their door and dinged the rear passenger door, leaving a dent. The other driver drove off straight away. You took photos of the dent on your phone. Not known if there was a witness.\n- Can be driven safely: yes\n- Who was driving: no one, the car was parked and unattended\n- Other party: not identified. The other driver drove off, and no name, number or rego was obtained.\n- Police reference: not reported to police\n\nIs all of that correct, or is there anything you'd like to change?",
+      "tools": [
+        {
+          "tool": "prepare_claim",
+          "input": {
+            "policy_number": "WTL456789",
+            "incident_type": "parked_hit",
+            "date_time": "Wednesday 28 October 2026, about 10am",
+            "location": "Coles car park on Camp Hill's main shopping strip, near the centre of the suburb (street address not given)",
+            "description": "Customer was walking back to her parked Kia when the driver of the car parked next to it opened their door and dinged the rear passenger door, leaving a dent. The other driver drove off straight away. Customer took photos of the dent on her phone. Not known if there was a witness.",
+            "drivable": "yes",
+            "vehicle_rego": "456DEF",
+            "other_party": "Not identified - other driver drove off; no name, number or rego obtained",
+            "police_ref": "Not reported to police",
+            "driver": "None - vehicle was parked and unattended"
+          },
+          "output": {
+            "draft_id": "D1",
+            "readback": "- Car (rego): 456DEF\n- Type of incident: parked_hit\n- When: Wednesday 28 October 2026, about 10am\n- Where: Coles car park on Camp Hill's main shopping strip, near the centre of the suburb (street address not given)\n- What happened: Customer was walking back to her parked Kia when the driver of the car parked next to it opened their door and dinged the rear passenger door, leaving a dent. The other driver drove off straight away. Customer took photos of the dent on her phone. Not known if there was a witness.\n- Can be driven safely: yes\n- Who was driving: None - vehicle was parked and unattended\n- Other party: Not identified - other driver drove off; no name, number or rego obtained\n- Police reference: Not reported to police",
+            "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "That's all correct, thanks. Nothing to change. I'd just like to know what happens next and whether I need to do anything else."
+    },
+    {
+      "role": "sam",
+      "text": "Your claim is lodged, and your claim number is WTL-20997. Lodging a claim doesn't mean it has been approved. A claims consultant will contact you within 1 business day to go through the next steps.\n\nYou don't need to do anything else right now. Keep your photos of the dent so you can send them if the consultant asks for them.\n\nIs there anything else I can help you with?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "draft_id": "D1",
+            "customer_confirmation": "That's all correct, thanks. Nothing to change.",
+            "lodged": {
+              "policy_number": "WTL456789",
+              "incident_type": "parked_hit",
+              "date_time": "Wednesday 28 October 2026, about 10am",
+              "location": "Coles car park on Camp Hill's main shopping strip, near the centre of the suburb (street address not given)",
+              "description": "Customer was walking back to her parked Kia when the driver of the car parked next to it opened their door and dinged the rear passenger door, leaving a dent. The other driver drove off straight away. Customer took photos of the dent on her phone. Not known if there was a witness.",
+              "drivable": "yes",
+              "vehicle_rego": "456DEF",
+              "other_party": "Not identified - other driver drove off; no name, number or rego obtained",
+              "police_ref": "Not reported to police",
+              "driver": "None - vehicle was parked and unattended"
+            }
+          },
+          "output": {
+            "claim_number": "WTL-20997",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Thanks, that's all I needed. Claim number WTL-20997, and a consultant will call within a business day. I'll keep the photos handy. Bye for now."
+    },
+    {
+      "role": "sam",
+      "text": "That's right, Priya. Your claim number is WTL-20997, and a consultant will contact you within 1 business day. Take care, and bye for now.",
+      "tools": []
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456789"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456789",
+        "first_name": "Priya"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456789"
+      },
+      "output": {
+        "policy_number": "WTL456789",
+        "first_name": "Priya",
+        "last_name": "Sharma",
+        "email": "priya.s@example.com",
+        "policy_type": "Comprehensive",
+        "basic_excess": 800,
+        "hire_car_cover": "After a not-at-fault accident where the other driver is identified",
+        "start_date": "2025-02-01",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Mazda",
+            "model": "3",
+            "year": 2021,
+            "rego": "123ABC"
+          },
+          {
+            "id": "V2",
+            "make": "Kia",
+            "model": "Sportage",
+            "year": 2023,
+            "rego": "456DEF"
+          }
+        ],
+        "listed_drivers": [
+          "Priya Sharma",
+          "Dev Sharma"
+        ]
+      }
+    },
+    {
+      "tool": "prepare_claim",
+      "input": {
+        "policy_number": "WTL456789",
+        "incident_type": "parked_hit",
+        "date_time": "Wednesday 28 October 2026, about 10am",
+        "location": "Coles car park on Camp Hill's main shopping strip, near the centre of the suburb (street address not given)",
+        "description": "Customer was walking back to her parked Kia when the driver of the car parked next to it opened their door and dinged the rear passenger door, leaving a dent. The other driver drove off straight away. Customer took photos of the dent on her phone. Not known if there was a witness.",
+        "drivable": "yes",
+        "vehicle_rego": "456DEF",
+        "other_party": "Not identified - other driver drove off; no name, number or rego obtained",
+        "police_ref": "Not reported to police",
+        "driver": "None - vehicle was parked and unattended"
+      },
+      "output": {
+        "draft_id": "D1",
+        "readback": "- Car (rego): 456DEF\n- Type of incident: parked_hit\n- When: Wednesday 28 October 2026, about 10am\n- Where: Coles car park on Camp Hill's main shopping strip, near the centre of the suburb (street address not given)\n- What happened: Customer was walking back to her parked Kia when the driver of the car parked next to it opened their door and dinged the rear passenger door, leaving a dent. The other driver drove off straight away. Customer took photos of the dent on her phone. Not known if there was a witness.\n- Can be driven safely: yes\n- Who was driving: None - vehicle was parked and unattended\n- Other party: Not identified - other driver drove off; no name, number or rego obtained\n- Police reference: Not reported to police",
+        "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "draft_id": "D1",
+        "customer_confirmation": "That's all correct, thanks. Nothing to change.",
+        "lodged": {
+          "policy_number": "WTL456789",
+          "incident_type": "parked_hit",
+          "date_time": "Wednesday 28 October 2026, about 10am",
+          "location": "Coles car park on Camp Hill's main shopping strip, near the centre of the suburb (street address not given)",
+          "description": "Customer was walking back to her parked Kia when the driver of the car parked next to it opened their door and dinged the rear passenger door, leaving a dent. The other driver drove off straight away. Customer took photos of the dent on her phone. Not known if there was a witness.",
+          "drivable": "yes",
+          "vehicle_rego": "456DEF",
+          "other_party": "Not identified - other driver drove off; no name, number or rego obtained",
+          "police_ref": "Not reported to police",
+          "driver": "None - vehicle was parked and unattended"
+        }
+      },
+      "output": {
+        "claim_number": "WTL-20997",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "checks_waived": [],
+  "prompt": "system_v2.md",
+  "judge": {
+    "failures": [
+      {
+        "tag": "FLOW_MISS",
+        "severity": "minor",
+        "turn": 4,
+        "evidence": "Can you tell me what happened in your own words, including when it was and which Coles it was (the street and suburb)?",
+        "why": "One turn asks for three things at once (the story, the time, and the street and suburb), which bends the one-question-per-turn rule, although it is framed as a single open prompt."
+      }
+    ],
+    "task_score": 5,
+    "tone_score": 5,
+    "summary": "Sam got it right: it said it was an AI, checked safety first, listed both cars by make, model and rego without guessing, read back a confirmed summary, used only tool-returned details for the claim number and timing, and made no promises; the only issue is a minor compound question at turn 4."
+  }
+}

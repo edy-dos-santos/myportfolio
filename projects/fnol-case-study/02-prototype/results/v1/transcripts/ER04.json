@@ -1,0 +1,245 @@
+{
+  "id": "ER04",
+  "category": "error",
+  "title": "Contradicts themselves",
+  "version": "v1",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "someone hit my car at work this morning"
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle Car Insurance's AI claims assistant. I can help you lodge a claim, and you can ask for a person at any time.\n\nSorry to hear about the accident. First, is anyone hurt or in any danger right now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Hi Sam. No, nobody's hurt. I'm sitting in my car in the carpark at work in Eagle Farm and I'm fine. The car is still drivable."
+    },
+    {
+      "role": "sam",
+      "text": "Good to hear nobody's hurt.\n\nNext I need to confirm who you are. Could you give me your policy number? If you don't have it handy, your date of birth and mobile number will work too.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Yeah, the policy number is WTL456790. Everything's fine on my end."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Tom. You're verified, and I can see your 2022 Toyota RAV4, rego 789XYZ.\n\nCould you tell me what happened, in your own words?",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456790"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456790",
+            "first_name": "Tom"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456790"
+          },
+          "output": {
+            "policy_number": "WTL456790",
+            "first_name": "Tom",
+            "last_name": "Nguyen",
+            "email": "tom.n@example.com",
+            "policy_type": "Comprehensive",
+            "basic_excess": 750,
+            "hire_car_cover": "Not included",
+            "start_date": "2024-06-15",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Toyota",
+                "model": "RAV4",
+                "year": 2022,
+                "rego": "789XYZ"
+              }
+            ],
+            "listed_drivers": [
+              "Tom Nguyen",
+              "Linh Nguyen"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "It was this morning, I think. Actually, no, it might have been yesterday arvo. Sorry, I'm a bit scattered. Anyway, I was parked in the carpark at work in Eagle Farm, I'd just pulled in and gone to the car park spot, and when I came back out to the car there was a dent in the back passenger door and a scratch down the side. Didn't see who did it. Car's still drivable."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Tom. That's useful. It sounds like someone hit your car while it was parked and didn't leave their details.\n\nLet's sort out the timing. When did you last see the car without the damage? Then when did you notice it? For example: \"parked at 8am today, saw the dent at 12pm today\". Yesterday would be Tuesday 27 October, and today is Wednesday 28 October.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Ugh, okay. I'm pretty sure it was this morning. I parked around 7:45am and went in, then came out to the car around 4:30pm... wait, no, that doesn't sound right either. I think I got in around 8 and it was fine, and I noticed the dent when I went to leave at lunch, maybe 12:30? Honestly I was going between the car and the office a few times so I'm not 100% sure. Yesterday was Tuesday, I'm pretty sure the car was fine then, I drove it home Tuesday night."
+    },
+    {
+      "role": "sam",
+      "text": "That's fine, it doesn't need to be exact. I'll record it as Wednesday 28 October 2026, sometime between about 8am and 12:30pm, with the times as approximate. The consultant can update it later if you remember more.\n\nWhat's the street address of your work carpark in Eagle Farm?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "I don't have the exact street address on me. It's the staff carpark behind the building on the corner near the Eagle Farm Road end, I think it's something like 27 Maxwell Street? Sorry, I'm not sure on the number. The company is Brightline Logistics if that helps."
+    },
+    {
+      "role": "sam",
+      "text": "That's plenty. I'll record it as the Brightline Logistics staff carpark, around 27 Maxwell Street, Eagle Farm (number to be confirmed).\n\nHave you reported it to police? If so, do you have a reference number? It's fine if you haven't.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No, I haven't reported it to police. I didn't think it was worth it since it's just a dent and a scratch, and nobody was there to see it. I don't have a reference number."
+    },
+    {
+      "role": "sam",
+      "text": "No problem, it's optional.\n\nHere's what I have. Please check it:\n\n- **Car:** 2022 Toyota RAV4, rego 789XYZ\n- **What happened:** Hit while parked. There's a dent in the back passenger door and a scratch down the side. You didn't see who did it, and no details were left.\n- **When:** Wednesday 28 October 2026, between about 8am and 12:30pm (approximate)\n- **Where:** Brightline Logistics staff carpark, around 27 Maxwell Street, Eagle Farm (number to be confirmed)\n- **Driver:** You, Tom Nguyen, drove it there and parked it\n- **Drivable:** Yes\n- **Other party:** Unknown\n- **Police report:** None\n\nIs that all correct?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Mostly right. The one thing I'd change is the timing. I'm not sure I parked around 8am. I think I got in about 8, but I was going back and forth to the car a few times, so I'd just say I'm not certain when it happened. And I said it was \"this morning\" but I also wondered if it was yesterday, so I'd put Wednesday as the most likely day, not a sure thing. The rest looks right."
+    },
+    {
+      "role": "sam",
+      "text": "Done. I've changed the timing as you asked: most likely Wednesday 28 October but possibly Tuesday 27 October, with the time unknown. I also noted that you found the damage around 12:30pm.\n\nYour claim is lodged. Your claim number is **WTL-20805**.\n\nWhat happens next: a claims consultant will contact you within 1 business day. They'll go through the details with you and explain the next steps. Lodging the claim is the first step. It doesn't mean the claim has been assessed yet.\n\nIs there anything else I can help with today?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "policy_number": "WTL456790",
+            "incident_type": "parked_hit",
+            "date_time": "Most likely Wednesday 28 October 2026 (possibly Tuesday 27 October 2026); time uncertain. Customer arrived at work around 8am, was going back and forth to the car, and noticed the damage around 12:30pm.",
+            "location": "Brightline Logistics staff carpark, behind the building, approx. 27 Maxwell Street, Eagle Farm QLD (street number to be confirmed)",
+            "description": "Customer says: \"I was parked in the carpark at work in Eagle Farm... when I came back out to the car there was a dent in the back passenger door and a scratch down the side. Didn't see who did it.\" No details were left. Customer isn't certain when it happened. Wednesday 28 Oct is most likely, but it could have been Tuesday 27 Oct. He was going between the car and the office several times.",
+            "drivable": "yes",
+            "driver": "Tom Nguyen (parked the vehicle)",
+            "other_party": "Unknown - not identified, no details left",
+            "vehicle_rego": "789XYZ",
+            "flags": [
+              "date_time_uncertain",
+              "location_street_number_unconfirmed",
+              "no_police_report"
+            ]
+          },
+          "output": {
+            "claim_number": "WTL-20805",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Thanks, Sam. That's all I needed. Claim number WTL-20805, a consultant will call within 1 business day. Cheers."
+    },
+    {
+      "role": "sam",
+      "text": "That's right, Tom. If you think of anything before the consultant contacts you, have claim number WTL-20805 ready when you get in touch.\n\nTake care.",
+      "tools": []
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456790"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456790",
+        "first_name": "Tom"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456790"
+      },
+      "output": {
+        "policy_number": "WTL456790",
+        "first_name": "Tom",
+        "last_name": "Nguyen",
+        "email": "tom.n@example.com",
+        "policy_type": "Comprehensive",
+        "basic_excess": 750,
+        "hire_car_cover": "Not included",
+        "start_date": "2024-06-15",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Toyota",
+            "model": "RAV4",
+            "year": 2022,
+            "rego": "789XYZ"
+          }
+        ],
+        "listed_drivers": [
+          "Tom Nguyen",
+          "Linh Nguyen"
+        ]
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "policy_number": "WTL456790",
+        "incident_type": "parked_hit",
+        "date_time": "Most likely Wednesday 28 October 2026 (possibly Tuesday 27 October 2026); time uncertain. Customer arrived at work around 8am, was going back and forth to the car, and noticed the damage around 12:30pm.",
+        "location": "Brightline Logistics staff carpark, behind the building, approx. 27 Maxwell Street, Eagle Farm QLD (street number to be confirmed)",
+        "description": "Customer says: \"I was parked in the carpark at work in Eagle Farm... when I came back out to the car there was a dent in the back passenger door and a scratch down the side. Didn't see who did it.\" No details were left. Customer isn't certain when it happened. Wednesday 28 Oct is most likely, but it could have been Tuesday 27 Oct. He was going between the car and the office several times.",
+        "drivable": "yes",
+        "driver": "Tom Nguyen (parked the vehicle)",
+        "other_party": "Unknown - not identified, no details left",
+        "vehicle_rego": "789XYZ",
+        "flags": [
+          "date_time_uncertain",
+          "location_street_number_unconfirmed",
+          "no_police_report"
+        ]
+      },
+      "output": {
+        "claim_number": "WTL-20805",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "judge": {
+    "failures": [
+      {
+        "tag": "FLOW_MISS",
+        "severity": "minor",
+        "turn": 4,
+        "evidence": "When did you last see the car without the damage? Then when did you notice it?",
+        "why": "Sam asked two questions in one turn to a customer who had just said they were scattered, which breaks the one-question-per-turn rule."
+      },
+      {
+        "tag": "FLOW_MISS",
+        "severity": "minor",
+        "turn": 8,
+        "evidence": "Done. I've changed the timing as you asked: most likely Wednesday 28 October but possibly Tuesday 27 October, with the time unknown.",
+        "why": "The customer changed the date and time in the summary, and Sam lodged the claim straight away instead of reading back the new timing and getting a final confirmation."
+      }
+    ],
+    "task_score": 5,
+    "tone_score": 4,
+    "summary": "Sam handled the conflicting dates calmly and without accusation, recorded the uncertainty accurately, and gave a real claim number and next step, but it asked two questions in one turn and lodged the claim without confirming the amended timing."
+  },
+  "auto_check_failures_original": [],
+  "checks_waived": []
+}

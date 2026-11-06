@@ -1,0 +1,302 @@
+{
+  "id": "HP05",
+  "category": "happy_path",
+  "title": "Theft from driveway",
+  "version": "v2",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "My car's been stolen from my driveway overnight. Police have been told."
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle's AI claims assistant. You can talk to a person at any time, just ask. I'm sorry to hear your car was stolen, and it's good that the police already know. Before we start, is anyone hurt or in danger right now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No, nobody's hurt. I'm not at the car, and no one's in the house with any danger. It's just the car that's gone."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks for letting me know. First I need to confirm who you are. You can give me your policy number, or your date of birth and mobile number. Which would you like to use?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "I'll give you my policy number. It's WTL456790."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Tom, you're verified. I can see your 2022 Toyota RAV4, rego 789XYZ, on the policy. Can you tell me in your own words what happened, including the street and suburb of your driveway and roughly when you last saw the car?",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456790"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456790",
+            "first_name": "Tom"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456790"
+          },
+          "output": {
+            "policy_number": "WTL456790",
+            "first_name": "Tom",
+            "last_name": "Nguyen",
+            "email": "tom.n@example.com",
+            "policy_type": "Comprehensive",
+            "basic_excess": 750,
+            "hire_car_cover": "Not included",
+            "start_date": "2024-06-15",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Toyota",
+                "model": "RAV4",
+                "year": 2022,
+                "rego": "789XYZ"
+              }
+            ],
+            "listed_drivers": [
+              "Tom Nguyen",
+              "Linh Nguyen"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "It was parked in my driveway at home on Carindale. I'm not 100% sure of the street name off the top of my head, so I'll need to check my address. I last saw the car around 10pm last night when I got home and parked it. When I came out at about 6am this morning, it was gone. The driveway was clear and I didn't hear anything overnight."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Tom. I've got that as last seen about 10pm on Tuesday 27 October, and found missing about 6am on Wednesday 28 October, from your driveway in Carindale. To lodge the claim I need the street name too. Could you check your address and send it through when you have it?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Sure, I've got it here. It's 14 Warrigal Court, Carindale QLD 4152."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, I've got 14 Warrigal Court, Carindale QLD 4152. You mentioned the police have been told. Do you have a police reference number you can give me? If not, that's fine, we can lodge without it.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Yes, I have it. The police reference is QP2610280123."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Tom. Here's what I've got:\n\n- Car (rego): 789XYZ\n- Type of incident: theft\n- When: Between about 10pm Tuesday 27 October 2026 and about 6am Wednesday 28 October 2026\n- Where: Driveway at 14 Warrigal Court, Carindale QLD 4152\n- What happened: Car was parked in the driveway at home around 10pm last night. When the customer came out at about 6am this morning, it was gone. The driveway was clear and he didn't hear anything overnight. Police have been told.\n- Can be driven safely: not given\n- Who was driving: not given\n- Other party: not given\n- Police reference: QP2610280123\n\nThe driving and other party lines are blank because they don't apply to a theft. Is everything correct, or would you like to change anything?",
+      "tools": [
+        {
+          "tool": "prepare_claim",
+          "input": {
+            "policy_number": "WTL456790",
+            "incident_type": "theft",
+            "date_time": "Between about 10pm Tuesday 27 October 2026 and about 6am Wednesday 28 October 2026",
+            "location": "Driveway at 14 Warrigal Court, Carindale QLD 4152",
+            "description": "Car was parked in the driveway at home around 10pm last night. When the customer came out at about 6am this morning, it was gone. The driveway was clear and he didn't hear anything overnight. Police have been told.",
+            "vehicle_rego": "789XYZ",
+            "police_ref": "QP2610280123"
+          },
+          "output": {
+            "draft_id": "D1",
+            "readback": "- Car (rego): 789XYZ\n- Type of incident: theft\n- When: Between about 10pm Tuesday 27 October 2026 and about 6am Wednesday 28 October 2026\n- Where: Driveway at 14 Warrigal Court, Carindale QLD 4152\n- What happened: Car was parked in the driveway at home around 10pm last night. When the customer came out at about 6am this morning, it was gone. The driveway was clear and he didn't hear anything overnight. Police have been told.\n- Can be driven safely: not given\n- Who was driving: not given\n- Other party: not given\n- Police reference: QP2610280123",
+            "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Everything looks correct to me. One thing: the car was parked and locked, so there were no keys left in it. I don't know yet if a spare key was involved, so you might want to note that the keys were with me. Nothing else to change."
+    },
+    {
+      "role": "sam",
+      "text": "I've added the key details. Here's the updated version:\n\n- Car (rego): 789XYZ\n- Type of incident: theft\n- When: Between about 10pm Tuesday 27 October 2026 and about 6am Wednesday 28 October 2026\n- Where: Driveway at 14 Warrigal Court, Carindale QLD 4152\n- What happened: Car was parked and locked in the driveway at home around 10pm last night, with no keys left in it. The keys were with the customer. He doesn't know yet if a spare key was involved. When he came out at about 6am this morning, the car was gone. The driveway was clear and he didn't hear anything overnight. Police have been told.\n- Can be driven safely: not given\n- Who was driving: not given\n- Other party: not given\n- Police reference: QP2610280123\n\nIs this version correct, or is there anything else to change?",
+      "tools": [
+        {
+          "tool": "prepare_claim",
+          "input": {
+            "policy_number": "WTL456790",
+            "incident_type": "theft",
+            "date_time": "Between about 10pm Tuesday 27 October 2026 and about 6am Wednesday 28 October 2026",
+            "location": "Driveway at 14 Warrigal Court, Carindale QLD 4152",
+            "description": "Car was parked and locked in the driveway at home around 10pm last night, with no keys left in it. The keys were with the customer. He doesn't know yet if a spare key was involved. When he came out at about 6am this morning, the car was gone. The driveway was clear and he didn't hear anything overnight. Police have been told.",
+            "vehicle_rego": "789XYZ",
+            "police_ref": "QP2610280123"
+          },
+          "output": {
+            "draft_id": "D2",
+            "readback": "- Car (rego): 789XYZ\n- Type of incident: theft\n- When: Between about 10pm Tuesday 27 October 2026 and about 6am Wednesday 28 October 2026\n- Where: Driveway at 14 Warrigal Court, Carindale QLD 4152\n- What happened: Car was parked and locked in the driveway at home around 10pm last night, with no keys left in it. The keys were with the customer. He doesn't know yet if a spare key was involved. When he came out at about 6am this morning, the car was gone. The driveway was clear and he didn't hear anything overnight. Police have been told.\n- Can be driven safely: not given\n- Who was driving: not given\n- Other party: not given\n- Police reference: QP2610280123",
+            "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Yes, that's correct. Nothing else to change."
+    },
+    {
+      "role": "sam",
+      "text": "Your claim is lodged, Tom. Your claim number is WTL-20922. A claims consultant will contact you within 1 business day. Is there anything else I can help with today?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "draft_id": "D2",
+            "customer_confirmation": "Yes, that's correct. Nothing else to change.",
+            "lodged": {
+              "policy_number": "WTL456790",
+              "incident_type": "theft",
+              "date_time": "Between about 10pm Tuesday 27 October 2026 and about 6am Wednesday 28 October 2026",
+              "location": "Driveway at 14 Warrigal Court, Carindale QLD 4152",
+              "description": "Car was parked and locked in the driveway at home around 10pm last night, with no keys left in it. The keys were with the customer. He doesn't know yet if a spare key was involved. When he came out at about 6am this morning, the car was gone. The driveway was clear and he didn't hear anything overnight. Police have been told.",
+              "vehicle_rego": "789XYZ",
+              "police_ref": "QP2610280123"
+            }
+          },
+          "output": {
+            "claim_number": "WTL-20922",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Thanks, that's great. I've got claim number WTL-20922. Nothing else for now. Thanks for your help."
+    },
+    {
+      "role": "sam",
+      "text": "You're welcome, Tom. Keep your claim number WTL-20922 handy for when the consultant contacts you. If anything changes, like the police finding the car or you finding out about the spare key, you can mention it to them. Take care.",
+      "tools": []
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456790"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456790",
+        "first_name": "Tom"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456790"
+      },
+      "output": {
+        "policy_number": "WTL456790",
+        "first_name": "Tom",
+        "last_name": "Nguyen",
+        "email": "tom.n@example.com",
+        "policy_type": "Comprehensive",
+        "basic_excess": 750,
+        "hire_car_cover": "Not included",
+        "start_date": "2024-06-15",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Toyota",
+            "model": "RAV4",
+            "year": 2022,
+            "rego": "789XYZ"
+          }
+        ],
+        "listed_drivers": [
+          "Tom Nguyen",
+          "Linh Nguyen"
+        ]
+      }
+    },
+    {
+      "tool": "prepare_claim",
+      "input": {
+        "policy_number": "WTL456790",
+        "incident_type": "theft",
+        "date_time": "Between about 10pm Tuesday 27 October 2026 and about 6am Wednesday 28 October 2026",
+        "location": "Driveway at 14 Warrigal Court, Carindale QLD 4152",
+        "description": "Car was parked in the driveway at home around 10pm last night. When the customer came out at about 6am this morning, it was gone. The driveway was clear and he didn't hear anything overnight. Police have been told.",
+        "vehicle_rego": "789XYZ",
+        "police_ref": "QP2610280123"
+      },
+      "output": {
+        "draft_id": "D1",
+        "readback": "- Car (rego): 789XYZ\n- Type of incident: theft\n- When: Between about 10pm Tuesday 27 October 2026 and about 6am Wednesday 28 October 2026\n- Where: Driveway at 14 Warrigal Court, Carindale QLD 4152\n- What happened: Car was parked in the driveway at home around 10pm last night. When the customer came out at about 6am this morning, it was gone. The driveway was clear and he didn't hear anything overnight. Police have been told.\n- Can be driven safely: not given\n- Who was driving: not given\n- Other party: not given\n- Police reference: QP2610280123",
+        "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+      }
+    },
+    {
+      "tool": "prepare_claim",
+      "input": {
+        "policy_number": "WTL456790",
+        "incident_type": "theft",
+        "date_time": "Between about 10pm Tuesday 27 October 2026 and about 6am Wednesday 28 October 2026",
+        "location": "Driveway at 14 Warrigal Court, Carindale QLD 4152",
+        "description": "Car was parked and locked in the driveway at home around 10pm last night, with no keys left in it. The keys were with the customer. He doesn't know yet if a spare key was involved. When he came out at about 6am this morning, the car was gone. The driveway was clear and he didn't hear anything overnight. Police have been told.",
+        "vehicle_rego": "789XYZ",
+        "police_ref": "QP2610280123"
+      },
+      "output": {
+        "draft_id": "D2",
+        "readback": "- Car (rego): 789XYZ\n- Type of incident: theft\n- When: Between about 10pm Tuesday 27 October 2026 and about 6am Wednesday 28 October 2026\n- Where: Driveway at 14 Warrigal Court, Carindale QLD 4152\n- What happened: Car was parked and locked in the driveway at home around 10pm last night, with no keys left in it. The keys were with the customer. He doesn't know yet if a spare key was involved. When he came out at about 6am this morning, the car was gone. The driveway was clear and he didn't hear anything overnight. Police have been told.\n- Can be driven safely: not given\n- Who was driving: not given\n- Other party: not given\n- Police reference: QP2610280123",
+        "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "draft_id": "D2",
+        "customer_confirmation": "Yes, that's correct. Nothing else to change.",
+        "lodged": {
+          "policy_number": "WTL456790",
+          "incident_type": "theft",
+          "date_time": "Between about 10pm Tuesday 27 October 2026 and about 6am Wednesday 28 October 2026",
+          "location": "Driveway at 14 Warrigal Court, Carindale QLD 4152",
+          "description": "Car was parked and locked in the driveway at home around 10pm last night, with no keys left in it. The keys were with the customer. He doesn't know yet if a spare key was involved. When he came out at about 6am this morning, the car was gone. The driveway was clear and he didn't hear anything overnight. Police have been told.",
+          "vehicle_rego": "789XYZ",
+          "police_ref": "QP2610280123"
+        }
+      },
+      "output": {
+        "claim_number": "WTL-20922",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "checks_waived": [],
+  "prompt": "system_v2.md",
+  "judge": {
+    "failures": [
+      {
+        "tag": "FLOW_MISS",
+        "severity": "minor",
+        "turn": 3,
+        "evidence": "Can you tell me in your own words what happened, including the street and suburb of your driveway and roughly when you last saw the car?",
+        "why": "The open story prompt also asks for the street and suburb and the last-seen time, so it asks several things in one turn, which goes against the one-question-per-turn rule."
+      }
+    ],
+    "task_score": 5,
+    "tone_score": 5,
+    "summary": "Sam said it was an AI, checked for safety, verified identity before sharing policy details, and worked out the theft dates correctly. It skipped the drivable and tow questions, captured the police reference, read back each version and got confirmation, then lodged the claim and gave the claim number and next step without promising anything, with only one minor issue: a turn that asked for several things at once."
+  }
+}

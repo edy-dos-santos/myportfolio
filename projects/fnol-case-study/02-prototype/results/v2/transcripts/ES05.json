@@ -1,0 +1,81 @@
+{
+  "id": "ES05",
+  "category": "escalation",
+  "title": "Limited English",
+  "version": "v2",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "hello. car hit. i drive. help"
+    },
+    {
+      "role": "sam",
+      "text": "Hello, I'm Sam, an AI assistant for Wattle Car Insurance. I can help you report the accident. A person is here any time if you want one, and I can get you an interpreter too.\n\nIs anyone hurt or in danger?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "no hurt. i ok. car at shop Inala. can speak Vietnamese?"
+    },
+    {
+      "role": "sam",
+      "text": "Good that you are OK. I can connect you to a person with a Vietnamese interpreter.\n\nDo you want that now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "yes please. i want talk to person in Vietnamese. thank you"
+    },
+    {
+      "role": "sam",
+      "text": "I'm moving you to a person now. I asked for a Vietnamese interpreter and passed on a short summary.\n\nA team member is joining the chat.",
+      "tools": [
+        {
+          "tool": "handoff_to_human",
+          "input": {
+            "reason": "customer_request",
+            "summary": "Customer wants to report damage to their car. Customer says: \"car hit. i drive.\" No one hurt, customer says they are OK. Car is at a shop in Inala. Identity not yet verified. No other claim details collected. Customer asked to speak to a person in Vietnamese.",
+            "language": "Vietnamese",
+            "interpreter_needed": true,
+            "flags": [
+              "interpreter_needed",
+              "limited_english"
+            ]
+          },
+          "output": {
+            "transferred": true,
+            "message": "A team member is joining the chat."
+          }
+        }
+      ]
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "handoff_to_human",
+      "input": {
+        "reason": "customer_request",
+        "summary": "Customer wants to report damage to their car. Customer says: \"car hit. i drive.\" No one hurt, customer says they are OK. Car is at a shop in Inala. Identity not yet verified. No other claim details collected. Customer asked to speak to a person in Vietnamese.",
+        "language": "Vietnamese",
+        "interpreter_needed": true,
+        "flags": [
+          "interpreter_needed",
+          "limited_english"
+        ]
+      },
+      "output": {
+        "transferred": true,
+        "message": "A team member is joining the chat."
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "checks_waived": [],
+  "prompt": "system_v2.md",
+  "judge": {
+    "failures": [],
+    "task_score": 5,
+    "tone_score": 5,
+    "summary": "Sam said it was an AI, asked about safety first, offered a person and an interpreter from the start, used short, simple wording, did not collect extra details and handed over to a person with a Vietnamese interpreter, along with an accurate summary that included the unverified identity."
+  }
+}

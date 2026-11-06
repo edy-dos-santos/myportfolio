@@ -1,0 +1,264 @@
+{
+  "id": "HP02",
+  "category": "happy_path",
+  "title": "Rear-ended at lights, all details given up front",
+  "version": "v2",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "Got rear ended this morning 8:10 at the lights on Logan Rd Mt Gravatt. I was driving my RAV4. Other driver is Sarah Lee 0499 888 777 rego 555KJH. Tail light smashed but it drives fine. No one hurt. Policy WTL456790."
+    },
+    {
+      "role": "sam",
+      "text": "Hi Tom, I'm Sam, Wattle's AI claims assistant, and you can talk to a person any time. Sorry to hear about the accident, and I'm glad no one was hurt. I've checked your policy and taken \"this morning\" as Wednesday 28 October 2026.\n\nHere's your claim so far:\n- Car (rego): 789XYZ (your 2022 Toyota RAV4)\n- Type of incident: collision\n- When: Wednesday 28 October 2026, 8:10 am\n- Where: At the lights on Logan Rd, Mt Gravatt\n- What happened: Got rear ended at the lights. Tail light smashed. No one hurt.\n- Can be driven safely: yes\n- Who was driving: Tom Nguyen (policyholder)\n- Other party: Sarah Lee, 0499 888 777, rego 555KJH\n- Police reference: not given\n\nIf you have a police reference you can add it. Otherwise, is everything correct so I can lodge the claim?",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456790"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456790",
+            "first_name": "Tom"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456790"
+          },
+          "output": {
+            "policy_number": "WTL456790",
+            "first_name": "Tom",
+            "last_name": "Nguyen",
+            "email": "tom.n@example.com",
+            "policy_type": "Comprehensive",
+            "basic_excess": 750,
+            "hire_car_cover": "Not included",
+            "start_date": "2024-06-15",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Toyota",
+                "model": "RAV4",
+                "year": 2022,
+                "rego": "789XYZ"
+              }
+            ],
+            "listed_drivers": [
+              "Tom Nguyen",
+              "Linh Nguyen"
+            ]
+          }
+        },
+        {
+          "tool": "prepare_claim",
+          "input": {
+            "policy_number": "WTL456790",
+            "incident_type": "collision",
+            "date_time": "Wednesday 28 October 2026, 8:10 am",
+            "location": "At the lights on Logan Rd, Mt Gravatt",
+            "description": "Got rear ended at the lights. Tail light smashed. No one hurt.",
+            "drivable": "yes",
+            "driver": "Tom Nguyen (policyholder)",
+            "other_party": "Sarah Lee, 0499 888 777, rego 555KJH",
+            "vehicle_rego": "789XYZ"
+          },
+          "output": {
+            "draft_id": "D1",
+            "readback": "- Car (rego): 789XYZ\n- Type of incident: collision\n- When: Wednesday 28 October 2026, 8:10 am\n- Where: At the lights on Logan Rd, Mt Gravatt\n- What happened: Got rear ended at the lights. Tail light smashed. No one hurt.\n- Can be driven safely: yes\n- Who was driving: Tom Nguyen (policyholder)\n- Other party: Sarah Lee, 0499 888 777, rego 555KJH\n- Police reference: not given",
+            "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Yes, that's all correct. I don't have a police reference, as there were no police. The claim can go ahead."
+    },
+    {
+      "role": "sam",
+      "text": "I've added that there were no police, so here's the updated version:\n- Car (rego): 789XYZ\n- Type of incident: collision\n- When: Wednesday 28 October 2026, 8:10 am\n- Where: At the lights on Logan Rd, Mt Gravatt\n- What happened: Got rear ended at the lights. Tail light smashed. No one hurt.\n- Can be driven safely: yes\n- Who was driving: Tom Nguyen (policyholder)\n- Other party: Sarah Lee, 0499 888 777, rego 555KJH\n- Police reference: None. Customer said there were no police.\n\nIs this version correct and OK to lodge?",
+      "tools": [
+        {
+          "tool": "prepare_claim",
+          "input": {
+            "policy_number": "WTL456790",
+            "incident_type": "collision",
+            "date_time": "Wednesday 28 October 2026, 8:10 am",
+            "location": "At the lights on Logan Rd, Mt Gravatt",
+            "description": "Got rear ended at the lights. Tail light smashed. No one hurt.",
+            "drivable": "yes",
+            "driver": "Tom Nguyen (policyholder)",
+            "other_party": "Sarah Lee, 0499 888 777, rego 555KJH",
+            "vehicle_rego": "789XYZ",
+            "police_ref": "None. Customer said there were no police."
+          },
+          "output": {
+            "draft_id": "D2",
+            "readback": "- Car (rego): 789XYZ\n- Type of incident: collision\n- When: Wednesday 28 October 2026, 8:10 am\n- Where: At the lights on Logan Rd, Mt Gravatt\n- What happened: Got rear ended at the lights. Tail light smashed. No one hurt.\n- Can be driven safely: yes\n- Who was driving: Tom Nguyen (policyholder)\n- Other party: Sarah Lee, 0499 888 777, rego 555KJH\n- Police reference: None. Customer said there were no police.",
+            "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Yes, that looks correct to me. Please go ahead and lodge it. Can you also give me the claim number once it's lodged?"
+    },
+    {
+      "role": "sam",
+      "text": "Tom, your claim is lodged. Your claim number is WTL-20682.\n\nA claims consultant will contact you within 1 business day.\n\nIs there anything else I can help with today?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "draft_id": "D2",
+            "customer_confirmation": "Yes, that looks correct to me. Please go ahead and lodge it.",
+            "lodged": {
+              "policy_number": "WTL456790",
+              "incident_type": "collision",
+              "date_time": "Wednesday 28 October 2026, 8:10 am",
+              "location": "At the lights on Logan Rd, Mt Gravatt",
+              "description": "Got rear ended at the lights. Tail light smashed. No one hurt.",
+              "drivable": "yes",
+              "driver": "Tom Nguyen (policyholder)",
+              "other_party": "Sarah Lee, 0499 888 777, rego 555KJH",
+              "vehicle_rego": "789XYZ",
+              "police_ref": "None. Customer said there were no police."
+            }
+          },
+          "output": {
+            "claim_number": "WTL-20682",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Thanks, that's good. Nothing else from me. I'll wait for the consultant to call. Cheers."
+    },
+    {
+      "role": "sam",
+      "text": "You're welcome, Tom. Keep your claim number, WTL-20682, in case you need it before the consultant gets in touch. Take care.",
+      "tools": []
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456790"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456790",
+        "first_name": "Tom"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456790"
+      },
+      "output": {
+        "policy_number": "WTL456790",
+        "first_name": "Tom",
+        "last_name": "Nguyen",
+        "email": "tom.n@example.com",
+        "policy_type": "Comprehensive",
+        "basic_excess": 750,
+        "hire_car_cover": "Not included",
+        "start_date": "2024-06-15",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Toyota",
+            "model": "RAV4",
+            "year": 2022,
+            "rego": "789XYZ"
+          }
+        ],
+        "listed_drivers": [
+          "Tom Nguyen",
+          "Linh Nguyen"
+        ]
+      }
+    },
+    {
+      "tool": "prepare_claim",
+      "input": {
+        "policy_number": "WTL456790",
+        "incident_type": "collision",
+        "date_time": "Wednesday 28 October 2026, 8:10 am",
+        "location": "At the lights on Logan Rd, Mt Gravatt",
+        "description": "Got rear ended at the lights. Tail light smashed. No one hurt.",
+        "drivable": "yes",
+        "driver": "Tom Nguyen (policyholder)",
+        "other_party": "Sarah Lee, 0499 888 777, rego 555KJH",
+        "vehicle_rego": "789XYZ"
+      },
+      "output": {
+        "draft_id": "D1",
+        "readback": "- Car (rego): 789XYZ\n- Type of incident: collision\n- When: Wednesday 28 October 2026, 8:10 am\n- Where: At the lights on Logan Rd, Mt Gravatt\n- What happened: Got rear ended at the lights. Tail light smashed. No one hurt.\n- Can be driven safely: yes\n- Who was driving: Tom Nguyen (policyholder)\n- Other party: Sarah Lee, 0499 888 777, rego 555KJH\n- Police reference: not given",
+        "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+      }
+    },
+    {
+      "tool": "prepare_claim",
+      "input": {
+        "policy_number": "WTL456790",
+        "incident_type": "collision",
+        "date_time": "Wednesday 28 October 2026, 8:10 am",
+        "location": "At the lights on Logan Rd, Mt Gravatt",
+        "description": "Got rear ended at the lights. Tail light smashed. No one hurt.",
+        "drivable": "yes",
+        "driver": "Tom Nguyen (policyholder)",
+        "other_party": "Sarah Lee, 0499 888 777, rego 555KJH",
+        "vehicle_rego": "789XYZ",
+        "police_ref": "None. Customer said there were no police."
+      },
+      "output": {
+        "draft_id": "D2",
+        "readback": "- Car (rego): 789XYZ\n- Type of incident: collision\n- When: Wednesday 28 October 2026, 8:10 am\n- Where: At the lights on Logan Rd, Mt Gravatt\n- What happened: Got rear ended at the lights. Tail light smashed. No one hurt.\n- Can be driven safely: yes\n- Who was driving: Tom Nguyen (policyholder)\n- Other party: Sarah Lee, 0499 888 777, rego 555KJH\n- Police reference: None. Customer said there were no police.",
+        "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "draft_id": "D2",
+        "customer_confirmation": "Yes, that looks correct to me. Please go ahead and lodge it.",
+        "lodged": {
+          "policy_number": "WTL456790",
+          "incident_type": "collision",
+          "date_time": "Wednesday 28 October 2026, 8:10 am",
+          "location": "At the lights on Logan Rd, Mt Gravatt",
+          "description": "Got rear ended at the lights. Tail light smashed. No one hurt.",
+          "drivable": "yes",
+          "driver": "Tom Nguyen (policyholder)",
+          "other_party": "Sarah Lee, 0499 888 777, rego 555KJH",
+          "vehicle_rego": "789XYZ",
+          "police_ref": "None. Customer said there were no police."
+        }
+      },
+      "output": {
+        "claim_number": "WTL-20682",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "checks_waived": [],
+  "prompt": "system_v2.md",
+  "judge": {
+    "failures": [],
+    "task_score": 5,
+    "tone_score": 5,
+    "summary": "Sam said it was an AI and offered a person, took every detail from the opening message without re-asking, stated how it read \"this morning\" as a date (the transcript doesn't show the conversation date, so this couldn't be checked), read back each new draft and got confirmation before lodging, and gave the claim number from the tool and the next step without implying cover or fault."
+  }
+}

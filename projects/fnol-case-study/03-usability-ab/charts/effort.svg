@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 304" width="100%" role="img" aria-labelledby="effort-t effort-d">
+<title id="effort-t">Simulated: Sam turns, questions and repeat questions (mean per conversation)</title>
+<desc id="effort-d">Simulated pilot. Mean Sam turns, questions and repeat questions per conversation, by variant.</desc>
+<style>
+.ab-text { fill: #18241f; font: 16px system-ui, Arial, sans-serif; }
+.ab-title { font-size: 18px; font-weight: 700; }
+.ab-value { font-size: 15px; }
+.ab-muted { fill: #4d5d55; font: 12px system-ui, Arial, sans-serif; }
+.ab-grid { stroke: #d3dbd5; stroke-width: 1; }
+.ab-axis { stroke: #18241f; stroke-width: 1; }
+.ab-line { stroke: #18241f; stroke-width: 2; }
+.ab-mean { stroke: #18241f; stroke-width: 4; }
+.ab-a { fill: #b88a00; }
+.ab-b { fill: #3f6b5c; }
+.ab-none { fill: #8a958f; }
+@media (prefers-color-scheme: dark) {
+  .ab-text { fill: #e5ece8; }
+  .ab-muted { fill: #aebdb5; }
+  .ab-grid { stroke: #2c3a34; }
+  .ab-axis { stroke: #e5ece8; }
+  .ab-line { stroke: #e5ece8; }
+  .ab-mean { stroke: #e5ece8; }
+  .ab-a { fill: #e3b731; }
+  .ab-b { fill: #8cc2ae; }
+  .ab-none { fill: #9aa7a0; }
+}
+</style>
+<text class="ab-text ab-title" x="10" y="26">Simulated: Sam turns, questions and repeat</text>
+<text class="ab-text ab-title" x="10" y="48">questions (mean per conversation)</text>
+<text class="ab-text" x="10" y="90">Sam turns</text>
+<rect class="ab-a" x="260" y="76" width="211.8" height="22" rx="2"/>
+<text class="ab-text ab-value" x="479.8" y="92">A 13.0</text>
+<rect class="ab-b" x="260" y="104" width="143.4" height="22" rx="2"/>
+<text class="ab-text ab-value" x="411.4" y="120">B 8.8</text>
+<text class="ab-text" x="10" y="164">Questions asked</text>
+<rect class="ab-a" x="260" y="150" width="216.7" height="22" rx="2"/>
+<text class="ab-text ab-value" x="484.7" y="166">A 13.3</text>
+<rect class="ab-b" x="260" y="178" width="128.7" height="22" rx="2"/>
+<text class="ab-text ab-value" x="396.7" y="194">B 7.9</text>
+<text class="ab-text" x="10" y="238">Repeat questions (heuristic)</text>
+<rect class="ab-a" x="260" y="224" width="34.2" height="22" rx="2"/>
+<text class="ab-text ab-value" x="302.2" y="240">A 2.1</text>
+<rect class="ab-b" x="260" y="252" width="13.0" height="22" rx="2"/>
+<text class="ab-text ab-value" x="281.0" y="268">B 0.8</text>
+<line class="ab-axis" x1="260" y1="66" x2="260" y2="298"/>
+</svg>

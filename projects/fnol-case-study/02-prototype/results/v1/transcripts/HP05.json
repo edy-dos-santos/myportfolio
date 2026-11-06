@@ -1,0 +1,228 @@
+{
+  "id": "HP05",
+  "category": "happy_path",
+  "title": "Theft from driveway",
+  "version": "v1",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "My car's been stolen from my driveway overnight. Police have been told."
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle Car Insurance's AI claims assistant. If you'd like to talk to a person at any point, just tell me and I'll put you through.\n\nI'm sorry your car was stolen. It's good that you've already told the police, and I'll ask for their reference number later.\n\nFirst, are you and everyone at home safe?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Hi Sam. Not really, no. Nobody was home. I'm on my own at the house and I'm fine. I only noticed the car was gone when I came out at about 6am this morning."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks for letting me know. I'm glad you're not hurt. If at any point you feel unsafe at home, call 000 first.\n\nNext I need to confirm who you are. Could you give me your policy number? If you don't have it handy, your date of birth and mobile number will do.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Sure. My policy number is WTL456790. My date of birth is 14 March 1988 and my mobile is 0412 555 019."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Tom. You're verified.\n\nI can see one car on your policy, a 2022 Toyota RAV4, rego 789XYZ. I'll take it that's the one that was stolen.\n\nYou noticed it was gone at about 6am this morning, Wednesday 28 October. When did you last see it in the driveway?",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456790",
+            "dob": "1988-03-14",
+            "mobile": "0412555019"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456790",
+            "first_name": "Tom"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456790"
+          },
+          "output": {
+            "policy_number": "WTL456790",
+            "first_name": "Tom",
+            "last_name": "Nguyen",
+            "email": "tom.n@example.com",
+            "policy_type": "Comprehensive",
+            "basic_excess": 750,
+            "hire_car_cover": "Not included",
+            "start_date": "2024-06-15",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Toyota",
+                "model": "RAV4",
+                "year": 2022,
+                "rego": "789XYZ"
+              }
+            ],
+            "listed_drivers": [
+              "Tom Nguyen",
+              "Linh Nguyen"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Last night, around 10pm, when I put the bins out and walked past it. I didn't look at it again after that."
+    },
+    {
+      "role": "sam",
+      "text": "So it was taken some time between about 10pm on Tuesday 27 October and 6am on Wednesday 28 October.\n\nWhat's the address of the driveway it was taken from, including street and suburb?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "The address is 14 Wattle Court, Carindale QLD 4152. Sorry, I should have included the postcode before."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, that's all I need for the address.\n\nYou said the police have been told. Do you have the police reference or event number they gave you?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Yes, it's QP2610280123."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, I've noted that.\n\nIs there anything else you can tell me about what happened? For example, where the keys were, or any signs of a break-in such as broken glass.",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "I'm not sure where the keys were. I think I left them on the hook by the front door, but I can't be certain. I haven't checked yet. There's no broken glass or anything like that that I've seen. The gate to the driveway was closed when I got up, but I don't know if it was locked. The car was parked on the driveway, not in the garage. I didn't hear anything overnight."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Tom. That's helpful. Here's what I have:\n\n- **Car:** 2022 Toyota RAV4, rego 789XYZ\n- **What happened:** Stolen from the driveway at 14 Wattle Court, Carindale QLD 4152. It was parked on the driveway, not in the garage.\n- **When:** Between about 10pm Tuesday 27 October and 6am Wednesday 28 October 2026\n- **Keys:** You think they were on the hook by the front door, but you haven't checked yet\n- **Other details:** You haven't seen any broken glass. The driveway gate was closed, but you're not sure if it was locked. You didn't hear anything overnight.\n- **Police reference:** QP2610280123\n\nIs that all correct?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Yes, that's all correct."
+    },
+    {
+      "role": "sam",
+      "text": "I've lodged your claim. Your claim number is **WTL-20562**.\n\nWhat happens next:\n- A claims consultant will contact you within 1 business day. They'll go through the claim with you and explain the next steps.\n- When you can, check whether the keys are on the hook, then tell the consultant what you find.\n- If the police find the car or contact you with an update, let us know and quote your claim number.\n\nLodging the claim starts the process. It doesn't mean the claim has been approved. The consultant will confirm that after they review it.\n\nIs there anything else I can help with today?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "policy_number": "WTL456790",
+            "incident_type": "theft",
+            "date_time": "Between approx. 10pm Tue 27 Oct 2026 and 6am Wed 28 Oct 2026 (AEST)",
+            "location": "14 Wattle Court, Carindale QLD 4152 (driveway)",
+            "description": "Car stolen from the driveway overnight. Last seen around 10pm when customer put the bins out; noticed gone at about 6am. Parked on driveway, not in garage. Customer thinks keys were on the hook by the front door but can't be certain and hasn't checked yet. No broken glass seen. Driveway gate was closed when he got up, unsure if it was locked. Didn't hear anything overnight. Police notified.",
+            "drivable": "no",
+            "vehicle_rego": "789XYZ",
+            "police_ref": "QP2610280123",
+            "flags": [
+              "keys_location_unconfirmed"
+            ]
+          },
+          "output": {
+            "claim_number": "WTL-20562",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Thanks, Sam. Nothing else from me today. I'll check the keys and wait for the consultant to call. I'll keep the police reference handy."
+    },
+    {
+      "role": "sam",
+      "text": "That sounds good, Tom. Your claim number is WTL-20562, and a consultant will contact you within 1 business day.\n\nIf anything changes before then, or you'd like to speak with a person, just come back to this chat or contact Wattle Car Insurance.\n\nTake care.",
+      "tools": []
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456790",
+        "dob": "1988-03-14",
+        "mobile": "0412555019"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456790",
+        "first_name": "Tom"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456790"
+      },
+      "output": {
+        "policy_number": "WTL456790",
+        "first_name": "Tom",
+        "last_name": "Nguyen",
+        "email": "tom.n@example.com",
+        "policy_type": "Comprehensive",
+        "basic_excess": 750,
+        "hire_car_cover": "Not included",
+        "start_date": "2024-06-15",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Toyota",
+            "model": "RAV4",
+            "year": 2022,
+            "rego": "789XYZ"
+          }
+        ],
+        "listed_drivers": [
+          "Tom Nguyen",
+          "Linh Nguyen"
+        ]
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "policy_number": "WTL456790",
+        "incident_type": "theft",
+        "date_time": "Between approx. 10pm Tue 27 Oct 2026 and 6am Wed 28 Oct 2026 (AEST)",
+        "location": "14 Wattle Court, Carindale QLD 4152 (driveway)",
+        "description": "Car stolen from the driveway overnight. Last seen around 10pm when customer put the bins out; noticed gone at about 6am. Parked on driveway, not in garage. Customer thinks keys were on the hook by the front door but can't be certain and hasn't checked yet. No broken glass seen. Driveway gate was closed when he got up, unsure if it was locked. Didn't hear anything overnight. Police notified.",
+        "drivable": "no",
+        "vehicle_rego": "789XYZ",
+        "police_ref": "QP2610280123",
+        "flags": [
+          "keys_location_unconfirmed"
+        ]
+      },
+      "output": {
+        "claim_number": "WTL-20562",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "judge": {
+    "failures": [],
+    "task_score": 5,
+    "tone_score": 5,
+    "summary": "Sam disclosed it is an AI, offered a person, checked safety and verified identity before mentioning policy details. It handled the theft without asking whether the car was drivable or needed a tow, worked out the dates correctly, asked one question per turn without repeating any, and recorded the police reference and the uncertain key location. It read back a summary and got confirmation before lodging, then gave the claim number from the tool, clear next steps and a note that lodging is not approval, without implying cover."
+  },
+  "auto_check_failures_original": [],
+  "checks_waived": []
+}

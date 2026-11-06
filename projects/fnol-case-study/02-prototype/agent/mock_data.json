@@ -1,0 +1,49 @@
+{
+  "today": "Wednesday 28 October 2026",
+  "timezone": "Australia/Brisbane",
+  "policies": {
+    "WTL456789": {
+      "first_name": "Priya", "last_name": "Sharma", "dob": "1990-03-14", "mobile": "0412000111",
+      "email": "priya.s@example.com", "policy_type": "Comprehensive", "basic_excess": 800,
+      "hire_car_cover": "After a not-at-fault accident where the other driver is identified",
+      "start_date": "2025-02-01",
+      "vehicles": [
+        {"id": "V1", "make": "Mazda", "model": "3", "year": 2021, "rego": "123ABC"},
+        {"id": "V2", "make": "Kia", "model": "Sportage", "year": 2023, "rego": "456DEF"}
+      ],
+      "listed_drivers": ["Priya Sharma", "Dev Sharma"]
+    },
+    "WTL456790": {
+      "first_name": "Tom", "last_name": "Nguyen", "dob": "1985-07-02", "mobile": "0400111222",
+      "email": "tom.n@example.com", "policy_type": "Comprehensive", "basic_excess": 750,
+      "hire_car_cover": "Not included",
+      "start_date": "2024-06-15",
+      "vehicles": [{"id": "V1", "make": "Toyota", "model": "RAV4", "year": 2022, "rego": "789XYZ"}],
+      "listed_drivers": ["Tom Nguyen", "Linh Nguyen"]
+    },
+    "WTL456791": {
+      "first_name": "Ana", "last_name": "Costa", "dob": "1998-11-20", "mobile": "0433999888",
+      "email": "ana.c@example.com", "policy_type": "Third Party Fire and Theft", "basic_excess": 600,
+      "hire_car_cover": "Not included",
+      "start_date": "2026-01-10",
+      "vehicles": [{"id": "V1", "make": "Hyundai", "model": "i30", "year": 2016, "rego": "321QWE"}],
+      "listed_drivers": ["Ana Costa"]
+    },
+    "WTL456792": {
+      "first_name": "Margaret", "last_name": "Hill", "dob": "1947-05-09", "mobile": "0411222333",
+      "email": "", "policy_type": "Comprehensive", "basic_excess": 500,
+      "hire_car_cover": "Not included",
+      "start_date": "2019-09-01",
+      "vehicles": [{"id": "V1", "make": "Honda", "model": "Jazz", "year": 2015, "rego": "654RTY"}],
+      "listed_drivers": ["Margaret Hill"]
+    },
+    "WTL456793": {
+      "first_name": "Raj", "last_name": "Patel", "dob": "1979-01-25", "mobile": "0422555666",
+      "email": "raj.p@example.com", "policy_type": "Comprehensive", "basic_excess": 1000,
+      "hire_car_cover": "Not included",
+      "start_date": "2026-10-27",
+      "vehicles": [{"id": "V1", "make": "Ford", "model": "Ranger", "year": 2020, "rego": "987MNB"}],
+      "listed_drivers": ["Raj Patel"]
+    }
+  }
+}

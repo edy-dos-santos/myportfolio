@@ -1,0 +1,8 @@
+{
+  "persona_id": "P10",
+  "data_source": "simulated",
+  "chat1_variant": "B",
+  "chat2_variant": "A",
+  "preferred_variant": "A",
+  "reason": "It asked about the headlight and whether the car is safe at night, checked for other damage and witnesses, and went through the details in a clear summary. Chat 1 got stuck on verification when I didn't have the policy number to hand."
+}

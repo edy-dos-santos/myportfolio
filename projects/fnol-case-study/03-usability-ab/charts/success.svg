@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 176" width="100%" role="img" aria-labelledby="success-t success-d">
+<title id="success-t">Simulated: task success by variant (% of personas)</title>
+<desc id="success-d">Simulated pilot. Share of personas whose task succeeded, by variant.</desc>
+<style>
+.ab-text { fill: #18241f; font: 16px system-ui, Arial, sans-serif; }
+.ab-title { font-size: 18px; font-weight: 700; }
+.ab-value { font-size: 15px; }
+.ab-muted { fill: #4d5d55; font: 12px system-ui, Arial, sans-serif; }
+.ab-grid { stroke: #d3dbd5; stroke-width: 1; }
+.ab-axis { stroke: #18241f; stroke-width: 1; }
+.ab-line { stroke: #18241f; stroke-width: 2; }
+.ab-mean { stroke: #18241f; stroke-width: 4; }
+.ab-a { fill: #b88a00; }
+.ab-b { fill: #3f6b5c; }
+.ab-none { fill: #8a958f; }
+@media (prefers-color-scheme: dark) {
+  .ab-text { fill: #e5ece8; }
+  .ab-muted { fill: #aebdb5; }
+  .ab-grid { stroke: #2c3a34; }
+  .ab-axis { stroke: #e5ece8; }
+  .ab-line { stroke: #e5ece8; }
+  .ab-mean { stroke: #e5ece8; }
+  .ab-a { fill: #e3b731; }
+  .ab-b { fill: #8cc2ae; }
+  .ab-none { fill: #9aa7a0; }
+}
+</style>
+<text class="ab-text ab-title" x="10" y="26">Simulated: task success by variant (% of</text>
+<text class="ab-text ab-title" x="10" y="48">personas)</text>
+<text class="ab-text" x="10" y="91">A form-first (n=10)</text>
+<rect class="ab-a" x="230" y="76" width="176.0" height="24" rx="2"/>
+<text class="ab-text ab-value" x="414.0" y="93">80.0% (8 of 10)</text>
+<text class="ab-text" x="10" y="135">B story-first (n=10)</text>
+<rect class="ab-b" x="230" y="120" width="220.0" height="24" rx="2"/>
+<text class="ab-text ab-value" x="458.0" y="137">100.0% (10 of 10)</text>
+<line class="ab-axis" x1="230" y1="66" x2="230" y2="162"/>
+</svg>

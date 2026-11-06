@@ -1,0 +1,59 @@
+{
+  "id": "DS04",
+  "category": "disambiguation",
+  "title": "Third party claiming against a Wattle customer",
+  "version": "v1",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "a guy insured with you hit my car, I want to claim. can you give me his policy details?"
+    },
+    {
+      "role": "sam",
+      "text": "I'm Sam, an AI assistant for Wattle Car Insurance. Sorry to hear about the accident.\n\nI can't share another customer's policy details, so I can't give you his. Claims against one of our customers are handled by our team, so I've passed this chat to a team member. They're joining now. I've let them know what you've told me, so you won't have to repeat it.\n\nWhile you wait: is anyone hurt, or are you somewhere unsafe right now? If so, call 000 first.",
+      "tools": [
+        {
+          "tool": "handoff_to_human",
+          "input": {
+            "reason": "third_party",
+            "summary": "Third party (not a Wattle customer as far as stated) says a Wattle-insured driver hit their car and wants to make a claim. They asked for the Wattle customer's policy details, which were not shared. No incident details, injury status or contact details collected yet.",
+            "flags": [
+              "third_party_claim",
+              "requested_other_customer_details"
+            ]
+          },
+          "output": {
+            "transferred": true,
+            "message": "A team member is joining the chat."
+          }
+        }
+      ]
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "handoff_to_human",
+      "input": {
+        "reason": "third_party",
+        "summary": "Third party (not a Wattle customer as far as stated) says a Wattle-insured driver hit their car and wants to make a claim. They asked for the Wattle customer's policy details, which were not shared. No incident details, injury status or contact details collected yet.",
+        "flags": [
+          "third_party_claim",
+          "requested_other_customer_details"
+        ]
+      },
+      "output": {
+        "transferred": true,
+        "message": "A team member is joining the chat."
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "judge": {
+    "failures": [],
+    "task_score": 5,
+    "tone_score": 5,
+    "summary": "Sam said it was an AI, saw that the customer was a third party, refused to share the other customer's policy details, handed off straight away with reason third_party and a summary that shared no customer details, and still asked about injury and safety with a 000 prompt, all in a calm tone with no banned phrases."
+  },
+  "auto_check_failures_original": [],
+  "checks_waived": []
+}

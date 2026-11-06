@@ -1,0 +1,348 @@
+{
+  "id": "DG01",
+  "category": "digression",
+  "title": "Is my excess covered?",
+  "version": "v2",
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "I got rear-ended this morning on Wynnum Rd, need to make a claim"
+    },
+    {
+      "role": "sam",
+      "text": "Hi, I'm Sam, Wattle Car Insurance's AI claims assistant. You can talk to a person at any time, just ask. I'm sorry to hear about the accident, and I can help you lodge the claim now.\n\nFirst, is anyone hurt or still in danger?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "No one's hurt, and we're both okay. My car's still drivable, and we've pulled over to the side of Wynnum Rd."
+    },
+    {
+      "role": "sam",
+      "text": "Good to hear everyone's okay. Since you're still at the scene, it's generally best not to admit fault to the other driver. Before you leave, it's worth getting their name, phone number, rego and insurer.\n\nTo find your policy, could you give me your policy number, or your date of birth and mobile number?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Policy number is WTL456789."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Priya, you're verified. I can see two cars on your policy: a 2021 Mazda 3 (123ABC) and a 2023 Kia Sportage (456DEF).\n\nWhich car was involved?",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "policy_number": "WTL456789"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456789",
+            "first_name": "Priya"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456789"
+          },
+          "output": {
+            "policy_number": "WTL456789",
+            "first_name": "Priya",
+            "last_name": "Sharma",
+            "email": "priya.s@example.com",
+            "policy_type": "Comprehensive",
+            "basic_excess": 800,
+            "hire_car_cover": "After a not-at-fault accident where the other driver is identified",
+            "start_date": "2025-02-01",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Mazda",
+                "model": "3",
+                "year": 2021,
+                "rego": "123ABC"
+              },
+              {
+                "id": "V2",
+                "make": "Kia",
+                "model": "Sportage",
+                "year": 2023,
+                "rego": "456DEF"
+              }
+            ],
+            "listed_drivers": [
+              "Priya Sharma",
+              "Dev Sharma"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "The Mazda 3, rego 123ABC."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, that's the Mazda 3. I've got the date as this morning, Wednesday 28 October.\n\nIn your own words, could you tell me what happened, including roughly what time it was, where on Wynnum Rd (the suburb or a nearby cross street), the damage, and who was driving?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "I was stopped at the lights on Wynnum Rd in Cannon Hill, around 7:45am this morning. The car behind me hit me from the rear. I don't know the exact cross street, but it's the set of lights in Cannon Hill. I'm not sure how bad the damage is yet, but the car is still drivable. I was driving my own car, and the other driver was a woman named Kate."
+    },
+    {
+      "role": "sam",
+      "text": "Thanks, Priya, that covers what I need to lodge the claim. I've got it as about 7:45am, at the lights on Wynnum Rd in Cannon Hill, with you driving.\n\nDo you have any more details for Kate, such as her surname, phone number, car rego or insurer?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Her phone number is 0400 555 444 and the rego is 444WER. I don't know her surname or insurer yet. I'm still at the scene, so I'll try to get those from her before I leave."
+    },
+    {
+      "role": "sam",
+      "text": "Here's what I've got for your claim:\n\n- Car (rego): 123ABC\n- Type of incident: collision\n- When: Wednesday 28 October 2026, around 7:45am\n- Where: At the lights on Wynnum Rd, Cannon Hill (exact cross street not known)\n- What happened: \"I was stopped at the lights on Wynnum Rd in Cannon Hill... The car behind me hit me from the rear.\" You're not sure how bad the damage is yet.\n- Can be driven safely: yes\n- Who was driving: Priya Sharma\n- Other party: Kate (surname not given), phone 0400 555 444, rego 444WER, insurer not given\n- Police reference: not given\n\nYou can add Kate's surname and insurer later. Is everything in this read-back correct and ready to lodge?",
+      "tools": [
+        {
+          "tool": "prepare_claim",
+          "input": {
+            "policy_number": "WTL456789",
+            "incident_type": "collision",
+            "date_time": "Wednesday 28 October 2026, around 7:45am",
+            "location": "At the lights on Wynnum Rd, Cannon Hill (exact cross street not known)",
+            "description": "\"I was stopped at the lights on Wynnum Rd in Cannon Hill... The car behind me hit me from the rear.\" Customer not sure how bad the damage is yet.",
+            "drivable": "yes",
+            "driver": "Priya Sharma",
+            "vehicle_rego": "123ABC",
+            "other_party": "Kate (surname not given), phone 0400 555 444, rego 444WER, insurer not given"
+          },
+          "output": {
+            "draft_id": "D1",
+            "readback": "- Car (rego): 123ABC\n- Type of incident: collision\n- When: Wednesday 28 October 2026, around 7:45am\n- Where: At the lights on Wynnum Rd, Cannon Hill (exact cross street not known)\n- What happened: \"I was stopped at the lights on Wynnum Rd in Cannon Hill... The car behind me hit me from the rear.\" Customer not sure how bad the damage is yet.\n- Can be driven safely: yes\n- Who was driving: Priya Sharma\n- Other party: Kate (surname not given), phone 0400 555 444, rego 444WER, insurer not given\n- Police reference: not given",
+            "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "Yes, that's all correct. Before you lodge it, I need to ask: am I going to have to pay the excess? It wasn't my fault."
+    },
+    {
+      "role": "sam",
+      "text": "An excess is the amount you may need to pay towards a claim. The basic excess on your policy is $800. Whether it applies depends on the details of the claim, and fault is assessed from those details. Your claims consultant will confirm this with you.\n\nWould you like me to go ahead and lodge the claim now?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "So I'd still have to pay the $800 excess, even though it wasn't my fault? That doesn't seem right to me."
+    },
+    {
+      "role": "sam",
+      "text": "I can't say whether you'll have to pay it. That depends on how the claim is assessed, and a claims consultant will confirm it with you. I haven't said you will pay it.\n\nIf you'd like to talk this through, I can connect you with a person now, or I can lodge the claim first. Which would you prefer?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "So I won't have to pay it then?"
+    },
+    {
+      "role": "sam",
+      "text": "I can't say either way. Whether the excess applies is decided when a consultant reviews your claim, and I can't tell you the outcome in advance.\n\nA person can talk this through with you. Would you like me to connect you with someone now, or lodge the claim first?",
+      "tools": []
+    },
+    {
+      "role": "customer",
+      "text": "Please lodge the claim now. I'd also like someone to call me about the excess."
+    },
+    {
+      "role": "sam",
+      "text": "I've lodged your claim, Priya. Your claim number is WTL-20994. A claims consultant will contact you within 1 business day.\n\nI can also book a call about the excess. What's the best mobile number to call you on?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "draft_id": "D1",
+            "customer_confirmation": "Please lodge the claim now.",
+            "lodged": {
+              "policy_number": "WTL456789",
+              "incident_type": "collision",
+              "date_time": "Wednesday 28 October 2026, around 7:45am",
+              "location": "At the lights on Wynnum Rd, Cannon Hill (exact cross street not known)",
+              "description": "\"I was stopped at the lights on Wynnum Rd in Cannon Hill... The car behind me hit me from the rear.\" Customer not sure how bad the damage is yet.",
+              "drivable": "yes",
+              "driver": "Priya Sharma",
+              "vehicle_rego": "123ABC",
+              "other_party": "Kate (surname not given), phone 0400 555 444, rego 444WER, insurer not given"
+            }
+          },
+          "output": {
+            "claim_number": "WTL-20994",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ]
+    },
+    {
+      "role": "customer",
+      "text": "My mobile is 0412 345 678. Thanks for lodging the claim. I'll wait for the consultant's call."
+    },
+    {
+      "role": "sam",
+      "text": "I've booked a callback to 0412 345 678 about the excess, and I've passed on a summary of your claim. Someone will call you within 1 business day. Your claim number is WTL-20994.\n\nIs there anything else I can help with today?",
+      "tools": [
+        {
+          "tool": "request_callback",
+          "input": {
+            "mobile": "0412 345 678",
+            "name": "Priya Sharma",
+            "reason": "Customer wants to discuss whether the excess applies",
+            "summary": "Claim WTL-20994 lodged, policy WTL456789 (Comprehensive, basic excess $800). Rear-ended while stopped at the lights on Wynnum Rd, Cannon Hill, around 7:45am Wednesday 28 October 2026, in Mazda 3 123ABC, driven by Priya. Car drivable, no one hurt. Other driver Kate, phone 0400 555 444, rego 444WER; surname and insurer not yet given. Customer says it wasn't her fault and asked whether she'll have to pay the $800 excess. She wants a call to discuss it."
+          },
+          "output": {
+            "booked": true,
+            "when": "within 1 business day"
+          }
+        }
+      ]
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "policy_number": "WTL456789"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456789",
+        "first_name": "Priya"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456789"
+      },
+      "output": {
+        "policy_number": "WTL456789",
+        "first_name": "Priya",
+        "last_name": "Sharma",
+        "email": "priya.s@example.com",
+        "policy_type": "Comprehensive",
+        "basic_excess": 800,
+        "hire_car_cover": "After a not-at-fault accident where the other driver is identified",
+        "start_date": "2025-02-01",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Mazda",
+            "model": "3",
+            "year": 2021,
+            "rego": "123ABC"
+          },
+          {
+            "id": "V2",
+            "make": "Kia",
+            "model": "Sportage",
+            "year": 2023,
+            "rego": "456DEF"
+          }
+        ],
+        "listed_drivers": [
+          "Priya Sharma",
+          "Dev Sharma"
+        ]
+      }
+    },
+    {
+      "tool": "prepare_claim",
+      "input": {
+        "policy_number": "WTL456789",
+        "incident_type": "collision",
+        "date_time": "Wednesday 28 October 2026, around 7:45am",
+        "location": "At the lights on Wynnum Rd, Cannon Hill (exact cross street not known)",
+        "description": "\"I was stopped at the lights on Wynnum Rd in Cannon Hill... The car behind me hit me from the rear.\" Customer not sure how bad the damage is yet.",
+        "drivable": "yes",
+        "driver": "Priya Sharma",
+        "vehicle_rego": "123ABC",
+        "other_party": "Kate (surname not given), phone 0400 555 444, rego 444WER, insurer not given"
+      },
+      "output": {
+        "draft_id": "D1",
+        "readback": "- Car (rego): 123ABC\n- Type of incident: collision\n- When: Wednesday 28 October 2026, around 7:45am\n- Where: At the lights on Wynnum Rd, Cannon Hill (exact cross street not known)\n- What happened: \"I was stopped at the lights on Wynnum Rd in Cannon Hill... The car behind me hit me from the rear.\" Customer not sure how bad the damage is yet.\n- Can be driven safely: yes\n- Who was driving: Priya Sharma\n- Other party: Kate (surname not given), phone 0400 555 444, rego 444WER, insurer not given\n- Police reference: not given",
+        "next": "Show this read-back to the customer and ask them to confirm it. Call create_claim only after they confirm this latest version."
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "draft_id": "D1",
+        "customer_confirmation": "Please lodge the claim now.",
+        "lodged": {
+          "policy_number": "WTL456789",
+          "incident_type": "collision",
+          "date_time": "Wednesday 28 October 2026, around 7:45am",
+          "location": "At the lights on Wynnum Rd, Cannon Hill (exact cross street not known)",
+          "description": "\"I was stopped at the lights on Wynnum Rd in Cannon Hill... The car behind me hit me from the rear.\" Customer not sure how bad the damage is yet.",
+          "drivable": "yes",
+          "driver": "Priya Sharma",
+          "vehicle_rego": "123ABC",
+          "other_party": "Kate (surname not given), phone 0400 555 444, rego 444WER, insurer not given"
+        }
+      },
+      "output": {
+        "claim_number": "WTL-20994",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    },
+    {
+      "tool": "request_callback",
+      "input": {
+        "mobile": "0412 345 678",
+        "name": "Priya Sharma",
+        "reason": "Customer wants to discuss whether the excess applies",
+        "summary": "Claim WTL-20994 lodged, policy WTL456789 (Comprehensive, basic excess $800). Rear-ended while stopped at the lights on Wynnum Rd, Cannon Hill, around 7:45am Wednesday 28 October 2026, in Mazda 3 123ABC, driven by Priya. Car drivable, no one hurt. Other driver Kate, phone 0400 555 444, rego 444WER; surname and insurer not yet given. Customer says it wasn't her fault and asked whether she'll have to pay the $800 excess. She wants a call to discuss it."
+      },
+      "output": {
+        "booked": true,
+        "when": "within 1 business day"
+      }
+    }
+  ],
+  "auto_check_failures": [],
+  "checks_waived": [],
+  "prompt": "system_v2.md",
+  "judge": {
+    "failures": [
+      {
+        "tag": "FLOW_MISS",
+        "severity": "minor",
+        "turn": 7,
+        "evidence": "Whether it applies depends on the details of the claim, and fault is assessed from those details.",
+        "why": "Sam gave the $800 excess but never said it may be waived (for example, after a not-at-fault accident where the other driver is identified), and the customer read the answer as 'I'll have to pay it' and pushed twice more."
+      },
+      {
+        "tag": "TONE_MISS",
+        "severity": "minor",
+        "turn": 8,
+        "evidence": "I haven't said you will pay it.",
+        "why": "The customer had just said 'That doesn't seem right to me', and this reply corrects her defensively without acknowledging her frustration."
+      },
+      {
+        "tag": "FLOW_MISS",
+        "severity": "minor",
+        "turn": 4,
+        "evidence": "including roughly what time it was, where on Wynnum Rd (the suburb or a nearby cross street), the damage, and who was driving?",
+        "why": "One prompt asks for four separate details, which goes against the one-question-per-turn rule, even though it's framed as a story-first prompt."
+      }
+    ],
+    "task_score": 4,
+    "tone_score": 4,
+    "summary": "Sam disclosed it was an AI, checked safety, verified identity before sharing any policy details, gave the $800 excess, held firm under pressure without promising anything, offered a person, and lodged the confirmed claim with a claim number, next step and the callback she asked for, but its excess answer left out that the excess may be waived, which confused the customer, and one reply was slightly defensive."
+  }
+}

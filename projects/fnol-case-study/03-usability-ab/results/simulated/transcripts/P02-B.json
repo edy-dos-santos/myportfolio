@@ -1,0 +1,218 @@
+{
+  "conversation_id": "P02-B",
+  "persona_id": "P02",
+  "variant": "B",
+  "variant_name": "story_first",
+  "sam_version": "abB",
+  "order_position": 1,
+  "data_source": "simulated",
+  "sam_model": "claude-opus-5-5",
+  "customer_model": "claude-haiku-5-5",
+  "started_at": "2026-10-29T14:17:18+10:00",
+  "elapsed_seconds": 54.3,
+  "hit_turn_cap": false,
+  "transcript": [
+    {
+      "role": "customer",
+      "text": "Good morning. The hail last night has put dents all over my car. I'm not very good with these chat things, so please bear with me.",
+      "ms": 0
+    },
+    {
+      "role": "sam",
+      "text": "Good morning. I'm Sam, an AI assistant for Wattle Car Insurance. I'm sorry to hear about the hail damage to your car.\n\nWe'll go one step at a time, at whatever pace suits you. If you'd rather talk to a person at any point, just tell me and I'll arrange it.\n\nFirst, is anyone hurt, or in any danger right now?",
+      "tools": [],
+      "ms": 1998
+    },
+    {
+      "role": "customer",
+      "text": "No, nobody was hurt, thankfully. The car was parked in my driveway at 22 Banksia Ave, Kenmore, and nobody was in it. It still drives fine, but there are dents all over the roof and bonnet. Is that the sort of thing you need to know now?",
+      "ms": 3661
+    },
+    {
+      "role": "sam",
+      "text": "Yes, that's exactly the kind of thing I need, thank you. I've noted it all down, so you won't need to tell me again.\n\nBefore we go further, I need to confirm who you are. The easiest way is your policy number, which is on your renewal letter or policy email. It usually starts with letters, followed by numbers.\n\nIf you don't have it to hand, you can give me your date of birth and mobile number instead.",
+      "tools": [],
+      "ms": 1894
+    },
+    {
+      "role": "customer",
+      "text": "I don't have the policy number to hand, I'm afraid. The paperwork is in a drawer somewhere and I haven't been able to find it yet. My date of birth is 17 February 1955, and my mobile is 0455 000 102. Will those be enough?",
+      "ms": 2906
+    },
+    {
+      "role": "sam",
+      "text": "Yes, that was enough, thank you Graham. You're confirmed.\n\nI can see your 2017 Subaru Forester, registration 102GDA, so I'll put the claim against that car.\n\nYou said the hail was last night, so that would be Tuesday 27 October 2026. About what time did the hail come through?",
+      "tools": [
+        {
+          "tool": "verify_identity",
+          "input": {
+            "dob": "1955-02-17",
+            "mobile": "0455000102"
+          },
+          "output": {
+            "verified": true,
+            "policy_number": "WTL456802",
+            "first_name": "Graham"
+          }
+        },
+        {
+          "tool": "get_policy",
+          "input": {
+            "policy_number": "WTL456802"
+          },
+          "output": {
+            "policy_number": "WTL456802",
+            "first_name": "Graham",
+            "last_name": "Doyle",
+            "email": "",
+            "policy_type": "Comprehensive",
+            "basic_excess": 500,
+            "hire_car_cover": "Not included",
+            "start_date": "2015-07-01",
+            "vehicles": [
+              {
+                "id": "V1",
+                "make": "Subaru",
+                "model": "Forester",
+                "year": 2017,
+                "rego": "102GDA"
+              }
+            ],
+            "listed_drivers": [
+              "Graham Doyle",
+              "Lorraine Doyle"
+            ]
+          }
+        }
+      ],
+      "ms": 4217
+    },
+    {
+      "role": "customer",
+      "text": "It was around 6pm, I think. I'd just got in from the shops and was putting the kettle on when the noise started. It sounded like gravel being thrown at the windows, and it went on for about twenty minutes. Is that the sort of detail you need?",
+      "ms": 2408
+    },
+    {
+      "role": "sam",
+      "text": "Yes, that's very helpful. I think I have everything I need now. Here's a summary for you to check:\n\n- **Car:** 2017 Subaru Forester, registration 102GDA\n- **What happened:** Hail damage. There are dents across the roof and bonnet.\n- **When:** Tuesday 27 October 2026, around 6pm. The hail lasted about 20 minutes.\n- **Where:** Parked in your driveway at 22 Banksia Ave, Kenmore\n- **Can it be driven:** Yes, it still drives fine\n- **Injuries:** None. Nobody was in the car.\n\nIs that all correct?",
+      "tools": [],
+      "ms": 3018
+    },
+    {
+      "role": "customer",
+      "text": "Yes, that's all correct. Thank you for writing it out so clearly.",
+      "ms": 2007
+    },
+    {
+      "role": "sam",
+      "text": "Your claim has been lodged, Graham. Your claim number is **WTL-20517**. It's worth writing that down somewhere handy.\n\nWhat happens next: a claims consultant will contact you within 1 business day. They'll explain the next steps, such as getting the damage assessed. They'll also tell you whether an excess applies. An excess is the amount you pay towards a claim, and the basic excess on your policy is $500.\n\nLodging the claim doesn't mean it has been approved yet. The consultant will confirm that once they've reviewed it.\n\nIs there anything else I can help you with today?",
+      "tools": [
+        {
+          "tool": "create_claim",
+          "input": {
+            "policy_number": "WTL456802",
+            "incident_type": "storm",
+            "date_time": "2026-10-27T18:00:00+10:00",
+            "location": "22 Banksia Ave, Kenmore QLD (customer's driveway)",
+            "description": "Hail storm around 6pm lasting about twenty minutes while the car was parked in the driveway. Customer says it \"sounded like gravel being thrown at the windows\". Dents all over the roof and bonnet. Nobody was in the car and nobody was hurt.",
+            "drivable": "yes",
+            "vehicle_rego": "102GDA",
+            "driver": "N/A - vehicle parked, unoccupied"
+          },
+          "output": {
+            "claim_number": "WTL-20517",
+            "status": "lodged",
+            "consultant_contact": "within 1 business day"
+          }
+        }
+      ],
+      "ms": 5342
+    },
+    {
+      "role": "customer",
+      "text": "I've written down WTL-20517. Thank you. So a consultant will ring me within one business day, and I'll be asked about the excess. I understand that's what I pay towards the claim, and the $500 is the amount they mention. I'll keep the phone close by.\n\nI don't think I need anything else today. Thank you for your help, Sam.",
+      "ms": 2009
+    },
+    {
+      "role": "sam",
+      "text": "You've got it right, Graham. One small point: the consultant will be the one to tell you whether the $500 excess applies to your claim, so you won't need to work that out yourself.\n\nThank you for your patience today. If anything else comes up, you can contact us any time and quote claim number WTL-20517.\n\nTake care.",
+      "tools": [],
+      "ms": 2060
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "verify_identity",
+      "input": {
+        "dob": "1955-02-17",
+        "mobile": "0455000102"
+      },
+      "output": {
+        "verified": true,
+        "policy_number": "WTL456802",
+        "first_name": "Graham"
+      }
+    },
+    {
+      "tool": "get_policy",
+      "input": {
+        "policy_number": "WTL456802"
+      },
+      "output": {
+        "policy_number": "WTL456802",
+        "first_name": "Graham",
+        "last_name": "Doyle",
+        "email": "",
+        "policy_type": "Comprehensive",
+        "basic_excess": 500,
+        "hire_car_cover": "Not included",
+        "start_date": "2015-07-01",
+        "vehicles": [
+          {
+            "id": "V1",
+            "make": "Subaru",
+            "model": "Forester",
+            "year": 2017,
+            "rego": "102GDA"
+          }
+        ],
+        "listed_drivers": [
+          "Graham Doyle",
+          "Lorraine Doyle"
+        ]
+      }
+    },
+    {
+      "tool": "create_claim",
+      "input": {
+        "policy_number": "WTL456802",
+        "incident_type": "storm",
+        "date_time": "2026-10-27T18:00:00+10:00",
+        "location": "22 Banksia Ave, Kenmore QLD (customer's driveway)",
+        "description": "Hail storm around 6pm lasting about twenty minutes while the car was parked in the driveway. Customer says it \"sounded like gravel being thrown at the windows\". Dents all over the roof and bonnet. Nobody was in the car and nobody was hurt.",
+        "drivable": "yes",
+        "vehicle_rego": "102GDA",
+        "driver": "N/A - vehicle parked, unoccupied"
+      },
+      "output": {
+        "claim_number": "WTL-20517",
+        "status": "lodged",
+        "consultant_contact": "within 1 business day"
+      }
+    }
+  ],
+  "handed_off": false,
+  "questionnaire": {
+    "seq": 6,
+    "csat": 5,
+    "comment": "Sam was patient and clear, asked one question at a time, and never made me feel silly for not having my policy number. I got my claim number written down and knew what would happen next, which was a relief."
+  },
+  "judge": {
+    "reasked_facts": 0,
+    "reasked_examples": [],
+    "effort_score": 5,
+    "tone_score": 5,
+    "rule_breaks": [],
+    "summary": "Sam said it was an AI and offered a person straight away, never asked again for anything the customer had already said, asked one clear question at a time in calm, plain English, read the details back once before lodging, and gave the claim number, the next steps, a plain explanation of the excess and a note that lodging isn't approval, with no over-promising."
+  }
+}
